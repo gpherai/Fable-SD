@@ -1,0 +1,2920 @@
+{
+ "tiers": {
+  "loha": {
+   "name": {
+    "nl": "IJzeren",
+    "en": "Iron"
+   },
+   "mult": 1.0,
+   "price": 1.0,
+   "slots": 0,
+   "color": "#8c8c8c",
+   "desc": {
+    "nl": "Eenvoudig dorpsijzer. Betrouwbaar, zwaar, zonder glans.",
+    "en": "Plain village iron. Reliable, heavy, without lustre."
+   }
+  },
+  "ispat": {
+   "name": {
+    "nl": "Stalen",
+    "en": "Steel"
+   },
+   "mult": 1.5,
+   "price": 2.5,
+   "slots": 1,
+   "color": "#c0c8d0",
+   "desc": {
+    "nl": "Wootz-staal uit de smederijen van Shringarapura. Houdt een scherpe rand en één edelsteen.",
+    "en": "Wootz steel from the forges of Shringarapura. Keeps an edge and holds one gem."
+   }
+  },
+  "krishnashila": {
+   "name": {
+    "nl": "Obsidiaan",
+    "en": "Obsidian"
+   },
+   "mult": 2.2,
+   "price": 6.0,
+   "slots": 2,
+   "color": "#2b2b3a",
+   "desc": {
+    "nl": "Zwart vulkaanglas uit Patala, geslepen door Naga-smeden. Twee edelsteenvattingen.",
+    "en": "Black volcanic glass from Patala, ground by Naga smiths. Two gem settings."
+   }
+  },
+  "siddha": {
+   "name": {
+    "nl": "Siddha",
+    "en": "Siddha"
+   },
+   "mult": 3.0,
+   "price": 14.0,
+   "slots": 3,
+   "color": "#e3b341",
+   "desc": {
+    "nl": "Gesmeed door een Siddha die zijn tapas in het metaal goot. Drie edelsteenvattingen en een eigen wil.",
+    "en": "Forged by a Siddha who poured his tapas into the metal. Three gem settings and a will of its own."
+   }
+  }
+ },
+ "weapon_types": {
+  "talwar": {
+   "name": {
+    "nl": "Talwar",
+    "en": "Talwar"
+   },
+   "class": "melee",
+   "dmg": 11,
+   "speed": 1.0,
+   "reach": 1.6,
+   "price": 120,
+   "shape": "curved",
+   "en_fable": "Longsword",
+   "desc": {
+    "nl": "Gebogen kromzwaard van de Kshatriya's. Snel, veelzijdig, de standaard van elke Vira.",
+    "en": "Curved sabre of the Kshatriyas. Fast, versatile, the standard of every Vira."
+   }
+  },
+  "khanda": {
+   "name": {
+    "nl": "Khanda",
+    "en": "Khanda"
+   },
+   "class": "melee",
+   "dmg": 17,
+   "speed": 0.8,
+   "reach": 1.9,
+   "price": 200,
+   "shape": "straight",
+   "two_handed": true,
+   "en_fable": "Greatsword",
+   "desc": {
+    "nl": "Recht, breed tweehandig zwaard. Traag maar verwoestend; het wapen van Durga's beeltenissen.",
+    "en": "Straight, broad two-handed sword. Slow but devastating; the weapon in Durga's icons."
+   }
+  },
+  "gada": {
+   "name": {
+    "nl": "Gada",
+    "en": "Gada"
+   },
+   "class": "melee",
+   "dmg": 21,
+   "speed": 0.6,
+   "reach": 1.5,
+   "price": 220,
+   "shape": "mace",
+   "two_handed": true,
+   "stun": 0.35,
+   "en_fable": "Greathammer / Mace",
+   "desc": {
+    "nl": "De strijdknots van Hanuman en Bhima. Elke klap kan een vijand versuffen.",
+    "en": "The war mace of Hanuman and Bhima. Every blow can stagger a foe."
+   }
+  },
+  "parashu": {
+   "name": {
+    "nl": "Parashu",
+    "en": "Parashu"
+   },
+   "class": "melee",
+   "dmg": 19,
+   "speed": 0.7,
+   "reach": 1.7,
+   "price": 210,
+   "shape": "axe",
+   "two_handed": true,
+   "en_fable": "Greataxe",
+   "desc": {
+    "nl": "Strijdbijl, gewijd aan Parashurama. Splijt schilden en Pisacha-schedels even makkelijk.",
+    "en": "Battle axe, consecrated to Parashurama. Splits shields and Pisacha skulls alike."
+   }
+  },
+  "trishula": {
+   "name": {
+    "nl": "Trishula",
+    "en": "Trishula"
+   },
+   "class": "melee",
+   "dmg": 14,
+   "speed": 0.85,
+   "reach": 2.3,
+   "price": 180,
+   "shape": "trident",
+   "two_handed": true,
+   "en_fable": "Spear (unique to SD)",
+   "desc": {
+    "nl": "Drietand van de Shaiva-asceten. Lange reikwijdte, houdt Rakshasa's op afstand.",
+    "en": "Trident of the Shaiva ascetics. Long reach, keeps Rakshasas at bay."
+   }
+  },
+  "katar": {
+   "name": {
+    "nl": "Katar",
+    "en": "Katar"
+   },
+   "class": "melee",
+   "dmg": 7,
+   "speed": 1.5,
+   "reach": 1.1,
+   "price": 90,
+   "shape": "dagger",
+   "en_fable": "Cleaver / dagger",
+   "desc": {
+    "nl": "Stootdolk met H-greep. Razendsnelle combo's, ideaal voor Chhaya-sluipmoordenaars.",
+    "en": "Punch dagger with an H-grip. Lightning combos, ideal for Chhaya assassins."
+   }
+  },
+  "urumi": {
+   "name": {
+    "nl": "Urumi",
+    "en": "Urumi"
+   },
+   "class": "melee",
+   "dmg": 9,
+   "speed": 1.1,
+   "reach": 2.4,
+   "price": 260,
+   "shape": "whip",
+   "arc": 360,
+   "en_fable": "Flail (unique to SD)",
+   "desc": {
+    "nl": "Zweepzwaard uit het zuiden: een lemmet zo buigzaam dat het rondom slaat. Raakt alles om je heen.",
+    "en": "Whip-sword from the south: a blade so flexible it strikes all around you."
+   }
+  },
+  "dhanush": {
+   "name": {
+    "nl": "Dhanush",
+    "en": "Dhanush"
+   },
+   "class": "ranged",
+   "dmg": 12,
+   "speed": 1.0,
+   "range": 30,
+   "price": 150,
+   "shape": "bow",
+   "projectile": "arrow",
+   "en_fable": "Bow",
+   "desc": {
+    "nl": "Composietboog van hoorn en pees. Houd ingedrukt om te spannen; een volle spanning doet dubbele schade.",
+    "en": "Composite bow of horn and sinew. Hold to draw; a full draw deals double damage."
+   }
+  },
+  "mahadhanush": {
+   "name": {
+    "nl": "Mahadhanush",
+    "en": "Mahadhanush"
+   },
+   "class": "ranged",
+   "dmg": 20,
+   "speed": 0.65,
+   "range": 42,
+   "price": 260,
+   "shape": "longbow",
+   "projectile": "arrow",
+   "en_fable": "Longbow",
+   "desc": {
+    "nl": "Manshoge langboog. Traag spannen, maar een pijl die een Daitya laat wankelen.",
+    "en": "Man-high longbow. Slow to draw, but an arrow that makes a Daitya stagger."
+   }
+  },
+  "chakra": {
+   "name": {
+    "nl": "Chakra",
+    "en": "Chakra"
+   },
+   "class": "ranged",
+   "dmg": 9,
+   "speed": 1.4,
+   "range": 22,
+   "price": 170,
+   "shape": "disc",
+   "projectile": "disc",
+   "pierce": true,
+   "en_fable": "Crossbow",
+   "desc": {
+    "nl": "Werpschijf met geslepen rand. Snijdt door meerdere vijanden heen.",
+    "en": "Throwing disc with a sharpened rim. Cuts through several enemies in a row."
+   }
+  }
+ },
+ "armor_pieces": {
+  "topi": {
+   "name": {
+    "nl": "Pagri",
+    "en": "Turban"
+   },
+   "slot": "head",
+   "mult": 0.6
+  },
+  "kurta": {
+   "name": {
+    "nl": "Kurta",
+    "en": "Tunic"
+   },
+   "slot": "chest",
+   "mult": 1.4
+  },
+  "dastana": {
+   "name": {
+    "nl": "Dastana",
+    "en": "Gloves"
+   },
+   "slot": "hands",
+   "mult": 0.5
+  },
+  "dhoti": {
+   "name": {
+    "nl": "Dhoti",
+    "en": "Dhoti"
+   },
+   "slot": "legs",
+   "mult": 1.0
+  },
+  "jutti": {
+   "name": {
+    "nl": "Jutti",
+    "en": "Shoes"
+   },
+   "slot": "feet",
+   "mult": 0.5
+  }
+ },
+ "armor_sets": {
+  "gramin": {
+   "name": {
+    "nl": "Dorpse",
+    "en": "Villager"
+   },
+   "def": 1,
+   "weight": 0,
+   "saundarya": 0,
+   "bhaya": 0,
+   "ojas": 0,
+   "price": 25,
+   "style": "cloth",
+   "en_fable": "Villager outfit",
+   "colors": {
+    "primary": "#c8b48a",
+    "secondary": "#8a6d3b"
+   },
+   "desc": {
+    "nl": "Katoenen dorpskleding, gekleurd met kurkuma. Beschermt tegen de zon, niet tegen klauwen.",
+    "en": "Cotton village clothes dyed with turmeric. Protects from sun, not from claws."
+   }
+  },
+  "charma": {
+   "name": {
+    "nl": "Leren",
+    "en": "Leather"
+   },
+   "def": 3,
+   "weight": 1,
+   "saundarya": 0,
+   "bhaya": 1,
+   "ojas": 0,
+   "price": 80,
+   "style": "leather",
+   "en_fable": "Leather armour",
+   "colors": {
+    "primary": "#7a4a1f",
+    "secondary": "#4a2c10"
+   },
+   "desc": {
+    "nl": "Gelooid buffelleer. De eerste uitrusting van elke Akhara-leerling.",
+    "en": "Tanned buffalo leather. The first kit of every Akhara student."
+   }
+  },
+  "jhilam": {
+   "name": {
+    "nl": "Maliën",
+    "en": "Chainmail"
+   },
+   "def": 6,
+   "weight": 2.5,
+   "saundarya": 2,
+   "bhaya": 1,
+   "ojas": 0,
+   "price": 260,
+   "style": "metal",
+   "en_fable": "Chainmail",
+   "colors": {
+    "primary": "#9aa3ad",
+    "secondary": "#5a6066"
+   },
+   "desc": {
+    "nl": "Jhilam-maliënkolder, ring aan ring. Zwaar, maar een Dasyu-pijl komt er niet doorheen.",
+    "en": "Jhilam mail, ring on ring. Heavy, but a Dasyu arrow will not pass."
+   }
+  },
+  "charaina": {
+   "name": {
+    "nl": "Charaina",
+    "en": "Plate"
+   },
+   "def": 9,
+   "weight": 4,
+   "saundarya": 4,
+   "bhaya": 2,
+   "ojas": 0,
+   "price": 700,
+   "style": "metal",
+   "en_fable": "Plate armour",
+   "colors": {
+    "primary": "#c9ccd1",
+    "secondary": "#6e7278"
+   },
+   "desc": {
+    "nl": "Vier-spiegel plaatpantser van de Kshatriya-garde. Je loopt langzamer, maar je staat als een rots.",
+    "en": "Four-mirror plate of the Kshatriya guard. You walk slower, but you stand like a rock."
+   }
+  },
+  "surya_kavach": {
+   "name": {
+    "nl": "Surya-kavach",
+    "en": "Surya Plate"
+   },
+   "def": 11,
+   "weight": 4,
+   "saundarya": 10,
+   "bhaya": 0,
+   "ojas": 0,
+   "price": 2200,
+   "style": "metal",
+   "en_fable": "Bright Plate",
+   "colors": {
+    "primary": "#f1d27a",
+    "secondary": "#e3b341"
+   },
+   "desc": {
+    "nl": "Vergulde kavach die het zonlicht vangt. Dorpelingen juichen als je voorbijkomt. Alleen voor de dharmische.",
+    "en": "Gilded kavach that catches sunlight. Villagers cheer when you pass. For the dharmic only."
+   }
+  },
+  "tamo_kavach": {
+   "name": {
+    "nl": "Tamo-kavach",
+    "en": "Tamas Plate"
+   },
+   "def": 11,
+   "weight": 4,
+   "saundarya": 0,
+   "bhaya": 12,
+   "ojas": 0,
+   "price": 2200,
+   "style": "metal",
+   "en_fable": "Dark Plate",
+   "colors": {
+    "primary": "#2a2230",
+    "secondary": "#5a2d6b"
+   },
+   "desc": {
+    "nl": "Zwart pantser met hoorns, gesmeed in de Andhaka Pith. Kinderen huilen, Dasyu's knielen.",
+    "en": "Black horned plate forged in the Andhaka Pith. Children cry, Dasyus kneel."
+   }
+  },
+  "dasyu": {
+   "name": {
+    "nl": "Dasyu",
+    "en": "Bandit"
+   },
+   "def": 4,
+   "weight": 1,
+   "saundarya": 0,
+   "bhaya": 5,
+   "ojas": 0,
+   "price": 150,
+   "style": "cloth",
+   "en_fable": "Bandit outfit",
+   "colors": {
+    "primary": "#5b3d2e",
+    "secondary": "#2d1d16"
+   },
+   "desc": {
+    "nl": "Roverskledij met rode sjerp. In het kamp van Dvikhadga word je hierin niet aangevallen.",
+    "en": "Bandit garb with a red sash. In Dvikhadga's camp you will not be attacked in this."
+   }
+  },
+  "chhaya": {
+   "name": {
+    "nl": "Chhaya",
+    "en": "Shadow"
+   },
+   "def": 5,
+   "weight": 0.5,
+   "saundarya": 0,
+   "bhaya": 8,
+   "ojas": 0,
+   "price": 900,
+   "style": "cloth",
+   "en_fable": "Assassin outfit",
+   "colors": {
+    "primary": "#1e1e26",
+    "secondary": "#3a3a4a"
+   },
+   "desc": {
+    "nl": "Nachtzwarte kledij van de Chhaya-sluipmoordenaars. Stil als een schaduw, verhoogt Chaturya.",
+    "en": "Night-black garb of the Chhaya assassins. Silent as a shadow, raises Chaturya."
+   }
+  },
+  "yogi": {
+   "name": {
+    "nl": "Yogi",
+    "en": "Yogi"
+   },
+   "def": 2,
+   "weight": 0,
+   "saundarya": 2,
+   "bhaya": 0,
+   "ojas": 10,
+   "price": 200,
+   "style": "cloth",
+   "en_fable": "Will User's outfit",
+   "colors": {
+    "primary": "#e8e0c8",
+    "secondary": "#f28c28"
+   },
+   "desc": {
+    "nl": "Saffraan en linnen. Laat prana vrij stromen: meer Ojas, weinig bescherming.",
+    "en": "Saffron and linen. Lets prana flow freely: more Ojas, little protection."
+   }
+  },
+  "sattva": {
+   "name": {
+    "nl": "Sattva",
+    "en": "Sattva"
+   },
+   "def": 4,
+   "weight": 0,
+   "saundarya": 8,
+   "bhaya": 0,
+   "ojas": 20,
+   "price": 1800,
+   "style": "cloth",
+   "en_fable": "Bright Will User's outfit",
+   "colors": {
+    "primary": "#ffffff",
+    "secondary": "#e3b341"
+   },
+   "desc": {
+    "nl": "Witte zijde met gouden mantra's. Gedragen door Rishi's die het licht dienen.",
+    "en": "White silk with golden mantras. Worn by Rishis who serve the light."
+   }
+  },
+  "tamas": {
+   "name": {
+    "nl": "Tamas",
+    "en": "Tamas"
+   },
+   "def": 4,
+   "weight": 0,
+   "saundarya": 0,
+   "bhaya": 10,
+   "ojas": 20,
+   "price": 1800,
+   "style": "cloth",
+   "en_fable": "Dark Will User's outfit",
+   "colors": {
+    "primary": "#2a1038",
+    "secondary": "#8e44ad"
+   },
+   "desc": {
+    "nl": "Paarse mantel van de Kapalika's, met schedelkralen. Kanaliseert Shakti uit de duisternis.",
+    "en": "Purple robe of the Kapalikas, with skull beads. Channels Shakti from the dark."
+   }
+  }
+ },
+ "items": {
+  "lathi": {
+   "name": {
+    "nl": "Lathi",
+    "en": "Lathi"
+   },
+   "cat": "melee",
+   "wtype": "lathi",
+   "dmg": 4,
+   "speed": 1.2,
+   "reach": 1.8,
+   "value": 5,
+   "slots": 0,
+   "shape": "staff",
+   "color": "#a8865a",
+   "en_fable": "Wooden stick",
+   "desc": {
+    "nl": "Bamboestok. Waar elke dorpsjongen mee leert vechten.",
+    "en": "Bamboo stave. What every village boy learns to fight with."
+   }
+  },
+  "kalakhadga": {
+   "name": {
+    "nl": "Kalakhadga, het Zwaard van de Eonen",
+    "en": "Kalakhadga, the Sword of Aeons"
+   },
+   "cat": "melee",
+   "wtype": "khanda",
+   "dmg": 60,
+   "speed": 0.9,
+   "reach": 2.0,
+   "value": 0,
+   "slots": 0,
+   "legendary": true,
+   "quest": true,
+   "two_handed": true,
+   "shape": "straight",
+   "color": "#9b59b6",
+   "aura": "adharma",
+   "en_fable": "Sword of Aeons",
+   "aug": [
+    {
+     "type": "drain",
+     "power": 0.15
+    },
+    {
+     "type": "fear",
+     "power": 0.2
+    }
+   ],
+   "desc": {
+    "nl": "Gesmeed door Khadgasura uit bevroren tijd. Het fluistert in het Sanskriet van vóór de Veda's. Wie het draagt, hoort Kala zelf.",
+    "en": "Forged by Khadgasura from frozen time. It whispers in a Sanskrit older than the Vedas. Whoever wields it hears Kala himself."
+   }
+  },
+  "dharma_ashru": {
+   "name": {
+    "nl": "Dharmashru, de Traan van Dharma",
+    "en": "Dharmashru, the Tear of Dharma"
+   },
+   "cat": "melee",
+   "wtype": "khanda",
+   "dmg": 55,
+   "speed": 1.0,
+   "reach": 1.9,
+   "value": 0,
+   "slots": 0,
+   "legendary": true,
+   "two_handed": true,
+   "shape": "straight",
+   "color": "#f1f7ff",
+   "aura": "dharma",
+   "en_fable": "Avo's Tear",
+   "aug": [
+    {
+     "type": "sacred",
+     "power": 0.5
+    },
+    {
+     "type": "health",
+     "power": 30
+    }
+   ],
+   "desc": {
+    "nl": "Een lemmet van helder licht, gevormd uit de traan die Dharma liet toen Kalakhadga werd gesmeed. Verschijnt alleen voor wie het zwaard van Khadgasura vernietigt.",
+    "en": "A blade of clear light, formed from the tear Dharma shed when Kalakhadga was forged. Appears only to those who destroy Khadgasura's sword."
+   }
+  },
+  "pashupata": {
+   "name": {
+    "nl": "Pashupata",
+    "en": "Pashupata"
+   },
+   "cat": "melee",
+   "wtype": "khanda",
+   "dmg": 52,
+   "speed": 0.7,
+   "reach": 2.1,
+   "value": 24000,
+   "slots": 1,
+   "legendary": true,
+   "two_handed": true,
+   "shape": "straight",
+   "color": "#3b3b3b",
+   "en_fable": "Harbinger",
+   "aug": [
+    {
+     "type": "fire",
+     "power": 14
+    }
+   ],
+   "desc": {
+    "nl": "Het verschrikkelijke wapen dat ooit aan Arjuna werd geschonken, nu begraven in de Pretanagari. Elke slag brandt als het einde van een yuga.",
+    "en": "The terrible weapon once granted to Arjuna, now buried in the Pretanagari. Every blow burns like the end of a yuga."
+   }
+  },
+  "surya_khanda": {
+   "name": {
+    "nl": "Surya Khanda",
+    "en": "Surya Khanda"
+   },
+   "cat": "melee",
+   "wtype": "khanda",
+   "dmg": 45,
+   "speed": 0.9,
+   "reach": 1.9,
+   "value": 38000,
+   "slots": 1,
+   "legendary": true,
+   "two_handed": true,
+   "shape": "straight",
+   "color": "#ffd36b",
+   "en_fable": "Solus Greatsword",
+   "aug": [
+    {
+     "type": "sharp",
+     "power": 0.2
+    }
+   ],
+   "desc": {
+    "nl": "Een zwaard van gepolijst zonnekoper, te koop bij de rijkste handelaar van Shringarapura Uttara. Het weerkaatst het licht van duizend offervuren.",
+    "en": "A sword of polished sun-copper, sold by the richest merchant of Shringarapura Uttara. It reflects the light of a thousand sacrificial fires."
+   }
+  },
+  "bhima_gada": {
+   "name": {
+    "nl": "Bhima's Gada",
+    "en": "Bhima's Gada"
+   },
+   "cat": "melee",
+   "wtype": "gada",
+   "dmg": 50,
+   "speed": 0.55,
+   "reach": 1.6,
+   "value": 20000,
+   "slots": 1,
+   "legendary": true,
+   "two_handed": true,
+   "shape": "mace",
+   "stun": 0.6,
+   "color": "#a0522d",
+   "en_fable": "Murren Greathammer",
+   "aug": [
+    {
+     "type": "health",
+     "power": 40
+    }
+   ],
+   "desc": {
+    "nl": "De knots waarmee Bhima honderd Kaurava's versloeg. Een Yaksha bewaakt haar in het Dakinivana.",
+    "en": "The mace with which Bhima slew a hundred Kauravas. A Yaksha guards it in the Dakinivana."
+   }
+  },
+  "yama_danda": {
+   "name": {
+    "nl": "Yamadanda, de Staf van Yama",
+    "en": "Yamadanda, the Staff of Yama"
+   },
+   "cat": "melee",
+   "wtype": "trishula",
+   "dmg": 46,
+   "speed": 0.8,
+   "reach": 2.2,
+   "value": 20000,
+   "slots": 1,
+   "legendary": true,
+   "two_handed": true,
+   "shape": "staff",
+   "color": "#1b1b1b",
+   "en_fable": "Bereaver",
+   "aug": [
+    {
+     "type": "drain",
+     "power": 0.25
+    }
+   ],
+   "desc": {
+    "nl": "Een zwarte staf met een schedelknop. Elke treffer trekt prana uit het slachtoffer naar jou. Gevonden achter een Yaksha-poort in de Pretanagari.",
+    "en": "A black staff with a skull pommel. Every hit pulls prana from the victim to you. Found behind a Yaksha door in the Pretanagari."
+   }
+  },
+  "nilakantha_talwar": {
+   "name": {
+    "nl": "Nilakantha Talwar",
+    "en": "Nilakantha Talwar"
+   },
+   "cat": "melee",
+   "wtype": "talwar",
+   "dmg": 38,
+   "speed": 1.05,
+   "reach": 1.6,
+   "value": 15000,
+   "slots": 1,
+   "legendary": true,
+   "shape": "curved",
+   "color": "#1f6fc4",
+   "en_fable": "Cutlass Bluetane",
+   "aug": [
+    {
+     "type": "lightning",
+     "power": 12
+    }
+   ],
+   "desc": {
+    "nl": "Blauw als de keel van Shiva. Opgevist uit de zee bij Ankusha Tata; de bliksem zit nog in het staal.",
+    "en": "Blue as Shiva's throat. Fished from the sea at Ankusha Tata; the lightning is still in the steel."
+   }
+  },
+  "chandrahasa": {
+   "name": {
+    "nl": "Chandrahasa",
+    "en": "Chandrahasa"
+   },
+   "cat": "melee",
+   "wtype": "talwar",
+   "dmg": 42,
+   "speed": 1.0,
+   "reach": 1.7,
+   "value": 18000,
+   "slots": 1,
+   "legendary": true,
+   "shape": "curved",
+   "color": "#b0c4de",
+   "en_fable": "The Chopper",
+   "aug": [
+    {
+     "type": "fear",
+     "power": 0.3
+    }
+   ],
+   "desc": {
+    "nl": "Het maanzwaard van Ravana, begraven onder de Praachin Mandir in het Tamovana. Vijanden vluchten voor zijn glans.",
+    "en": "Ravana's moon-sword, buried beneath the Praachin Mandir in the Tamovana. Foes flee from its gleam."
+   }
+  },
+  "vajramushti": {
+   "name": {
+    "nl": "Vajramushti",
+    "en": "Vajramushti"
+   },
+   "cat": "melee",
+   "wtype": "katar",
+   "dmg": 30,
+   "speed": 1.6,
+   "reach": 1.0,
+   "value": 12000,
+   "slots": 1,
+   "legendary": true,
+   "shape": "knuckle",
+   "color": "#d4af37",
+   "en_fable": "Unique (SD)",
+   "aug": [
+    {
+     "type": "sharp",
+     "power": 0.15
+    }
+   ],
+   "desc": {
+    "nl": "Donderknokkel van de worstelaars van de Vira Akhara. Begraven onder het zand van de Rangabhumi.",
+    "en": "Thunder-knuckle of the wrestlers of the Vira Akhara. Buried under the sand of the Rangabhumi."
+   }
+  },
+  "bhumi_kudala": {
+   "name": {
+    "nl": "Bhumi Kudala, de Pikhouweel van de Aarde",
+    "en": "Bhumi Kudala, the Earth Pickaxe"
+   },
+   "cat": "melee",
+   "wtype": "parashu",
+   "dmg": 30,
+   "speed": 0.75,
+   "reach": 1.6,
+   "value": 9000,
+   "slots": 1,
+   "legendary": true,
+   "two_handed": true,
+   "shape": "pick",
+   "color": "#8d6e63",
+   "dig": true,
+   "en_fable": "Wellow's Pickhammer",
+   "desc": {
+    "nl": "Houweel én wapen. Ermee graven gaat dubbel zo snel. Verborgen in de diepste kamer van de Pisacha Guha.",
+    "en": "Pickaxe and weapon. Digging with it goes twice as fast. Hidden in the deepest chamber of the Pisacha Guha."
+   }
+  },
+  "gandiva": {
+   "name": {
+    "nl": "Gandiva",
+    "en": "Gandiva"
+   },
+   "cat": "ranged",
+   "wtype": "mahadhanush",
+   "dmg": 45,
+   "speed": 1.0,
+   "range": 40,
+   "value": 30000,
+   "slots": 1,
+   "legendary": true,
+   "shape": "longbow",
+   "projectile": "arrow",
+   "color": "#e3b341",
+   "en_fable": "Skorm's Bow (dharma counterpart)",
+   "aug": [
+    {
+     "type": "sacred",
+     "power": 0.4
+    }
+   ],
+   "desc": {
+    "nl": "De boog van Arjuna, geschenk van Agni. De Surya Mandir schenkt hem aan wie met heel zijn hart offert.",
+    "en": "Arjuna's bow, gift of Agni. The Surya Mandir grants it to whoever gives with a whole heart."
+   }
+  },
+  "andhaka_dhanush": {
+   "name": {
+    "nl": "Boog van Andhaka",
+    "en": "Bow of Andhaka"
+   },
+   "cat": "ranged",
+   "wtype": "mahadhanush",
+   "dmg": 44,
+   "speed": 1.1,
+   "range": 36,
+   "value": 30000,
+   "slots": 1,
+   "legendary": true,
+   "shape": "longbow",
+   "projectile": "arrow",
+   "color": "#4a0f3a",
+   "aura": "adharma",
+   "en_fable": "Skorm's Bow",
+   "aug": [
+    {
+     "type": "drain",
+     "power": 0.2
+    }
+   ],
+   "desc": {
+    "nl": "Een boog van zwart been, geschenk van de Andhaka Pith aan wie een leven offert. De pijlen huilen.",
+    "en": "A bow of black bone, gift of the Andhaka Pith to whoever sacrifices a life. The arrows weep."
+   }
+  },
+  "vajra_chakra": {
+   "name": {
+    "nl": "Vajra-Chakra",
+    "en": "Vajra-Chakra"
+   },
+   "cat": "ranged",
+   "wtype": "chakra",
+   "dmg": 32,
+   "speed": 1.5,
+   "range": 26,
+   "value": 16000,
+   "slots": 1,
+   "legendary": true,
+   "shape": "disc",
+   "projectile": "disc",
+   "pierce": true,
+   "color": "#7fdbff",
+   "en_fable": "Unique (SD)",
+   "aug": [
+    {
+     "type": "lightning",
+     "power": 10
+    }
+   ],
+   "desc": {
+    "nl": "Een schijf die knettert als Indra's wapen. Beloning van de Yaksha aan de Ankusha Tata.",
+    "en": "A disc that crackles like Indra's weapon. Reward of the Yaksha at Ankusha Tata."
+   }
+  },
+  "hira": {
+   "name": {
+    "nl": "Hira (diamant)",
+    "en": "Hira (diamond)"
+   },
+   "cat": "gem",
+   "value": 900,
+   "aug": {
+    "type": "sharp",
+    "power": 0.15
+   },
+   "color": "#e8f6ff",
+   "en_fable": "Sharpening Augmentation",
+   "desc": {
+    "nl": "Navaratna van Shukra. Verhoogt de schade van het wapen met 15%.",
+    "en": "Navaratna of Shukra. Raises the weapon's damage by 15%."
+   }
+  },
+  "manikya": {
+   "name": {
+    "nl": "Manikya (robijn)",
+    "en": "Manikya (ruby)"
+   },
+   "cat": "gem",
+   "value": 900,
+   "aug": {
+    "type": "fire",
+    "power": 8
+   },
+   "color": "#e0115f",
+   "en_fable": "Flame Augmentation",
+   "desc": {
+    "nl": "Navaratna van Surya. Elke treffer doet extra vuurschade.",
+    "en": "Navaratna of Surya. Every hit deals extra fire damage."
+   }
+  },
+  "nilam": {
+   "name": {
+    "nl": "Nilam (saffier)",
+    "en": "Nilam (sapphire)"
+   },
+   "cat": "gem",
+   "value": 900,
+   "aug": {
+    "type": "lightning",
+    "power": 8
+   },
+   "color": "#0f52ba",
+   "en_fable": "Lightning Augmentation",
+   "desc": {
+    "nl": "Navaratna van Shani. Bliksem springt van je wapen naar een tweede vijand.",
+    "en": "Navaratna of Shani. Lightning leaps from your weapon to a second foe."
+   }
+  },
+  "panna": {
+   "name": {
+    "nl": "Panna (smaragd)",
+    "en": "Panna (emerald)"
+   },
+   "cat": "gem",
+   "value": 900,
+   "aug": {
+    "type": "health",
+    "power": 25
+   },
+   "color": "#50c878",
+   "en_fable": "Health Augmentation",
+   "desc": {
+    "nl": "Navaratna van Budha. Verhoogt je maximale Prana zolang het wapen gedragen wordt.",
+    "en": "Navaratna of Budha. Raises your maximum Prana while the weapon is wielded."
+   }
+  },
+  "pukhraj": {
+   "name": {
+    "nl": "Pukhraj (gele saffier)",
+    "en": "Pukhraj (yellow sapphire)"
+   },
+   "cat": "gem",
+   "value": 1200,
+   "aug": {
+    "type": "tapas",
+    "power": 0.15
+   },
+   "color": "#ffcc33",
+   "en_fable": "Experience Augmentation",
+   "desc": {
+    "nl": "Navaratna van Brihaspati, de guru. Je verzamelt 15% meer Tapas.",
+    "en": "Navaratna of Brihaspati, the guru. You gather 15% more Tapas."
+   }
+  },
+  "moti": {
+   "name": {
+    "nl": "Moti (parel)",
+    "en": "Moti (pearl)"
+   },
+   "cat": "gem",
+   "value": 900,
+   "aug": {
+    "type": "ojas",
+    "power": 2.0
+   },
+   "color": "#fdeef4",
+   "en_fable": "Mana Augmentation",
+   "desc": {
+    "nl": "Navaratna van Chandra. Je Ojas herstelt sneller.",
+    "en": "Navaratna of Chandra. Your Ojas recovers faster."
+   }
+  },
+  "gomed": {
+   "name": {
+    "nl": "Gomed (hessoniet)",
+    "en": "Gomed (hessonite)"
+   },
+   "cat": "gem",
+   "value": 1000,
+   "aug": {
+    "type": "pierce",
+    "power": 0.5
+   },
+   "color": "#b5651d",
+   "en_fable": "Piercing Augmentation",
+   "desc": {
+    "nl": "Navaratna van Rahu. Negeert de helft van het pantser van de vijand.",
+    "en": "Navaratna of Rahu. Ignores half of the enemy's armour."
+   }
+  },
+  "vaidurya": {
+   "name": {
+    "nl": "Vaidurya (kattenoog)",
+    "en": "Vaidurya (cat's eye)"
+   },
+   "cat": "gem",
+   "value": 1000,
+   "aug": {
+    "type": "sacred",
+    "power": 0.4
+   },
+   "color": "#9acd32",
+   "en_fable": "Silver Augmentation",
+   "desc": {
+    "nl": "Navaratna van Ketu. Doet 40% extra schade aan Preta's, Rakshasa's en Asura's.",
+    "en": "Navaratna of Ketu. Deals 40% extra damage to Pretas, Rakshasas and Asuras."
+   }
+  },
+  "praval": {
+   "name": {
+    "nl": "Praval (koraal)",
+    "en": "Praval (coral)"
+   },
+   "cat": "gem",
+   "value": 800,
+   "aug": {
+    "type": "fear",
+    "power": 0.2
+   },
+   "color": "#ff7f50",
+   "en_fable": "Unique (SD)",
+   "desc": {
+    "nl": "Navaratna van Mangala. Elke treffer heeft een kans om de vijand te laten vluchten.",
+    "en": "Navaratna of Mangala. Every hit has a chance to make the enemy flee."
+   }
+  },
+  "prana_rasa_laghu": {
+   "name": {
+    "nl": "Kleine Prana-rasa",
+    "en": "Small Prana Elixir"
+   },
+   "cat": "potion",
+   "value": 30,
+   "use": {
+    "heal": 40
+   },
+   "color": "#e74c3c",
+   "en_fable": "Health Potion",
+   "desc": {
+    "nl": "Een kruidenaftreksel van de vaidya's. Herstelt 40 Prana.",
+    "en": "A herbal decoction of the vaidyas. Restores 40 Prana."
+   }
+  },
+  "prana_rasa": {
+   "name": {
+    "nl": "Prana-rasa",
+    "en": "Prana Elixir"
+   },
+   "cat": "potion",
+   "value": 80,
+   "use": {
+    "heal": 100
+   },
+   "color": "#e74c3c",
+   "en_fable": "Health Potion",
+   "desc": {
+    "nl": "Herstelt 100 Prana. Ruikt naar gember en ghee.",
+    "en": "Restores 100 Prana. Smells of ginger and ghee."
+   }
+  },
+  "prana_rasa_maha": {
+   "name": {
+    "nl": "Maha Prana-rasa",
+    "en": "Great Prana Elixir"
+   },
+   "cat": "potion",
+   "value": 200,
+   "use": {
+    "heal": 250
+   },
+   "color": "#ff2d2d",
+   "en_fable": "Great Health Potion",
+   "desc": {
+    "nl": "Herstelt 250 Prana. Een Charaka-recept met honderd kruiden.",
+    "en": "Restores 250 Prana. A Charaka recipe with a hundred herbs."
+   }
+  },
+  "ojas_rasa": {
+   "name": {
+    "nl": "Ojas-rasa",
+    "en": "Ojas Elixir"
+   },
+   "cat": "potion",
+   "value": 70,
+   "use": {
+    "ojas": 60
+   },
+   "color": "#2e86de",
+   "en_fable": "Will Potion",
+   "desc": {
+    "nl": "Herstelt 60 Ojas. Gebrouwen van blauwe lotus.",
+    "en": "Restores 60 Ojas. Brewed from blue lotus."
+   }
+  },
+  "ojas_rasa_maha": {
+   "name": {
+    "nl": "Maha Ojas-rasa",
+    "en": "Great Ojas Elixir"
+   },
+   "cat": "potion",
+   "value": 180,
+   "use": {
+    "ojas": 160
+   },
+   "color": "#1b4f9c",
+   "en_fable": "Great Will Potion",
+   "desc": {
+    "nl": "Herstelt 160 Ojas.",
+    "en": "Restores 160 Ojas."
+   }
+  },
+  "amrita_phial": {
+   "name": {
+    "nl": "Amrita-flacon",
+    "en": "Phial of Amrita"
+   },
+   "cat": "potion",
+   "value": 600,
+   "use": {
+    "resurrect": true
+   },
+   "color": "#f7e26b",
+   "en_fable": "Resurrection Phial",
+   "desc": {
+    "nl": "Een druppel van de nectar die bij het karnen van de oceaan opkwam. Wordt automatisch gebruikt als je sterft.",
+    "en": "A drop of the nectar that rose at the churning of the ocean. Used automatically when you die."
+   }
+  },
+  "tapas_rasa": {
+   "name": {
+    "nl": "Tapas-rasa",
+    "en": "Tapas Elixir"
+   },
+   "cat": "potion",
+   "value": 900,
+   "use": {
+    "tapas": 500
+   },
+   "color": "#27ae60",
+   "en_fable": "Elixir of Experience",
+   "desc": {
+    "nl": "Vloeibare ascese: 500 Tapas in één slok.",
+    "en": "Liquid austerity: 500 Tapas in one gulp."
+   }
+  },
+  "chyavana_rasa": {
+   "name": {
+    "nl": "Chyavana-rasa",
+    "en": "Chyavana Elixir"
+   },
+   "cat": "potion",
+   "value": 2500,
+   "use": {
+    "age": -10
+   },
+   "color": "#8e44ad",
+   "en_fable": "Elixir of Life",
+   "desc": {
+    "nl": "Het verjongingsmiddel van de rishi Chyavana. Maakt je tien jaar jonger.",
+    "en": "The rejuvenation tonic of the rishi Chyavana. Makes you ten years younger."
+   }
+  },
+  "bhasma": {
+   "name": {
+    "nl": "Vibhuti-bhasma",
+    "en": "Vibhuti ash"
+   },
+   "cat": "potion",
+   "value": 90,
+   "use": {
+    "buff": {
+     "stat": "ojas_regen",
+     "mult": 3.0,
+     "duration": 60
+    }
+   },
+   "color": "#d0d0d0",
+   "en_fable": "Unique (SD)",
+   "desc": {
+    "nl": "Heilige as uit een dhuni-vuur. Je Ojas stroomt een minuut lang drie keer zo snel.",
+    "en": "Sacred ash from a dhuni fire. Your Ojas flows three times as fast for a minute."
+   }
+  },
+  "vishahara": {
+   "name": {
+    "nl": "Vishahara",
+    "en": "Vishahara"
+   },
+   "cat": "potion",
+   "value": 40,
+   "use": {
+    "cure": true,
+    "heal": 10
+   },
+   "color": "#2ecc71",
+   "en_fable": "Antidote",
+   "desc": {
+    "nl": "Tegengif tegen Naga-beten en Bhramara-steken.",
+    "en": "Antidote against Naga bites and Bhramara stings."
+   }
+  },
+  "phala": {
+   "name": {
+    "nl": "Vrucht",
+    "en": "Fruit"
+   },
+   "cat": "food",
+   "guna": "sattva",
+   "value": 3,
+   "use": {
+    "heal": 12,
+    "karma": 1
+   },
+   "color": "#f39c12",
+   "en_fable": "Apple",
+   "desc": {
+    "nl": "Mango, banaan of jackfruit. Sattvisch en zoet.",
+    "en": "Mango, banana or jackfruit. Sattvic and sweet."
+   }
+  },
+  "dudh": {
+   "name": {
+    "nl": "Melk",
+    "en": "Milk"
+   },
+   "cat": "food",
+   "guna": "sattva",
+   "value": 4,
+   "use": {
+    "heal": 15,
+    "karma": 1
+   },
+   "color": "#fdfdfd",
+   "en_fable": "Milk",
+   "desc": {
+    "nl": "Warme melk van de dorpskoe. Rustgevend.",
+    "en": "Warm milk from the village cow. Soothing."
+   }
+  },
+  "ghee": {
+   "name": {
+    "nl": "Ghee",
+    "en": "Ghee"
+   },
+   "cat": "food",
+   "guna": "sattva",
+   "value": 8,
+   "use": {
+    "heal": 20,
+    "karma": 1
+   },
+   "color": "#ffe680",
+   "en_fable": "Butter",
+   "desc": {
+    "nl": "Geklaarde boter, voedsel voor goden en helden.",
+    "en": "Clarified butter, food for gods and heroes."
+   }
+  },
+  "paneer": {
+   "name": {
+    "nl": "Paneer",
+    "en": "Paneer"
+   },
+   "cat": "food",
+   "guna": "sattva",
+   "value": 10,
+   "use": {
+    "heal": 25,
+    "karma": 1
+   },
+   "color": "#fff5d6",
+   "en_fable": "Tofu",
+   "desc": {
+    "nl": "Verse kaas. Het eiwit van de dharmische krijger.",
+    "en": "Fresh cheese. The protein of the dharmic warrior."
+   }
+  },
+  "kheer": {
+   "name": {
+    "nl": "Kheer",
+    "en": "Kheer"
+   },
+   "cat": "food",
+   "guna": "sattva",
+   "value": 12,
+   "use": {
+    "heal": 30,
+    "karma": 1
+   },
+   "color": "#f5e6c8",
+   "en_fable": "Pie",
+   "desc": {
+    "nl": "Rijstpudding met kardemom en saffraan.",
+    "en": "Rice pudding with cardamom and saffron."
+   }
+  },
+  "laddu": {
+   "name": {
+    "nl": "Laddu",
+    "en": "Laddu"
+   },
+   "cat": "food",
+   "guna": "sattva",
+   "value": 15,
+   "use": {
+    "heal": 35,
+    "karma": 1
+   },
+   "color": "#f4a52d",
+   "en_fable": "Apple Pie",
+   "desc": {
+    "nl": "Bal van kikkererwtenmeel, ghee en suiker. Het lievelingseten van Ganesha.",
+    "en": "Ball of chickpea flour, ghee and sugar. Ganesha's favourite."
+   }
+  },
+  "chai": {
+   "name": {
+    "nl": "Chai",
+    "en": "Chai"
+   },
+   "cat": "food",
+   "guna": "rajas",
+   "value": 4,
+   "use": {
+    "heal": 10,
+    "buff": {
+     "stat": "speed",
+     "mult": 1.15,
+     "duration": 40
+    }
+   },
+   "color": "#b5651d",
+   "en_fable": "Unique (SD)",
+   "desc": {
+    "nl": "Kruidenthee met gember. Je loopt even wat sneller.",
+    "en": "Spiced tea with ginger. You walk a little faster for a while."
+   }
+  },
+  "tulsi": {
+   "name": {
+    "nl": "Tulsi-blad",
+    "en": "Tulsi leaf"
+   },
+   "cat": "food",
+   "guna": "sattva",
+   "value": 2,
+   "use": {
+    "heal": 8,
+    "cure": true
+   },
+   "color": "#3c9a3c",
+   "en_fable": "Herb",
+   "desc": {
+    "nl": "Heilige basilicum. Geneest vergif, zuivert het lichaam.",
+    "en": "Holy basil. Cures poison, purifies the body."
+   }
+  },
+  "madhu": {
+   "name": {
+    "nl": "Honing",
+    "en": "Honey"
+   },
+   "cat": "food",
+   "guna": "sattva",
+   "value": 6,
+   "use": {
+    "heal": 20
+   },
+   "color": "#e3a21a",
+   "en_fable": "Honey",
+   "desc": {
+    "nl": "Woudhoning uit de Mahavana. Pas op voor de Bhramara's.",
+    "en": "Forest honey from the Mahavana. Mind the Bhramaras."
+   }
+  },
+  "gajar": {
+   "name": {
+    "nl": "Wortel",
+    "en": "Carrot"
+   },
+   "cat": "food",
+   "guna": "sattva",
+   "value": 2,
+   "use": {
+    "heal": 10
+   },
+   "color": "#e67e22",
+   "en_fable": "Carrot",
+   "desc": {
+    "nl": "Knapperig en goed voor de ogen van de boogschutter.",
+    "en": "Crunchy and good for an archer's eyes."
+   }
+  },
+  "prasad": {
+   "name": {
+    "nl": "Prasad",
+    "en": "Prasad"
+   },
+   "cat": "food",
+   "guna": "sattva",
+   "value": 20,
+   "use": {
+    "heal": 40,
+    "karma": 3,
+    "ojas": 10
+   },
+   "color": "#ffd700",
+   "en_fable": "Unique (SD)",
+   "desc": {
+    "nl": "Gezegend voedsel uit de tempel. Herstelt lichaam en geest.",
+    "en": "Blessed food from the temple. Restores body and spirit."
+   }
+  },
+  "amla": {
+   "name": {
+    "nl": "Amla",
+    "en": "Amla"
+   },
+   "cat": "food",
+   "guna": "sattva",
+   "value": 3,
+   "use": {
+    "heal": 15,
+    "cure": true
+   },
+   "color": "#a3c644",
+   "en_fable": "Unique (SD)",
+   "desc": {
+    "nl": "Zure Indische kruisbes. Een vaidya zweert erbij.",
+    "en": "Sour Indian gooseberry. A vaidya swears by it."
+   }
+  },
+  "nariyal": {
+   "name": {
+    "nl": "Kokosnoot",
+    "en": "Coconut"
+   },
+   "cat": "food",
+   "guna": "sattva",
+   "value": 5,
+   "use": {
+    "heal": 18,
+    "ojas": 5
+   },
+   "color": "#8b5a2b",
+   "en_fable": "Unique (SD)",
+   "desc": {
+    "nl": "Van de palmen aan de Ankusha Tata. Het water verfrist, het vlees voedt.",
+    "en": "From the palms at Ankusha Tata. The water refreshes, the flesh feeds."
+   }
+  },
+  "jalebi": {
+   "name": {
+    "nl": "Jalebi",
+    "en": "Jalebi"
+   },
+   "cat": "food",
+   "guna": "rajas",
+   "value": 8,
+   "use": {
+    "heal": 22
+   },
+   "color": "#ff9f1c",
+   "en_fable": "Pie",
+   "desc": {
+    "nl": "Gefrituurde suikerspiralen uit de bazaar.",
+    "en": "Fried sugar spirals from the bazaar."
+   }
+  },
+  "samosa": {
+   "name": {
+    "nl": "Samosa",
+    "en": "Samosa"
+   },
+   "cat": "food",
+   "guna": "rajas",
+   "value": 7,
+   "use": {
+    "heal": 28,
+    "buff": {
+     "stat": "speed",
+     "mult": 1.1,
+     "duration": 30
+    }
+   },
+   "color": "#d4a24c",
+   "en_fable": "Unique (SD)",
+   "desc": {
+    "nl": "Heet en pittig. Rajasisch voedsel maakt rusteloos en snel.",
+    "en": "Hot and spicy. Rajasic food makes one restless and quick."
+   }
+  },
+  "mirchi": {
+   "name": {
+    "nl": "Chilipeper",
+    "en": "Chilli"
+   },
+   "cat": "food",
+   "guna": "rajas",
+   "value": 2,
+   "use": {
+    "heal": 5,
+    "buff": {
+     "stat": "damage",
+     "mult": 1.2,
+     "duration": 25
+    }
+   },
+   "color": "#d62828",
+   "en_fable": "Unique (SD)",
+   "desc": {
+    "nl": "Vuur in je mond, vuur in je vuisten.",
+    "en": "Fire in your mouth, fire in your fists."
+   }
+  },
+  "mamsa": {
+   "name": {
+    "nl": "Vlees",
+    "en": "Meat"
+   },
+   "cat": "food",
+   "guna": "tamas",
+   "value": 9,
+   "use": {
+    "heal": 45,
+    "karma": -2
+   },
+   "color": "#8b2d2d",
+   "en_fable": "Red Meat",
+   "desc": {
+    "nl": "Geroosterd vlees. Tamasisch: het voedt het lichaam en verduistert de geest.",
+    "en": "Roasted meat. Tamasic: it feeds the body and darkens the mind."
+   }
+  },
+  "madira": {
+   "name": {
+    "nl": "Wijn",
+    "en": "Wine"
+   },
+   "cat": "food",
+   "guna": "tamas",
+   "value": 10,
+   "use": {
+    "heal": 10,
+    "drunk": 20,
+    "karma": -1
+   },
+   "color": "#722f37",
+   "en_fable": "Ale",
+   "desc": {
+    "nl": "Palmwijn uit de madhushala. Je wereld begint te draaien.",
+    "en": "Palm wine from the madhushala. Your world starts to spin."
+   }
+  },
+  "sura": {
+   "name": {
+    "nl": "Sura (sterke drank)",
+    "en": "Sura (liquor)"
+   },
+   "cat": "food",
+   "guna": "tamas",
+   "value": 18,
+   "use": {
+    "heal": 15,
+    "drunk": 40,
+    "karma": -1
+   },
+   "color": "#4a2a10",
+   "en_fable": "Spirits",
+   "desc": {
+    "nl": "Gestookt uit mahua-bloesem. De Dasyu's drinken het bij het vuur.",
+    "en": "Distilled from mahua blossom. The Dasyus drink it by the fire."
+   }
+  },
+  "bhang_lassi": {
+   "name": {
+    "nl": "Bhang-lassi",
+    "en": "Bhang lassi"
+   },
+   "cat": "food",
+   "guna": "tamas",
+   "value": 14,
+   "use": {
+    "heal": 20,
+    "ojas": 40,
+    "drunk": 30,
+    "karma": -1
+   },
+   "color": "#9acd32",
+   "en_fable": "Unique (SD)",
+   "desc": {
+    "nl": "Yoghurtdrank met hennep, gedronken op Shivaratri. Veel Ojas, weinig evenwicht.",
+    "en": "Yoghurt drink with hemp, taken on Shivaratri. Much Ojas, little balance."
+   }
+  },
+  "soma": {
+   "name": {
+    "nl": "Soma",
+    "en": "Soma"
+   },
+   "cat": "food",
+   "guna": "sattva",
+   "value": 1500,
+   "use": {
+    "heal": 200,
+    "ojas": 999,
+    "tapas": 100
+   },
+   "color": "#c9f2ff",
+   "en_fable": "Unique (SD)",
+   "desc": {
+    "nl": "De drank van de Vedische zieners. Vult je Ojas volledig en schenkt Tapas.",
+    "en": "The drink of the Vedic seers. Fills your Ojas completely and grants Tapas."
+   }
+  },
+  "veda_samhita": {
+   "name": {
+    "nl": "Veda Samhita",
+    "en": "Veda Samhita"
+   },
+   "cat": "book",
+   "value": 120,
+   "use": {
+    "tapas": 200,
+    "lore": "veda"
+   },
+   "color": "#d8c7a1",
+   "en_fable": "Book",
+   "desc": {
+    "nl": "Hymnen aan Agni, Indra en Soma. Wie ze leest, hoort het ritme van de wereld.",
+    "en": "Hymns to Agni, Indra and Soma. Whoever reads them hears the rhythm of the world."
+   }
+  },
+  "upanishad": {
+   "name": {
+    "nl": "Upanishads",
+    "en": "Upanishads"
+   },
+   "cat": "book",
+   "value": 150,
+   "use": {
+    "tapas": 250,
+    "lore": "upanishad"
+   },
+   "color": "#cbb48a",
+   "en_fable": "Book",
+   "desc": {
+    "nl": "Tat tvam asi. Dat ben jij. Een leerling die dit begrijpt, is al half Siddha.",
+    "en": "Tat tvam asi. That thou art. A student who grasps this is already half a Siddha."
+   }
+  },
+  "yogasutra": {
+   "name": {
+    "nl": "Yogasutra van Patanjali",
+    "en": "Yogasutra of Patanjali"
+   },
+   "cat": "book",
+   "value": 140,
+   "use": {
+    "tapas": 200,
+    "mudra": "dhyana_mudra"
+   },
+   "color": "#b9a36b",
+   "en_fable": "Book",
+   "desc": {
+    "nl": "Yoga is het tot rust brengen van de bewegingen van de geest. Leert de Dhyana-mudra.",
+    "en": "Yoga is the stilling of the movements of the mind. Teaches the Dhyana mudra."
+   }
+  },
+  "bhagavad_gita": {
+   "name": {
+    "nl": "Bhagavad Gita",
+    "en": "Bhagavad Gita"
+   },
+   "cat": "book",
+   "value": 200,
+   "use": {
+    "tapas": 300,
+    "karma": 10
+   },
+   "color": "#e3b341",
+   "en_fable": "Book",
+   "desc": {
+    "nl": "Het lied van de Heer op het slagveld. Over plicht, handelen en loslaten.",
+    "en": "The song of the Lord on the battlefield. On duty, action and letting go."
+   }
+  },
+  "dhanurveda": {
+   "name": {
+    "nl": "Dhanurveda",
+    "en": "Dhanurveda"
+   },
+   "cat": "book",
+   "value": 100,
+   "use": {
+    "tapas_kaushala": 150
+   },
+   "color": "#9c7b4f",
+   "en_fable": "Book",
+   "desc": {
+    "nl": "De wetenschap van de boog. Schenkt Kaushala-tapas.",
+    "en": "The science of the bow. Grants Kaushala tapas."
+   }
+  },
+  "arthashastra": {
+   "name": {
+    "nl": "Arthashastra",
+    "en": "Arthashastra"
+   },
+   "cat": "book",
+   "value": 100,
+   "use": {
+    "tapas": 150,
+    "mudra": "tiraskara"
+   },
+   "color": "#7f6a4a",
+   "en_fable": "Book",
+   "desc": {
+    "nl": "Chanakya over macht, spionage en geld. Leert de Tiraskara-mudra (minachting).",
+    "en": "Chanakya on power, espionage and money. Teaches the Tiraskara mudra (contempt)."
+   }
+  },
+  "hatha_yoga_pradipika": {
+   "name": {
+    "nl": "Hatha Yoga Pradipika",
+    "en": "Hatha Yoga Pradipika"
+   },
+   "cat": "book",
+   "value": 100,
+   "use": {
+    "tapas_bala": 150,
+    "mudra": "vrikshasana"
+   },
+   "color": "#a8865a",
+   "en_fable": "Book",
+   "desc": {
+    "nl": "Asana, pranayama, bandha. Schenkt Bala-tapas en leert de Vrikshasana-houding.",
+    "en": "Asana, pranayama, bandha. Grants Bala tapas and teaches the Vrikshasana pose."
+   }
+  },
+  "vijnana_bhairava_tantra": {
+   "name": {
+    "nl": "Vijnana Bhairava Tantra",
+    "en": "Vijnana Bhairava Tantra"
+   },
+   "cat": "book",
+   "value": 160,
+   "use": {
+    "tapas_shakti": 200
+   },
+   "color": "#5a2d6b",
+   "en_fable": "Book",
+   "desc": {
+    "nl": "112 methoden om het bewustzijn te openen. Schenkt Shakti-tapas.",
+    "en": "112 methods to open awareness. Grants Shakti tapas."
+   }
+  },
+  "ramayana": {
+   "name": {
+    "nl": "Ramayana",
+    "en": "Ramayana"
+   },
+   "cat": "book",
+   "value": 180,
+   "use": {
+    "tapas": 200,
+    "yasha": 20
+   },
+   "color": "#c0392b",
+   "en_fable": "Book",
+   "desc": {
+    "nl": "Het verhaal van Rama, Sita en Hanuman. Wie het kent, wordt als held herkend.",
+    "en": "The tale of Rama, Sita and Hanuman. Those who know it are recognised as heroes."
+   }
+  },
+  "mahabharata": {
+   "name": {
+    "nl": "Mahabharata",
+    "en": "Mahabharata"
+   },
+   "cat": "book",
+   "value": 250,
+   "use": {
+    "tapas": 300,
+    "yasha": 30
+   },
+   "color": "#8e44ad",
+   "en_fable": "Book",
+   "desc": {
+    "nl": "Honderdduizend verzen over de oorlog van Kurukshetra. Wat hier niet staat, staat nergens.",
+    "en": "A hundred thousand verses on the war of Kurukshetra. What is not here is nowhere."
+   }
+  },
+  "panchatantra": {
+   "name": {
+    "nl": "Panchatantra",
+    "en": "Panchatantra"
+   },
+   "cat": "book",
+   "value": 40,
+   "use": {
+    "tapas": 80,
+    "mudra": "hasya"
+   },
+   "color": "#27ae60",
+   "en_fable": "Book",
+   "desc": {
+    "nl": "Dierenfabels vol list en lach. Leert de Hasya-mudra (spot).",
+    "en": "Animal fables full of cunning and laughter. Teaches the Hasya mudra (mockery)."
+   }
+  },
+  "natyashastra": {
+   "name": {
+    "nl": "Natyashastra",
+    "en": "Natyashastra"
+   },
+   "cat": "book",
+   "value": 90,
+   "use": {
+    "tapas": 100,
+    "mudra": "nritya"
+   },
+   "color": "#e67e22",
+   "en_fable": "Book",
+   "desc": {
+    "nl": "Bharata's verhandeling over dans en drama. Leert de Nritya-mudra (dans).",
+    "en": "Bharata's treatise on dance and drama. Teaches the Nritya mudra (dance)."
+   }
+  },
+  "charaka_samhita": {
+   "name": {
+    "nl": "Charaka Samhita",
+    "en": "Charaka Samhita"
+   },
+   "cat": "book",
+   "value": 110,
+   "use": {
+    "tapas": 120,
+    "hp_max": 10
+   },
+   "color": "#2ecc71",
+   "en_fable": "Book",
+   "desc": {
+    "nl": "Het handboek van de vaidya's. Je leert je lichaam kennen: +10 maximale Prana.",
+    "en": "The handbook of the vaidyas. You learn your body: +10 maximum Prana."
+   }
+  },
+  "yaksha_prashna": {
+   "name": {
+    "nl": "Yaksha Prashna",
+    "en": "Yaksha Prashna"
+   },
+   "cat": "book",
+   "value": 60,
+   "use": {
+    "tapas": 60,
+    "lore": "yaksha"
+   },
+   "color": "#1abc9c",
+   "en_fable": "Book",
+   "desc": {
+    "nl": "De vragen die de Yaksha aan Yudhishthira stelde. Nuttig voor wie een Yaksha-poort wil openen.",
+    "en": "The questions the Yaksha asked Yudhishthira. Useful for anyone who wants to open a Yaksha door."
+   }
+  },
+  "itihasa_jambudvipa": {
+   "name": {
+    "nl": "Itihasa van Jambudvipa",
+    "en": "Itihasa of Jambudvipa"
+   },
+   "cat": "book",
+   "value": 50,
+   "use": {
+    "tapas": 50,
+    "lore": "jambudvipa"
+   },
+   "color": "#95a5a6",
+   "en_fable": "Book",
+   "desc": {
+    "nl": "De geschiedenis van het land: de Vira Akhara, de eerste Mahant, de val van de Chakravartins.",
+    "en": "The history of the land: the Vira Akhara, the first Mahant, the fall of the Chakravartins."
+   }
+  },
+  "khadgasura_kronik": {
+   "name": {
+    "nl": "Kroniek van Khadgasura",
+    "en": "Chronicle of Khadgasura"
+   },
+   "cat": "book",
+   "value": 80,
+   "use": {
+    "tapas": 80,
+    "lore": "khadgasura"
+   },
+   "color": "#2c3e50",
+   "en_fable": "Book",
+   "desc": {
+    "nl": "Een verboden boek over de gemaskerde Asura die lichamen draagt als kleren.",
+    "en": "A forbidden book about the masked Asura who wears bodies like clothes."
+   }
+  },
+  "vira_akhara_niyam": {
+   "name": {
+    "nl": "Regels van de Vira Akhara",
+    "en": "Rules of the Vira Akhara"
+   },
+   "cat": "book",
+   "value": 20,
+   "use": {
+    "tapas": 30,
+    "lore": "akhara"
+   },
+   "color": "#7f8c8d",
+   "en_fable": "Book",
+   "desc": {
+    "nl": "Sta op voor zonsopgang. Eer je guru. Een Vira die vlucht, is geen Vira.",
+    "en": "Rise before dawn. Honour your guru. A Vira who flees is no Vira."
+   }
+  },
+  "mala": {
+   "name": {
+    "nl": "Bloemenkrans",
+    "en": "Flower garland"
+   },
+   "cat": "gift",
+   "value": 8,
+   "affection": 15,
+   "color": "#ff8c00",
+   "en_fable": "Flowers",
+   "desc": {
+    "nl": "Goudsbloemen en jasmijn. Een geschenk dat elk hart opent.",
+    "en": "Marigold and jasmine. A gift that opens every heart."
+   }
+  },
+  "gulab": {
+   "name": {
+    "nl": "Roos",
+    "en": "Rose"
+   },
+   "cat": "gift",
+   "value": 5,
+   "affection": 10,
+   "color": "#e0115f",
+   "en_fable": "Rose",
+   "desc": {
+    "nl": "Eén rode roos uit de tuin van de Gulabi Kutir.",
+    "en": "One red rose from the garden of the Gulabi Kutir."
+   }
+  },
+  "mithai": {
+   "name": {
+    "nl": "Mithai",
+    "en": "Mithai"
+   },
+   "cat": "gift",
+   "value": 12,
+   "affection": 20,
+   "color": "#f5c6aa",
+   "en_fable": "Chocolates",
+   "desc": {
+    "nl": "Doosje zoetigheden: barfi, peda, rasgulla.",
+    "en": "A box of sweets: barfi, peda, rasgulla."
+   }
+  },
+  "chandan_tel": {
+   "name": {
+    "nl": "Sandelolie",
+    "en": "Sandalwood oil"
+   },
+   "cat": "gift",
+   "value": 30,
+   "affection": 35,
+   "color": "#d2b48c",
+   "en_fable": "Perfume",
+   "desc": {
+    "nl": "Flesje chandan-olie uit het zuiden. Geurt naar tempels en bruiloften.",
+    "en": "A vial of chandan oil from the south. Smells of temples and weddings."
+   }
+  },
+  "mitti_khilona": {
+   "name": {
+    "nl": "Kleien speelgoed",
+    "en": "Clay toy"
+   },
+   "cat": "gift",
+   "value": 15,
+   "affection": 25,
+   "color": "#b7410e",
+   "en_fable": "Teddy bear",
+   "desc": {
+    "nl": "Een beschilderd olifantje van terracotta.",
+    "en": "A painted terracotta elephant."
+   }
+  },
+  "ratna_haar": {
+   "name": {
+    "nl": "Juwelenketting",
+    "en": "Jewelled necklace"
+   },
+   "cat": "gift",
+   "value": 400,
+   "affection": 80,
+   "color": "#e3b341",
+   "en_fable": "Necklace",
+   "desc": {
+    "nl": "Goud met robijnen. Hiermee vraag je iemand ten huwelijk.",
+    "en": "Gold with rubies. With this you ask someone to marry you."
+   }
+  },
+  "mangalsutra": {
+   "name": {
+    "nl": "Mangalsutra",
+    "en": "Mangalsutra"
+   },
+   "cat": "gift",
+   "value": 250,
+   "affection": 100,
+   "color": "#1b1b1b",
+   "en_fable": "Wedding ring",
+   "desc": {
+    "nl": "Het huwelijkskoord met zwarte kralen. Wie het aanneemt, is je echtgenoot.",
+    "en": "The wedding cord with black beads. Whoever accepts it is your spouse."
+   }
+  },
+  "bansi": {
+   "name": {
+    "nl": "Hengel",
+    "en": "Fishing rod"
+   },
+   "cat": "tool",
+   "value": 40,
+   "color": "#a8865a",
+   "en_fable": "Fishing Rod",
+   "desc": {
+    "nl": "Bamboehengel. Gebruik hem bij een visplek aan het water.",
+    "en": "Bamboo rod. Use it at a fishing spot by the water."
+   }
+  },
+  "kudala": {
+   "name": {
+    "nl": "Schop",
+    "en": "Spade"
+   },
+   "cat": "tool",
+   "value": 50,
+   "dig": true,
+   "color": "#6d4c41",
+   "en_fable": "Spade",
+   "desc": {
+    "nl": "Voor het opgraven van schatten op plekken waar de aarde omgewoeld is.",
+    "en": "For digging up treasures where the earth is disturbed."
+   }
+  },
+  "rudraksha_mala": {
+   "name": {
+    "nl": "Rudraksha-mala",
+    "en": "Rudraksha mala"
+   },
+   "cat": "tool",
+   "value": 120,
+   "passive": {
+    "ojas_regen": 1.5
+   },
+   "color": "#6b3e26",
+   "en_fable": "Unique (SD)",
+   "desc": {
+    "nl": "108 kralen van de tranen van Rudra. Zolang je ze draagt, herstelt je Ojas sneller.",
+    "en": "108 beads of the tears of Rudra. While you carry them, your Ojas recovers faster."
+   }
+  },
+  "shankha": {
+   "name": {
+    "nl": "Shankha (schelphoorn)",
+    "en": "Shankha (conch)"
+   },
+   "cat": "tool",
+   "value": 60,
+   "color": "#fdf5e6",
+   "en_fable": "Unique (SD)",
+   "desc": {
+    "nl": "Blaas hem om vijanden in de wijde omgeving te doen schrikken. Nodig voor de Shankha-nada mudra.",
+    "en": "Blow it to startle enemies far and wide. Needed for the Shankha-nada mudra."
+   }
+  },
+  "diya": {
+   "name": {
+    "nl": "Olielampje",
+    "en": "Oil lamp"
+   },
+   "cat": "tool",
+   "value": 10,
+   "color": "#ffb347",
+   "en_fable": "Lantern",
+   "desc": {
+    "nl": "Een kleien diya. Verlicht je pad in grotten en de nacht.",
+    "en": "A clay diya. Lights your way in caves and at night."
+   }
+  },
+  "kamandalu": {
+   "name": {
+    "nl": "Kamandalu (waterpot)",
+    "en": "Kamandalu (water pot)"
+   },
+   "cat": "tool",
+   "value": 25,
+   "use": {
+    "heal": 30,
+    "ojas": 15
+   },
+   "refill": true,
+   "color": "#b87333",
+   "en_fable": "Unique (SD)",
+   "desc": {
+    "nl": "De waterpot van de asceet. Vul hem bij een rivier; drinken herstelt 30 Prana en 15 Ojas.",
+    "en": "The ascetic's water pot. Refill at a river; drinking restores 30 Prana and 15 Ojas."
+   }
+  },
+  "damaru": {
+   "name": {
+    "nl": "Damaru",
+    "en": "Damaru"
+   },
+   "cat": "tool",
+   "value": 45,
+   "color": "#8b4513",
+   "en_fable": "Unique (SD)",
+   "desc": {
+    "nl": "Shiva's zandlopertrommel. Nodig voor de Tandava-mudra.",
+    "en": "Shiva's hourglass drum. Needed for the Tandava mudra."
+   }
+  },
+  "rajat_kunji": {
+   "name": {
+    "nl": "Zilveren sleutel",
+    "en": "Silver key"
+   },
+   "cat": "key",
+   "value": 0,
+   "stack": true,
+   "color": "#c0c0c0",
+   "en_fable": "Silver Key",
+   "desc": {
+    "nl": "Verborgen door de Chakravartins van weleer. Opent zilveren kisten.",
+    "en": "Hidden by the Chakravartins of old. Opens silver chests."
+   }
+  },
+  "karagar_kunji": {
+   "name": {
+    "nl": "Sleutel van Patala Karagar",
+    "en": "Key of Patala Karagar"
+   },
+   "cat": "key",
+   "value": 0,
+   "color": "#5d6d7e",
+   "en_fable": "Prison key",
+   "desc": {
+    "nl": "De sleutel van de cipier. Opent de cel van Raktambari.",
+    "en": "The jailer's key. Opens Raktambari's cell."
+   }
+  },
+  "haveli_kunji": {
+   "name": {
+    "nl": "Sleutel van de Shyama Haveli",
+    "en": "Key of the Shyama Haveli"
+   },
+   "cat": "key",
+   "value": 0,
+   "color": "#5d6d7e",
+   "en_fable": "Grey House key",
+   "desc": {
+    "nl": "Opent het spookhuis van de Rani's familie.",
+    "en": "Opens the haunted house of the Rani's family."
+   }
+  },
+  "bhramara_danka": {
+   "name": {
+    "nl": "Angel van de Bhramara-koningin",
+    "en": "Sting of the Bhramara Queen"
+   },
+   "cat": "trophy",
+   "value": 300,
+   "yasha": 40,
+   "color": "#f1c40f",
+   "en_fable": "Wasp Queen's Sting",
+   "desc": {
+    "nl": "Zo lang als je onderarm. Toon hem in een dorp en je roem groeit.",
+    "en": "As long as your forearm. Show it in a village and your renown grows."
+   }
+  },
+  "dvikhadga_khadga": {
+   "name": {
+    "nl": "Dvikhadga's dubbelzwaard",
+    "en": "Dvikhadga's twin sword"
+   },
+   "cat": "trophy",
+   "value": 800,
+   "yasha": 90,
+   "color": "#8c8c8c",
+   "en_fable": "Twinblade's Sword",
+   "desc": {
+    "nl": "Het wapen van de Dasyu-koning. Bewijs dat de roverskoning viel.",
+    "en": "The weapon of the Dasyu king. Proof that the bandit king fell."
+   }
+  },
+  "pisacha_mund": {
+   "name": {
+    "nl": "Pisacha-kop",
+    "en": "Pisacha head"
+   },
+   "cat": "trophy",
+   "value": 60,
+   "yasha": 15,
+   "color": "#6b8e23",
+   "en_fable": "Hobbe Head",
+   "desc": {
+    "nl": "Grijnst nog. Dorpelingen vinden het walgelijk en indrukwekkend.",
+    "en": "Still grinning. Villagers find it revolting and impressive."
+   }
+  },
+  "rakshasa_charma": {
+   "name": {
+    "nl": "Rakshasa-pels",
+    "en": "Rakshasa pelt"
+   },
+   "cat": "trophy",
+   "value": 250,
+   "yasha": 35,
+   "color": "#4a3728",
+   "en_fable": "Balverine Pelt",
+   "desc": {
+    "nl": "Ruig, zwart, stinkend. De klauwen zitten er nog aan.",
+    "en": "Shaggy, black, stinking. The claws are still attached."
+   }
+  },
+  "shveta_rakshasa_shirsha": {
+   "name": {
+    "nl": "Kop van de Witte Rakshasa",
+    "en": "Head of the White Rakshasa"
+   },
+   "cat": "trophy",
+   "value": 900,
+   "yasha": 100,
+   "color": "#eeeeee",
+   "en_fable": "White Balverine Head",
+   "desc": {
+    "nl": "De schrik van Granthivana, nu een trofee.",
+    "en": "The terror of Granthivana, now a trophy."
+   }
+  },
+  "daitya_hridaya": {
+   "name": {
+    "nl": "Daitya-hart",
+    "en": "Daitya heart"
+   },
+   "cat": "trophy",
+   "value": 700,
+   "yasha": 80,
+   "color": "#5b3a29",
+   "en_fable": "Troll's Heart",
+   "desc": {
+    "nl": "Een hart van steen dat nog zachtjes klopt.",
+    "en": "A heart of stone that still beats softly."
+   }
+  },
+  "dakini_kesh": {
+   "name": {
+    "nl": "Dakini-haarlok",
+    "en": "Dakini lock of hair"
+   },
+   "cat": "trophy",
+   "value": 200,
+   "yasha": 30,
+   "color": "#8e44ad",
+   "en_fable": "Nymph's Hair",
+   "desc": {
+    "nl": "Gloeit paars in het donker.",
+    "en": "Glows purple in the dark."
+   }
+  },
+  "chudail_jihva": {
+   "name": {
+    "nl": "Chudail-tong",
+    "en": "Chudail tongue"
+   },
+   "cat": "trophy",
+   "value": 180,
+   "yasha": 25,
+   "color": "#4a0f3a",
+   "en_fable": "Screamer trophy",
+   "desc": {
+    "nl": "Een tong die nog fluistert als het stil is.",
+    "en": "A tongue that still whispers when it is quiet."
+   }
+  },
+  "khadgasura_mukhauta": {
+   "name": {
+    "nl": "Masker van Khadgasura",
+    "en": "Mask of Khadgasura"
+   },
+   "cat": "trophy",
+   "value": 5000,
+   "yasha": 500,
+   "color": "#c0392b",
+   "en_fable": "Jack's Mask",
+   "desc": {
+    "nl": "Het rode masker. Zet het nooit op.",
+    "en": "The red mask. Never put it on."
+   }
+  },
+  "vritra_danta": {
+   "name": {
+    "nl": "Vritra-tand",
+    "en": "Vritra fang"
+   },
+   "cat": "trophy",
+   "value": 6000,
+   "yasha": 600,
+   "color": "#d0d0d0",
+   "en_fable": "Dragon trophy",
+   "desc": {
+    "nl": "Een tand zo groot als een kind. De draak van de droogte is gevallen.",
+    "en": "A fang as big as a child. The dragon of drought has fallen."
+   }
+  },
+  "maya_danda": {
+   "name": {
+    "nl": "Staf van Mayacharya",
+    "en": "Staff of Mayacharya"
+   },
+   "cat": "trophy",
+   "value": 1500,
+   "yasha": 200,
+   "color": "#2e86de",
+   "en_fable": "Maze's staff",
+   "desc": {
+    "nl": "De staf van de verrader. Het hout is kil als zijn woorden.",
+    "en": "The traitor's staff. The wood is as cold as his words."
+   }
+  },
+  "kesh_mundan": {
+   "name": {
+    "nl": "Mundan (kaalgeschoren)",
+    "en": "Mundan (shaven)"
+   },
+   "cat": "hair",
+   "value": 20,
+   "saundarya": 1,
+   "bhaya": 2,
+   "color": "#000000",
+   "en_fable": "Shaved head",
+   "desc": {
+    "nl": "Het hoofd van de sannyasi. Eenvoud en afstand van de wereld.",
+    "en": "The head of the sannyasi. Simplicity and distance from the world."
+   }
+  },
+  "kesh_shikha": {
+   "name": {
+    "nl": "Shikha",
+    "en": "Shikha"
+   },
+   "cat": "hair",
+   "value": 25,
+   "saundarya": 3,
+   "bhaya": 0,
+   "color": "#1a1a1a",
+   "en_fable": "Hairstyle",
+   "desc": {
+    "nl": "Kaal met één lok op de kruin: het teken van de brahmachari.",
+    "en": "Shaven with one tuft at the crown: the mark of the brahmachari."
+   }
+  },
+  "kesh_jata": {
+   "name": {
+    "nl": "Jata (vilten lokken)",
+    "en": "Jata (matted locks)"
+   },
+   "cat": "hair",
+   "value": 40,
+   "saundarya": 0,
+   "bhaya": 6,
+   "color": "#3b2a1a",
+   "en_fable": "Hairstyle",
+   "desc": {
+    "nl": "De vilten lokken van Shiva en de Naga-sadhu's. Nooit geknipt, nooit gekamd.",
+    "en": "The matted locks of Shiva and the Naga sadhus. Never cut, never combed."
+   }
+  },
+  "kesh_choti": {
+   "name": {
+    "nl": "Choti (vlecht)",
+    "en": "Choti (braid)"
+   },
+   "cat": "hair",
+   "value": 25,
+   "saundarya": 5,
+   "bhaya": 0,
+   "color": "#1a1a1a",
+   "en_fable": "Hairstyle",
+   "desc": {
+    "nl": "Lange vlecht met jasmijn. Geliefd bij de dansers van Shringarapura.",
+    "en": "Long braid with jasmine. Beloved by the dancers of Shringarapura."
+   }
+  },
+  "kesh_lamba": {
+   "name": {
+    "nl": "Lange haren",
+    "en": "Long hair"
+   },
+   "cat": "hair",
+   "value": 15,
+   "saundarya": 4,
+   "bhaya": 0,
+   "color": "#1a1a1a",
+   "en_fable": "Hairstyle",
+   "desc": {
+    "nl": "Los en lang, zoals een Kshatriya het draagt.",
+    "en": "Loose and long, as a Kshatriya wears it."
+   }
+  },
+  "kesh_kesari": {
+   "name": {
+    "nl": "Kesari-manen",
+    "en": "Kesari mane"
+   },
+   "cat": "hair",
+   "value": 60,
+   "saundarya": 4,
+   "bhaya": 4,
+   "color": "#c0392b",
+   "en_fable": "Hairstyle",
+   "desc": {
+    "nl": "Met henna rood geverfd, wild als de manen van Narasimha.",
+    "en": "Dyed red with henna, wild as the mane of Narasimha."
+   }
+  },
+  "dadhi_chhoti": {
+   "name": {
+    "nl": "Korte baard",
+    "en": "Short beard"
+   },
+   "cat": "beard",
+   "value": 10,
+   "saundarya": 2,
+   "bhaya": 1,
+   "color": "#1a1a1a",
+   "en_fable": "Beard",
+   "desc": {
+    "nl": "Netjes bijgehouden door de nai.",
+    "en": "Neatly kept by the nai."
+   }
+  },
+  "dadhi_sadhu": {
+   "name": {
+    "nl": "Sadhu-baard",
+    "en": "Sadhu beard"
+   },
+   "cat": "beard",
+   "value": 30,
+   "saundarya": 0,
+   "bhaya": 4,
+   "color": "#9e9e9e",
+   "en_fable": "Beard",
+   "desc": {
+    "nl": "Tot op de borst. Niemand twijfelt aan je ascese.",
+    "en": "Down to the chest. No one doubts your austerity."
+   }
+  },
+  "dadhi_mooch": {
+   "name": {
+    "nl": "Snor",
+    "en": "Moustache"
+   },
+   "cat": "beard",
+   "value": 10,
+   "saundarya": 3,
+   "bhaya": 2,
+   "color": "#1a1a1a",
+   "en_fable": "Moustache",
+   "desc": {
+    "nl": "Omhoog gedraaid, zoals een Rajput-krijger.",
+    "en": "Twirled upward, like a Rajput warrior."
+   }
+  },
+  "tilak_tripundra": {
+   "name": {
+    "nl": "Tripundra",
+    "en": "Tripundra"
+   },
+   "cat": "tattoo",
+   "value": 30,
+   "saundarya": 2,
+   "bhaya": 3,
+   "color": "#e0e0e0",
+   "en_fable": "Tattoo",
+   "desc": {
+    "nl": "Drie horizontale strepen as op het voorhoofd. Het teken van de Shaiva.",
+    "en": "Three horizontal lines of ash on the forehead. The mark of the Shaiva."
+   }
+  },
+  "tilak_urdhva": {
+   "name": {
+    "nl": "Urdhva Pundra",
+    "en": "Urdhva Pundra"
+   },
+   "cat": "tattoo",
+   "value": 30,
+   "saundarya": 4,
+   "bhaya": 0,
+   "color": "#f5f5dc",
+   "en_fable": "Tattoo",
+   "desc": {
+    "nl": "Twee verticale witte lijnen met een rode streep. Het teken van de Vaishnava.",
+    "en": "Two vertical white lines with a red stripe. The mark of the Vaishnava."
+   }
+  },
+  "yantra_om": {
+   "name": {
+    "nl": "Om-yantra",
+    "en": "Om yantra"
+   },
+   "cat": "tattoo",
+   "value": 80,
+   "saundarya": 5,
+   "bhaya": 2,
+   "color": "#e3b341",
+   "en_fable": "Tattoo",
+   "desc": {
+    "nl": "De oerklank op je borst getatoeëerd.",
+    "en": "The primal sound tattooed on your chest."
+   }
+  },
+  "yantra_sri": {
+   "name": {
+    "nl": "Sri Chakra",
+    "en": "Sri Chakra"
+   },
+   "cat": "tattoo",
+   "value": 150,
+   "saundarya": 8,
+   "bhaya": 0,
+   "color": "#e0115f",
+   "en_fable": "Tattoo",
+   "desc": {
+    "nl": "Negen in elkaar grijpende driehoeken. De tantrika's buigen ervoor.",
+    "en": "Nine interlocking triangles. The tantrikas bow before it."
+   }
+  },
+  "yantra_trishul": {
+   "name": {
+    "nl": "Trishul-tatoeage",
+    "en": "Trishul tattoo"
+   },
+   "cat": "tattoo",
+   "value": 70,
+   "saundarya": 2,
+   "bhaya": 6,
+   "color": "#2c3e50",
+   "en_fable": "Tattoo",
+   "desc": {
+    "nl": "Een drietand over je rug, zoals de Naga-sadhu's dragen.",
+    "en": "A trident across your back, as the Naga sadhus wear."
+   }
+  },
+  "naga_tattoo": {
+   "name": {
+    "nl": "Naga-tatoeage",
+    "en": "Naga tattoo"
+   },
+   "cat": "tattoo",
+   "value": 90,
+   "saundarya": 3,
+   "bhaya": 7,
+   "color": "#2e8b57",
+   "en_fable": "Tattoo",
+   "desc": {
+    "nl": "Een cobra die zich om je arm wikkelt.",
+    "en": "A cobra coiling around your arm."
+   }
+  },
+  "mehndi": {
+   "name": {
+    "nl": "Mehndi",
+    "en": "Mehndi"
+   },
+   "cat": "tattoo",
+   "value": 25,
+   "saundarya": 7,
+   "bhaya": 0,
+   "color": "#8b4513",
+   "en_fable": "Tattoo",
+   "desc": {
+    "nl": "Hennapatronen op handen en voeten. Feestelijk.",
+    "en": "Henna patterns on hands and feet. Festive."
+   }
+  },
+  "kala_tilak": {
+   "name": {
+    "nl": "Zwarte tilak",
+    "en": "Black tilak"
+   },
+   "cat": "tattoo",
+   "value": 20,
+   "saundarya": 0,
+   "bhaya": 5,
+   "color": "#000000",
+   "en_fable": "Tattoo",
+   "desc": {
+    "nl": "Een zwarte streep tegen het boze oog. Of om het aan te trekken.",
+    "en": "A black streak against the evil eye. Or to attract it."
+   }
+  },
+  "rudra_netra": {
+   "name": {
+    "nl": "Rudra-netra (derde oog)",
+    "en": "Rudra netra (third eye)"
+   },
+   "cat": "tattoo",
+   "value": 200,
+   "saundarya": 4,
+   "bhaya": 8,
+   "color": "#c0392b",
+   "en_fable": "Tattoo",
+   "desc": {
+    "nl": "Een geopend derde oog op je voorhoofd. Vijanden durven je niet aan te kijken.",
+    "en": "An open third eye on your forehead. Enemies dare not look at you."
+   }
+  },
+  "bhasma_sharira": {
+   "name": {
+    "nl": "Lichaam in as",
+    "en": "Body in ash"
+   },
+   "cat": "tattoo",
+   "value": 50,
+   "saundarya": 0,
+   "bhaya": 10,
+   "color": "#bdbdbd",
+   "en_fable": "Tattoo",
+   "desc": {
+    "nl": "Je hele lichaam bedekt met crematie-as, zoals de Aghori's.",
+    "en": "Your whole body covered in cremation ash, like the Aghoris."
+   }
+  },
+  "kaanch_chudi": {
+   "name": {
+    "nl": "Glazen armband",
+    "en": "Glass bangle"
+   },
+   "cat": "quest",
+   "value": 0,
+   "color": "#e0115f",
+   "en_fable": "Theresa's birthday gift",
+   "desc": {
+    "nl": "Een rode glazen armband, het verjaardagscadeau voor Tara.",
+    "en": "A red glass bangle, the birthday gift for Tara."
+   }
+  },
+  "mahant_patra": {
+   "name": {
+    "nl": "Brief van de Mahant",
+    "en": "Letter of the Mahant"
+   },
+   "cat": "quest",
+   "value": 0,
+   "color": "#f5f5dc",
+   "en_fable": "Guild letter",
+   "desc": {
+    "nl": "Verzegeld met het Akhara-zegel. Bestemd voor de Sarpanch van Granthivana.",
+    "en": "Sealed with the Akhara seal. Addressed to the Sarpanch of Granthivana."
+   }
+  },
+  "deepastambha_lens": {
+   "name": {
+    "nl": "Lens van de Deepastambha",
+    "en": "Lens of the Deepastambha"
+   },
+   "cat": "quest",
+   "value": 0,
+   "color": "#7fdbff",
+   "en_fable": "Lighthouse part",
+   "desc": {
+    "nl": "De kristallen lens van de vuurtoren van Ankusha Tata.",
+    "en": "The crystal lens of the lighthouse at Ankusha Tata."
+   }
+  },
+  "dasyu_vesh": {
+   "name": {
+    "nl": "Dasyu-vermomming",
+    "en": "Dasyu disguise"
+   },
+   "cat": "quest",
+   "value": 0,
+   "color": "#5b3d2e",
+   "en_fable": "Bandit disguise",
+   "desc": {
+    "nl": "Een complete roversuitrusting, afgenomen van een Dasyu-wachter.",
+    "en": "A complete bandit outfit, taken from a Dasyu guard."
+   },
+   "use": {
+    "set_flag": "dasyu_disguised",
+    "consume": false
+   }
+  },
+  "ananya_patra": {
+   "name": {
+    "nl": "Dagboek van Ananya",
+    "en": "Diary of Ananya"
+   },
+   "cat": "quest",
+   "value": 0,
+   "color": "#d7bde2",
+   "en_fable": "Amanda's diary",
+   "desc": {
+    "nl": "Het dagboek van de verdwenen zus van Rani Kalavati. De laatste bladzijde is in bloed.",
+    "en": "The diary of Rani Kalavati's vanished sister. The last page is in blood."
+   }
+  },
+  "vyapari_gathri": {
+   "name": {
+    "nl": "Koopmansbaal",
+    "en": "Merchant's bale"
+   },
+   "cat": "quest",
+   "value": 0,
+   "color": "#c8b48a",
+   "en_fable": "Trader's goods",
+   "desc": {
+    "nl": "Zijde en specerijen van Vyapari Mohan.",
+    "en": "Silk and spices of Vyapari Mohan."
+   }
+  },
+  "raktambari_haar": {
+   "name": {
+    "nl": "Ketting van Raktambari",
+    "en": "Necklace of Raktambari"
+   },
+   "cat": "quest",
+   "value": 0,
+   "color": "#c0392b",
+   "en_fable": "Scarlet Robe's keepsake",
+   "desc": {
+    "nl": "De ketting van je moeder, gevonden in de cel van de Dasyu's.",
+    "en": "Your mother's necklace, found in the Dasyu cells."
+   }
+  },
+  "siddha_mudrika": {
+   "name": {
+    "nl": "Siddha-zegelring",
+    "en": "Siddha seal ring"
+   },
+   "cat": "quest",
+   "value": 0,
+   "color": "#e3b341",
+   "en_fable": "Guild seal",
+   "desc": {
+    "nl": "Het zegel van een volwaardige Vira van de Akhara.",
+    "en": "The seal of a full Vira of the Akhara."
+   }
+  },
+  "sarpanch_mohar": {
+   "name": {
+    "nl": "Zegel van de Sarpanch",
+    "en": "Seal of the Sarpanch"
+   },
+   "cat": "quest",
+   "value": 0,
+   "color": "#8b4513",
+   "en_fable": "Village seal",
+   "desc": {
+    "nl": "Het dorpszegel van Granthivana, bewijs van hun vertrouwen.",
+    "en": "The village seal of Granthivana, proof of their trust."
+   }
+  },
+  "himashikhara_jyoti": {
+   "name": {
+    "nl": "Jyoti van Himashikhara",
+    "en": "Jyoti of Himashikhara"
+   },
+   "cat": "quest",
+   "value": 0,
+   "color": "#c9f2ff",
+   "en_fable": "Oracle's light",
+   "desc": {
+    "nl": "Een kristal waarin het licht van de Devi gevangen zit.",
+    "en": "A crystal in which the light of the Devi is held."
+   }
+  },
+  "preta_asthi": {
+   "name": {
+    "nl": "Preta-botten",
+    "en": "Preta bones"
+   },
+   "cat": "quest",
+   "value": 0,
+   "stack": true,
+   "color": "#e8e8e8",
+   "en_fable": "Ritual bones",
+   "desc": {
+    "nl": "Botten van rusteloze doden, nodig voor het ritueel van de Aghori.",
+    "en": "Bones of the restless dead, needed for the Aghori's ritual."
+   }
+  },
+  "yaksha_phool": {
+   "name": {
+    "nl": "Yaksha-bloem",
+    "en": "Yaksha flower"
+   },
+   "cat": "quest",
+   "value": 0,
+   "color": "#1abc9c",
+   "en_fable": "Unique (SD)",
+   "desc": {
+    "nl": "Een bloem die alleen bij maanlicht bloeit in het Dakinivana.",
+    "en": "A flower that blooms only by moonlight in the Dakinivana."
+   }
+  },
+  "matsya": {
+   "name": {
+    "nl": "Vis",
+    "en": "Fish"
+   },
+   "cat": "food",
+   "guna": "tamas",
+   "value": 6,
+   "use": {
+    "heal": 25
+   },
+   "stack": true,
+   "color": "#5dade2",
+   "en_fable": "Fish",
+   "desc": {
+    "nl": "Vers gevangen rivier- of zeevis.",
+    "en": "Freshly caught river or sea fish."
+   }
+  },
+  "suvarna_matsya": {
+   "name": {
+    "nl": "Gouden vis",
+    "en": "Golden fish"
+   },
+   "cat": "trophy",
+   "value": 500,
+   "yasha": 30,
+   "color": "#ffd700",
+   "en_fable": "Golden Fish",
+   "desc": {
+    "nl": "Een gouden vis uit het meer van Mahavana. Een visser droomt hier zijn hele leven van.",
+    "en": "A golden fish from the Mahavana lake. A fisherman dreams of this his whole life."
+   }
+  },
+  "nirmal_kavach": {
+   "name": {
+    "nl": "Kavach van Yogiraj Vikrant",
+    "en": "Kavach of Yogiraj Vikrant"
+   },
+   "cat": "quest",
+   "value": 0,
+   "color": "#aee7ff",
+   "en_fable": "Nostro's armour",
+   "desc": {
+    "nl": "Het verroeste harnas van de eerste Mahant, vierhonderd jaar oud.",
+    "en": "The rusted armour of the first Mahant, four hundred years old."
+   }
+  }
+ }
+}

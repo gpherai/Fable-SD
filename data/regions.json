@@ -1,0 +1,3825 @@
+{
+ "vatagram_bachpan": {
+  "name": {
+   "nl": "Vatagram (kindertijd)",
+   "en": "Vatagram (childhood)"
+  },
+  "en_fable": "Oakvale (childhood)",
+  "biome": "village",
+  "size": 140,
+  "seed": 101,
+  "elevation": "gentle",
+  "danger": 0,
+  "desc": {
+   "nl": "Het banyandorp van je jeugd. Rieten daken, een put, de grote Vata-boom in het midden en de zee achter de duinen. Vandaag is Tara jarig.",
+   "en": "The banyan village of your childhood. Thatched roofs, a well, the great Vata tree in the centre and the sea behind the dunes. Today is Tara's birthday."
+  },
+  "exits": [],
+  "tirtha": false,
+  "childhood": true,
+  "npcs": [
+   "bhadra",
+   "tara",
+   "raktambari",
+   "sarpanch_govind",
+   "kisna",
+   "meera",
+   "ratan",
+   "balram",
+   "chhotu",
+   "gramvasi_vatagram_1"
+  ],
+  "spawns": [],
+  "chests": [
+   {
+    "items": [
+     "phala",
+     "phala"
+    ],
+    "gold": 2,
+    "locked": 0
+   }
+  ],
+  "pickups": [
+   {
+    "item": "phala",
+    "count": 3
+   },
+   {
+    "item": "gajar",
+    "count": 2
+   }
+  ],
+  "silver_keys": 0,
+  "features": [
+   "houses:7",
+   "banyan",
+   "well",
+   "market",
+   "fence",
+   "beach_edge"
+  ],
+  "water": "sea_east",
+  "music": "village"
+ },
+ "vira_akhara": {
+  "name": {
+   "nl": "Vira Akhara",
+   "en": "Vira Akhara"
+  },
+  "en_fable": "Heroes' Guild",
+  "biome": "akhara",
+  "size": 170,
+  "seed": 202,
+  "elevation": "flat",
+  "danger": 0,
+  "desc": {
+   "nl": "De oude krijgersloge van Jambudvipa: een mandapa met honderd pilaren, oefenvelden, een dhuni-vuur dat nooit dooft en de Tirtha-poort waarmee de Vira's door het land reizen.",
+   "en": "The ancient warrior lodge of Jambudvipa: a mandapa of a hundred pillars, training fields, a dhuni fire that never dies and the Tirtha gate by which the Viras travel the land."
+  },
+  "exits": [
+   {
+    "dir": "S",
+    "to": "akhara_vana",
+    "pos": 0.5
+   },
+   {
+    "dir": "W",
+    "to": "karma_mandapa",
+    "pos": 0.5,
+    "locked": {
+     "flag": "karma_mandapa_open",
+     "msg": {
+      "nl": "Een stenen deur zonder handvat. Alleen de Mahant kent de mantra.",
+      "en": "A stone door without a handle. Only the Mahant knows the mantra."
+     }
+    }
+   }
+  ],
+  "tirtha": true,
+  "npcs": [
+   "mahant",
+   "sutradhar",
+   "bhimnath",
+   "sharanga",
+   "shyamali",
+   "charaka",
+   "kantika",
+   {
+    "id": "mayacharya",
+    "when": {
+     "not_flag": "maya_revealed"
+    }
+   },
+   "brahmachari_vidu",
+   "pehlwan_dara",
+   {
+    "id": "marmara",
+    "when": {
+     "all": [
+      {
+       "not_flag": "marmara_left_akhara"
+      },
+      {
+       "any": [
+        {
+         "not_flag": "marmara_duel_started"
+        },
+        {
+         "flag": "marmara_duel_won"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "id": "raktambari_akhara",
+    "when": {
+     "flag": "mother_freed",
+     "not_flag": "mother_dead"
+    }
+   }
+  ],
+  "spawns": [
+   {
+    "enemy": "marmara_sparring",
+    "count": 1,
+    "respawn": false,
+    "boss": true,
+    "when": {
+     "flag": "marmara_duel_started",
+     "not_flag": "marmara_duel_won"
+    },
+    "on_death_flags": [
+     "marmara_duel_won"
+    ]
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "prana_rasa_laghu",
+     "vira_akhara_niyam"
+    ],
+    "gold": 20,
+    "locked": 0
+   },
+   {
+    "items": [
+     "hira"
+    ],
+    "gold": 200,
+    "locked": 5
+   }
+  ],
+  "pickups": [
+   {
+    "item": "dudh",
+    "count": 2
+   }
+  ],
+  "silver_keys": 1,
+  "features": [
+   "akhara_hall",
+   "pillars:12",
+   "training_dummies:4",
+   "archery_targets:3",
+   "dhuni",
+   "stupa",
+   "fence",
+   "huts:3"
+  ],
+  "water": "pond",
+  "music": "akhara"
+ },
+ "akhara_vana": {
+  "name": {
+   "nl": "Akhara Vana",
+   "en": "Akhara Vana"
+  },
+  "en_fable": "Guild Woods",
+  "biome": "forest",
+  "size": 160,
+  "seed": 203,
+  "elevation": "gentle",
+  "danger": 1,
+  "desc": {
+   "nl": "Het oefenbos van de Akhara. Kevers, een enkele wolf en de eerste Yaksha-poort die elke leerling probeert te openen.",
+   "en": "The training wood of the Akhara. Beetles, the odd wolf and the first Yaksha door every student tries to open."
+  },
+  "exits": [
+   {
+    "dir": "N",
+    "to": "vira_akhara",
+    "pos": 0.5
+   },
+   {
+    "dir": "S",
+    "to": "drishtikuta",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [
+   "udasi_jogi"
+  ],
+  "spawns": [
+   {
+    "enemy": "keeta",
+    "count": 8,
+    "respawn": true
+   },
+   {
+    "enemy": "vrika",
+    "count": 2,
+    "respawn": true,
+    "when": {
+     "flag": "snatak"
+    }
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "prana_rasa_laghu"
+    ],
+    "gold": 15,
+    "locked": 0
+   }
+  ],
+  "pickups": [
+   {
+    "item": "tulsi",
+    "count": 3
+   },
+   {
+    "item": "madhu",
+    "count": 1
+   }
+  ],
+  "silver_keys": 1,
+  "yaksha": "yaksha_akhara_vana",
+  "features": [
+   "stones_circle",
+   "fallen_logs:3"
+  ],
+  "water": "stream",
+  "music": "forest"
+ },
+ "drishtikuta": {
+  "name": {
+   "nl": "Drishtikuta",
+   "en": "Drishtikuta"
+  },
+  "en_fable": "Lookout Point",
+  "biome": "hill",
+  "size": 150,
+  "seed": 204,
+  "elevation": "hill",
+  "danger": 1,
+  "desc": {
+   "nl": "Een heuveltop met een oude wachttoren. Van hieruit zie je de rook van Shringarapura, de rand van de Mahavana en het water van de Dhivara Nala.",
+   "en": "A hilltop with an old watchtower. From here you see the smoke of Shringarapura, the edge of the Mahavana and the waters of the Dhivara Nala."
+  },
+  "exits": [
+   {
+    "dir": "N",
+    "to": "akhara_vana",
+    "pos": 0.5
+   },
+   {
+    "dir": "E",
+    "to": "shringarapura_dakshina",
+    "pos": 0.5
+   },
+   {
+    "dir": "S",
+    "to": "mahavana_dvar",
+    "pos": 0.5
+   },
+   {
+    "dir": "W",
+    "to": "dhivara_nala",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [
+   "naga_sadhu_rudra"
+  ],
+  "spawns": [
+   {
+    "enemy": "dasyu",
+    "count": 2,
+    "respawn": true,
+    "when": {
+     "flag": "snatak"
+    }
+   },
+   {
+    "enemy": "keeta",
+    "count": 3,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "dhanush_loha"
+    ],
+    "gold": 30,
+    "locked": 0
+   }
+  ],
+  "pickups": [
+   {
+    "item": "phala",
+    "count": 2
+   }
+  ],
+  "silver_keys": 1,
+  "features": [
+   "watchtower",
+   "signpost",
+   "stones:4"
+  ],
+  "water": "none",
+  "music": "overworld"
+ },
+ "dhivara_nala": {
+  "name": {
+   "nl": "Dhivara Nala",
+   "en": "Dhivara Nala"
+  },
+  "en_fable": "Fisher Creek",
+  "biome": "lake",
+  "size": 130,
+  "seed": 205,
+  "elevation": "gentle",
+  "danger": 1,
+  "desc": {
+   "nl": "Een stille kreek waar de visser Kanha woont. Hier leer je vissen, en wie geduld heeft, vangt ooit de gouden vis.",
+   "en": "A quiet creek where the fisherman Kanha lives. Here you learn to fish, and whoever has patience will one day catch the golden fish."
+  },
+  "exits": [
+   {
+    "dir": "E",
+    "to": "drishtikuta",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [
+   "machhuara_kanha"
+  ],
+  "spawns": [
+   {
+    "enemy": "keeta",
+    "count": 3,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "bansi"
+    ],
+    "gold": 10,
+    "locked": 0
+   }
+  ],
+  "pickups": [
+   {
+    "item": "matsya",
+    "count": 2
+   }
+  ],
+  "silver_keys": 1,
+  "fishing": true,
+  "features": [
+   "cottage",
+   "jetty",
+   "boat"
+  ],
+  "water": "lake",
+  "music": "lake"
+ },
+ "shringarapura_dakshina": {
+  "name": {
+   "nl": "Shringarapura Dakshina",
+   "en": "Shringarapura Dakshina"
+  },
+  "en_fable": "Bowerstone South",
+  "biome": "city",
+  "size": 180,
+  "seed": 301,
+  "elevation": "flat",
+  "danger": 0,
+  "desc": {
+   "nl": "De bazaar van de grootste stad van Jambudvipa. Smeden, kleermakers, een madhushala, een barbier, een tatoeëerder en een jyotishi die je toekomst leest.",
+   "en": "The bazaar of the largest city of Jambudvipa. Smiths, tailors, a madhushala, a barber, a tattooist and a jyotishi who reads your future."
+  },
+  "exits": [
+   {
+    "dir": "W",
+    "to": "drishtikuta",
+    "pos": 0.5
+   },
+   {
+    "dir": "N",
+    "to": "shringarapura_uttara",
+    "pos": 0.5
+   },
+   {
+    "dir": "E",
+    "to": "shringarapura_ghat",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": true,
+  "npcs": [
+   "lohar_bhola",
+   "darzi_sudama",
+   "vyapari_bazaar",
+   "chandrika",
+   "nai_ramu",
+   "chitrakar_madhav",
+   "jyotishi_bhrigu",
+   "gramvasi_nagar_1",
+   "gramvasi_nagar_2",
+   "chor_lakhan",
+   "rakshaka_nagar"
+  ],
+  "spawns": [],
+  "chests": [
+   {
+    "items": [
+     "panchatantra"
+    ],
+    "gold": 40,
+    "locked": 0
+   },
+   {
+    "items": [
+     "moti"
+    ],
+    "gold": 300,
+    "locked": 10
+   }
+  ],
+  "pickups": [
+   {
+    "item": "jalebi",
+    "count": 2
+   },
+   {
+    "item": "chai",
+    "count": 1
+   }
+  ],
+  "silver_keys": 1,
+  "features": [
+   "houses:12",
+   "market",
+   "well",
+   "gate_arch",
+   "torches:6",
+   "temple_small",
+   "fence"
+  ],
+  "water": "none",
+  "music": "city"
+ },
+ "shringarapura_uttara": {
+  "name": {
+   "nl": "Shringarapura Uttara",
+   "en": "Shringarapura Uttara"
+  },
+  "en_fable": "Bowerstone North",
+  "biome": "city",
+  "size": 160,
+  "seed": 302,
+  "elevation": "flat",
+  "danger": 0,
+  "desc": {
+   "nl": "De rijke bovenstad met marmeren haveli's en de residentie van Rani Kalavati. Toegang alleen voor wie bekend is.",
+   "en": "The wealthy upper town with marble havelis and the residence of Rani Kalavati. Entry only for the renowned."
+  },
+  "exits": [
+   {
+    "dir": "S",
+    "to": "shringarapura_dakshina",
+    "pos": 0.5
+   },
+   {
+    "dir": "E",
+    "to": "vadhyagiri",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "locked": {
+   "yasha": 200,
+   "msg": {
+    "nl": "De wachters van Uttara laten alleen Vira's met naam en faam door (Yasha 200).",
+    "en": "The guards of Uttara only admit Viras of name and fame (Yasha 200)."
+   }
+  },
+  "npcs": [
+   "rani_kalavati",
+   "vyapari_uttara",
+   "pujari_nagar",
+   "gramvasi_nagar_3",
+   {
+    "id": "vajrasena",
+    "when": {
+     "not_flag": [
+      "vajrasena_fight",
+      "vajrasena_defeated"
+     ]
+    }
+   }
+  ],
+  "spawns": [
+   {
+    "enemy": "vajrasena_boss",
+    "count": 1,
+    "respawn": false,
+    "boss": true,
+    "when": {
+     "flag": "vajrasena_fight",
+     "not_flag": "vajrasena_defeated"
+    },
+    "on_death_flags": [
+     "vajrasena_defeated"
+    ]
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "ratna_haar"
+    ],
+    "gold": 150,
+    "locked": 0
+   },
+   {
+    "items": [
+     "pukhraj"
+    ],
+    "gold": 500,
+    "locked": 15
+   }
+  ],
+  "pickups": [
+   {
+    "item": "kheer",
+    "count": 1
+   }
+  ],
+  "silver_keys": 1,
+  "features": [
+   "mansions:5",
+   "haveli",
+   "fountain",
+   "statue",
+   "torches:8",
+   "gate_arch"
+  ],
+  "water": "fountain",
+  "music": "city"
+ },
+ "shringarapura_ghat": {
+  "name": {
+   "nl": "Shringarapura Ghat",
+   "en": "Shringarapura Ghat"
+  },
+  "en_fable": "Bowerstone Quay",
+  "biome": "coast",
+  "size": 150,
+  "seed": 303,
+  "elevation": "flat",
+  "danger": 0,
+  "desc": {
+   "nl": "De rivierkade met trappen tot in het water, vissersboten en de veerboot naar Ankusha Tata. Hier wordt 's ochtends gebaad en 's avonds gehandeld.",
+   "en": "The river quay with steps into the water, fishing boats and the ferry to Ankusha Tata. Bathing in the morning, trading at night."
+  },
+  "exits": [
+   {
+    "dir": "W",
+    "to": "shringarapura_dakshina",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "boat": {
+   "to": "ankusha_tata",
+   "when": {
+    "flag": "ghat_boat_open"
+   }
+  },
+  "npcs": [
+   "navik_damodar",
+   "gramvasi_nagar_4"
+  ],
+  "spawns": [],
+  "chests": [
+   {
+    "items": [
+     "nariyal",
+     "nariyal"
+    ],
+    "gold": 25,
+    "locked": 0
+   }
+  ],
+  "pickups": [
+   {
+    "item": "matsya",
+    "count": 2
+   }
+  ],
+  "silver_keys": 1,
+  "fishing": true,
+  "features": [
+   "ghat",
+   "jetty",
+   "boat",
+   "houses:4",
+   "torches:4"
+  ],
+  "water": "sea_east",
+  "music": "city"
+ },
+ "mahavana_dvar": {
+  "name": {
+   "nl": "Mahavana Dvar",
+   "en": "Mahavana Dvar"
+  },
+  "en_fable": "Greatwood Entrance",
+  "biome": "forest",
+  "size": 170,
+  "seed": 401,
+  "elevation": "gentle",
+  "danger": 2,
+  "desc": {
+   "nl": "De poort van het Grote Woud. Sal- en teakbomen, apen in de kruinen, en op het pad de eerste Pisacha's.",
+   "en": "The gate of the Great Forest. Sal and teak trees, monkeys in the crowns, and on the path the first Pisachas."
+  },
+  "exits": [
+   {
+    "dir": "N",
+    "to": "drishtikuta",
+    "pos": 0.5
+   },
+   {
+    "dir": "S",
+    "to": "mahavana_hrada",
+    "pos": 0.5
+   },
+   {
+    "dir": "E",
+    "to": "udyana",
+    "pos": 0.5
+   },
+   {
+    "dir": "W",
+    "to": "amrai",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": true,
+  "npcs": [
+   "udasi_jogi_2"
+  ],
+  "spawns": [
+   {
+    "enemy": "pisacha",
+    "count": 5,
+    "respawn": true
+   },
+   {
+    "enemy": "vrika",
+    "count": 3,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "prana_rasa"
+    ],
+    "gold": 30,
+    "locked": 0
+   }
+  ],
+  "pickups": [
+   {
+    "item": "tulsi",
+    "count": 2
+   },
+   {
+    "item": "phala",
+    "count": 3
+   }
+  ],
+  "silver_keys": 1,
+  "yaksha": "yaksha_mahavana_dvar",
+  "features": [
+   "gate_arch",
+   "signpost",
+   "fallen_logs:4",
+   "shrine_small"
+  ],
+  "water": "stream",
+  "music": "forest"
+ },
+ "udyana": {
+  "name": {
+   "nl": "Udyana",
+   "en": "Udyana"
+  },
+  "en_fable": "Picnic Area",
+  "biome": "forest",
+  "size": 130,
+  "seed": 402,
+  "elevation": "gentle",
+  "danger": 2,
+  "desc": {
+   "nl": "Een open plek met mangobomen waar families kwamen eten, tot de Bhramara's hun nest bouwden.",
+   "en": "A clearing with mango trees where families came to eat, until the Bhramaras built their nest."
+  },
+  "exits": [
+   {
+    "dir": "W",
+    "to": "mahavana_dvar",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [],
+  "spawns": [
+   {
+    "enemy": "bhramara",
+    "count": 8,
+    "respawn": true
+   },
+   {
+    "enemy": "bhramara_rani",
+    "count": 1,
+    "respawn": false,
+    "boss": true,
+    "when": {
+     "quest_active": "q_bhramara_rani",
+     "not_flag": "bhramara_rani_dead"
+    },
+    "on_death_flags": [
+     "bhramara_rani_dead"
+    ]
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "madhu",
+     "madhu",
+     "laddu"
+    ],
+    "gold": 20,
+    "locked": 0
+   }
+  ],
+  "pickups": [
+   {
+    "item": "phala",
+    "count": 4
+   }
+  ],
+  "silver_keys": 1,
+  "features": [
+   "mango_trees:6",
+   "picnic_cloths:3",
+   "wasp_nest"
+  ],
+  "water": "none",
+  "music": "forest"
+ },
+ "amrai": {
+  "name": {
+   "nl": "Amrai",
+   "en": "Amrai"
+  },
+  "en_fable": "Orchard Farm",
+  "biome": "farm",
+  "size": 150,
+  "seed": 403,
+  "elevation": "flat",
+  "danger": 1,
+  "desc": {
+   "nl": "De mangoboomgaard van boer Dhanpat. Rijen bomen, een waterrad en een hek dat de Dasyu's niet tegenhoudt.",
+   "en": "The mango orchard of farmer Dhanpat. Rows of trees, a waterwheel and a fence that does not stop the Dasyus."
+  },
+  "exits": [
+   {
+    "dir": "E",
+    "to": "mahavana_dvar",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [
+   "kisan_dhanpat",
+   "gramvasi_amrai_1",
+   "gramvasi_amrai_2",
+   {
+    "id": "dasyu_dut_amrai",
+    "when": {
+     "quest_active": "q_amrai_lut"
+    }
+   }
+  ],
+  "spawns": [
+   {
+    "enemy": "dasyu",
+    "count": 6,
+    "respawn": false,
+    "when": {
+     "quest_active": "q_amrai_raksha"
+    }
+   },
+   {
+    "enemy": "dasyu_dhanurdhara",
+    "count": 2,
+    "respawn": false,
+    "when": {
+     "quest_active": "q_amrai_raksha"
+    }
+   },
+   {
+    "enemy": "gram_rakshak",
+    "count": 4,
+    "respawn": false,
+    "when": {
+     "quest_active": "q_amrai_lut"
+    }
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "phala",
+     "phala",
+     "phala"
+    ],
+    "gold": 15,
+    "locked": 0
+   }
+  ],
+  "pickups": [
+   {
+    "item": "phala",
+    "count": 6
+   },
+   {
+    "item": "dudh",
+    "count": 2
+   }
+  ],
+  "silver_keys": 1,
+  "features": [
+   "farmhouse",
+   "farm_rows",
+   "fence",
+   "waterwheel",
+   "well"
+  ],
+  "water": "stream",
+  "music": "village"
+ },
+ "mahavana_hrada": {
+  "name": {
+   "nl": "Mahavana Hrada",
+   "en": "Mahavana Hrada"
+  },
+  "en_fable": "Greatwood Lake",
+  "biome": "lake",
+  "size": 170,
+  "seed": 404,
+  "elevation": "gentle",
+  "danger": 2,
+  "desc": {
+   "nl": "Een lotusmeer midden in het woud. Een rishi mediteert op een rots in het water; Pisacha's sluipen langs de oever.",
+   "en": "A lotus lake in the heart of the forest. A rishi meditates on a rock in the water; Pisachas prowl the shore."
+  },
+  "exits": [
+   {
+    "dir": "N",
+    "to": "mahavana_dvar",
+    "pos": 0.5
+   },
+   {
+    "dir": "S",
+    "to": "mahavana_gaurav",
+    "pos": 0.5
+   },
+   {
+    "dir": "E",
+    "to": "gulabi_kutir",
+    "pos": 0.5
+   },
+   {
+    "dir": "W",
+    "to": "pisacha_guha",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [
+   "rishi_vamadeva",
+   "maa_sumitra"
+  ],
+  "spawns": [
+   {
+    "enemy": "pisacha",
+    "count": 5,
+    "respawn": true
+   },
+   {
+    "enemy": "pisacha_mantrika",
+    "count": 1,
+    "respawn": true
+   },
+   {
+    "enemy": "shardula",
+    "count": 1,
+    "respawn": true,
+    "when": {
+     "flag": "snatak"
+    }
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "ojas_rasa",
+     "yogasutra"
+    ],
+    "gold": 40,
+    "locked": 0
+   },
+   {
+    "items": [
+     "panna"
+    ],
+    "gold": 100,
+    "locked": 5
+   }
+  ],
+  "pickups": [
+   {
+    "item": "tulsi",
+    "count": 3
+   }
+  ],
+  "silver_keys": 2,
+  "fishing": true,
+  "features": [
+   "lotus",
+   "jetty",
+   "stones:5",
+   "shrine_small"
+  ],
+  "water": "lake",
+  "music": "lake"
+ },
+ "gulabi_kutir": {
+  "name": {
+   "nl": "Gulabi Kutir",
+   "en": "Gulabi Kutir"
+  },
+  "en_fable": "Rose Cottage",
+  "biome": "forest",
+  "size": 110,
+  "seed": 405,
+  "elevation": "gentle",
+  "danger": 1,
+  "desc": {
+   "nl": "Een hutje tussen rozenstruiken waar grootmoeder Rukmini woont. Ze bakt laddu's en herinnert zich elke Vira die ooit langskwam.",
+   "en": "A cottage among rose bushes where grandmother Rukmini lives. She bakes laddus and remembers every Vira who ever passed."
+  },
+  "exits": [
+   {
+    "dir": "W",
+    "to": "mahavana_hrada",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [
+   "dadi_rukmini"
+  ],
+  "spawns": [
+   {
+    "enemy": "keeta",
+    "count": 2,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "laddu",
+     "laddu"
+    ],
+    "gold": 10,
+    "locked": 0
+   }
+  ],
+  "pickups": [
+   {
+    "item": "gulab",
+    "count": 4
+   }
+  ],
+  "silver_keys": 1,
+  "dig_spots": [
+   {
+    "item": "rajat_kunji",
+    "gold": 0
+   }
+  ],
+  "features": [
+   "cottage",
+   "rose_bushes:8",
+   "fence",
+   "well"
+  ],
+  "water": "none",
+  "music": "village"
+ },
+ "pisacha_guha": {
+  "name": {
+   "nl": "Pisacha Guha",
+   "en": "Pisacha Guha"
+  },
+  "en_fable": "Hobbe Cave",
+  "biome": "cave",
+  "size": 150,
+  "seed": 406,
+  "elevation": "cave",
+  "danger": 3,
+  "interior": true,
+  "desc": {
+   "nl": "De grotten waar de Pisacha's gestolen kinderen heen brengen. Fakkels, botten en diep in de aarde een vergeten pikhouweel.",
+   "en": "The caves where the Pisachas take stolen children. Torches, bones and deep in the earth a forgotten pickaxe."
+  },
+  "exits": [
+   {
+    "dir": "E",
+    "to": "mahavana_hrada",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [
+   {
+    "id": "chhotu_bachcha",
+    "when": {
+     "quest_active": "q_pisacha_guha"
+    }
+   }
+  ],
+  "spawns": [
+   {
+    "enemy": "pisacha",
+    "count": 8,
+    "respawn": true
+   },
+   {
+    "enemy": "pisacha_mantrika",
+    "count": 2,
+    "respawn": true
+   },
+   {
+    "enemy": "pisacha_vira",
+    "count": 1,
+    "respawn": false,
+    "when": {
+     "quest_active": "q_pisacha_guha"
+    }
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "prana_rasa",
+     "ojas_rasa"
+    ],
+    "gold": 60,
+    "locked": 0
+   },
+   {
+    "items": [
+     "manikya"
+    ],
+    "gold": 150,
+    "locked": 10
+   }
+  ],
+  "pickups": [
+   {
+    "item": "amla",
+    "count": 2
+   }
+  ],
+  "silver_keys": 2,
+  "dig_spots": [
+   {
+    "item": "bhumi_kudala",
+    "gold": 0
+   }
+  ],
+  "features": [
+   "torches:10",
+   "bones:6",
+   "stalagmites:12",
+   "cage"
+  ],
+  "water": "none",
+  "music": "cave"
+ },
+ "mahavana_gaurav": {
+  "name": {
+   "nl": "Mahavana Gaurav",
+   "en": "Mahavana Gaurav"
+  },
+  "en_fable": "Greatwood Gorge",
+  "biome": "gorge",
+  "size": 170,
+  "seed": 407,
+  "elevation": "gorge",
+  "danger": 3,
+  "desc": {
+   "nl": "Een kloof met een rivier op de bodem. Op de rotswanden hangen Vetala's, en een Bhumi-daitya slaapt onder de brug.",
+   "en": "A gorge with a river at the bottom. Vetalas hang on the rock walls, and a Bhumi daitya sleeps beneath the bridge."
+  },
+  "exits": [
+   {
+    "dir": "N",
+    "to": "mahavana_hrada",
+    "pos": 0.5
+   },
+   {
+    "dir": "S",
+    "to": "tamovana_pravesh",
+    "pos": 0.5
+   },
+   {
+    "dir": "E",
+    "to": "mahavana_guha",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [],
+  "spawns": [
+   {
+    "enemy": "dasyu",
+    "count": 4,
+    "respawn": true
+   },
+   {
+    "enemy": "dasyu_dhanurdhara",
+    "count": 2,
+    "respawn": true
+   },
+   {
+    "enemy": "bhumi_daitya",
+    "count": 1,
+    "respawn": true,
+    "when": {
+     "flag": "snatak"
+    }
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "khanda_ispat"
+    ],
+    "gold": 80,
+    "locked": 0
+   }
+  ],
+  "pickups": [
+   {
+    "item": "tulsi",
+    "count": 2
+   }
+  ],
+  "silver_keys": 2,
+  "features": [
+   "bridge",
+   "stones:8",
+   "fallen_logs:3"
+  ],
+  "water": "river",
+  "music": "forest"
+ },
+ "mahavana_guha": {
+  "name": {
+   "nl": "Mahavana Guha",
+   "en": "Mahavana Guha"
+  },
+  "en_fable": "Greatwood Caves",
+  "biome": "cave",
+  "size": 140,
+  "seed": 408,
+  "elevation": "cave",
+  "danger": 3,
+  "interior": true,
+  "desc": {
+   "nl": "De tunnel onder de bergen naar het Dakinivana. Bhuta's dwalen hier; neem een gewijd wapen mee.",
+   "en": "The tunnel under the mountains to the Dakinivana. Bhutas wander here; bring a consecrated weapon."
+  },
+  "exits": [
+   {
+    "dir": "W",
+    "to": "mahavana_gaurav",
+    "pos": 0.5
+   },
+   {
+    "dir": "E",
+    "to": "dakinivana_guha",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [],
+  "spawns": [
+   {
+    "enemy": "bhuta",
+    "count": 4,
+    "respawn": true
+   },
+   {
+    "enemy": "maha_keeta",
+    "count": 3,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "vaidurya"
+    ],
+    "gold": 100,
+    "locked": 0
+   }
+  ],
+  "pickups": [],
+  "silver_keys": 1,
+  "features": [
+   "torches:8",
+   "stalagmites:16",
+   "crystals:4"
+  ],
+  "water": "none",
+  "music": "cave"
+ },
+ "tamovana_pravesh": {
+  "name": {
+   "nl": "Tamovana Pravesh",
+   "en": "Tamovana Pravesh"
+  },
+  "en_fable": "Darkwood Entrance",
+  "biome": "dark_forest",
+  "size": 160,
+  "seed": 501,
+  "elevation": "gentle",
+  "danger": 4,
+  "desc": {
+   "nl": "Waar het Grote Woud eindigt en het Duistere begint. De bomen zijn zwart, de mist is paars, en Vyapari Mohan wacht op een escorte.",
+   "en": "Where the Great Forest ends and the Dark one begins. The trees are black, the mist is purple, and Vyapari Mohan waits for an escort."
+  },
+  "exits": [
+   {
+    "dir": "N",
+    "to": "mahavana_gaurav",
+    "pos": 0.5
+   },
+   {
+    "dir": "S",
+    "to": "tamovana_dalavana",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [
+   {
+    "id": "vyapari_mohan",
+    "when": {
+     "quest_inactive": "q_vyapari_raksha"
+    }
+   }
+  ],
+  "spawns": [
+   {
+    "enemy": "rakshasa",
+    "count": 2,
+    "respawn": true
+   },
+   {
+    "enemy": "pisacha",
+    "count": 4,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "prana_rasa"
+    ],
+    "gold": 50,
+    "locked": 0
+   }
+  ],
+  "pickups": [
+   {
+    "item": "tulsi",
+    "count": 2
+   }
+  ],
+  "silver_keys": 1,
+  "features": [
+   "gate_arch",
+   "dead_trees:6",
+   "signpost"
+  ],
+  "water": "none",
+  "music": "dark"
+ },
+ "tamovana_dalavana": {
+  "name": {
+   "nl": "Tamovana Dalavana",
+   "en": "Tamovana Dalavana"
+  },
+  "en_fable": "Darkwood Marshes",
+  "biome": "marsh",
+  "size": 170,
+  "seed": 502,
+  "elevation": "flat",
+  "danger": 4,
+  "desc": {
+   "nl": "Moerassen vol wil-o'-wisps en Preta's. Het water is zwart en de Yaksha in de dode boom stelt een vraag over het hart.",
+   "en": "Marshes full of will-o'-wisps and Pretas. The water is black and the Yaksha in the dead tree asks a question about the heart."
+  },
+  "exits": [
+   {
+    "dir": "N",
+    "to": "tamovana_pravesh",
+    "pos": 0.5
+   },
+   {
+    "dir": "S",
+    "to": "tamovana_shivir",
+    "pos": 0.5
+   },
+   {
+    "dir": "E",
+    "to": "praachin_mandir",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [],
+  "spawns": [
+   {
+    "enemy": "preta",
+    "count": 5,
+    "respawn": true
+   },
+   {
+    "enemy": "rakshasa",
+    "count": 2,
+    "respawn": true
+   },
+   {
+    "enemy": "bhramara",
+    "count": 4,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "ojas_rasa",
+     "vishahara"
+    ],
+    "gold": 40,
+    "locked": 0
+   },
+   {
+    "items": [
+     "nilam"
+    ],
+    "gold": 200,
+    "locked": 10
+   }
+  ],
+  "pickups": [
+   {
+    "item": "amla",
+    "count": 2
+   }
+  ],
+  "silver_keys": 2,
+  "yaksha": "yaksha_tamovana_dalavana",
+  "features": [
+   "dead_trees:10",
+   "reeds:20",
+   "wisps:6",
+   "bones:3"
+  ],
+  "water": "marsh",
+  "music": "dark"
+ },
+ "praachin_mandir": {
+  "name": {
+   "nl": "Praachin Mandir",
+   "en": "Praachin Mandir"
+  },
+  "en_fable": "Ancient Temple (Darkwood)",
+  "biome": "ruins",
+  "size": 140,
+  "seed": 503,
+  "elevation": "flat",
+  "danger": 5,
+  "desc": {
+   "nl": "Een verzonken tempel van voor de Chakravartins. Onder het altaar ligt Chandrahasa, het maanzwaard van Ravana. Een Daitya bewaakt het.",
+   "en": "A sunken temple from before the Chakravartins. Beneath the altar lies Chandrahasa, Ravana's moon-sword. A Daitya guards it."
+  },
+  "exits": [
+   {
+    "dir": "W",
+    "to": "tamovana_dalavana",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [],
+  "spawns": [
+   {
+    "enemy": "kankala",
+    "count": 5,
+    "respawn": true
+   },
+   {
+    "enemy": "shila_daitya",
+    "count": 1,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "khadgasura_kronik"
+    ],
+    "gold": 120,
+    "locked": 0
+   },
+   {
+    "items": [
+     "gomed"
+    ],
+    "gold": 300,
+    "locked": 15
+   }
+  ],
+  "pickups": [],
+  "silver_keys": 2,
+  "dig_spots": [
+   {
+    "item": "chandrahasa",
+    "gold": 0
+   }
+  ],
+  "features": [
+   "temple_ruin",
+   "pillars:10",
+   "statue",
+   "altar",
+   "torches:4"
+  ],
+  "water": "pond",
+  "music": "dark"
+ },
+ "tamovana_shivir": {
+  "name": {
+   "nl": "Tamovana Shivir",
+   "en": "Tamovana Shivir"
+  },
+  "en_fable": "Darkwood Camp",
+  "biome": "dark_forest",
+  "size": 140,
+  "seed": 504,
+  "elevation": "gentle",
+  "danger": 3,
+  "desc": {
+   "nl": "Een kampvuur in het donker waar handelaars en avonturiers schuilen. De enige plek in het Tamovana waar je veilig slaapt.",
+   "en": "A campfire in the dark where traders and adventurers shelter. The only place in the Tamovana where you sleep safely."
+  },
+  "exits": [
+   {
+    "dir": "N",
+    "to": "tamovana_dalavana",
+    "pos": 0.5
+   },
+   {
+    "dir": "S",
+    "to": "tamovana_hrada",
+    "pos": 0.5
+   },
+   {
+    "dir": "E",
+    "to": "andhaka_pith",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": true,
+  "npcs": [
+   "vyapari_shivir",
+   "sadhvi_meera",
+   "gramvasi_shivir_1",
+   {
+    "id": "vyapari_mohan",
+    "when": {
+     "quest_done": "q_vyapari_raksha"
+    }
+   }
+  ],
+  "spawns": [
+   {
+    "enemy": "rakshasa",
+    "count": 1,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "prana_rasa",
+     "sura"
+    ],
+    "gold": 30,
+    "locked": 0
+   }
+  ],
+  "pickups": [
+   {
+    "item": "mamsa",
+    "count": 2
+   }
+  ],
+  "silver_keys": 1,
+  "features": [
+   "campfire",
+   "tents:5",
+   "fence",
+   "torches:4"
+  ],
+  "water": "none",
+  "music": "camp"
+ },
+ "andhaka_pith": {
+  "name": {
+   "nl": "Andhaka Pith",
+   "en": "Andhaka Pith"
+  },
+  "en_fable": "Chapel of Skorm",
+  "biome": "ruins",
+  "size": 120,
+  "seed": 505,
+  "elevation": "flat",
+  "danger": 2,
+  "desc": {
+   "nl": "Een zwarte tempel voor de blinde asura Andhaka. De priesters vragen om offers. Wie een leven geeft, krijgt macht en verliest dharma.",
+   "en": "A black temple to the blind asura Andhaka. The priests ask for sacrifices. Whoever gives a life gains power and loses dharma."
+  },
+  "exits": [
+   {
+    "dir": "W",
+    "to": "tamovana_shivir",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [
+   "andhaka_mukhya",
+   "kapalika_kalaratri"
+  ],
+  "spawns": [],
+  "chests": [
+   {
+    "items": [
+     "tamas_dhoti"
+    ],
+    "gold": 50,
+    "locked": 0
+   }
+  ],
+  "pickups": [
+   {
+    "item": "sura",
+    "count": 2
+   }
+  ],
+  "silver_keys": 1,
+  "shrine": "asura",
+  "features": [
+   "temple_dark",
+   "altar",
+   "pillars:6",
+   "torches:8",
+   "statue_asura"
+  ],
+  "water": "none",
+  "music": "dark"
+ },
+ "tamovana_hrada": {
+  "name": {
+   "nl": "Tamovana Hrada",
+   "en": "Tamovana Hrada"
+  },
+  "en_fable": "Darkwood Lake",
+  "biome": "dark_lake",
+  "size": 160,
+  "seed": 506,
+  "elevation": "gentle",
+  "danger": 4,
+  "desc": {
+   "nl": "Een zwart meer waarin de maan niet weerspiegelt. Een Yaksha bij het water wil een dronken gast.",
+   "en": "A black lake in which the moon does not reflect. A Yaksha by the water wants a drunken guest."
+  },
+  "exits": [
+   {
+    "dir": "N",
+    "to": "tamovana_shivir",
+    "pos": 0.5
+   },
+   {
+    "dir": "S",
+    "to": "tamovana_vanya",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [],
+  "spawns": [
+   {
+    "enemy": "rakshasa",
+    "count": 3,
+    "respawn": true
+   },
+   {
+    "enemy": "vetala",
+    "count": 2,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "ojas_rasa_maha"
+    ],
+    "gold": 60,
+    "locked": 0
+   }
+  ],
+  "pickups": [
+   {
+    "item": "tulsi",
+    "count": 2
+   }
+  ],
+  "silver_keys": 2,
+  "yaksha": "yaksha_tamovana_hrada",
+  "fishing": true,
+  "features": [
+   "dead_trees:8",
+   "stones:5",
+   "jetty"
+  ],
+  "water": "lake",
+  "music": "dark"
+ },
+ "tamovana_vanya": {
+  "name": {
+   "nl": "Tamovana Vanya",
+   "en": "Tamovana Vanya"
+  },
+  "en_fable": "Darkwood Weir",
+  "biome": "dark_forest",
+  "size": 150,
+  "seed": 507,
+  "elevation": "gentle",
+  "danger": 4,
+  "desc": {
+   "nl": "Een oude stuwdam over de rivier. Wie hier passeert, wordt opgewacht door Dasyu's.",
+   "en": "An old weir across the river. Whoever passes here is ambushed by Dasyus."
+  },
+  "exits": [
+   {
+    "dir": "N",
+    "to": "tamovana_hrada",
+    "pos": 0.5
+   },
+   {
+    "dir": "S",
+    "to": "samadhi_kshetra",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [],
+  "spawns": [
+   {
+    "enemy": "dasyu",
+    "count": 5,
+    "respawn": true
+   },
+   {
+    "enemy": "dasyu_senapati",
+    "count": 1,
+    "respawn": true
+   },
+   {
+    "enemy": "rakshasa",
+    "count": 1,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "parashu_ispat"
+    ],
+    "gold": 70,
+    "locked": 0
+   }
+  ],
+  "pickups": [],
+  "silver_keys": 1,
+  "features": [
+   "weir",
+   "bridge",
+   "dead_trees:6"
+  ],
+  "water": "river",
+  "music": "dark"
+ },
+ "samadhi_kshetra": {
+  "name": {
+   "nl": "Samadhi Kshetra",
+   "en": "Samadhi Kshetra"
+  },
+  "en_fable": "Barrow Fields",
+  "biome": "graveyard",
+  "size": 160,
+  "seed": 508,
+  "elevation": "gentle",
+  "danger": 3,
+  "desc": {
+   "nl": "Velden vol samadhi's: de graftombes van heilige mannen. 's Nachts rijzen Preta's uit de grond; overdag mediteert een sannyasi tussen de stenen.",
+   "en": "Fields full of samadhis: the tombs of holy men. At night Pretas rise from the ground; by day a sannyasi meditates among the stones."
+  },
+  "exits": [
+   {
+    "dir": "N",
+    "to": "tamovana_vanya",
+    "pos": 0.5
+   },
+   {
+    "dir": "S",
+    "to": "vatagram",
+    "pos": 0.5
+   },
+   {
+    "dir": "E",
+    "to": "shyama_haveli",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": true,
+  "npcs": [
+   "sannyasi_shanti"
+  ],
+  "spawns": [
+   {
+    "enemy": "preta",
+    "count": 6,
+    "respawn": true,
+    "night_only": true
+   },
+   {
+    "enemy": "kankala",
+    "count": 2,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "upanishad"
+    ],
+    "gold": 50,
+    "locked": 0
+   },
+   {
+    "items": [
+     "praval"
+    ],
+    "gold": 200,
+    "locked": 10
+   }
+  ],
+  "pickups": [
+   {
+    "item": "tulsi",
+    "count": 2
+   }
+  ],
+  "silver_keys": 2,
+  "yaksha": "yaksha_samadhi",
+  "features": [
+   "graves:20",
+   "stupa",
+   "dead_trees:4",
+   "shrine_small"
+  ],
+  "water": "none",
+  "music": "graveyard"
+ },
+ "shyama_haveli": {
+  "name": {
+   "nl": "Shyama Haveli",
+   "en": "Shyama Haveli"
+  },
+  "en_fable": "Grey House",
+  "biome": "ruins",
+  "size": 110,
+  "seed": 509,
+  "elevation": "flat",
+  "danger": 3,
+  "desc": {
+   "nl": "Het verlaten landhuis van de familie van Rani Kalavati. Haar zus Ananya verdween hier. 's Nachts hoor je haar zingen.",
+   "en": "The abandoned manor of Rani Kalavati's family. Her sister Ananya vanished here. At night you hear her singing."
+  },
+  "exits": [
+   {
+    "dir": "W",
+    "to": "samadhi_kshetra",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [
+   {
+    "id": "ananya_bhuta",
+    "when": {
+     "night": true
+    }
+   }
+  ],
+  "spawns": [
+   {
+    "enemy": "bhuta",
+    "count": 3,
+    "respawn": true
+   },
+   {
+    "enemy": "chudail",
+    "count": 1,
+    "respawn": false
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "ananya_patra"
+    ],
+    "gold": 0,
+    "locked": 0,
+    "when": {
+     "quest_active": "q_shyama_haveli"
+    }
+   },
+   {
+    "items": [
+     "kesh_choti"
+    ],
+    "gold": 80,
+    "locked": 5
+   }
+  ],
+  "pickups": [],
+  "silver_keys": 1,
+  "features": [
+   "haveli_ruin",
+   "fence",
+   "dead_trees:5",
+   "well"
+  ],
+  "water": "none",
+  "music": "graveyard"
+ },
+ "vatagram": {
+  "name": {
+   "nl": "Vatagram",
+   "en": "Vatagram"
+  },
+  "en_fable": "Oakvale",
+  "biome": "village",
+  "size": 160,
+  "seed": 601,
+  "elevation": "gentle",
+  "danger": 0,
+  "desc": {
+   "nl": "Je dorp, herbouwd na de overval. De Vata-boom staat nog. Hier kun je een huis kopen, trouwen, en het graf van je vader bezoeken.",
+   "en": "Your village, rebuilt after the raid. The Vata tree still stands. Here you can buy a house, marry, and visit your father's grave."
+  },
+  "exits": [
+   {
+    "dir": "N",
+    "to": "samadhi_kshetra",
+    "pos": 0.5
+   },
+   {
+    "dir": "E",
+    "to": "vata_tata",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": true,
+  "npcs": [
+   "sarpanch_govind",
+   "priya",
+   "vaidya_dhanvant",
+   "vyapari_vatagram",
+   "nai_vatagram",
+   "gramvasi_vatagram_2",
+   "gramvasi_vatagram_3",
+   "balram_vayask",
+   "yoga_guru_keshav"
+  ],
+  "spawns": [],
+  "chests": [
+   {
+    "items": [
+     "laddu",
+     "kheer"
+    ],
+    "gold": 30,
+    "locked": 0
+   },
+   {
+    "items": [
+     "ramayana"
+    ],
+    "gold": 100,
+    "locked": 5
+   }
+  ],
+  "pickups": [
+   {
+    "item": "phala",
+    "count": 3
+   },
+   {
+    "item": "dudh",
+    "count": 2
+   }
+  ],
+  "silver_keys": 1,
+  "house": {
+   "price": 3000,
+   "name": {
+    "nl": "Bhadra's huis",
+    "en": "Bhadra's house"
+   }
+  },
+  "features": [
+   "houses:8",
+   "banyan",
+   "well",
+   "market",
+   "fence",
+   "grave_bhadra",
+   "temple_small"
+  ],
+  "water": "stream",
+  "music": "village"
+ },
+ "vata_tata": {
+  "name": {
+   "nl": "Vata Tata",
+   "en": "Vata Tata"
+  },
+  "en_fable": "Clifftop Path / Oakvale beach",
+  "biome": "coast",
+  "size": 150,
+  "seed": 602,
+  "elevation": "gentle",
+  "danger": 2,
+  "desc": {
+   "nl": "Het strand van Vatagram, met palmen, schelpen en de rots waar je als kind speelde. In de rots woont een Yaksha die wil dansen.",
+   "en": "The beach of Vatagram, with palms, shells and the rock where you played as a child. In the rock lives a Yaksha who wants to dance."
+  },
+  "exits": [
+   {
+    "dir": "W",
+    "to": "vatagram",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [
+   "machhuara_vata"
+  ],
+  "spawns": [
+   {
+    "enemy": "dasyu",
+    "count": 3,
+    "respawn": true
+   },
+   {
+    "enemy": "keeta",
+    "count": 4,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "chakra_loha"
+    ],
+    "gold": 40,
+    "locked": 0
+   }
+  ],
+  "pickups": [
+   {
+    "item": "nariyal",
+    "count": 4
+   }
+  ],
+  "silver_keys": 2,
+  "yaksha": "yaksha_vata_tata",
+  "fishing": true,
+  "dig_spots": [
+   {
+    "item": "damaru",
+    "gold": 50
+   }
+  ],
+  "features": [
+   "palms:10",
+   "boat",
+   "rocks:6"
+  ],
+  "water": "sea_east",
+  "music": "coast"
+ },
+ "dakinivana_guha": {
+  "name": {
+   "nl": "Dakinivana Guha",
+   "en": "Dakinivana Guha"
+  },
+  "en_fable": "Witchwood Caves",
+  "biome": "cave",
+  "size": 150,
+  "seed": 701,
+  "elevation": "cave",
+  "danger": 4,
+  "interior": true,
+  "desc": {
+   "nl": "Grotten vol paars gloeiende kristallen. De uitgang leidt naar het Heksenwoud.",
+   "en": "Caves full of purple-glowing crystals. The exit leads into the Witchwood."
+  },
+  "exits": [
+   {
+    "dir": "W",
+    "to": "mahavana_guha",
+    "pos": 0.5
+   },
+   {
+    "dir": "E",
+    "to": "dakinivana_shila",
+    "pos": 0.5
+   },
+   {
+    "dir": "N",
+    "to": "dakinivana_hrada",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": true,
+  "npcs": [],
+  "spawns": [
+   {
+    "enemy": "pisacha_vira",
+    "count": 2,
+    "respawn": true
+   },
+   {
+    "enemy": "pisacha",
+    "count": 6,
+    "respawn": true
+   },
+   {
+    "enemy": "bhuta",
+    "count": 2,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "ojas_rasa",
+     "prana_rasa"
+    ],
+    "gold": 60,
+    "locked": 0
+   }
+  ],
+  "pickups": [],
+  "silver_keys": 2,
+  "features": [
+   "crystals:12",
+   "torches:6",
+   "stalagmites:14"
+  ],
+  "water": "pond",
+  "music": "cave"
+ },
+ "dakinivana_shila": {
+  "name": {
+   "nl": "Dakinivana Shila",
+   "en": "Dakinivana Shila"
+  },
+  "en_fable": "Witchwood Stones",
+  "biome": "witchwood",
+  "size": 170,
+  "seed": 702,
+  "elevation": "gentle",
+  "danger": 4,
+  "desc": {
+   "nl": "Een cirkel van staande stenen waar de Dakini's bij volle maan dansen. Een Yaksha bewaakt hier Bhima's Gada.",
+   "en": "A circle of standing stones where the Dakinis dance at full moon. A Yaksha guards Bhima's Gada here."
+  },
+  "exits": [
+   {
+    "dir": "W",
+    "to": "dakinivana_guha",
+    "pos": 0.5
+   },
+   {
+    "dir": "S",
+    "to": "surya_mandir",
+    "pos": 0.5
+   },
+   {
+    "dir": "E",
+    "to": "granthivana",
+    "pos": 0.5
+   },
+   {
+    "dir": "N",
+    "to": "dasyu_shivir_dvar",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [
+   "bhairavi_chandi"
+  ],
+  "spawns": [
+   {
+    "enemy": "dakini",
+    "count": 3,
+    "respawn": true
+   },
+   {
+    "enemy": "bhramara",
+    "count": 4,
+    "respawn": true
+   },
+   {
+    "enemy": "dakini_rani",
+    "count": 1,
+    "respawn": false,
+    "boss": true,
+    "when": {
+     "flag": "rangabhumi_done",
+     "not_flag": "dakini_rani_dead"
+    },
+    "on_death_flags": [
+     "dakini_rani_dead"
+    ]
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "vijnana_bhairava_tantra"
+    ],
+    "gold": 80,
+    "locked": 0
+   },
+   {
+    "items": [
+     "ojas_rasa_maha",
+     "moti"
+    ],
+    "gold": 250,
+    "locked": 15
+   }
+  ],
+  "pickups": [
+   {
+    "item": "yaksha_phool",
+    "count": 1,
+    "night_only": true
+   }
+  ],
+  "silver_keys": 2,
+  "yaksha": "yaksha_dakinivana_shila",
+  "features": [
+   "stones_circle",
+   "purple_trees:8",
+   "wisps:4",
+   "altar"
+  ],
+  "water": "none",
+  "music": "witch"
+ },
+ "surya_mandir": {
+  "name": {
+   "nl": "Surya Mandir",
+   "en": "Surya Mandir"
+  },
+  "en_fable": "Temple of Avo",
+  "biome": "temple",
+  "size": 130,
+  "seed": 703,
+  "elevation": "flat",
+  "danger": 0,
+  "desc": {
+   "nl": "De zonnetempel met zijn gouden shikhara. Wie hier offert, wint dharma. Wie met heel zijn hart offert, krijgt Gandiva.",
+   "en": "The sun temple with its golden shikhara. Whoever gives here gains dharma. Whoever gives with a whole heart receives Gandiva."
+  },
+  "exits": [
+   {
+    "dir": "N",
+    "to": "dakinivana_shila",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [
+   "pujari_aditya",
+   "bhakta_hari",
+   "sadhvi_lila"
+  ],
+  "spawns": [],
+  "chests": [
+   {
+    "items": [
+     "prasad",
+     "prasad"
+    ],
+    "gold": 20,
+    "locked": 0
+   }
+  ],
+  "pickups": [
+   {
+    "item": "prasad",
+    "count": 2
+   }
+  ],
+  "silver_keys": 1,
+  "shrine": "dharma",
+  "features": [
+   "temple",
+   "pillars:8",
+   "statue",
+   "lotus",
+   "torches:6",
+   "bell"
+  ],
+  "water": "pond",
+  "music": "temple"
+ },
+ "granthivana": {
+  "name": {
+   "nl": "Granthivana",
+   "en": "Granthivana"
+  },
+  "en_fable": "Knothole Glade",
+  "biome": "village",
+  "size": 150,
+  "seed": 704,
+  "elevation": "gentle",
+  "danger": 2,
+  "desc": {
+   "nl": "Een dorp van houthakkers, omringd door een palissade. De Witte Rakshasa heeft al drie wachters meegenomen.",
+   "en": "A village of woodcutters, surrounded by a palisade. The White Rakshasa has already taken three guards."
+  },
+  "exits": [
+   {
+    "dir": "W",
+    "to": "dakinivana_shila",
+    "pos": 0.5
+   },
+   {
+    "dir": "E",
+    "to": "dakinivana_hrada",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": true,
+  "npcs": [
+   "mukhiya_birbal",
+   "vyapari_granthivana",
+   "gramvasi_granthi_1",
+   "gramvasi_granthi_2"
+  ],
+  "spawns": [
+   {
+    "enemy": "rakshasa",
+    "count": 2,
+    "respawn": true,
+    "night_only": true
+   },
+   {
+    "enemy": "shveta_rakshasa",
+    "count": 1,
+    "respawn": false,
+    "boss": true,
+    "when": {
+     "quest_stage_min": [
+      "q_shveta_rakshasa",
+      1
+     ],
+     "not_flag": "shveta_dead"
+    },
+    "on_death_flags": [
+     "shveta_dead"
+    ]
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "prana_rasa",
+     "mahabharata"
+    ],
+    "gold": 60,
+    "locked": 0
+   }
+  ],
+  "pickups": [
+   {
+    "item": "madhu",
+    "count": 2
+   }
+  ],
+  "silver_keys": 1,
+  "yaksha": "yaksha_granthivana",
+  "features": [
+   "huts:8",
+   "palisade",
+   "well",
+   "totem",
+   "torches:6",
+   "campfire"
+  ],
+  "water": "none",
+  "music": "village"
+ },
+ "dakinivana_hrada": {
+  "name": {
+   "nl": "Dakinivana Hrada",
+   "en": "Dakinivana Hrada"
+  },
+  "en_fable": "Witchwood Lake",
+  "biome": "witchwood",
+  "size": 160,
+  "seed": 705,
+  "elevation": "gentle",
+  "danger": 4,
+  "desc": {
+   "nl": "Een meer waarin de bomen zich spiegelen als paarse vlammen. Hier beginnen de trappen naar de Rangabhumi.",
+   "en": "A lake in which the trees reflect like purple flames. Here begin the steps to the Rangabhumi."
+  },
+  "exits": [
+   {
+    "dir": "S",
+    "to": "dakinivana_guha",
+    "pos": 0.5
+   },
+   {
+    "dir": "W",
+    "to": "granthivana",
+    "pos": 0.5
+   },
+   {
+    "dir": "E",
+    "to": "rangabhumi",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [],
+  "spawns": [
+   {
+    "enemy": "dakini",
+    "count": 2,
+    "respawn": true
+   },
+   {
+    "enemy": "rakshasa",
+    "count": 2,
+    "respawn": true
+   },
+   {
+    "enemy": "vetala",
+    "count": 2,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "trishula_ispat"
+    ],
+    "gold": 70,
+    "locked": 0
+   }
+  ],
+  "pickups": [
+   {
+    "item": "tulsi",
+    "count": 2
+   }
+  ],
+  "silver_keys": 2,
+  "fishing": true,
+  "features": [
+   "purple_trees:10",
+   "jetty",
+   "stones:4"
+  ],
+  "water": "lake",
+  "music": "witch"
+ },
+ "rangabhumi": {
+  "name": {
+   "nl": "Rangabhumi",
+   "en": "Rangabhumi"
+  },
+  "en_fable": "The Arena",
+  "biome": "arena",
+  "size": 140,
+  "seed": 706,
+  "elevation": "flat",
+  "danger": 5,
+  "desc": {
+   "nl": "De grote arena van Jambudvipa, uitgehouwen in de rots. Hier vechten Vira's voor goud, roem en de gunst van Rani Kalavati.",
+   "en": "The great arena of Jambudvipa, hewn from the rock. Here Viras fight for gold, fame and the favour of Rani Kalavati."
+  },
+  "exits": [
+   {
+    "dir": "W",
+    "to": "dakinivana_hrada",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": true,
+  "npcs": [
+   "rangadhyaksha",
+   {
+    "id": "marmara_arena",
+    "when": {
+     "flag": "marmara_left_akhara",
+     "not_flag": "rangabhumi_done"
+    }
+   },
+   {
+    "id": "vajrasena_arena",
+    "when": {
+     "not_flag": "rangabhumi_done"
+    }
+   },
+   "vyapari_rangabhumi"
+  ],
+  "spawns": [],
+  "chests": [
+   {
+    "items": [
+     "prana_rasa_maha"
+    ],
+    "gold": 100,
+    "locked": 0
+   }
+  ],
+  "pickups": [],
+  "silver_keys": 1,
+  "dig_spots": [
+   {
+    "item": "vajramushti",
+    "gold": 0
+   }
+  ],
+  "arena": true,
+  "features": [
+   "arena_ring",
+   "torches:12",
+   "statue",
+   "gate_arch"
+  ],
+  "water": "none",
+  "music": "arena"
+ },
+ "ankusha_tata": {
+  "name": {
+   "nl": "Ankusha Tata",
+   "en": "Ankusha Tata"
+  },
+  "en_fable": "Hook Coast",
+  "biome": "coast",
+  "size": 170,
+  "seed": 801,
+  "elevation": "gentle",
+  "danger": 3,
+  "desc": {
+   "nl": "Een havenstadje op een haakvormige landtong, met een vuurtoren die het hele noorden verlicht. Kalayogi wacht hier op je.",
+   "en": "A harbour town on a hook-shaped spit, with a lighthouse that lights the whole north. Kalayogi waits for you here."
+  },
+  "exits": [
+   {
+    "dir": "N",
+    "to": "himavat_dwar",
+    "pos": 0.5,
+    "locked": {
+     "flag": "himavat_open",
+     "msg": {
+      "nl": "De bergpas is dicht. Pas na de Karma Mandapa opent de weg naar de Himavat.",
+      "en": "The mountain pass is closed. Only after the Karma Mandapa does the road to the Himavat open."
+     }
+    }
+   }
+  ],
+  "tirtha": true,
+  "boat": {
+   "to": "shringarapura_ghat",
+   "when": {
+    "flag": "ghat_boat_open"
+   }
+  },
+  "npcs": [
+   {
+    "id": "kalayogi",
+    "when": {
+     "not_flag": "kalayogi_north"
+    }
+   },
+   "bhaskara",
+   "vyapari_ankusha",
+   "gramvasi_ankusha_1",
+   {
+    "id": "mayacharya_tata",
+    "when": {
+     "any": [
+      {
+       "quest_active": "q_deepastambha"
+      },
+      {
+       "all": [
+        {
+         "flag": "maya_revealed"
+        },
+        {
+         "not_flag": [
+          "maya_dead",
+          "maya_fight"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "spawns": [
+   {
+    "enemy": "dasyu",
+    "count": 3,
+    "respawn": true,
+    "when": {
+     "not_flag": "maya_revealed"
+    }
+   },
+   {
+    "enemy": "mayacharya_boss",
+    "count": 1,
+    "respawn": false,
+    "boss": true,
+    "when": {
+     "flag": "maya_fight",
+     "not_flag": "maya_dead"
+    },
+    "on_death_flags": [
+     "maya_dead"
+    ]
+   },
+   {
+    "enemy": "asura_bhata",
+    "count": 3,
+    "respawn": false,
+    "when": {
+     "flag": "maya_fight",
+     "not_flag": "maya_dead"
+    }
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "ojas_rasa",
+     "nariyal"
+    ],
+    "gold": 80,
+    "locked": 0
+   },
+   {
+    "items": [
+     "pukhraj"
+    ],
+    "gold": 400,
+    "locked": 20
+   }
+  ],
+  "pickups": [
+   {
+    "item": "nariyal",
+    "count": 3
+   }
+  ],
+  "silver_keys": 2,
+  "yaksha": "yaksha_ankusha_tata",
+  "fishing": true,
+  "features": [
+   "lighthouse",
+   "houses:6",
+   "jetty",
+   "boat",
+   "palms:6",
+   "rocks:5"
+  ],
+  "water": "sea_east",
+  "music": "coast"
+ },
+ "vadhyagiri": {
+  "name": {
+   "nl": "Vadhyagiri",
+   "en": "Vadhyagiri"
+  },
+  "en_fable": "Headsman's Hill",
+  "biome": "hill",
+  "size": 140,
+  "seed": 802,
+  "elevation": "hill",
+  "danger": 3,
+  "desc": {
+   "nl": "De heuvel waar Shringarapura zijn misdadigers onthoofdt. Kraaien, een galg en de weg naar het crematieveld.",
+   "en": "The hill where Shringarapura beheads its criminals. Crows, a gallows and the road to the cremation ground."
+  },
+  "exits": [
+   {
+    "dir": "W",
+    "to": "shringarapura_uttara",
+    "pos": 0.5
+   },
+   {
+    "dir": "E",
+    "to": "shmashana_kshetra",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [
+   "vadhaka_bhairon"
+  ],
+  "spawns": [
+   {
+    "enemy": "dasyu",
+    "count": 3,
+    "respawn": true
+   },
+   {
+    "enemy": "kankala",
+    "count": 2,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "kala_tilak"
+    ],
+    "gold": 40,
+    "locked": 0
+   }
+  ],
+  "pickups": [],
+  "silver_keys": 1,
+  "features": [
+   "gallows",
+   "dead_trees:5",
+   "stones:4",
+   "signpost"
+  ],
+  "water": "none",
+  "music": "graveyard"
+ },
+ "shmashana_kshetra": {
+  "name": {
+   "nl": "Shmashana Kshetra",
+   "en": "Shmashana Kshetra"
+  },
+  "en_fable": "Lychfield Graveyard",
+  "biome": "graveyard",
+  "size": 170,
+  "seed": 803,
+  "elevation": "gentle",
+  "danger": 4,
+  "desc": {
+   "nl": "Het grote crematieveld aan de rivier. Brandstapels, as, honden en de Aghori Bhairavnath die op een lijk mediteert. De geest van de eerste Mahant dwaalt hier.",
+   "en": "The great cremation ground by the river. Pyres, ash, dogs and the Aghori Bhairavnath meditating on a corpse. The ghost of the first Mahant wanders here."
+  },
+  "exits": [
+   {
+    "dir": "W",
+    "to": "vadhyagiri",
+    "pos": 0.5
+   },
+   {
+    "dir": "N",
+    "to": "pretagiri",
+    "pos": 0.5,
+    "locked": {
+     "flag": "pretagiri_open",
+     "msg": {
+      "nl": "Een poort van botten. De geest van de eerste Mahant moet hem openen.",
+      "en": "A gate of bones. The ghost of the first Mahant must open it."
+     }
+    }
+   }
+  ],
+  "tirtha": true,
+  "npcs": [
+   "aghori_bhairavnath",
+   "nirmal_bhuta",
+   "kapalika_dhumavati"
+  ],
+  "spawns": [
+   {
+    "enemy": "preta",
+    "count": 6,
+    "respawn": true
+   },
+   {
+    "enemy": "vetala",
+    "count": 2,
+    "respawn": true
+   },
+   {
+    "enemy": "bhuta",
+    "count": 2,
+    "respawn": true,
+    "night_only": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "bhasma",
+     "bhasma"
+    ],
+    "gold": 50,
+    "locked": 0
+   },
+   {
+    "items": [
+     "tamas_kurta"
+    ],
+    "gold": 200,
+    "locked": 10
+   },
+   {
+    "items": [
+     "nirmal_kavach"
+    ],
+    "gold": 0,
+    "locked": 0,
+    "when": {
+     "quest_active": "q_patala_karagar"
+    },
+    "guarded": "kankala"
+   }
+  ],
+  "pickups": [
+   {
+    "item": "preta_asthi",
+    "count": 3
+   }
+  ],
+  "silver_keys": 2,
+  "yaksha": "yaksha_shmashana",
+  "features": [
+   "pyres:6",
+   "graves:10",
+   "dhuni",
+   "dead_trees:6",
+   "shrine_small",
+   "ghat"
+  ],
+  "water": "river",
+  "music": "graveyard"
+ },
+ "pretagiri": {
+  "name": {
+   "nl": "Pretagiri",
+   "en": "Pretagiri"
+  },
+  "en_fable": "Lychfield underground / Cliffside Path",
+  "biome": "cave",
+  "size": 150,
+  "seed": 804,
+  "elevation": "cave",
+  "danger": 5,
+  "interior": true,
+  "desc": {
+   "nl": "De catacomben onder het crematieveld, waar de Chakravartins hun doden begroeven. Kankala's bewaken de doorgang naar Patala.",
+   "en": "The catacombs beneath the cremation ground, where the Chakravartins buried their dead. Kankalas guard the passage to Patala."
+  },
+  "exits": [
+   {
+    "dir": "S",
+    "to": "shmashana_kshetra",
+    "pos": 0.5
+   },
+   {
+    "dir": "N",
+    "to": "patala_marg",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [],
+  "spawns": [
+   {
+    "enemy": "kankala",
+    "count": 6,
+    "respawn": true
+   },
+   {
+    "enemy": "bhuta",
+    "count": 3,
+    "respawn": true
+   },
+   {
+    "enemy": "vetala",
+    "count": 2,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "gada_krishnashila"
+    ],
+    "gold": 120,
+    "locked": 0
+   },
+   {
+    "items": [
+     "amrita_phial"
+    ],
+    "gold": 300,
+    "locked": 15
+   }
+  ],
+  "pickups": [
+   {
+    "item": "preta_asthi",
+    "count": 2
+   }
+  ],
+  "silver_keys": 2,
+  "features": [
+   "torches:8",
+   "bones:10",
+   "pillars:6",
+   "sarcophagi:6"
+  ],
+  "water": "none",
+  "music": "cave"
+ },
+ "patala_marg": {
+  "name": {
+   "nl": "Patala Marg",
+   "en": "Patala Marg"
+  },
+  "en_fable": "Prison Path",
+  "biome": "cave",
+  "size": 150,
+  "seed": 805,
+  "elevation": "cave",
+  "danger": 5,
+  "interior": true,
+  "desc": {
+   "nl": "De weg naar de onderwereld. Naga-krijgers bewaken de trappen die naar de kerker van de Asura leiden.",
+   "en": "The road to the underworld. Naga warriors guard the stairs leading to the dungeon of the Asura."
+  },
+  "exits": [
+   {
+    "dir": "S",
+    "to": "pretagiri",
+    "pos": 0.5
+   },
+   {
+    "dir": "N",
+    "to": "patala_karagar",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [],
+  "spawns": [
+   {
+    "enemy": "naga_yoddha",
+    "count": 4,
+    "respawn": true
+   },
+   {
+    "enemy": "asura_bhata",
+    "count": 2,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "vishahara",
+     "vishahara",
+     "prana_rasa_maha"
+    ],
+    "gold": 90,
+    "locked": 0
+   }
+  ],
+  "pickups": [],
+  "silver_keys": 1,
+  "features": [
+   "torches:10",
+   "crystals:6",
+   "pillars:4",
+   "naga_statues:2"
+  ],
+  "water": "pond",
+  "music": "cave"
+ },
+ "patala_karagar": {
+  "name": {
+   "nl": "Patala Karagar",
+   "en": "Patala Karagar"
+  },
+  "en_fable": "Bargate Prison",
+  "biome": "prison",
+  "size": 160,
+  "seed": 806,
+  "elevation": "flat",
+  "danger": 5,
+  "interior": true,
+  "desc": {
+   "nl": "De kerker van Khadgasura onder de aarde. Cellen, cipiers, een arena voor de 'wedren' en ergens je moeder.",
+   "en": "Khadgasura's dungeon beneath the earth. Cells, jailers, a yard for the 'race' and somewhere your mother."
+  },
+  "exits": [
+   {
+    "dir": "S",
+    "to": "patala_marg",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": true,
+  "npcs": [
+   {
+    "id": "raktambari_bandi",
+    "when": {
+     "quest_active": "q_patala_karagar"
+    }
+   },
+   "bandi_1",
+   "bandi_2",
+   {
+    "id": "karagar_mukhya",
+    "when": {
+     "not_flag": "karagar_fight"
+    }
+   }
+  ],
+  "spawns": [
+   {
+    "enemy": "karagar_rakshak",
+    "count": 6,
+    "respawn": true
+   },
+   {
+    "enemy": "asura_bhata",
+    "count": 3,
+    "respawn": true
+   },
+   {
+    "enemy": "yatudhana",
+    "count": 1,
+    "respawn": false
+   },
+   {
+    "enemy": "karagar_rakshak",
+    "count": 1,
+    "respawn": false,
+    "boss": true,
+    "when": {
+     "flag": "karagar_fight",
+     "not_flag": "karagar_mukhya_dead"
+    },
+    "on_death_flags": [
+     "karagar_mukhya_dead"
+    ],
+    "drop": "karagar_kunji",
+    "name_override": "karagar_mukhya"
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "jhilam_kurta"
+    ],
+    "gold": 150,
+    "locked": 0
+   },
+   {
+    "items": [
+     "gomed"
+    ],
+    "gold": 300,
+    "locked": 20
+   }
+  ],
+  "pickups": [
+   {
+    "item": "dudh",
+    "count": 1
+   }
+  ],
+  "silver_keys": 2,
+  "features": [
+   "cells:10",
+   "torches:12",
+   "pillars:8",
+   "gallows",
+   "cage"
+  ],
+  "water": "none",
+  "music": "prison",
+  "on_first_enter": {
+   "cutscene": "patala_captured",
+   "age": 1
+  }
+ },
+ "dasyu_shivir_dvar": {
+  "name": {
+   "nl": "Dasyu Shivir Dvar",
+   "en": "Dasyu Shivir Dvar"
+  },
+  "en_fable": "Twinblade's Camp (entrance)",
+  "biome": "forest",
+  "size": 140,
+  "seed": 901,
+  "elevation": "gentle",
+  "danger": 4,
+  "desc": {
+   "nl": "De versterkte toegang tot het roverskamp. Zonder vermomming word je neergeschoten.",
+   "en": "The fortified entrance to the bandit camp. Without a disguise you will be shot."
+  },
+  "exits": [
+   {
+    "dir": "S",
+    "to": "dakinivana_shila",
+    "pos": 0.5
+   },
+   {
+    "dir": "N",
+    "to": "dasyu_shivir",
+    "pos": 0.5,
+    "locked": {
+     "any": [
+      {
+       "flag": "dasyu_disguised"
+      },
+      {
+       "flag": "dasyu_camp_cleared"
+      }
+     ],
+     "msg": {
+      "nl": "De wachters laten alleen Dasyu's door. Je hebt een vermomming nodig.",
+      "en": "The guards only admit Dasyus. You need a disguise."
+     }
+    }
+   }
+  ],
+  "tirtha": false,
+  "npcs": [],
+  "spawns": [
+   {
+    "enemy": "dasyu",
+    "count": 4,
+    "respawn": true
+   },
+   {
+    "enemy": "dasyu_dhanurdhara",
+    "count": 3,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "dasyu_vesh"
+    ],
+    "gold": 20,
+    "locked": 0,
+    "when": {
+     "quest_active": "q_dasyu_devi"
+    }
+   }
+  ],
+  "pickups": [],
+  "silver_keys": 1,
+  "features": [
+   "palisade",
+   "watchtower",
+   "tents:3",
+   "torches:4"
+  ],
+  "water": "none",
+  "music": "camp"
+ },
+ "dasyu_shivir": {
+  "name": {
+   "nl": "Dasyu Shivir",
+   "en": "Dasyu Shivir"
+  },
+  "en_fable": "Twinblade's Camp",
+  "biome": "camp",
+  "size": 160,
+  "seed": 902,
+  "elevation": "gentle",
+  "danger": 4,
+  "desc": {
+   "nl": "Het hoofdkamp van Dvikhadga. Honderd tenten, een slavenmarkt en de tent van de Dasyu Devi, de blinde zieneres.",
+   "en": "Dvikhadga's main camp. A hundred tents, a slave market and the tent of the Dasyu Devi, the blind seeress."
+  },
+  "exits": [
+   {
+    "dir": "S",
+    "to": "dasyu_shivir_dvar",
+    "pos": 0.5
+   },
+   {
+    "dir": "N",
+    "to": "dasyu_tambu",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [
+   {
+    "id": "tara_devi",
+    "when": {
+     "not_flag": "tara_found"
+    }
+   },
+   "vyapari_dasyu",
+   "dasyu_wachter_1",
+   "dasyu_wachter_2"
+  ],
+  "spawns": [
+   {
+    "enemy": "dasyu",
+    "count": 8,
+    "respawn": true,
+    "when": {
+     "not_flag": "dasyu_disguised"
+    }
+   },
+   {
+    "enemy": "dasyu_senapati",
+    "count": 2,
+    "respawn": true,
+    "when": {
+     "not_flag": "dasyu_disguised"
+    }
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "talwar_ispat",
+     "sura"
+    ],
+    "gold": 90,
+    "locked": 0
+   },
+   {
+    "items": [
+     "dasyu_kurta"
+    ],
+    "gold": 60,
+    "locked": 5
+   }
+  ],
+  "pickups": [
+   {
+    "item": "mamsa",
+    "count": 3
+   },
+   {
+    "item": "sura",
+    "count": 2
+   }
+  ],
+  "silver_keys": 2,
+  "features": [
+   "tents:14",
+   "campfire",
+   "palisade",
+   "cage",
+   "torches:8",
+   "totem"
+  ],
+  "water": "none",
+  "music": "camp"
+ },
+ "dasyu_tambu": {
+  "name": {
+   "nl": "Dasyu Tambu",
+   "en": "Dasyu Tambu"
+  },
+  "en_fable": "Twinblade's Tent",
+  "biome": "camp",
+  "size": 110,
+  "seed": 903,
+  "elevation": "flat",
+  "danger": 5,
+  "desc": {
+   "nl": "De grote tent van de Dasyu-koning. Buit uit heel Jambudvipa, en Dvikhadga zelf op een troon van zwaarden.",
+   "en": "The great tent of the Dasyu king. Loot from all Jambudvipa, and Dvikhadga himself on a throne of swords."
+  },
+  "exits": [
+   {
+    "dir": "S",
+    "to": "dasyu_shivir",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [
+   {
+    "id": "dvikhadga_npc",
+    "when": {
+     "not_flag": "dvikhadga_fight"
+    }
+   }
+  ],
+  "spawns": [
+   {
+    "enemy": "dvikhadga",
+    "count": 1,
+    "respawn": false,
+    "boss": true,
+    "when": {
+     "flag": "dvikhadga_fight",
+     "not_flag": "dvikhadga_dead"
+    },
+    "on_death_flags": [
+     "dvikhadga_resolved",
+     "dasyu_camp_cleared",
+     "dvikhadga_dead"
+    ]
+   },
+   {
+    "enemy": "dasyu_senapati",
+    "count": 2,
+    "respawn": false,
+    "when": {
+     "flag": "dvikhadga_fight",
+     "not_flag": "dvikhadga_dead"
+    }
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "ratna_haar",
+     "manikya"
+    ],
+    "gold": 400,
+    "locked": 0,
+    "when": {
+     "flag": "dasyu_camp_cleared"
+    }
+   }
+  ],
+  "pickups": [],
+  "silver_keys": 1,
+  "features": [
+   "big_tent",
+   "throne",
+   "torches:8",
+   "loot_piles:4"
+  ],
+  "water": "none",
+  "music": "camp"
+ },
+ "himavat_dwar": {
+  "name": {
+   "nl": "Himavat Dwar",
+   "en": "Himavat Dwar"
+  },
+  "en_fable": "Northern Wastes Foothills",
+  "biome": "snow",
+  "size": 160,
+  "seed": 1001,
+  "elevation": "hill",
+  "danger": 5,
+  "desc": {
+   "nl": "De voet van de Himavat. Sneeuw, dennen, en de kou die Khadgasura's laatste leger verbergt.",
+   "en": "The foot of the Himavat. Snow, pines, and the cold that hides Khadgasura's last army."
+  },
+  "exits": [
+   {
+    "dir": "S",
+    "to": "ankusha_tata",
+    "pos": 0.5
+   },
+   {
+    "dir": "N",
+    "to": "himashikhara",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": true,
+  "npcs": [
+   "kalayogi_north"
+  ],
+  "spawns": [
+   {
+    "enemy": "hima_preta",
+    "count": 4,
+    "respawn": true
+   },
+   {
+    "enemy": "asura_bhata",
+    "count": 3,
+    "respawn": true
+   },
+   {
+    "enemy": "vrika",
+    "count": 4,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "prana_rasa_maha",
+     "ojas_rasa_maha"
+    ],
+    "gold": 150,
+    "locked": 0
+   }
+  ],
+  "pickups": [],
+  "silver_keys": 2,
+  "features": [
+   "pines:20",
+   "stones:6",
+   "signpost",
+   "shrine_small"
+  ],
+  "water": "none",
+  "music": "snow"
+ },
+ "himashikhara": {
+  "name": {
+   "nl": "Himashikhara",
+   "en": "Himashikhara"
+  },
+  "en_fable": "Snowspire",
+  "biome": "snow",
+  "size": 160,
+  "seed": 1002,
+  "elevation": "hill",
+  "danger": 3,
+  "desc": {
+   "nl": "Een dorp van steen en ijs rond de grot van de Devi, het orakel van het noorden. De bewoners zijn bevroren of bang.",
+   "en": "A village of stone and ice around the cave of the Devi, the oracle of the north. The inhabitants are frozen or afraid."
+  },
+  "exits": [
+   {
+    "dir": "S",
+    "to": "himavat_dwar",
+    "pos": 0.5
+   },
+   {
+    "dir": "N",
+    "to": "hima_guha",
+    "pos": 0.5
+   },
+   {
+    "dir": "E",
+    "to": "pretanagari",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": true,
+  "npcs": [
+   "devi_himashikhara",
+   "himashikhara_mukhiya",
+   "vyapari_hima",
+   "gramvasi_hima_1"
+  ],
+  "spawns": [
+   {
+    "enemy": "hima_preta",
+    "count": 3,
+    "respawn": true,
+    "night_only": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "surya_kavach_topi"
+    ],
+    "gold": 200,
+    "locked": 0
+   },
+   {
+    "items": [
+     "chyavana_rasa"
+    ],
+    "gold": 500,
+    "locked": 20
+   }
+  ],
+  "pickups": [
+   {
+    "item": "chai",
+    "count": 2
+   }
+  ],
+  "silver_keys": 2,
+  "yaksha": "yaksha_himashikhara",
+  "features": [
+   "stone_houses:7",
+   "oracle_cave",
+   "torches:8",
+   "pines:8",
+   "statue"
+  ],
+  "water": "none",
+  "music": "snow"
+ },
+ "hima_guha": {
+  "name": {
+   "nl": "Hima Guha",
+   "en": "Hima Guha"
+  },
+  "en_fable": "Ice caves (TLC)",
+  "biome": "ice_cave",
+  "size": 150,
+  "seed": 1003,
+  "elevation": "cave",
+  "danger": 5,
+  "interior": true,
+  "desc": {
+   "nl": "IJsgrotten waarin de dorpelingen van Himashikhara bevroren staan. Een Hima-daitya bewaakt de weg naar de Chakravartin Pith.",
+   "en": "Ice caves in which the villagers of Himashikhara stand frozen. A Hima daitya guards the way to the Chakravartin Pith."
+  },
+  "exits": [
+   {
+    "dir": "S",
+    "to": "himashikhara",
+    "pos": 0.5
+   },
+   {
+    "dir": "N",
+    "to": "chakravartin_pith",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [],
+  "spawns": [
+   {
+    "enemy": "hima_preta",
+    "count": 5,
+    "respawn": true
+   },
+   {
+    "enemy": "hima_daitya",
+    "count": 1,
+    "respawn": true
+   },
+   {
+    "enemy": "chhaya_vira",
+    "count": 2,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "nilam",
+     "prana_rasa_maha"
+    ],
+    "gold": 200,
+    "locked": 0
+   },
+   {
+    "items": [
+     "himashikhara_jyoti"
+    ],
+    "gold": 0,
+    "locked": 0,
+    "when": {
+     "quest_active": "q_himashikhara"
+    }
+   }
+  ],
+  "pickups": [],
+  "silver_keys": 2,
+  "features": [
+   "crystals:16",
+   "frozen_people:5",
+   "stalagmites:10",
+   "torches:4"
+  ],
+  "water": "none",
+  "music": "cave"
+ },
+ "pretanagari": {
+  "name": {
+   "nl": "Pretanagari",
+   "en": "Pretanagari"
+  },
+  "en_fable": "Necropolis",
+  "biome": "necropolis",
+  "size": 170,
+  "seed": 1004,
+  "elevation": "flat",
+  "danger": 5,
+  "desc": {
+   "nl": "De dodenstad van de Chakravartins, onder de sneeuw. Hier ligt Pashupata, en een Yaksha bewaakt de staf van Yama.",
+   "en": "The city of the dead of the Chakravartins, beneath the snow. Here lies Pashupata, and a Yaksha guards the staff of Yama."
+  },
+  "exits": [
+   {
+    "dir": "W",
+    "to": "himashikhara",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [],
+  "spawns": [
+   {
+    "enemy": "hima_preta",
+    "count": 6,
+    "respawn": true
+   },
+   {
+    "enemy": "kankala",
+    "count": 4,
+    "respawn": true
+   },
+   {
+    "enemy": "asura_mahabhata",
+    "count": 2,
+    "respawn": true
+   },
+   {
+    "enemy": "chudail",
+    "count": 2,
+    "respawn": true
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "pashupata"
+    ],
+    "gold": 0,
+    "locked": 0
+   },
+   {
+    "items": [
+     "vaidurya",
+     "hira"
+    ],
+    "gold": 500,
+    "locked": 25
+   }
+  ],
+  "pickups": [
+   {
+    "item": "preta_asthi",
+    "count": 3
+   }
+  ],
+  "silver_keys": 3,
+  "yaksha": "yaksha_pretanagari",
+  "features": [
+   "mausoleums:8",
+   "pillars:12",
+   "statue",
+   "torches:6",
+   "graves:20"
+  ],
+  "water": "none",
+  "music": "graveyard"
+ },
+ "chakravartin_pith": {
+  "name": {
+   "nl": "Chakravartin Pith",
+   "en": "Chakravartin Pith"
+  },
+  "en_fable": "Archon's Shrine",
+  "biome": "ruins",
+  "size": 150,
+  "seed": 1005,
+  "elevation": "flat",
+  "danger": 5,
+  "desc": {
+   "nl": "Het schrijn van de eerste wereldheerser, hoog in de Himavat. Hier neemt Khadgasura zijn ware gedaante aan: Vritra, de draak.",
+   "en": "The shrine of the first world-ruler, high in the Himavat. Here Khadgasura takes his true form: Vritra, the dragon."
+  },
+  "exits": [
+   {
+    "dir": "S",
+    "to": "hima_guha",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [
+   {
+    "id": "khadgasura_vritra_npc",
+    "when": {
+     "not_flag": "vritra_fight"
+    }
+   }
+  ],
+  "spawns": [
+   {
+    "enemy": "vritra",
+    "count": 1,
+    "respawn": false,
+    "boss": true,
+    "when": {
+     "flag": "vritra_fight",
+     "not_flag": "vritra_dead"
+    },
+    "on_death_flags": [
+     "vritra_dead"
+    ]
+   }
+  ],
+  "chests": [
+   {
+    "items": [
+     "soma"
+    ],
+    "gold": 1000,
+    "locked": 0,
+    "when": {
+     "flag": "vritra_dead"
+    }
+   }
+  ],
+  "pickups": [],
+  "silver_keys": 1,
+  "features": [
+   "temple_ruin",
+   "pillars:16",
+   "altar",
+   "statue",
+   "torches:10"
+  ],
+  "water": "none",
+  "music": "boss"
+ },
+ "karma_mandapa": {
+  "name": {
+   "nl": "Karma Mandapa",
+   "en": "Karma Mandapa"
+  },
+  "en_fable": "Chamber of Fate",
+  "biome": "chamber",
+  "size": 120,
+  "seed": 1101,
+  "elevation": "flat",
+  "danger": 5,
+  "interior": true,
+  "desc": {
+   "nl": "De kamer onder de Vira Akhara waar het lot wordt gewogen. Hier wacht Khadgasura met Tara, en het Zwaard van de Eonen.",
+   "en": "The chamber beneath the Vira Akhara where fate is weighed. Here Khadgasura waits with Tara, and the Sword of Aeons."
+  },
+  "exits": [
+   {
+    "dir": "E",
+    "to": "vira_akhara",
+    "pos": 0.5
+   }
+  ],
+  "tirtha": false,
+  "npcs": [
+   {
+    "id": "khadgasura_npc",
+    "when": {
+     "not_flag": "khadgasura_fight"
+    }
+   },
+   {
+    "id": "tara_mandapa",
+    "when": {
+     "flag": "khadgasura_dead",
+     "not_flag": "ending_chosen"
+    }
+   }
+  ],
+  "spawns": [
+   {
+    "enemy": "khadgasura",
+    "count": 1,
+    "respawn": false,
+    "boss": true,
+    "when": {
+     "flag": "khadgasura_fight",
+     "not_flag": "khadgasura_dead"
+    },
+    "on_death_flags": [
+     "khadgasura_dead"
+    ]
+   },
+   {
+    "enemy": "asura_bhata",
+    "count": 2,
+    "respawn": false,
+    "when": {
+     "flag": "khadgasura_fight",
+     "not_flag": "khadgasura_dead"
+    }
+   }
+  ],
+  "chests": [],
+  "pickups": [],
+  "silver_keys": 0,
+  "features": [
+   "pillars:12",
+   "altar",
+   "torches:12",
+   "yantra_floor",
+   "statue"
+  ],
+  "water": "none",
+  "music": "boss"
+ }
+}

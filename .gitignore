@@ -1,0 +1,9 @@
+# Godot
+.godot/
+*.import
+export/
+*.tmp
+# Local
+/saves/
+__pycache__/
+/screenshots/

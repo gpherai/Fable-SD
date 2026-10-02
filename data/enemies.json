@@ -1,0 +1,2455 @@
+{
+ "pisacha": {
+  "name": {
+   "nl": "Pisacha",
+   "en": "Pisacha"
+  },
+  "en_fable": "Hobbe",
+  "family": "pisacha",
+  "kind": "melee",
+  "level": 1,
+  "hp": 40,
+  "dmg": 8,
+  "def": 0.0,
+  "speed": 3.6,
+  "aggro": 14,
+  "attack_range": 1.7,
+  "attack_cd": 1.3,
+  "size": 0.75,
+  "tapas": {
+   "general": 12,
+   "bala": 5,
+   "kaushala": 3,
+   "shakti": 2
+  },
+  "gold": [
+   2,
+   9
+  ],
+  "drops": [
+   {
+    "item": "pisacha_mund",
+    "chance": 0.05
+   },
+   {
+    "item": "phala",
+    "chance": 0.2
+   }
+  ],
+  "weak": [
+   "fire"
+  ],
+  "resist": [],
+  "body": {
+   "shape": "goblin",
+   "color": "#6b8e23",
+   "color2": "#3e5a12",
+   "eye": "#ffee00",
+   "scale": 0.75
+  },
+  "desc": {
+   "nl": "Vleesetende kobolden uit de grotten. Ze stelen kinderen en graven in graven. Vuur verjaagt ze.",
+   "en": "Flesh-eating goblins from the caves. They steal children and dig in graves. Fire drives them off."
+  }
+ },
+ "pisacha_mantrika": {
+  "name": {
+   "nl": "Pisacha-mantrika",
+   "en": "Pisacha mantrika"
+  },
+  "en_fable": "Hobbe shaman",
+  "family": "pisacha",
+  "kind": "caster",
+  "level": 4,
+  "hp": 55,
+  "dmg": 14,
+  "def": 0.0,
+  "speed": 3.0,
+  "aggro": 18,
+  "attack_range": 12,
+  "attack_cd": 2.2,
+  "size": 0.8,
+  "projectile": "fire",
+  "tapas": {
+   "general": 25,
+   "bala": 3,
+   "kaushala": 4,
+   "shakti": 12
+  },
+  "gold": [
+   5,
+   15
+  ],
+  "drops": [
+   {
+    "item": "ojas_rasa",
+    "chance": 0.15
+   },
+   {
+    "item": "pisacha_mund",
+    "chance": 0.05
+   }
+  ],
+  "weak": [
+   "sacred"
+  ],
+  "resist": [
+   "fire"
+  ],
+  "body": {
+   "shape": "goblin",
+   "color": "#4f6b1e",
+   "color2": "#8e44ad",
+   "eye": "#b388ff",
+   "scale": 0.8,
+   "staff": true
+  },
+  "desc": {
+   "nl": "Een Pisacha die halve mantra's heeft opgevangen. Werpt vuur en krijst in gebroken Sanskriet.",
+   "en": "A Pisacha that picked up half-mantras. Hurls fire and shrieks in broken Sanskrit."
+  }
+ },
+ "pisacha_vira": {
+  "name": {
+   "nl": "Pisacha-vira",
+   "en": "Pisacha vira"
+  },
+  "en_fable": "Hobbe champion",
+  "family": "pisacha",
+  "kind": "melee",
+  "level": 7,
+  "hp": 140,
+  "dmg": 20,
+  "def": 0.1,
+  "speed": 3.4,
+  "aggro": 16,
+  "attack_range": 2.0,
+  "attack_cd": 1.5,
+  "size": 1.0,
+  "tapas": {
+   "general": 50,
+   "bala": 18,
+   "kaushala": 6,
+   "shakti": 3
+  },
+  "gold": [
+   10,
+   30
+  ],
+  "drops": [
+   {
+    "item": "pisacha_mund",
+    "chance": 0.15
+   },
+   {
+    "item": "prana_rasa_laghu",
+    "chance": 0.2
+   }
+  ],
+  "weak": [
+   "fire"
+  ],
+  "resist": [],
+  "body": {
+   "shape": "goblin",
+   "color": "#556b2f",
+   "color2": "#8b0000",
+   "eye": "#ff4400",
+   "scale": 1.05,
+   "armor": true
+  },
+  "desc": {
+   "nl": "De grootste van de groep draagt gestolen maliën en een roestige gada.",
+   "en": "The biggest of the pack wears stolen mail and a rusty gada."
+  }
+ },
+ "rakshasa": {
+  "name": {
+   "nl": "Rakshasa",
+   "en": "Rakshasa"
+  },
+  "en_fable": "Balverine",
+  "family": "rakshasa",
+  "kind": "melee",
+  "level": 8,
+  "hp": 180,
+  "dmg": 26,
+  "def": 0.1,
+  "speed": 6.0,
+  "aggro": 22,
+  "attack_range": 2.2,
+  "attack_cd": 1.1,
+  "size": 1.3,
+  "leap": true,
+  "tapas": {
+   "general": 70,
+   "bala": 25,
+   "kaushala": 12,
+   "shakti": 6
+  },
+  "gold": [
+   8,
+   25
+  ],
+  "drops": [
+   {
+    "item": "rakshasa_charma",
+    "chance": 0.12
+   },
+   {
+    "item": "mamsa",
+    "chance": 0.3
+   }
+  ],
+  "weak": [
+   "sacred"
+  ],
+  "resist": [
+   "fear"
+  ],
+  "body": {
+   "shape": "wolfman",
+   "color": "#2f2420",
+   "color2": "#4a3728",
+   "eye": "#ff2020",
+   "scale": 1.3
+  },
+  "desc": {
+   "nl": "Gedaanteverwisselende menseneters uit de Ramayana. Snel, springend, en ze jagen in het donker.",
+   "en": "Shape-shifting man-eaters from the Ramayana. Fast, leaping, and they hunt in the dark."
+  }
+ },
+ "shveta_rakshasa": {
+  "name": {
+   "nl": "Witte Rakshasa",
+   "en": "White Rakshasa"
+  },
+  "en_fable": "White Balverine",
+  "family": "rakshasa",
+  "kind": "melee",
+  "level": 14,
+  "boss": true,
+  "hp": 900,
+  "dmg": 42,
+  "def": 0.2,
+  "speed": 6.5,
+  "aggro": 30,
+  "attack_range": 2.4,
+  "attack_cd": 1.0,
+  "size": 1.6,
+  "leap": true,
+  "sacred_only": true,
+  "tapas": {
+   "general": 600,
+   "bala": 200,
+   "kaushala": 80,
+   "shakti": 40
+  },
+  "gold": [
+   100,
+   200
+  ],
+  "drops": [
+   {
+    "item": "shveta_rakshasa_shirsha",
+    "chance": 1.0
+   }
+  ],
+  "weak": [
+   "sacred"
+  ],
+  "resist": [
+   "fire",
+   "lightning",
+   "fear"
+  ],
+  "body": {
+   "shape": "wolfman",
+   "color": "#eeeeee",
+   "color2": "#c8c8c8",
+   "eye": "#00e5ff",
+   "scale": 1.6
+  },
+  "desc": {
+   "nl": "Een albino-Rakshasa die alleen door gewijd metaal (Vaidurya, Surya Tejas) echt gewond raakt. Hij terroriseert Granthivana.",
+   "en": "An albino Rakshasa that is only truly wounded by consecrated metal (Vaidurya, Surya Tejas). It terrorises Granthivana."
+  }
+ },
+ "rakshasa_raja": {
+  "name": {
+   "nl": "Rakshasa-raja",
+   "en": "Rakshasa raja"
+  },
+  "en_fable": "Balverine alpha",
+  "family": "rakshasa",
+  "kind": "melee",
+  "level": 18,
+  "hp": 500,
+  "dmg": 48,
+  "def": 0.2,
+  "speed": 6.2,
+  "aggro": 26,
+  "attack_range": 2.4,
+  "attack_cd": 1.0,
+  "size": 1.5,
+  "leap": true,
+  "tapas": {
+   "general": 220,
+   "bala": 80,
+   "kaushala": 30,
+   "shakti": 15
+  },
+  "gold": [
+   30,
+   60
+  ],
+  "drops": [
+   {
+    "item": "rakshasa_charma",
+    "chance": 0.5
+   }
+  ],
+  "weak": [
+   "sacred"
+  ],
+  "resist": [
+   "fear"
+  ],
+  "body": {
+   "shape": "wolfman",
+   "color": "#1a1210",
+   "color2": "#8b0000",
+   "eye": "#ff6600",
+   "scale": 1.5
+  },
+  "desc": {
+   "nl": "De leider van een roedel. Zijn gebrul roept de anderen.",
+   "en": "The leader of a pack. Its howl calls the others."
+  }
+ },
+ "dasyu": {
+  "name": {
+   "nl": "Dasyu",
+   "en": "Dasyu"
+  },
+  "en_fable": "Bandit",
+  "family": "dasyu",
+  "kind": "melee",
+  "level": 3,
+  "hp": 70,
+  "dmg": 12,
+  "def": 0.05,
+  "speed": 4.2,
+  "aggro": 16,
+  "attack_range": 1.8,
+  "attack_cd": 1.2,
+  "size": 1.0,
+  "tapas": {
+   "general": 25,
+   "bala": 8,
+   "kaushala": 8,
+   "shakti": 2
+  },
+  "gold": [
+   8,
+   25
+  ],
+  "drops": [
+   {
+    "item": "sura",
+    "chance": 0.2
+   },
+   {
+    "item": "prana_rasa_laghu",
+    "chance": 0.1
+   },
+   {
+    "item": "mamsa",
+    "chance": 0.15
+   }
+  ],
+  "weak": [],
+  "resist": [],
+  "body": {
+   "shape": "humanoid",
+   "color": "#5b3d2e",
+   "color2": "#c0392b",
+   "eye": "#222222",
+   "scale": 1.0,
+   "weapon": "talwar"
+  },
+  "desc": {
+   "nl": "Rovers uit de bossen, trouw aan Dvikhadga. Ze overvielen Vatagram.",
+   "en": "Robbers from the forests, loyal to Dvikhadga. They raided Vatagram."
+  }
+ },
+ "dasyu_dhanurdhara": {
+  "name": {
+   "nl": "Dasyu-boogschutter",
+   "en": "Dasyu archer"
+  },
+  "en_fable": "Bandit archer",
+  "family": "dasyu",
+  "kind": "ranged",
+  "level": 5,
+  "hp": 60,
+  "dmg": 15,
+  "def": 0.0,
+  "speed": 4.0,
+  "aggro": 24,
+  "attack_range": 18,
+  "attack_cd": 1.8,
+  "size": 1.0,
+  "projectile": "arrow",
+  "keep_distance": 10,
+  "tapas": {
+   "general": 30,
+   "bala": 4,
+   "kaushala": 14,
+   "shakti": 2
+  },
+  "gold": [
+   8,
+   22
+  ],
+  "drops": [
+   {
+    "item": "dhanush_loha",
+    "chance": 0.05
+   },
+   {
+    "item": "gajar",
+    "chance": 0.2
+   }
+  ],
+  "weak": [],
+  "resist": [],
+  "body": {
+   "shape": "humanoid",
+   "color": "#4a3728",
+   "color2": "#8b0000",
+   "eye": "#222222",
+   "scale": 0.98,
+   "weapon": "bow"
+  },
+  "desc": {
+   "nl": "Houdt afstand en schiet. Rol onder de pijlen door.",
+   "en": "Keeps distance and shoots. Roll under the arrows."
+  }
+ },
+ "dasyu_senapati": {
+  "name": {
+   "nl": "Dasyu-senapati",
+   "en": "Dasyu captain"
+  },
+  "en_fable": "Bandit lieutenant",
+  "family": "dasyu",
+  "kind": "melee",
+  "level": 9,
+  "hp": 220,
+  "dmg": 28,
+  "def": 0.15,
+  "speed": 4.4,
+  "aggro": 18,
+  "attack_range": 2.0,
+  "attack_cd": 1.1,
+  "size": 1.05,
+  "tapas": {
+   "general": 90,
+   "bala": 30,
+   "kaushala": 20,
+   "shakti": 5
+  },
+  "gold": [
+   30,
+   70
+  ],
+  "drops": [
+   {
+    "item": "talwar_ispat",
+    "chance": 0.08
+   },
+   {
+    "item": "prana_rasa",
+    "chance": 0.25
+   }
+  ],
+  "weak": [],
+  "resist": [],
+  "body": {
+   "shape": "humanoid",
+   "color": "#3b2a1a",
+   "color2": "#e3b341",
+   "eye": "#222222",
+   "scale": 1.08,
+   "weapon": "khanda",
+   "armor": true
+  },
+  "desc": {
+   "nl": "Een officier van Dvikhadga met een stalen khanda en een litteken voor elke Vira die hij versloeg.",
+   "en": "An officer of Dvikhadga with a steel khanda and a scar for every Vira he defeated."
+  }
+ },
+ "dvikhadga": {
+  "name": {
+   "nl": "Dvikhadga, de Dasyu-koning",
+   "en": "Dvikhadga, the Dasyu King"
+  },
+  "en_fable": "Twinblade",
+  "family": "dasyu",
+  "kind": "boss",
+  "level": 12,
+  "boss": true,
+  "hp": 1400,
+  "dmg": 40,
+  "def": 0.25,
+  "speed": 4.8,
+  "aggro": 40,
+  "attack_range": 2.6,
+  "attack_cd": 0.9,
+  "size": 1.5,
+  "abilities": [
+   "whirlwind",
+   "double_strike"
+  ],
+  "tapas": {
+   "general": 1200,
+   "bala": 400,
+   "kaushala": 200,
+   "shakti": 100
+  },
+  "gold": [
+   300,
+   500
+  ],
+  "drops": [
+   {
+    "item": "dvikhadga_khadga",
+    "chance": 1.0
+   },
+   {
+    "item": "talwar_krishnashila",
+    "chance": 1.0
+   }
+  ],
+  "weak": [],
+  "resist": [
+   "fear"
+  ],
+  "body": {
+   "shape": "humanoid",
+   "color": "#2d1d16",
+   "color2": "#c0392b",
+   "eye": "#ffffff",
+   "scale": 1.5,
+   "weapon": "dual",
+   "armor": true
+  },
+  "desc": {
+   "nl": "Ooit een Vira van de Akhara, nu koning van de rovers. Vecht met twee khanda's en kent alle Yuddha Kala-technieken.",
+   "en": "Once a Vira of the Akhara, now king of the robbers. Fights with two khandas and knows every Yuddha Kala technique."
+  }
+ },
+ "bhumi_daitya": {
+  "name": {
+   "nl": "Bhumi-daitya",
+   "en": "Bhumi daitya"
+  },
+  "en_fable": "Earth Troll",
+  "family": "daitya",
+  "kind": "melee",
+  "level": 11,
+  "hp": 650,
+  "dmg": 45,
+  "def": 0.3,
+  "speed": 2.2,
+  "aggro": 20,
+  "attack_range": 3.2,
+  "attack_cd": 2.2,
+  "size": 2.6,
+  "projectile": "rock",
+  "throw_range": 16,
+  "stationary": true,
+  "tapas": {
+   "general": 300,
+   "bala": 120,
+   "kaushala": 40,
+   "shakti": 20
+  },
+  "gold": [
+   40,
+   90
+  ],
+  "drops": [
+   {
+    "item": "daitya_hridaya",
+    "chance": 0.25
+   },
+   {
+    "item": "gomed",
+    "chance": 0.05
+   }
+  ],
+  "weak": [
+   "lightning"
+  ],
+  "resist": [
+   "fire",
+   "fear"
+  ],
+  "body": {
+   "shape": "giant",
+   "color": "#5b4a3a",
+   "color2": "#3e7d3e",
+   "eye": "#ffcc00",
+   "scale": 2.6
+  },
+  "desc": {
+   "nl": "Reuzen uit de aarde zelf, kinderen van Diti. Ze komen uit de grond en gooien rotsblokken.",
+   "en": "Giants from the earth itself, children of Diti. They rise from the ground and throw boulders."
+  }
+ },
+ "shila_daitya": {
+  "name": {
+   "nl": "Shila-daitya",
+   "en": "Shila daitya"
+  },
+  "en_fable": "Rock Troll",
+  "family": "daitya",
+  "kind": "melee",
+  "level": 19,
+  "hp": 1500,
+  "dmg": 70,
+  "def": 0.4,
+  "speed": 2.0,
+  "aggro": 22,
+  "attack_range": 3.5,
+  "attack_cd": 2.4,
+  "size": 3.0,
+  "projectile": "rock",
+  "throw_range": 18,
+  "stationary": true,
+  "tapas": {
+   "general": 800,
+   "bala": 300,
+   "kaushala": 100,
+   "shakti": 50
+  },
+  "gold": [
+   100,
+   200
+  ],
+  "drops": [
+   {
+    "item": "daitya_hridaya",
+    "chance": 0.5
+   },
+   {
+    "item": "hira",
+    "chance": 0.08
+   }
+  ],
+  "weak": [
+   "lightning"
+  ],
+  "resist": [
+   "fire",
+   "fear",
+   "pierce"
+  ],
+  "body": {
+   "shape": "giant",
+   "color": "#7a7a7a",
+   "color2": "#4a4a4a",
+   "eye": "#ff8800",
+   "scale": 3.0
+  },
+  "desc": {
+   "nl": "Een Daitya van massief graniet. Alleen Vajra en zware slagen breken hem.",
+   "en": "A Daitya of solid granite. Only Vajra and heavy blows break it."
+  }
+ },
+ "hima_daitya": {
+  "name": {
+   "nl": "Hima-daitya",
+   "en": "Hima daitya"
+  },
+  "en_fable": "Frost Troll (TLC)",
+  "family": "daitya",
+  "kind": "melee",
+  "level": 24,
+  "hp": 2000,
+  "dmg": 85,
+  "def": 0.4,
+  "speed": 2.2,
+  "aggro": 24,
+  "attack_range": 3.5,
+  "attack_cd": 2.2,
+  "size": 3.0,
+  "projectile": "ice",
+  "throw_range": 18,
+  "stationary": true,
+  "tapas": {
+   "general": 1200,
+   "bala": 400,
+   "kaushala": 150,
+   "shakti": 100
+  },
+  "gold": [
+   150,
+   300
+  ],
+  "drops": [
+   {
+    "item": "daitya_hridaya",
+    "chance": 0.6
+   },
+   {
+    "item": "nilam",
+    "chance": 0.1
+   }
+  ],
+  "weak": [
+   "fire"
+  ],
+  "resist": [
+   "lightning",
+   "fear"
+  ],
+  "body": {
+   "shape": "giant",
+   "color": "#cfe8ff",
+   "color2": "#7fb3d5",
+   "eye": "#ffffff",
+   "scale": 3.0
+  },
+  "desc": {
+   "nl": "IJsreuzen van de Himavat. Hun adem bevriest, hun vuisten verbrijzelen.",
+   "en": "Ice giants of the Himavat. Their breath freezes, their fists shatter."
+  }
+ },
+ "dakini": {
+  "name": {
+   "nl": "Dakini",
+   "en": "Dakini"
+  },
+  "en_fable": "Nymph",
+  "family": "dakini",
+  "kind": "summoner",
+  "level": 10,
+  "hp": 160,
+  "dmg": 18,
+  "def": 0.0,
+  "speed": 3.5,
+  "aggro": 22,
+  "attack_range": 14,
+  "attack_cd": 2.0,
+  "size": 1.0,
+  "flying": true,
+  "hover": 2.0,
+  "projectile": "shadow",
+  "summons": [
+   "bhramara"
+  ],
+  "summon_cd": 8,
+  "summon_max": 3,
+  "tapas": {
+   "general": 110,
+   "bala": 10,
+   "kaushala": 30,
+   "shakti": 60
+  },
+  "gold": [
+   20,
+   50
+  ],
+  "drops": [
+   {
+    "item": "dakini_kesh",
+    "chance": 0.15
+   },
+   {
+    "item": "ojas_rasa",
+    "chance": 0.3
+   }
+  ],
+  "weak": [
+   "sacred",
+   "lightning"
+  ],
+  "resist": [
+   "shadow"
+  ],
+  "body": {
+   "shape": "wisp",
+   "color": "#8e44ad",
+   "color2": "#ff9de2",
+   "eye": "#ffffff",
+   "scale": 1.0
+  },
+  "desc": {
+   "nl": "Vliegende hemelheksen van het Dakinivana. Ze roepen Bhramara's op en schieten schaduw.",
+   "en": "Flying sky-witches of the Dakinivana. They summon Bhramaras and shoot shadow."
+  }
+ },
+ "dakini_rani": {
+  "name": {
+   "nl": "Dakini-rani",
+   "en": "Dakini queen"
+  },
+  "en_fable": "Nymph (boss)",
+  "family": "dakini",
+  "kind": "summoner",
+  "level": 16,
+  "boss": true,
+  "hp": 900,
+  "dmg": 30,
+  "def": 0.1,
+  "speed": 4.0,
+  "aggro": 30,
+  "attack_range": 16,
+  "attack_cd": 1.5,
+  "size": 1.4,
+  "flying": true,
+  "hover": 2.5,
+  "projectile": "shadow",
+  "summons": [
+   "dakini",
+   "bhramara"
+  ],
+  "summon_cd": 10,
+  "summon_max": 4,
+  "tapas": {
+   "general": 700,
+   "bala": 60,
+   "kaushala": 200,
+   "shakti": 400
+  },
+  "gold": [
+   150,
+   250
+  ],
+  "drops": [
+   {
+    "item": "dakini_kesh",
+    "chance": 1.0
+   },
+   {
+    "item": "yaksha_phool",
+    "chance": 1.0
+   }
+  ],
+  "weak": [
+   "sacred"
+  ],
+  "resist": [
+   "shadow",
+   "fear"
+  ],
+  "body": {
+   "shape": "wisp",
+   "color": "#4a0f3a",
+   "color2": "#ff5ce0",
+   "eye": "#ffffff",
+   "scale": 1.4
+  },
+  "desc": {
+   "nl": "De koningin van de Dakini's, die de Dakini Shila bewaakt.",
+   "en": "The queen of the Dakinis, guarding the Dakini Shila."
+  }
+ },
+ "preta": {
+  "name": {
+   "nl": "Preta",
+   "en": "Preta"
+  },
+  "en_fable": "Undead",
+  "family": "preta",
+  "kind": "melee",
+  "level": 6,
+  "hp": 120,
+  "dmg": 16,
+  "def": 0.1,
+  "speed": 2.4,
+  "aggro": 14,
+  "attack_range": 1.8,
+  "attack_cd": 1.6,
+  "size": 1.0,
+  "rise": true,
+  "tapas": {
+   "general": 40,
+   "bala": 12,
+   "kaushala": 5,
+   "shakti": 10
+  },
+  "gold": [
+   3,
+   12
+  ],
+  "drops": [
+   {
+    "item": "preta_asthi",
+    "chance": 0.4
+   }
+  ],
+  "weak": [
+   "sacred",
+   "fire"
+  ],
+  "resist": [
+   "pierce",
+   "fear"
+  ],
+  "body": {
+   "shape": "zombie",
+   "color": "#7a8a6a",
+   "color2": "#4a4a3a",
+   "eye": "#88ff88",
+   "scale": 1.0
+  },
+  "desc": {
+   "nl": "Hongerige geesten in rottende lichamen. Ze rijzen op uit het Shmashana en de Samadhi-velden.",
+   "en": "Hungry ghosts in rotting bodies. They rise from the Shmashana and the Samadhi fields."
+  }
+ },
+ "vetala": {
+  "name": {
+   "nl": "Vetala",
+   "en": "Vetala"
+  },
+  "en_fable": "Undead (fast)",
+  "family": "preta",
+  "kind": "melee",
+  "level": 13,
+  "hp": 260,
+  "dmg": 30,
+  "def": 0.1,
+  "speed": 5.0,
+  "aggro": 18,
+  "attack_range": 1.9,
+  "attack_cd": 1.0,
+  "size": 1.05,
+  "drain": 0.3,
+  "tapas": {
+   "general": 130,
+   "bala": 30,
+   "kaushala": 25,
+   "shakti": 40
+  },
+  "gold": [
+   10,
+   30
+  ],
+  "drops": [
+   {
+    "item": "preta_asthi",
+    "chance": 0.5
+   },
+   {
+    "item": "vaidurya",
+    "chance": 0.04
+   }
+  ],
+  "weak": [
+   "sacred",
+   "fire"
+  ],
+  "resist": [
+   "drain",
+   "fear"
+  ],
+  "body": {
+   "shape": "ghoul",
+   "color": "#3a3a4a",
+   "color2": "#8b0000",
+   "eye": "#ff0000",
+   "scale": 1.05
+  },
+  "desc": {
+   "nl": "De vampiergeest uit Vikram en Betaal. Hangt ondersteboven in bomen, drinkt levenskracht.",
+   "en": "The vampire spirit from Vikram and Betaal. Hangs upside down in trees, drinks life force."
+  }
+ },
+ "kankala": {
+  "name": {
+   "nl": "Kankala",
+   "en": "Kankala"
+  },
+  "en_fable": "Skeleton",
+  "family": "preta",
+  "kind": "melee",
+  "level": 9,
+  "hp": 150,
+  "dmg": 22,
+  "def": 0.2,
+  "speed": 3.2,
+  "aggro": 16,
+  "attack_range": 1.9,
+  "attack_cd": 1.3,
+  "size": 1.0,
+  "tapas": {
+   "general": 60,
+   "bala": 20,
+   "kaushala": 10,
+   "shakti": 10
+  },
+  "gold": [
+   5,
+   20
+  ],
+  "drops": [
+   {
+    "item": "preta_asthi",
+    "chance": 0.7
+   }
+  ],
+  "weak": [
+   "blunt",
+   "sacred"
+  ],
+  "resist": [
+   "pierce",
+   "fear",
+   "drain"
+  ],
+  "body": {
+   "shape": "skeleton",
+   "color": "#e8e8d8",
+   "color2": "#8a8a7a",
+   "eye": "#00ff88",
+   "scale": 1.0,
+   "weapon": "talwar"
+  },
+  "desc": {
+   "nl": "Een geraamte met een roestig zwaard. Pijlen gaan er dwars doorheen; een gada verbrijzelt het.",
+   "en": "A skeleton with a rusty sword. Arrows pass straight through; a gada shatters it."
+  }
+ },
+ "bhuta": {
+  "name": {
+   "nl": "Bhuta",
+   "en": "Bhuta"
+  },
+  "en_fable": "Ghost",
+  "family": "preta",
+  "kind": "melee",
+  "level": 11,
+  "hp": 100,
+  "dmg": 24,
+  "def": 0.0,
+  "speed": 3.8,
+  "aggro": 20,
+  "attack_range": 1.8,
+  "attack_cd": 1.4,
+  "size": 1.0,
+  "flying": true,
+  "hover": 0.6,
+  "ethereal": true,
+  "tapas": {
+   "general": 80,
+   "bala": 5,
+   "kaushala": 10,
+   "shakti": 50
+  },
+  "gold": [
+   0,
+   10
+  ],
+  "drops": [
+   {
+    "item": "moti",
+    "chance": 0.05
+   }
+  ],
+  "weak": [
+   "sacred",
+   "lightning"
+  ],
+  "resist": [
+   "pierce",
+   "blunt",
+   "fear"
+  ],
+  "body": {
+   "shape": "ghost",
+   "color": "#aee7ff",
+   "color2": "#ffffff",
+   "eye": "#ffffff",
+   "scale": 1.0,
+   "alpha": 0.5
+  },
+  "desc": {
+   "nl": "Een rusteloze ziel zonder lichaam. Gewone wapens doen weinig; gewijde en bliksem wel.",
+   "en": "A restless soul without a body. Ordinary weapons do little; sacred ones and lightning do."
+  }
+ },
+ "hima_preta": {
+  "name": {
+   "nl": "Hima-preta",
+   "en": "Hima preta"
+  },
+  "en_fable": "Undead (Northern Wastes)",
+  "family": "preta",
+  "kind": "melee",
+  "level": 22,
+  "hp": 450,
+  "dmg": 50,
+  "def": 0.2,
+  "speed": 3.0,
+  "aggro": 16,
+  "attack_range": 1.9,
+  "attack_cd": 1.4,
+  "size": 1.1,
+  "rise": true,
+  "tapas": {
+   "general": 300,
+   "bala": 80,
+   "kaushala": 30,
+   "shakti": 80
+  },
+  "gold": [
+   10,
+   40
+  ],
+  "drops": [
+   {
+    "item": "preta_asthi",
+    "chance": 0.5
+   }
+  ],
+  "weak": [
+   "fire",
+   "sacred"
+  ],
+  "resist": [
+   "pierce",
+   "fear"
+  ],
+  "body": {
+   "shape": "zombie",
+   "color": "#b8d8e8",
+   "color2": "#6a7a8a",
+   "eye": "#00ffff",
+   "scale": 1.1
+  },
+  "desc": {
+   "nl": "Bevroren doden van de Pretanagari. Ze breken niet, ze versplinteren.",
+   "en": "Frozen dead of the Pretanagari. They do not break, they splinter."
+  }
+ },
+ "bhramara": {
+  "name": {
+   "nl": "Bhramara",
+   "en": "Bhramara"
+  },
+  "en_fable": "Wasp",
+  "family": "insect",
+  "kind": "melee",
+  "level": 2,
+  "hp": 25,
+  "dmg": 7,
+  "def": 0.0,
+  "speed": 5.5,
+  "aggro": 16,
+  "attack_range": 1.4,
+  "attack_cd": 0.9,
+  "size": 0.5,
+  "flying": true,
+  "hover": 1.6,
+  "poison": 2,
+  "tapas": {
+   "general": 10,
+   "bala": 2,
+   "kaushala": 5,
+   "shakti": 2
+  },
+  "gold": [
+   0,
+   4
+  ],
+  "drops": [
+   {
+    "item": "madhu",
+    "chance": 0.15
+   }
+  ],
+  "weak": [
+   "fire"
+  ],
+  "resist": [],
+  "body": {
+   "shape": "wasp",
+   "color": "#f1c40f",
+   "color2": "#1a1a1a",
+   "eye": "#000000",
+   "scale": 0.5
+  },
+  "desc": {
+   "nl": "Reuzenwespen uit de Mahavana. Hun steek vergiftigt.",
+   "en": "Giant wasps of the Mahavana. Their sting poisons."
+  }
+ },
+ "bhramara_rani": {
+  "name": {
+   "nl": "Bhramara-rani",
+   "en": "Bhramara queen"
+  },
+  "en_fable": "Wasp Queen",
+  "family": "insect",
+  "kind": "summoner",
+  "level": 5,
+  "boss": true,
+  "hp": 420,
+  "dmg": 18,
+  "def": 0.05,
+  "speed": 4.5,
+  "aggro": 30,
+  "attack_range": 2.2,
+  "attack_cd": 1.2,
+  "size": 1.6,
+  "flying": true,
+  "hover": 2.4,
+  "poison": 4,
+  "summons": [
+   "bhramara"
+  ],
+  "summon_cd": 6,
+  "summon_max": 4,
+  "tapas": {
+   "general": 400,
+   "bala": 80,
+   "kaushala": 150,
+   "shakti": 60
+  },
+  "gold": [
+   80,
+   140
+  ],
+  "drops": [
+   {
+    "item": "bhramara_danka",
+    "chance": 1.0
+   }
+  ],
+  "weak": [
+   "fire"
+  ],
+  "resist": [],
+  "body": {
+   "shape": "wasp",
+   "color": "#e3b341",
+   "color2": "#2a1a00",
+   "eye": "#ff0000",
+   "scale": 1.6
+  },
+  "desc": {
+   "nl": "De koningin van het nest bij de Udyana. Je eerste echte Akhara-opdracht.",
+   "en": "The queen of the nest at the Udyana. Your first real Akhara commission."
+  }
+ },
+ "keeta": {
+  "name": {
+   "nl": "Keeta",
+   "en": "Keeta"
+  },
+  "en_fable": "Beetle",
+  "family": "insect",
+  "kind": "melee",
+  "level": 1,
+  "hp": 18,
+  "dmg": 5,
+  "def": 0.1,
+  "speed": 3.0,
+  "aggro": 10,
+  "attack_range": 1.2,
+  "attack_cd": 1.2,
+  "size": 0.45,
+  "tapas": {
+   "general": 6,
+   "bala": 3,
+   "kaushala": 2,
+   "shakti": 1
+  },
+  "gold": [
+   0,
+   3
+  ],
+  "drops": [],
+  "weak": [
+   "blunt"
+  ],
+  "resist": [],
+  "body": {
+   "shape": "beetle",
+   "color": "#1f3b1f",
+   "color2": "#0a1a0a",
+   "eye": "#ffffff",
+   "scale": 0.45
+  },
+  "desc": {
+   "nl": "Reuzenkevers. Het oefenmateriaal van de Akhara.",
+   "en": "Giant beetles. Training material of the Akhara."
+  }
+ },
+ "maha_keeta": {
+  "name": {
+   "nl": "Maha-keeta",
+   "en": "Maha keeta"
+  },
+  "en_fable": "Giant beetle",
+  "family": "insect",
+  "kind": "melee",
+  "level": 6,
+  "hp": 120,
+  "dmg": 15,
+  "def": 0.3,
+  "speed": 2.8,
+  "aggro": 12,
+  "attack_range": 1.8,
+  "attack_cd": 1.5,
+  "size": 1.1,
+  "tapas": {
+   "general": 45,
+   "bala": 18,
+   "kaushala": 6,
+   "shakti": 3
+  },
+  "gold": [
+   2,
+   10
+  ],
+  "drops": [
+   {
+    "item": "amla",
+    "chance": 0.2
+   }
+  ],
+  "weak": [
+   "blunt"
+  ],
+  "resist": [
+   "pierce"
+  ],
+  "body": {
+   "shape": "beetle",
+   "color": "#2f4f2f",
+   "color2": "#8b4513",
+   "eye": "#ff8800",
+   "scale": 1.1
+  },
+  "desc": {
+   "nl": "Een kever met een schild als een deur. Pijlen ketsen af.",
+   "en": "A beetle with a shell like a door. Arrows bounce off."
+  }
+ },
+ "chudail": {
+  "name": {
+   "nl": "Chudail",
+   "en": "Chudail"
+  },
+  "en_fable": "Screamer",
+  "family": "preta",
+  "kind": "caster",
+  "level": 15,
+  "hp": 220,
+  "dmg": 28,
+  "def": 0.0,
+  "speed": 4.0,
+  "aggro": 20,
+  "attack_range": 9,
+  "attack_cd": 2.5,
+  "size": 1.1,
+  "flying": true,
+  "hover": 1.0,
+  "projectile": "scream",
+  "fear": true,
+  "tapas": {
+   "general": 160,
+   "bala": 10,
+   "kaushala": 20,
+   "shakti": 90
+  },
+  "gold": [
+   10,
+   30
+  ],
+  "drops": [
+   {
+    "item": "chudail_jihva",
+    "chance": 0.2
+   },
+   {
+    "item": "ojas_rasa",
+    "chance": 0.2
+   }
+  ],
+  "weak": [
+   "sacred"
+  ],
+  "resist": [
+   "pierce",
+   "fear"
+  ],
+  "body": {
+   "shape": "screamer",
+   "color": "#4a0f3a",
+   "color2": "#e8e8ff",
+   "eye": "#ff00aa",
+   "scale": 1.1,
+   "alpha": 0.8
+  },
+  "desc": {
+   "nl": "De geest van een vrouw die onrecht is aangedaan. Haar gil vernietigt je Ojas en vult je met angst.",
+   "en": "The spirit of a wronged woman. Her scream destroys your Ojas and fills you with fear."
+  }
+ },
+ "yatudhana": {
+  "name": {
+   "nl": "Yatudhana",
+   "en": "Yatudhana"
+  },
+  "en_fable": "Summoner",
+  "family": "asura",
+  "kind": "summoner",
+  "level": 17,
+  "hp": 300,
+  "dmg": 25,
+  "def": 0.1,
+  "speed": 3.2,
+  "aggro": 22,
+  "attack_range": 14,
+  "attack_cd": 2.2,
+  "size": 1.1,
+  "projectile": "shadow",
+  "summons": [
+   "asura_bhata"
+  ],
+  "summon_cd": 9,
+  "summon_max": 3,
+  "keep_distance": 9,
+  "tapas": {
+   "general": 260,
+   "bala": 20,
+   "kaushala": 40,
+   "shakti": 160
+  },
+  "gold": [
+   40,
+   90
+  ],
+  "drops": [
+   {
+    "item": "ojas_rasa_maha",
+    "chance": 0.3
+   },
+   {
+    "item": "khadgasura_kronik",
+    "chance": 0.05
+   }
+  ],
+  "weak": [
+   "sacred"
+  ],
+  "resist": [
+   "shadow",
+   "fire"
+  ],
+  "body": {
+   "shape": "robed",
+   "color": "#1a0a2a",
+   "color2": "#c0392b",
+   "eye": "#ff3300",
+   "scale": 1.1,
+   "staff": true
+  },
+  "desc": {
+   "nl": "Priesters van Khadgasura. Ze openen poorten en roepen Asura-soldaten.",
+   "en": "Priests of Khadgasura. They open gates and call Asura soldiers."
+  }
+ },
+ "asura_bhata": {
+  "name": {
+   "nl": "Asura-bhata",
+   "en": "Asura soldier"
+  },
+  "en_fable": "Minion",
+  "family": "asura",
+  "kind": "melee",
+  "level": 14,
+  "hp": 280,
+  "dmg": 34,
+  "def": 0.25,
+  "speed": 3.8,
+  "aggro": 18,
+  "attack_range": 2.0,
+  "attack_cd": 1.2,
+  "size": 1.2,
+  "tapas": {
+   "general": 140,
+   "bala": 50,
+   "kaushala": 25,
+   "shakti": 20
+  },
+  "gold": [
+   15,
+   40
+  ],
+  "drops": [
+   {
+    "item": "prana_rasa",
+    "chance": 0.2
+   },
+   {
+    "item": "khanda_ispat",
+    "chance": 0.04
+   }
+  ],
+  "weak": [
+   "sacred",
+   "lightning"
+  ],
+  "resist": [
+   "fire",
+   "fear"
+  ],
+  "body": {
+   "shape": "armored",
+   "color": "#2c2c3c",
+   "color2": "#8b0000",
+   "eye": "#ff4400",
+   "scale": 1.2,
+   "weapon": "khanda"
+  },
+  "desc": {
+   "nl": "Gepantserde demonen zonder gezicht, de soldaten van de gemaskerde Asura.",
+   "en": "Armoured faceless demons, soldiers of the masked Asura."
+  }
+ },
+ "asura_mahabhata": {
+  "name": {
+   "nl": "Asura-mahabhata",
+   "en": "Asura champion"
+  },
+  "en_fable": "Minion (elite)",
+  "family": "asura",
+  "kind": "melee",
+  "level": 21,
+  "hp": 650,
+  "dmg": 55,
+  "def": 0.3,
+  "speed": 3.8,
+  "aggro": 20,
+  "attack_range": 2.3,
+  "attack_cd": 1.1,
+  "size": 1.4,
+  "tapas": {
+   "general": 420,
+   "bala": 150,
+   "kaushala": 60,
+   "shakti": 60
+  },
+  "gold": [
+   40,
+   90
+  ],
+  "drops": [
+   {
+    "item": "prana_rasa_maha",
+    "chance": 0.25
+   },
+   {
+    "item": "manikya",
+    "chance": 0.06
+   }
+  ],
+  "weak": [
+   "sacred"
+  ],
+  "resist": [
+   "fire",
+   "fear",
+   "shadow"
+  ],
+  "body": {
+   "shape": "armored",
+   "color": "#1a1a2a",
+   "color2": "#e3b341",
+   "eye": "#ff0000",
+   "scale": 1.4,
+   "weapon": "khanda",
+   "horns": true
+  },
+  "desc": {
+   "nl": "Een Asura-kampioen met gehoornde helm. Elke slag breekt een blokkade.",
+   "en": "An Asura champion with horned helm. Every blow breaks a guard."
+  }
+ },
+ "chhaya_vira": {
+  "name": {
+   "nl": "Chhaya-vira",
+   "en": "Chhaya vira"
+  },
+  "en_fable": "Jack's champion / assassin",
+  "family": "asura",
+  "kind": "melee",
+  "level": 20,
+  "hp": 500,
+  "dmg": 48,
+  "def": 0.15,
+  "speed": 5.5,
+  "aggro": 24,
+  "attack_range": 2.0,
+  "attack_cd": 0.8,
+  "size": 1.05,
+  "teleport": true,
+  "tapas": {
+   "general": 380,
+   "bala": 100,
+   "kaushala": 150,
+   "shakti": 50
+  },
+  "gold": [
+   60,
+   120
+  ],
+  "drops": [
+   {
+    "item": "katar_krishnashila",
+    "chance": 0.1
+   },
+   {
+    "item": "chhaya_kurta",
+    "chance": 0.05
+   }
+  ],
+  "weak": [
+   "light"
+  ],
+  "resist": [
+   "shadow"
+  ],
+  "body": {
+   "shape": "humanoid",
+   "color": "#1e1e26",
+   "color2": "#3a3a4a",
+   "eye": "#ffffff",
+   "scale": 1.05,
+   "weapon": "dual"
+  },
+  "desc": {
+   "nl": "Sluipmoordenaars van de Chhaya-orde, gekocht door Khadgasura. Ze verdwijnen en verschijnen achter je.",
+   "en": "Assassins of the Chhaya order, bought by Khadgasura. They vanish and reappear behind you."
+  }
+ },
+ "andhaka_pujari": {
+  "name": {
+   "nl": "Andhaka-pujari",
+   "en": "Andhaka priest"
+  },
+  "en_fable": "Skorm cultist",
+  "family": "asura",
+  "kind": "caster",
+  "level": 13,
+  "hp": 180,
+  "dmg": 26,
+  "def": 0.0,
+  "speed": 3.4,
+  "aggro": 20,
+  "attack_range": 13,
+  "attack_cd": 2.0,
+  "size": 1.0,
+  "projectile": "shadow",
+  "keep_distance": 8,
+  "tapas": {
+   "general": 150,
+   "bala": 10,
+   "kaushala": 30,
+   "shakti": 100
+  },
+  "gold": [
+   20,
+   60
+  ],
+  "drops": [
+   {
+    "item": "tamas_topi",
+    "chance": 0.05
+   },
+   {
+    "item": "ojas_rasa",
+    "chance": 0.3
+   }
+  ],
+  "weak": [
+   "sacred",
+   "light"
+  ],
+  "resist": [
+   "shadow"
+  ],
+  "body": {
+   "shape": "robed",
+   "color": "#2a1038",
+   "color2": "#8e44ad",
+   "eye": "#b388ff",
+   "scale": 1.0,
+   "staff": true
+  },
+  "desc": {
+   "nl": "Priesters van de blinde asura Andhaka. Ze offeren reizigers in de Pith.",
+   "en": "Priests of the blind asura Andhaka. They sacrifice travellers in the Pith."
+  }
+ },
+ "naga_yoddha": {
+  "name": {
+   "nl": "Naga-yoddha",
+   "en": "Naga warrior"
+  },
+  "en_fable": "Unique (SD)",
+  "family": "naga",
+  "kind": "melee",
+  "level": 16,
+  "hp": 380,
+  "dmg": 36,
+  "def": 0.2,
+  "speed": 4.2,
+  "aggro": 18,
+  "attack_range": 2.4,
+  "attack_cd": 1.2,
+  "size": 1.3,
+  "poison": 5,
+  "tapas": {
+   "general": 240,
+   "bala": 70,
+   "kaushala": 60,
+   "shakti": 50
+  },
+  "gold": [
+   30,
+   80
+  ],
+  "drops": [
+   {
+    "item": "vishahara",
+    "chance": 0.4
+   },
+   {
+    "item": "trishula_krishnashila",
+    "chance": 0.05
+   },
+   {
+    "item": "nilam",
+    "chance": 0.05
+   }
+  ],
+  "weak": [
+   "fire"
+  ],
+  "resist": [
+   "drain",
+   "lightning"
+  ],
+  "body": {
+   "shape": "naga",
+   "color": "#2e8b57",
+   "color2": "#e3b341",
+   "eye": "#ffd700",
+   "scale": 1.3,
+   "weapon": "trishula"
+  },
+  "desc": {
+   "nl": "Slangenmensen uit Patala, bewakers van de kerkers. Hun drietanden druipen van gif.",
+   "en": "Serpent people of Patala, guardians of the dungeons. Their tridents drip with venom."
+  }
+ },
+ "vrika": {
+  "name": {
+   "nl": "Vrika",
+   "en": "Vrika"
+  },
+  "en_fable": "Unique (SD): wolf",
+  "family": "beast",
+  "kind": "melee",
+  "level": 3,
+  "hp": 55,
+  "dmg": 11,
+  "def": 0.0,
+  "speed": 6.5,
+  "aggro": 20,
+  "attack_range": 1.6,
+  "attack_cd": 1.0,
+  "size": 0.9,
+  "pack": true,
+  "tapas": {
+   "general": 20,
+   "bala": 8,
+   "kaushala": 6,
+   "shakti": 1
+  },
+  "gold": [
+   0,
+   5
+  ],
+  "drops": [
+   {
+    "item": "mamsa",
+    "chance": 0.4
+   }
+  ],
+  "weak": [
+   "fire"
+  ],
+  "resist": [],
+  "body": {
+   "shape": "wolf",
+   "color": "#6d6d6d",
+   "color2": "#3a3a3a",
+   "eye": "#ffff66",
+   "scale": 0.9
+  },
+  "desc": {
+   "nl": "Grijze wolven die in roedels jagen in de Mahavana.",
+   "en": "Grey wolves hunting in packs in the Mahavana."
+  }
+ },
+ "shardula": {
+  "name": {
+   "nl": "Shardula",
+   "en": "Shardula"
+  },
+  "en_fable": "Unique (SD): tiger",
+  "family": "beast",
+  "kind": "melee",
+  "level": 10,
+  "hp": 300,
+  "dmg": 34,
+  "def": 0.1,
+  "speed": 7.0,
+  "aggro": 22,
+  "attack_range": 2.0,
+  "attack_cd": 1.0,
+  "size": 1.3,
+  "leap": true,
+  "tapas": {
+   "general": 150,
+   "bala": 60,
+   "kaushala": 30,
+   "shakti": 5
+  },
+  "gold": [
+   0,
+   10
+  ],
+  "drops": [
+   {
+    "item": "mamsa",
+    "chance": 0.6
+   }
+  ],
+  "weak": [],
+  "resist": [
+   "fear"
+  ],
+  "body": {
+   "shape": "tiger",
+   "color": "#e67e22",
+   "color2": "#1a1a1a",
+   "eye": "#ffcc00",
+   "scale": 1.3
+  },
+  "desc": {
+   "nl": "De Bengaalse tijger, het rijdier van Durga. Springt uit het hoge gras.",
+   "en": "The Bengal tiger, mount of Durga. Leaps from the tall grass."
+  }
+ },
+ "rangabhumi_pehlwan": {
+  "name": {
+   "nl": "Pehlwan van de Rangabhumi",
+   "en": "Pehlwan of the Rangabhumi"
+  },
+  "en_fable": "Arena fighter",
+  "family": "human",
+  "kind": "melee",
+  "level": 11,
+  "hp": 320,
+  "dmg": 32,
+  "def": 0.15,
+  "speed": 4.5,
+  "aggro": 30,
+  "attack_range": 2.0,
+  "attack_cd": 1.0,
+  "size": 1.15,
+  "tapas": {
+   "general": 160,
+   "bala": 70,
+   "kaushala": 30,
+   "shakti": 5
+  },
+  "gold": [
+   20,
+   50
+  ],
+  "drops": [],
+  "weak": [],
+  "resist": [],
+  "body": {
+   "shape": "humanoid",
+   "color": "#a0522d",
+   "color2": "#e3b341",
+   "eye": "#222222",
+   "scale": 1.15,
+   "weapon": "gada"
+  },
+  "desc": {
+   "nl": "Worstelaars en knotsvechters die in de arena vechten voor roem.",
+   "en": "Wrestlers and mace fighters who battle in the arena for fame."
+  }
+ },
+ "karagar_rakshak": {
+  "name": {
+   "nl": "Cipier van Patala",
+   "en": "Patala jailer"
+  },
+  "en_fable": "Prison guard",
+  "family": "human",
+  "kind": "melee",
+  "level": 15,
+  "hp": 350,
+  "dmg": 38,
+  "def": 0.25,
+  "speed": 4.0,
+  "aggro": 18,
+  "attack_range": 2.0,
+  "attack_cd": 1.2,
+  "size": 1.1,
+  "tapas": {
+   "general": 200,
+   "bala": 70,
+   "kaushala": 40,
+   "shakti": 10
+  },
+  "gold": [
+   20,
+   50
+  ],
+  "drops": [
+   {
+    "item": "karagar_kunji",
+    "chance": 0.0
+   },
+   {
+    "item": "prana_rasa",
+    "chance": 0.2
+   }
+  ],
+  "weak": [],
+  "resist": [],
+  "body": {
+   "shape": "humanoid",
+   "color": "#3e3e4e",
+   "color2": "#5d6d7e",
+   "eye": "#222222",
+   "scale": 1.1,
+   "weapon": "gada",
+   "armor": true
+  },
+  "desc": {
+   "nl": "De bewakers van de kerker onder de aarde, in dienst van de Asura.",
+   "en": "Guards of the dungeon beneath the earth, in service of the Asura."
+  }
+ },
+ "mayacharya_boss": {
+  "name": {
+   "nl": "Mayacharya",
+   "en": "Mayacharya"
+  },
+  "en_fable": "Maze (boss)",
+  "family": "human",
+  "kind": "boss",
+  "level": 22,
+  "boss": true,
+  "hp": 2200,
+  "dmg": 45,
+  "def": 0.2,
+  "speed": 4.0,
+  "aggro": 40,
+  "attack_range": 14,
+  "attack_cd": 1.4,
+  "size": 1.15,
+  "projectile": "fire",
+  "teleport": true,
+  "abilities": [
+   "vajra",
+   "kavacha",
+   "teleport"
+  ],
+  "tapas": {
+   "general": 2500,
+   "bala": 300,
+   "kaushala": 400,
+   "shakti": 1500
+  },
+  "gold": [
+   500,
+   800
+  ],
+  "drops": [
+   {
+    "item": "maya_danda",
+    "chance": 1.0
+   }
+  ],
+  "weak": [],
+  "resist": [
+   "fire",
+   "lightning"
+  ],
+  "body": {
+   "shape": "robed",
+   "color": "#1b3a6b",
+   "color2": "#e3b341",
+   "eye": "#7fdbff",
+   "scale": 1.15,
+   "staff": true
+  },
+  "desc": {
+   "nl": "De Acharya van de Vira Akhara, ontmaskerd als dienaar van Khadgasura. Hij vecht met alle siddhi's die hij je leerde.",
+   "en": "The Acharya of the Vira Akhara, unmasked as a servant of Khadgasura. He fights with every siddhi he taught you."
+  }
+ },
+ "khadgasura": {
+  "name": {
+   "nl": "Khadgasura",
+   "en": "Khadgasura"
+  },
+  "en_fable": "Jack of Blades",
+  "family": "asura",
+  "kind": "boss",
+  "level": 26,
+  "boss": true,
+  "hp": 4000,
+  "dmg": 60,
+  "def": 0.3,
+  "speed": 4.6,
+  "aggro": 60,
+  "attack_range": 2.8,
+  "attack_cd": 0.9,
+  "size": 1.7,
+  "projectile": "blade",
+  "teleport": true,
+  "abilities": [
+   "blade_fan",
+   "teleport",
+   "summon",
+   "kalagni"
+  ],
+  "summons": [
+   "asura_bhata"
+  ],
+  "summon_cd": 15,
+  "summon_max": 2,
+  "tapas": {
+   "general": 8000,
+   "bala": 2000,
+   "kaushala": 2000,
+   "shakti": 2000
+  },
+  "gold": [
+   2000,
+   3000
+  ],
+  "drops": [
+   {
+    "item": "khadgasura_mukhauta",
+    "chance": 1.0
+   }
+  ],
+  "weak": [
+   "sacred"
+  ],
+  "resist": [
+   "fire",
+   "shadow",
+   "fear",
+   "drain"
+  ],
+  "body": {
+   "shape": "armored",
+   "color": "#8b0000",
+   "color2": "#e3b341",
+   "eye": "#ffffff",
+   "scale": 1.7,
+   "weapon": "khanda",
+   "mask": true,
+   "cape": true
+  },
+  "desc": {
+   "nl": "De Asura met het rode masker, die lichamen draagt als kleren en al duizend jaar op het Zwaard van de Eonen wacht.",
+   "en": "The Asura with the red mask, who wears bodies like clothes and has waited a thousand years for the Sword of Aeons."
+  }
+ },
+ "vritra": {
+  "name": {
+   "nl": "Vritra",
+   "en": "Vritra"
+  },
+  "en_fable": "Jack of Blades (dragon form, TLC)",
+  "family": "asura",
+  "kind": "boss",
+  "level": 30,
+  "boss": true,
+  "hp": 9000,
+  "dmg": 90,
+  "def": 0.35,
+  "speed": 3.5,
+  "aggro": 80,
+  "attack_range": 5.0,
+  "attack_cd": 1.6,
+  "size": 5.0,
+  "projectile": "fire",
+  "flying": false,
+  "abilities": [
+   "fire_breath",
+   "tail_sweep",
+   "fly_phase",
+   "summon"
+  ],
+  "summons": [
+   "asura_mahabhata"
+  ],
+  "summon_cd": 20,
+  "summon_max": 2,
+  "tapas": {
+   "general": 20000,
+   "bala": 5000,
+   "kaushala": 5000,
+   "shakti": 5000
+  },
+  "gold": [
+   5000,
+   8000
+  ],
+  "drops": [
+   {
+    "item": "vritra_danta",
+    "chance": 1.0
+   }
+  ],
+  "weak": [
+   "lightning",
+   "sacred"
+  ],
+  "resist": [
+   "fire",
+   "fear",
+   "drain",
+   "shadow"
+  ],
+  "body": {
+   "shape": "dragon",
+   "color": "#3a0a0a",
+   "color2": "#ff6a00",
+   "eye": "#ffff00",
+   "scale": 5.0
+  },
+  "desc": {
+   "nl": "De draak van de droogte die Indra ooit met de Vajra versloeg. Khadgasura's laatste gedaante in de Himavat.",
+   "en": "The dragon of drought that Indra once slew with the Vajra. Khadgasura's final form in the Himavat."
+  }
+ },
+ "bhuta_sevak": {
+  "name": {
+   "nl": "Bhuta-sevak (bondgenoot)",
+   "en": "Bhuta sevak (ally)"
+  },
+  "en_fable": "Summoned creature",
+  "family": "spirit",
+  "kind": "melee",
+  "level": 8,
+  "ally": true,
+  "hp": 150,
+  "dmg": 20,
+  "def": 0.1,
+  "speed": 4.5,
+  "aggro": 20,
+  "attack_range": 1.8,
+  "attack_cd": 1.0,
+  "size": 1.0,
+  "flying": true,
+  "hover": 0.5,
+  "tapas": {
+   "general": 0,
+   "bala": 0,
+   "kaushala": 0,
+   "shakti": 0
+  },
+  "gold": [
+   0,
+   0
+  ],
+  "drops": [],
+  "weak": [],
+  "resist": [],
+  "body": {
+   "shape": "spirit",
+   "color": "#9ef0e0",
+   "color2": "#ffffff",
+   "eye": "#ffffff",
+   "scale": 1.0,
+   "alpha": 0.6
+  },
+  "desc": {
+   "nl": "Een dienende geest, opgeroepen met Bhuta Ahvana. Vecht aan je zijde tot de mantra verloopt.",
+   "en": "A serving spirit, summoned with Bhuta Ahvana. Fights at your side until the mantra expires."
+  }
+ },
+ "chhaya_khadga_sword": {
+  "name": {
+   "nl": "Chhaya Khadga (schaduwzwaard)",
+   "en": "Chhaya Khadga (shadow sword)"
+  },
+  "en_fable": "Ghost Sword",
+  "family": "spirit",
+  "kind": "melee",
+  "level": 10,
+  "ally": true,
+  "hp": 9999,
+  "dmg": 15,
+  "def": 0.0,
+  "speed": 6.0,
+  "aggro": 25,
+  "attack_range": 1.6,
+  "attack_cd": 1.0,
+  "size": 0.6,
+  "flying": true,
+  "hover": 1.4,
+  "invulnerable": true,
+  "tapas": {
+   "general": 0,
+   "bala": 0,
+   "kaushala": 0,
+   "shakti": 0
+  },
+  "gold": [
+   0,
+   0
+  ],
+  "drops": [],
+  "weak": [],
+  "resist": [],
+  "body": {
+   "shape": "sword",
+   "color": "#b0b0ff",
+   "color2": "#ffffff",
+   "eye": "#ffffff",
+   "scale": 0.6,
+   "alpha": 0.7
+  },
+  "desc": {
+   "nl": "Een zwevend zwaard van schaduw dat zelfstandig vecht.",
+   "en": "A floating sword of shadow that fights on its own."
+  }
+ },
+ "marmara_sparring": {
+  "name": {
+   "nl": "Marmara (sparring)",
+   "en": "Marmara (sparring)"
+  },
+  "en_fable": "Whisper (graduation duel)",
+  "family": "human",
+  "kind": "melee",
+  "level": 4,
+  "boss": true,
+  "nonlethal": true,
+  "hp": 140,
+  "dmg": 9,
+  "def": 0.1,
+  "speed": 4.8,
+  "aggro": 30,
+  "attack_range": 1.9,
+  "attack_cd": 0.9,
+  "size": 1.0,
+  "tapas": {
+   "general": 120,
+   "bala": 40,
+   "kaushala": 40,
+   "shakti": 10
+  },
+  "gold": [
+   0,
+   0
+  ],
+  "drops": [],
+  "weak": [],
+  "resist": [],
+  "body": {
+   "shape": "humanoid",
+   "color": "#27ae60",
+   "color2": "#f1c40f",
+   "eye": "#222222",
+   "scale": 1.0,
+   "weapon": "staff",
+   "female": true
+  },
+  "desc": {
+   "nl": "Marmara met een lathi, op het oefenveld. Ze stopt als je haar op de knieën krijgt.",
+   "en": "Marmara with a lathi, on the training field. She stops when you bring her to her knees."
+  }
+ },
+ "marmara_duel": {
+  "name": {
+   "nl": "Marmara (Rangabhumi)",
+   "en": "Marmara (Rangabhumi)"
+  },
+  "en_fable": "Whisper (Arena final)",
+  "family": "human",
+  "kind": "melee",
+  "level": 12,
+  "boss": true,
+  "nonlethal": true,
+  "hp": 700,
+  "dmg": 30,
+  "def": 0.2,
+  "speed": 5.2,
+  "aggro": 40,
+  "attack_range": 2.0,
+  "attack_cd": 0.8,
+  "size": 1.0,
+  "abilities": [
+   "double_strike"
+  ],
+  "tapas": {
+   "general": 600,
+   "bala": 200,
+   "kaushala": 200,
+   "shakti": 50
+  },
+  "gold": [
+   0,
+   0
+  ],
+  "drops": [],
+  "weak": [],
+  "resist": [
+   "fear"
+  ],
+  "body": {
+   "shape": "humanoid",
+   "color": "#9aa3ad",
+   "color2": "#f1c40f",
+   "eye": "#222222",
+   "scale": 1.0,
+   "weapon": "khanda",
+   "female": true,
+   "armor": true
+  },
+  "desc": {
+   "nl": "Je rivaal in maliën, met een stalen khanda, in de laatste ronde van de arena.",
+   "en": "Your rival in mail, with a steel khanda, in the final round of the arena."
+  }
+ },
+ "gram_rakshak": {
+  "name": {
+   "nl": "Dorpswachter",
+   "en": "Village guard"
+  },
+  "en_fable": "Farm guard",
+  "family": "human",
+  "kind": "melee",
+  "level": 4,
+  "hp": 90,
+  "dmg": 14,
+  "def": 0.1,
+  "speed": 4.0,
+  "aggro": 14,
+  "attack_range": 1.8,
+  "attack_cd": 1.2,
+  "size": 1.0,
+  "tapas": {
+   "general": 30,
+   "bala": 10,
+   "kaushala": 8,
+   "shakti": 2
+  },
+  "gold": [
+   5,
+   15
+  ],
+  "drops": [],
+  "weak": [],
+  "resist": [],
+  "body": {
+   "shape": "humanoid",
+   "color": "#c8b48a",
+   "color2": "#27ae60",
+   "eye": "#222222",
+   "scale": 1.0,
+   "weapon": "staff"
+  },
+  "desc": {
+   "nl": "Een boerenknecht met een lathi die zijn land verdedigt. Hem doden is adharma.",
+   "en": "A farmhand with a lathi defending his land. Killing him is adharma."
+  }
+ },
+ "vajrasena_boss": {
+  "name": {
+   "nl": "Vajrasena",
+   "en": "Vajrasena"
+  },
+  "en_fable": "Thunder (boss)",
+  "family": "human",
+  "kind": "boss",
+  "level": 18,
+  "boss": true,
+  "hp": 1600,
+  "dmg": 44,
+  "def": 0.25,
+  "speed": 4.6,
+  "aggro": 40,
+  "attack_range": 2.4,
+  "attack_cd": 1.0,
+  "size": 1.4,
+  "abilities": [
+   "vajra",
+   "whirlwind"
+  ],
+  "tapas": {
+   "general": 1500,
+   "bala": 500,
+   "kaushala": 300,
+   "shakti": 200
+  },
+  "gold": [
+   400,
+   600
+  ],
+  "drops": [
+   {
+    "item": "gada_krishnashila",
+    "chance": 1.0
+   },
+   {
+    "item": "nilam",
+    "chance": 1.0
+   }
+  ],
+  "weak": [],
+  "resist": [
+   "lightning",
+   "fear"
+  ],
+  "body": {
+   "shape": "humanoid",
+   "color": "#2c3e50",
+   "color2": "#7fdbff",
+   "eye": "#ffffff",
+   "scale": 1.4,
+   "weapon": "gada",
+   "armor": true
+  },
+  "desc": {
+   "nl": "De driewerf kampioen, met bliksem in zijn vuisten en een gada als een boomstam.",
+   "en": "The thrice champion, with lightning in his fists and a gada like a tree trunk."
+  }
+ }
+}

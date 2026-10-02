@@ -1,0 +1,287 @@
+key,en,nl
+UI_NEW_GAME,New game,Nieuw spel
+UI_CONTINUE,Continue,Verder spelen
+UI_LOAD,Load,Laden
+UI_SAVE,Save,Opslaan
+UI_QUIT,Quit,Afsluiten
+UI_LANGUAGE,Language,Taal
+UI_SETTINGS,Settings,Instellingen
+UI_CONTROLS,Controls,Besturing
+UI_CODEX,Codex,Codex
+UI_BACK,Back,Terug
+UI_CLOSE,Close,Sluiten
+UI_INVENTORY,Inventory,Inventaris
+UI_EQUIPMENT,Equipment,Uitrusting
+UI_SIDDHIS,Siddhis,Siddhi's
+UI_SADHANA,Sadhana,Sadhana
+UI_QUESTS,Quests,Opdrachten
+UI_MAP,Map,Kaart
+UI_MUDRAS,Mudras,Mudra's
+UI_SHOP,Shop,Winkel
+UI_TRAINER,Teacher,Leraar
+UI_BUY,Buy,Kopen
+UI_SELL,Sell,Verkopen
+UI_EQUIP,Equip,Uitrusten
+UI_UNEQUIP,Unequip,Afleggen
+UI_USE,Use,Gebruiken
+UI_READ,Read,Lezen
+UI_DROP,Drop,Weggooien
+UI_GOLD,gold,goud
+UI_PRANA,Prana,Prana
+UI_OJAS,Ojas,Ojas
+UI_TAPAS,Tapas,Tapas
+UI_KARMA,Karma,Karma
+UI_YASHA,Yasha (renown),Yasha (roem)
+UI_AGE,Age,Leeftijd
+UI_ASHRAMA,Ashrama,Ashrama
+UI_PANTH,Panth,Panth
+UI_NONE,none,geen
+UI_LEVEL,Level,Niveau
+UI_COST,Cost,Kosten
+UI_LEARN,Learn,Leren
+UI_RAISE,Raise,Verhogen
+UI_HOTBAR,Hotbar,Sneltoetsen
+UI_ASSIGN,Assign to slot,Toewijzen aan slot
+UI_ACTIVE,Active,Actief
+UI_DONE,Completed,Voltooid
+UI_FAILED,Failed,Mislukt
+UI_MAIN_QUESTS,Main story,Hoofdverhaal
+UI_SIDE_QUESTS,Side quests,Nevenopdrachten
+UI_BOASTS,Pratijna (vows),Pratijna (geloften)
+UI_ACCEPT,Accept,Aanvaarden
+UI_TRAVEL,Travel,Reizen
+UI_LOCKED,Locked,Vergrendeld
+UI_CURRENT,Here,Hier
+UI_TALK,Talk,Praten
+UI_OPEN,Open,Openen
+UI_PICK_UP,Pick up,Oppakken
+UI_DIG,Dig,Graven
+UI_FISH,Fish,Vissen
+UI_SLEEP,Sleep,Slapen
+UI_ENTER,Enter,Betreden
+UI_DAY,Day,Dag
+UI_NIGHT,Night,Nacht
+UI_SAVED,Game saved.,Spel opgeslagen.
+UI_LOADED,Game loaded.,Spel geladen.
+UI_PAUSED,Paused,Gepauzeerd
+UI_RESUME,Resume,Hervatten
+UI_TO_TITLE,To title screen,Naar titelscherm
+UI_CONFIRM,Confirm,Bevestigen
+UI_CANCEL,Cancel,Annuleren
+UI_YES,Yes,Ja
+UI_NO,No,Nee
+UI_PRICE,Price,Prijs
+UI_OWNED,owned,in bezit
+UI_DEF,Defence,Verdediging
+UI_DMG,Damage,Schade
+UI_SPEED,Speed,Snelheid
+UI_REACH,Reach,Bereik
+UI_RANGE,Range,Afstand
+UI_SLOTS,Gem slots,Edelsteenvattingen
+UI_WEIGHT,Weight,Gewicht
+UI_SAUNDARYA,Saundarya (beauty),Saundarya (schoonheid)
+UI_BHAYA,Bhaya (fear),Bhaya (angst)
+UI_HEAL,Heals,Geneest
+UI_VALUE,Value,Waarde
+UI_FABLE_EQUIV,Fable equivalent,Fable-equivalent
+UI_DANGER,Danger,Gevaar
+UI_EXITS,Exits,Uitgangen
+UI_NOT_ENOUGH_GOLD,Not enough gold.,Niet genoeg goud.
+UI_NOT_ENOUGH_TAPAS,Not enough Tapas.,Niet genoeg Tapas.
+UI_MAX_LEVEL,Maximum level,Maximaal niveau
+UI_NEED_KEYS,This silver chest needs {n} silver keys.,Deze zilveren kist heeft {n} zilveren sleutels nodig.
+UI_SILVER_KEY_FOUND,Silver key found!,Zilveren sleutel gevonden!
+UI_LEVEL_UP,{stat} raised to level {level}.,{stat} verhoogd naar niveau {level}.
+UI_SIDDHI_LEARNED,{name} learned (level {level}).,{name} geleerd (niveau {level}).
+UI_QUEST_STARTED,Quest started: {name},Opdracht gestart: {name}
+UI_QUEST_ADVANCED,Next: {text},Volgende: {text}
+UI_QUEST_COMPLETED,Quest completed: {name},Opdracht voltooid: {name}
+UI_QUEST_FAILED,Quest failed: {name},Opdracht mislukt: {name}
+UI_BOAST_BROKEN,Vow broken: {name},Gelofte gebroken: {name}
+UI_ITEM_GET,{name} x{count},{name} x{count}
+UI_DROPPED,{name} dropped.,{name} weggegooid.
+UI_DIED,You have fallen.,Je bent gevallen.
+UI_AMRITA_USED,A drop of Amrita brings you back.,Een druppel Amrita brengt je terug.
+UI_RESPAWN,"You wake at the edge of the region, poorer and scarred.","Je ontwaakt aan de rand van de regio, armer en met een litteken."
+UI_TIRTHA_UNLOCKED,Tirtha gate unlocked: {name},Tirtha-poort ontgrendeld: {name}
+UI_YAKSHA_OPENED,The Yaksha door opens!,De Yaksha-poort gaat open!
+UI_DRUNK,The world starts to spin...,De wereld begint te draaien...
+UI_POISONED,Poisoned!,Vergiftigd!
+UI_MEDITATING,Dhyana... (Ojas recovers quickly),Dhyana... (Ojas herstelt snel)
+UI_ARENA_WAVE,Round {n}!,Ronde {n}!
+UI_ARENA_WON,You are champion of the Rangabhumi!,Je bent kampioen van de Rangabhumi!
+UI_FISH_WAIT,Wait for the float to pull...,Wacht tot de dobber trekt...
+UI_FISH_NOW,Now! Press E!,Nu! Druk op E!
+UI_FISH_CAUGHT,Caught: {name},Gevangen: {name}
+UI_FISH_LOST,The fish got away.,De vis is ontsnapt.
+UI_SHRINE_DONATE,Give to the temple,Offer aan de tempel
+UI_DONATE_AMOUNT,Give {n} gold,Offer {n} goud
+UI_SACRIFICE,"Sacrifice (3 Preta bones + 1000 gold, at night)","Offer (3 Preta-botten + 1000 goud, 's nachts)"
+UI_NEED_NIGHT,Only at night.,Alleen 's nachts.
+UI_FOLLOWER_DIED,{name} has died.,{name} is gestorven.
+UI_HOUSE_BOUGHT,House bought. You can sleep here.,Huis gekocht. Je kunt hier slapen.
+UI_MARRIED,You are married to {name}.,Je bent getrouwd met {name}.
+UI_INITIATED,Initiated into the {name}.,Ingewijd in de {name}.
+UI_ALREADY_INITIATED,You already walk this path.,Je loopt dit pad al.
+UI_GIFT_GIVE,Give a gift,Geef een geschenk
+UI_AFFECTION,affection,genegenheid
+UI_MUDRA_LOCKED,Not yet available,Nog niet beschikbaar
+UI_PERFORM,Perform,Uitvoeren
+UI_MUDRA_LEARNED,Mudra learned: {name},Mudra geleerd: {name}
+UI_NEED_ITEM,Requires {name}.,Vereist {name}.
+UI_REQ_YASHA,Requires Yasha {value}.,Vereist Yasha {value}.
+UI_REQ_KARMA,Requires karma {value}.,Vereist karma {value}.
+UI_REQ_BHAYA,Requires Bhaya {value}.,Vereist Bhaya {value}.
+UI_REQ_BOOK,Learn it from the book {name}.,Leer het uit het boek {name}.
+UI_REQ_STAT,Requires {stat} level {level}.,Vereist {stat} niveau {level}.
+UI_REQ_QUEST,Requires the quest {name}.,Vereist de opdracht {name}.
+UI_ALREADY_READ,You have already read this.,Je hebt dit al gelezen.
+UI_SLEPT,You sleep until morning.,Je slaapt tot de ochtend.
+UI_HELP_TITLE,Controls,Besturing
+UI_CHAPTER,Chapter,Hoofdstuk
+UI_REWARDS,Rewards,Beloningen
+UI_STAGE,Stage,Stap
+UI_CODEX_CHARACTERS,Characters,Personages
+UI_CODEX_ENEMIES,Creatures,Wezens
+UI_CODEX_ITEMS,Items,Voorwerpen
+UI_CODEX_SIDDHIS,Siddhis,Siddhi's
+UI_CODEX_MOVES,Yuddha Kala (techniques),Yuddha Kala (technieken)
+UI_CODEX_MUDRAS,Mudras,Mudra's
+UI_CODEX_REGIONS,Regions,Regio's
+UI_CODEX_YAKSHA,Yaksha doors,Yaksha-poorten
+UI_CODEX_PANTHS,Panths & archetypes,Panths & archetypen
+UI_CODEX_LORE,Lore,Overlevering
+UI_CODEX_QUESTS,Quests,Opdrachten
+UI_CODEX_STATS,Attributes,Eigenschappen
+UI_ROLE,Role,Rol
+UI_ARCHETYPE,Archetype,Archetype
+UI_HOME,Home,Woonplaats
+UI_FAMILY,Family,Familie
+UI_HP,Prana,Prana
+UI_WEAK,Weak to,Zwak tegen
+UI_RESIST,Resists,Weerstaat
+UI_DROPS,Drops,Laat vallen
+UI_SCHOOL,School,School
+UI_ELEMENT,Element,Element
+UI_TEACHER,Teacher,Leraar
+UI_INPUT,Input,Invoer
+UI_EFFECT,Effect,Effect
+UI_UNLOCK,Unlock,Vrijspelen
+UI_BIOME,Biome,Bioom
+UI_DEMAND,Demand,Eis
+UI_REWARD,Reward,Beloning
+UI_GIVER,Quest giver,Opdrachtgever
+UI_REQUIRES,Requires,Vereist
+UI_TYPE,Type,Soort
+UI_MAIN,main,hoofd
+UI_SIDE,side,neven
+UI_DISCIPLINE,Discipline,Discipline
+UI_BONUS,Bonus,Bonus
+UI_TIME,Time,Tijd
+UI_REGION,Region,Regio
+UI_NO_QUESTS,No active quests.,Geen actieve opdrachten.
+UI_WEAPON_MELEE,Melee weapon,Nabijgevechtswapen
+UI_WEAPON_RANGED,Ranged weapon,Afstandswapen
+UI_HEAD,Head,Hoofd
+UI_CHEST,Chest,Borst
+UI_HANDS,Hands,Handen
+UI_LEGS,Legs,Benen
+UI_FEET,Feet,Voeten
+UI_HAIR,Hair,Haar
+UI_BEARD,Beard,Baard
+UI_TATTOO,Tattoo,Tatoeage
+UI_EMPTY,empty,leeg
+UI_GEMS,Socketed gems,Gevatte edelstenen
+UI_SOCKET,Set gem in weapon,Zet edelsteen in wapen
+UI_CAT_ALL,All,Alles
+UI_CAT_WEAPONS,Weapons,Wapens
+UI_CAT_ARMOR,Armour,Pantser
+UI_CAT_CONSUMABLE,Consumables,Verbruiksartikelen
+UI_CAT_BOOKS,Books,Boeken
+UI_CAT_GEMS,Gems,Edelstenen
+UI_CAT_TROPHIES,Trophies,Trofeeën
+UI_CAT_QUEST,Quest items,Opdrachtvoorwerpen
+UI_CAT_COSMETIC,Appearance,Uiterlijk
+UI_CAT_TOOLS,Tools & gifts,Gereedschap & geschenken
+UI_SLOT,Slot,Slot
+UI_MULTIPLIER,Multiplier,Multiplier
+UI_NEXT_LEVEL,Next level,Volgend niveau
+UI_TOTAL_TAPAS,Total Tapas earned,Totaal verdiende Tapas
+UI_KILLS,Kills,Kills
+UI_KEYS_FOUND,Silver keys found,Zilveren sleutels gevonden
+UI_SPOUSE,Spouse,Echtgenoot
+UI_HOUSES,Houses,Huizen
+UI_INITIATE,Initiate,Inwijden
+UI_SIDDHI_TEACHES,Teaches,Leert
+UI_WAVE,Wave,Golf
+UI_YAKSHA_RIDDLE,Answer,Antwoord
+UI_GIVE_ITEM,Give {name},Geef {name}
+UI_NOTHING_TO_GIVE,You have nothing suitable.,Je hebt niets geschikts.
+UI_PLAY_TIME,Play time,Speeltijd
+UI_MOUSE_SENS,Mouse sensitivity,Muisgevoeligheid
+UI_TIME_SPEED,Day length,Daglengte
+UI_MUSIC,Music,Muziek
+UI_SFX,Sound effects,Geluidseffecten
+UI_QUALITY,Graphics quality,Grafische kwaliteit
+UI_INVERT_Y,Invert mouse Y,Muis Y omkeren
+UI_SLOT_EMPTY,Empty slot,Leeg slot
+UI_SELECT_SAVE,Select a save,Kies een opslag
+UI_OVERWRITE,Overwrite?,Overschrijven?
+UI_DELETE,Delete,Verwijderen
+UI_DEATH_TITLE,Yama calls,Yama roept
+UI_DEATH_TEXT,"You have fallen in battle. Without Amrita, you wake at the edge of the region with less gold and a new scar.",Je bent gevallen in de strijd. Zonder Amrita ontwaak je aan de rand van de regio met minder goud en een nieuw litteken.
+UI_HERO_NAME,Name of your Vira,Naam van je Vira
+UI_START,Begin,Begin
+UI_TITLE_SUB,A Sanatana Dharma inspired hero's saga,Een Sanatana Dharma-geïnspireerde heldensage
+UI_LOCKED_REGION,{msg},{msg}
+UI_CHILD_NO_WEAPON,A child cannot wield that.,Een kind kan dat niet dragen.
+UI_WELCOME,{name},{name}
+HINT_TALK,[E] Talk to {name},[E] Praat met {name}
+HINT_CHEST,[E] Open chest,[E] Open kist
+HINT_CHEST_SILVER,[E] Silver chest ({n} keys),[E] Zilveren kist ({n} sleutels)
+HINT_PICKUP,[E] Pick up {name},[E] Pak {name}
+HINT_EXIT,[E] To {name},[E] Naar {name}
+HINT_TIRTHA,[E] Tirtha gate,[E] Tirtha-poort
+HINT_YAKSHA,[E] Speak to the Yaksha,[E] Spreek de Yaksha aan
+HINT_DIG,[E] Dig (spade needed),[E] Graaf (schop nodig)
+HINT_FISH,[E] Fish (rod needed),[E] Vis (hengel nodig)
+HINT_SHRINE,[E] Altar,[E] Altaar
+HINT_BOAT,[E] Ferry,[E] Veerboot
+HINT_BED,[E] Sleep,[E] Slaap
+HINT_SIGN,[E] Read signpost,[E] Lees wegwijzer
+HINT_DUMMY,Training post,Oefenpaal
+UI_TAPAS_GENERAL,General,Algemeen
+UI_TAPAS_BALA,Bala,Bala
+UI_TAPAS_KAUSHALA,Kaushala,Kaushala
+UI_TAPAS_SHAKTI,Shakti,Shakti
+UI_FOLLOWING,following you,volgt je
+UI_ESCORT,Escort,Escorteer
+UI_SELL_PRICE,Sell for {n},Verkoop voor {n}
+UI_BUY_PRICE,Buy for {n},Koop voor {n}
+UI_TIRTHA_HERE,You are at a Tirtha gate. Choose a destination.,Je staat bij een Tirtha-poort. Kies een bestemming.
+UI_TIRTHA_FAR,Travel is only possible from a Tirtha gate.,Reizen kan alleen vanaf een Tirtha-poort.
+UI_NOT_VISITED,Not yet visited,Nog niet bezocht
+UI_VISITED,Visited,Bezocht
+UI_CHOOSE_BOASTS,Choose your vows (Pratijna) for this quest. Keeping them earns extra gold and renown.,"Kies je geloften (Pratijna) voor deze opdracht. Wie ze houdt, verdient extra goud en roem."
+UI_NO_BOASTS,No vows,Geen geloften
+UI_GENERATING,Shaping the world...,De wereld wordt gevormd...
+UI_VERSION,Version,Versie
+UI_DONATED_TOTAL,Total given: {n},Totaal geofferd: {n}
+UI_THANKS,The temple thanks you.,De tempel dankt je.
+UI_SACRIFICED,Andhaka accepts. Your dharma pays.,Andhaka aanvaardt. Je dharma betaalt.
+UI_NEED_SACRIFICE,Andhaka wants 3 Preta bones and 1000 gold.,Andhaka wil 3 Preta-botten en 1000 goud.
+UI_AGE_YEARS,{n} years,{n} jaar
+UI_STAT_DEHA,Deha,Deha
+UI_RANGED_STANCE,Ranged stance,Afstandshouding
+UI_MELEE_STANCE,Melee stance,Nabijgevechtshouding
+UI_TARGET,Target,Doelwit
+UI_DEATH_BUTTON,Rise again,Sta weer op
+UI_GAME_COMPLETE,You completed the saga of the Vira of Jambudvipa.,Je hebt de sage van de Vira van Jambudvipa voltooid.
+UI_CLASSIC,Classic,Klassiek
+UI_LOW,Low,Laag
+UI_HIGH,High,Hoog
+UI_FEMALE,Vira (female),Vira (vrouw)
+UI_MALE,Vira (male),Vira (man)
+UI_NEW_GAME_WARN,A new game overwrites the quicksave slot.,Een nieuw spel overschrijft het snelopslag-slot.
+UI_QUICKSAVE,Quick save,Snel opslaan
+UI_QUICKLOAD,Quick load,Snel laden

@@ -1,0 +1,963 @@
+{
+ "rishi_vamadeva": {
+  "name": {
+   "nl": "Rishi Vamadeva",
+   "en": "Rishi Vamadeva"
+  },
+  "en_fable": "Unique (SD)",
+  "archetype": "rishi",
+  "essential": true,
+  "home": "mahavana_hrada",
+  "trainer": "rishi_vamadeva",
+  "role": {
+   "nl": "Ziener op de rots in het meer",
+   "en": "Seer on the rock in the lake"
+  },
+  "desc": {
+   "nl": "Een rishi met een witte baard tot zijn navel, die op een rots in het Mahavana Hrada zit en de Veda's reciteert tegen de lotussen. Hij beweegt alleen om te knipperen.",
+   "en": "A rishi with a white beard to his navel, who sits on a rock in the Mahavana Hrada reciting the Vedas to the lotuses. He moves only to blink."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#ffffff",
+   "cloth2": "#e3b341",
+   "hair": "#ffffff",
+   "beard": true,
+   "thin": true,
+   "sitting": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_inactive": "q_rishi_vamadeva"
+    },
+    "lines": [
+     {
+      "nl": "Jnana. Kennis. Het snelste pad en het langzaamste. Breng me de drie boeken die een Vira moet lezen: de Veda Samhita, de Upanishads en de Bhagavad Gita. Dan leer ik je zien.",
+      "en": "Jnana. Knowledge. The fastest path and the slowest. Bring me the three books a Vira must read: the Veda Samhita, the Upanishads and the Bhagavad Gita. Then I will teach you to see."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik zal ze vinden.",
+       "en": "I will find them."
+      },
+      "start_quest": "q_rishi_vamadeva"
+     },
+     {
+      "text": {
+       "nl": "Later.",
+       "en": "Later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_active": "q_rishi_vamadeva"
+    },
+    "lines": [
+     {
+      "nl": "Veda, Upanishad, Gita. De jyotishi in de bazaar verkoopt ze; kisten in het land bewaren ze. Lees ze eerst zelf; ik hoef ze niet te houden.",
+      "en": "Veda, Upanishad, Gita. The jyotishi in the bazaar sells them; chests in the land keep them. Read them yourself first; I need not keep them."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik heb ze alle drie gelezen.",
+       "en": "I have read all three."
+      },
+      "when": {
+       "all": [
+        {
+         "flag": "read_veda_samhita"
+        },
+        {
+         "flag": "read_upanishad"
+        },
+        {
+         "flag": "read_bhagavad_gita"
+        }
+       ]
+      },
+      "complete_quest": "q_rishi_vamadeva",
+      "lines": [
+       {
+        "nl": "Tat tvam asi. Je begrijpt het nog niet, maar je hebt het gelezen. Dat is genoeg voor een begin. De Jnana Panth staat voor je open.",
+        "en": "Tat tvam asi. You do not understand it yet, but you have read it. That is enough for a beginning. The Jnana Panth is open to you."
+       }
+      ]
+     },
+     {
+      "text": {
+       "nl": "Nog niet.",
+       "en": "Not yet."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Wie weet, zwijgt. Wie zwijgt, hoort. Wil je de Jnana Panth?",
+      "en": "Who knows, is silent. Who is silent, hears. Do you want the Jnana Panth?"
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Initieer me.",
+       "en": "Initiate me."
+      },
+      "open_trainer": "rishi_vamadeva"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "aghori_bhairavnath": {
+  "name": {
+   "nl": "Aghori Bhairavnath",
+   "en": "Aghori Bhairavnath"
+  },
+  "en_fable": "Unique (SD)",
+  "archetype": "aghori",
+  "essential": true,
+  "home": "shmashana_kshetra",
+  "trainer": "aghori_bhairavnath",
+  "role": {
+   "nl": "Aghori van het crematieveld, leraar van de duistere siddhi's",
+   "en": "Aghori of the cremation ground, teacher of the dark siddhis"
+  },
+  "desc": {
+   "nl": "Hij zit op een lijk, bedekt met as, drinkt uit een schedel en lacht naar de doden. De Aghori's kennen geen rein en onrein; voor hen is alles Shiva. Hij is geen kwaad. Hij is alleen heel ver voorbij goed.",
+   "en": "He sits on a corpse, covered in ash, drinks from a skull and laughs at the dead. The Aghoris know no pure and impure; for them everything is Shiva. He is not evil. He is only very far beyond good."
+  },
+  "body": {
+   "skin": "#9e9e9e",
+   "cloth": "#000000",
+   "cloth2": "#000000",
+   "hair": "#2c2c2c",
+   "beard": true,
+   "jata": true,
+   "ash": true,
+   "skull": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_inactive": "q_aghori_pariksha"
+    },
+    "lines": [
+     {
+      "nl": "Een Vira! Bang voor de doden? Ze bijten alleen 's nachts. Ik leer het vuur dat alles verteert, de adem die je van anderen steelt, de slangen uit de grond. Maar niet aan iedereen.",
+      "en": "A Vira! Afraid of the dead? They only bite at night. I teach the fire that consumes all, the breath you steal from others, the serpents from the ground. But not to everyone."
+     },
+     {
+      "nl": "Breng me vijf Preta-botten, verzameld van de rusteloze doden, en dood acht Preta's hier op het veld terwijl ik kijk. Dan ben je een beetje Aghori.",
+      "en": "Bring me five Preta bones, gathered from the restless dead, and kill eight Pretas here on the field while I watch. Then you are a little Aghori."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik aanvaard de pariksha.",
+       "en": "I accept the pariksha."
+      },
+      "start_quest": "q_aghori_pariksha"
+     },
+     {
+      "text": {
+       "nl": "Je bent gek.",
+       "en": "You are mad."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_aghori_pariksha",
+      2
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Botten en bloed, hahaha! Hier: as van mijn dhuni. Smeer het op je lichaam, en de doden zullen denken dat je een van hen bent. En nu: de siddhi's van Bhairava.",
+      "en": "Bones and blood, hahaha! Here: ash from my dhuni. Smear it on your body, and the dead will think you are one of them. And now: the siddhis of Bhairava."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_aghori_pariksha"
+    }
+   },
+   {
+    "when": {
+     "quest_active": "q_aghori_pariksha"
+    },
+    "lines": [
+     {
+      "nl": "Vijf botten, acht Preta's. Tel ze. Ik tel ook.",
+      "en": "Five bones, eight Pretas. Count them. I count too."
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Kalagni, Prana Harana, Naga Pasha, Bhuta Ahvana. En de Aghora Panth, voor wie niets meer vreest.",
+      "en": "Kalagni, Prana Harana, Naga Pasha, Bhuta Ahvana. And the Aghora Panth, for those who fear nothing anymore."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Leer me / initieer me.",
+       "en": "Teach me / initiate me."
+      },
+      "open_trainer": "aghori_bhairavnath"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "nirmal_bhuta": {
+  "name": {
+   "nl": "Yogiraj Vikrant (geest)",
+   "en": "Yogiraj Vikrant (ghost)"
+  },
+  "en_fable": "Nostro",
+  "archetype": "bhuta",
+  "essential": true,
+  "home": "shmashana_kshetra",
+  "role": {
+   "nl": "De geest van de eerste Mahant van de Vira Akhara",
+   "en": "The ghost of the first Mahant of the Vira Akhara"
+  },
+  "desc": {
+   "nl": "Een doorschijnende krijger in oud pantser, die al vierhonderd jaar het crematieveld bewaakt omdat hij zijn eigen kavach niet kan vinden.",
+   "en": "A translucent warrior in ancient armour, who has guarded the cremation ground for four hundred years because he cannot find his own kavach."
+  },
+  "body": {
+   "skin": "#aee7ff",
+   "cloth": "#aee7ff",
+   "cloth2": "#ffffff",
+   "hair": "#ffffff",
+   "ghost": true,
+   "beard": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_stage": [
+      "q_patala_karagar",
+      1
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Een levende. Met het zegel van mijn Akhara. Ik ben Vikrant, de eerste Mahant. Ik stichtte de Akhara, ik begroef het zwaard, en ik stierf zonder mijn kavach, dat de Kankala's in de catacomben hebben gesleept.",
+      "en": "A living one. With the seal of my Akhara. I am Vikrant, the first Mahant. I founded the Akhara, I buried the sword, and I died without my kavach, which the Kankalas dragged into the catacombs."
+     },
+     {
+      "nl": "Breng me mijn kavach uit de kist bij de brandstapels, en ik open de poort van botten. Zonder kavach ga ik niet verder; een Mahant verschijnt niet naakt voor Yama.",
+      "en": "Bring me my kavach from the chest by the pyres, and I will open the gate of bones. Without my kavach I go no further; a Mahant does not appear naked before Yama."
+     }
+    ],
+    "effects": {
+     "advance_quest": "q_patala_karagar"
+    }
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_patala_karagar",
+      2
+     ],
+     "has_item": "nirmal_kavach"
+    },
+    "lines": [
+     {
+      "nl": "Mijn kavach. Vierhonderd jaar. Hij past nog. De poort opent, Vira. Daarachter: Patala. Vertel de Mahant dat Vikrant eindelijk slaapt.",
+      "en": "My kavach. Four hundred years. It still fits. The gate opens, Vira. Beyond it: Patala. Tell the Mahant that Vikrant finally sleeps."
+     }
+    ],
+    "effects": {
+     "take": "nirmal_kavach",
+     "set_flag": "pretagiri_open",
+     "advance_quest": "q_patala_karagar",
+     "yasha": 100
+    }
+   },
+   {
+    "when": {
+     "quest_active": "q_patala_karagar"
+    },
+    "lines": [
+     {
+      "nl": "De kist bij de brandstapels. Kankala's bewaken hem. Snel, voor de dag komt.",
+      "en": "The chest by the pyres. Kankalas guard it. Quickly, before day comes."
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Ik slaap. Bijna. Dank je.",
+      "en": "I sleep. Almost. Thank you."
+     }
+    ]
+   }
+  ]
+ },
+ "kapalika_dhumavati": {
+  "name": {
+   "nl": "Kapalika Dhumavati",
+   "en": "Kapalika Dhumavati"
+  },
+  "en_fable": "Unique (SD)",
+  "archetype": "kapalika",
+  "essential": false,
+  "home": "shmashana_kshetra",
+  "shop": "kapalika_shop",
+  "role": {
+   "nl": "Schedeldraagster, verkoopster van as en zwarte kleding",
+   "en": "Skull-bearer, seller of ash and black garments"
+  },
+  "desc": {
+   "nl": "Een oude vrouw met een halssnoer van schedels die bhasma verkoopt uit een lijkkist. Ze is vrolijker dan je zou denken.",
+   "en": "An old woman with a necklace of skulls who sells bhasma from a coffin. She is more cheerful than you would think."
+  },
+  "body": {
+   "skin": "#6b4a3a",
+   "cloth": "#2a1038",
+   "cloth2": "#000000",
+   "hair": "#9e9e9e",
+   "female": true,
+   "skull": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "As, as, as! En de mantel van de Kapalika's, voor wie de nacht wil dragen. Kom kijken, Vira, de doden kijken ook.",
+      "en": "Ash, ash, ash! And the robe of the Kapalikas, for those who want to wear the night. Come look, Vira, the dead are looking too."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Laat zien.",
+       "en": "Show me."
+      },
+      "open_shop": "kapalika_shop"
+     },
+     {
+      "text": {
+       "nl": "Nee.",
+       "en": "No."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "pujari_aditya": {
+  "name": {
+   "nl": "Pujari Aditya",
+   "en": "Pujari Aditya"
+  },
+  "en_fable": "Priest of Avo",
+  "archetype": "pujari",
+  "essential": true,
+  "home": "surya_mandir",
+  "shop": "surya_mandir_prasad",
+  "trainer": "pujari_aditya",
+  "role": {
+   "nl": "Hogepriester van de Surya Mandir",
+   "en": "High priest of the Surya Mandir"
+  },
+  "desc": {
+   "nl": "Een priester in wit met een gouden ketting, die elke ochtend de zon begroet met de Gayatri. Hij zegent iedereen en wantrouwt niemand, wat hem al twee keer bijna het leven kostte.",
+   "en": "A priest in white with a gold chain, who greets the sun every morning with the Gayatri. He blesses everyone and distrusts no one, which has nearly cost him his life twice."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#ffffff",
+   "cloth2": "#e3b341",
+   "hair": "#6e6e6e",
+   "shikha": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_inactive": "q_surya_mandir_daan"
+    },
+    "lines": [
+     {
+      "nl": "Welkom in het huis van Surya. Wie offert, zuivert zijn karma. Wie met heel zijn hart offert, vijfduizend goud in totaal, ontvangt Gandiva, de boog die de tempel sinds Kurukshetra bewaart.",
+      "en": "Welcome to the house of Surya. Whoever gives purifies his karma. Whoever gives with a whole heart, five thousand gold in total, receives Gandiva, the bow the temple has kept since Kurukshetra."
+     }
+    ],
+    "effects": {
+     "start_quest": "q_surya_mandir_daan"
+    },
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik wil offeren.",
+       "en": "I want to give."
+      },
+      "shrine": "dharma"
+     },
+     {
+      "text": {
+       "nl": "Prasad en gewaden.",
+       "en": "Prasad and robes."
+      },
+      "open_shop": "surya_mandir_prasad"
+     },
+     {
+      "text": {
+       "nl": "Leer me Surya Tejas / de Bhakti Panth.",
+       "en": "Teach me Surya Tejas / the Bhakti Panth."
+      },
+      "open_trainer": "pujari_aditya"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_active": "q_surya_mandir_daan",
+     "flag": "mandir_daan_5000"
+    },
+    "lines": [
+     {
+      "nl": "Vijfduizend goud. De tempel heeft in honderd jaar geen groter hart gezien. Gandiva is van jou. Draag hem zoals Arjuna: alleen tegen wie het verdient.",
+      "en": "Five thousand gold. The temple has not seen a greater heart in a hundred years. Gandiva is yours. Carry it as Arjuna did: only against those who deserve it."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_surya_mandir_daan"
+    }
+   },
+   {
+    "lines": [
+     {
+      "nl": "Surya ziet alles. Vandaag ziet hij jou. Wat kan ik voor je doen?",
+      "en": "Surya sees everything. Today he sees you. What can I do for you?"
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik wil offeren.",
+       "en": "I want to give."
+      },
+      "shrine": "dharma"
+     },
+     {
+      "text": {
+       "nl": "Prasad en gewaden.",
+       "en": "Prasad and robes."
+      },
+      "open_shop": "surya_mandir_prasad"
+     },
+     {
+      "text": {
+       "nl": "Leer me Surya Tejas / de Bhakti Panth.",
+       "en": "Teach me Surya Tejas / the Bhakti Panth."
+      },
+      "open_trainer": "pujari_aditya"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "bhakta_hari": {
+  "name": {
+   "nl": "Bhakta Hari",
+   "en": "Bhakta Hari"
+  },
+  "en_fable": "Temple NPC",
+  "archetype": "bhakta",
+  "essential": false,
+  "home": "surya_mandir",
+  "role": {
+   "nl": "Devoot die de tempel veegt",
+   "en": "Devotee who sweeps the temple"
+  },
+  "desc": {
+   "nl": "Hij zingt bhajans terwijl hij veegt en huilt van vreugde als de bel luidt. Hij heeft nog nooit iemand kwaad gedaan en begrijpt niet waarom anderen dat wel doen.",
+   "en": "He sings bhajans while he sweeps and weeps with joy when the bell rings. He has never harmed anyone and does not understand why others do."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#f1c40f",
+   "cloth2": "#ffffff",
+   "hair": "#1a1a1a"
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Hare Krishna! Weet je dat de tempelbel zeventien keer luidt bij een bruiloft? Ik tel ze altijd. Zeventien.",
+      "en": "Hare Krishna! Did you know the temple bell rings seventeen times at a wedding? I always count them. Seventeen."
+     }
+    ]
+   }
+  ]
+ },
+ "sadhvi_lila": {
+  "name": {
+   "nl": "Sadhvi Lila",
+   "en": "Sadhvi Lila"
+  },
+  "en_fable": "Temple NPC",
+  "archetype": "sadhvi",
+  "essential": false,
+  "home": "surya_mandir",
+  "role": {
+   "nl": "Vrouwelijke asceet van de tempel",
+   "en": "Female ascetic of the temple"
+  },
+  "desc": {
+   "nl": "Een jonge sadhvi in saffraan die de lotussen in de tempelvijver verzorgt en met een stok naar Dakini's slaat als ze te dichtbij komen.",
+   "en": "A young sadhvi in saffron who tends the lotuses in the temple pond and hits Dakinis with a stick when they come too close."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#f28c28",
+   "cloth2": "#ffffff",
+   "hair": "#1a1a1a",
+   "female": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "De Dakini's in de Shila zijn niet slecht, weet je. Ze zijn verdrietig. Maar verdrietige dingen met tanden blijven dingen met tanden.",
+      "en": "The Dakinis in the Shila are not evil, you know. They are sad. But sad things with teeth remain things with teeth."
+     }
+    ]
+   }
+  ]
+ },
+ "andhaka_mukhya": {
+  "name": {
+   "nl": "Mukhya Pujari van Andhaka",
+   "en": "High Priest of Andhaka"
+  },
+  "en_fable": "Priest of Skorm",
+  "archetype": "asura_pujari",
+  "essential": true,
+  "home": "andhaka_pith",
+  "role": {
+   "nl": "Hogepriester van de blinde asura",
+   "en": "High priest of the blind asura"
+  },
+  "desc": {
+   "nl": "Een man zonder ogen, die ze zelf aan Andhaka offerde. Hij spreekt zacht, bijna vriendelijk, over bloed.",
+   "en": "A man without eyes, which he himself sacrificed to Andhaka. He speaks softly, almost kindly, about blood."
+  },
+  "body": {
+   "skin": "#6b4a3a",
+   "cloth": "#2a1038",
+   "cloth2": "#8e44ad",
+   "hair": "#000000",
+   "blind": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_inactive": "q_andhaka_bali"
+    },
+    "lines": [
+     {
+      "nl": "Andhaka ziet niet, en daarom oordeelt hij niet. Hij neemt. Breng hem bij nacht drie Preta-botten en duizend goud op het altaar, en hij geeft je de boog waarmee hij zelf ooit de goden beschoot.",
+      "en": "Andhaka does not see, and therefore does not judge. He takes. Bring him at night three Preta bones and a thousand gold on the altar, and he gives you the bow with which he himself once shot at the gods."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik zal het brengen. (Adharma)",
+       "en": "I will bring it. (Adharma)"
+      },
+      "start_quest": "q_andhaka_bali"
+     },
+     {
+      "text": {
+       "nl": "Nooit.",
+       "en": "Never."
+      },
+      "karma": 5,
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_active": "q_andhaka_bali"
+    },
+    "lines": [
+     {
+      "nl": "Nacht, botten, goud. Het altaar wacht.",
+      "en": "Night, bones, gold. The altar waits."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Offer bij het altaar.",
+       "en": "Sacrifice at the altar."
+      },
+      "shrine": "asura"
+     },
+     {
+      "text": {
+       "nl": "Later.",
+       "en": "Later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Andhaka is tevreden. Voorlopig.",
+      "en": "Andhaka is satisfied. For now."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Het altaar.",
+       "en": "The altar."
+      },
+      "shrine": "asura"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "kapalika_kalaratri": {
+  "name": {
+   "nl": "Kalaratri",
+   "en": "Kalaratri"
+  },
+  "en_fable": "Chapel of Skorm NPC",
+  "archetype": "kapalika",
+  "essential": false,
+  "home": "andhaka_pith",
+  "shop": "andhaka_shop",
+  "role": {
+   "nl": "Kapalika van de Pith",
+   "en": "Kapalika of the Pith"
+  },
+  "desc": {
+   "nl": "Een vrouw met een zwarte tilak en een glimlach die te lang duurt. Ze verkoopt de mantels van Tamas.",
+   "en": "A woman with a black tilak and a smile that lasts too long. She sells the robes of Tamas."
+  },
+  "body": {
+   "skin": "#6b4a3a",
+   "cloth": "#2a1038",
+   "cloth2": "#000000",
+   "hair": "#000000",
+   "female": true,
+   "skull": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Tamas, de duisternis, is ook een guna. Zonder haar geen slaap, geen dood, geen rust. Wil je haar dragen?",
+      "en": "Tamas, darkness, is also a guna. Without it no sleep, no death, no rest. Do you want to wear it?"
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Laat zien.",
+       "en": "Show me."
+      },
+      "open_shop": "andhaka_shop"
+     },
+     {
+      "text": {
+       "nl": "Nee.",
+       "en": "No."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "sannyasi_shanti": {
+  "name": {
+   "nl": "Swami Shantananda",
+   "en": "Swami Shantananda"
+  },
+  "en_fable": "Barrow Fields NPC",
+  "archetype": "sannyasi",
+  "essential": false,
+  "home": "samadhi_kshetra",
+  "role": {
+   "nl": "Sannyasi tussen de graftombes",
+   "en": "Sannyasi among the tombs"
+  },
+  "desc": {
+   "nl": "Een oude man in oker die tussen de samadhi's mediteert en de Preta's negeert. Ze negeren hem ook.",
+   "en": "An old man in ochre who meditates among the samadhis and ignores the Pretas. They ignore him too."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#c97d2c",
+   "cloth2": "#c97d2c",
+   "hair": "#e0e0e0",
+   "beard": true,
+   "thin": true,
+   "sitting": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Sannyasa: alles losgelaten. Zelfs angst. Daarom bijten ze me niet; er valt niets te bijten. Jij hebt nog van alles. Daarom bijten ze jou.",
+      "en": "Sannyasa: everything let go. Even fear. That is why they do not bite me; there is nothing to bite. You still have everything. That is why they bite you."
+     },
+     {
+      "nl": "De Yaksha hier wil je kalm zien, in de nacht. Ga zitten als het donker is. Dhyana.",
+      "en": "The Yaksha here wants to see you calm, in the night. Sit down when it is dark. Dhyana."
+     }
+    ]
+   }
+  ]
+ },
+ "ananya_bhuta": {
+  "name": {
+   "nl": "Ananya (geest)",
+   "en": "Ananya (ghost)"
+  },
+  "en_fable": "Amanda's ghost (Grey House)",
+  "archetype": "bhuta",
+  "essential": true,
+  "home": "shyama_haveli",
+  "role": {
+   "nl": "De verdwenen zus van Rani Kalavati",
+   "en": "The vanished sister of Rani Kalavati"
+  },
+  "desc": {
+   "nl": "Een jonge vrouw van maanlicht die zingt in de ruïne van haar vaders huis. Ze herinnert zich alles, behalve waarom.",
+   "en": "A young woman of moonlight who sings in the ruin of her father's house. She remembers everything, except why."
+  },
+  "body": {
+   "skin": "#d7bde2",
+   "cloth": "#d7bde2",
+   "cloth2": "#ffffff",
+   "hair": "#ffffff",
+   "female": true,
+   "ghost": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_inactive": "q_shyama_haveli"
+    },
+    "lines": [
+     {
+      "nl": "Je kunt me zien. Dat kan al zeventien jaar niemand. Ik ben Ananya. Mijn zus... Kalavati... ze gaf me thee, de nacht voor de kroning. Daarna was ik hier. Mijn dagboek ligt nog in het huis. Breng het naar iemand die het kan lezen. Alsjeblieft.",
+      "en": "You can see me. No one has for seventeen years. I am Ananya. My sister... Kalavati... she gave me tea, the night before the coronation. Then I was here. My diary is still in the house. Bring it to someone who can read it. Please."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik zal het vinden.",
+       "en": "I will find it."
+      },
+      "start_quest": "q_shyama_haveli"
+     },
+     {
+      "text": {
+       "nl": "Geesten liegen.",
+       "en": "Ghosts lie."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_shyama_haveli",
+      1
+     ],
+     "has_item": "ananya_patra"
+    },
+    "lines": [
+     {
+      "nl": "Je hebt het. Breng het naar de garde van Shringarapura. Of naar haar, als je goud belangrijker vindt dan ik. Ik kan je niet tegenhouden. Ik kon niemand ooit tegenhouden.",
+      "en": "You have it. Take it to the guard of Shringarapura. Or to her, if you value gold over me. I cannot stop you. I could never stop anyone."
+     }
+    ],
+    "effects": {
+     "advance_quest": "q_shyama_haveli"
+    }
+   },
+   {
+    "when": {
+     "flag": "rani_exposed"
+    },
+    "lines": [
+     {
+      "nl": "De stad weet het. Ik voel de lucht lichter worden. Dank je, Vira. Ik ga nu.",
+      "en": "The city knows. I feel the air grow lighter. Thank you, Vira. I go now."
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Het dagboek. In het huis. Snel, voor de dag komt.",
+      "en": "The diary. In the house. Quickly, before day comes."
+     }
+    ]
+   }
+  ]
+ },
+ "bhairavi_chandi": {
+  "name": {
+   "nl": "Bhairavi Chandi",
+   "en": "Bhairavi Chandi"
+  },
+  "en_fable": "Witchwood NPC",
+  "archetype": "bhairavi",
+  "essential": false,
+  "home": "dakinivana_shila",
+  "role": {
+   "nl": "Vrouwelijke tantrika bij de staande stenen",
+   "en": "Female tantrika at the standing stones"
+  },
+  "desc": {
+   "nl": "Een tantrika in zwart en rood die bij de Dakini Shila yantra's in het zand tekent. Ze praat met de Dakini's en wordt niet aangevallen. Ze weet waarom.",
+   "en": "A tantrika in black and red who draws yantras in the sand at the Dakini Shila. She talks to the Dakinis and is not attacked. She knows why."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#000000",
+   "cloth2": "#c0392b",
+   "hair": "#1a1a1a",
+   "female": true,
+   "third_eye": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "De Yaksha in de grote steen wil een Rakshasa-pels. Hij is een jager, van vóór de goden. Breng hem er een en Bhima's gada is van jou.",
+      "en": "The Yaksha in the great stone wants a Rakshasa pelt. He is a hunter, from before the gods. Bring him one and Bhima's gada is yours."
+     },
+     {
+      "nl": "En bij maanlicht bloeit hier de Yaksha-bloem. De jyotishi in de stad betaalt er goed voor. Zeg hem dat Chandi het zei.",
+      "en": "And by moonlight the Yaksha flower blooms here. The jyotishi in the city pays well for it. Tell him Chandi said so."
+     }
+    ]
+   }
+  ]
+ },
+ "sadhvi_meera": {
+  "name": {
+   "nl": "Sadhvi Meerabai",
+   "en": "Sadhvi Meerabai"
+  },
+  "en_fable": "Darkwood Camp NPC",
+  "archetype": "sadhvi",
+  "essential": false,
+  "home": "tamovana_shivir",
+  "role": {
+   "nl": "Zingende bhakta in het kamp",
+   "en": "Singing bhakta in the camp"
+  },
+  "desc": {
+   "nl": "Ze zingt de hele nacht bij het vuur over Krishna, en de Rakshasa's blijven weg. Niemand weet of het de liederen zijn of het vuur.",
+   "en": "She sings all night by the fire about Krishna, and the Rakshasas stay away. No one knows whether it is the songs or the fire."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#ffffff",
+   "cloth2": "#f28c28",
+   "hair": "#1a1a1a",
+   "female": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Slaap hier, Vira. Mijn liederen houden het donker buiten. Het meer verderop... daar zing ik niet. Daar wil de Yaksha dat je drinkt tot je valt. Vreemde wezens.",
+      "en": "Sleep here, Vira. My songs keep the dark out. The lake further on... I do not sing there. There the Yaksha wants you to drink until you fall. Strange beings."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Slaap tot de ochtend.",
+       "en": "Sleep until morning."
+      },
+      "sleep": true
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ }
+}

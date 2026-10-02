@@ -1,0 +1,90 @@
+{
+  "bhimnath": {"name": {"nl": "Mahant Bhimnath", "en": "Mahant Bhimnath"}, "en_fable": "Strength trainer", "archetype": "naga_sadhu", "essential": true, "home": "vira_akhara", "trainer": "bhimnath",
+    "role": {"nl": "Naga-sadhu, meester van Bala (lichaam)", "en": "Naga sadhu, master of Bala (body)"},
+    "desc": {"nl": "Naakt op as en een lendendoek na, met jata tot zijn knieën en een gada die twee man niet tillen. De Naga-sadhu's zijn de krijgersmonniken van de Akhara's; hij is hun grootste.", "en": "Naked but for ash and a loincloth, with jata to his knees and a gada two men cannot lift. The Naga sadhus are the warrior monks of the Akharas; he is their greatest."},
+    "body": {"skin": "#5c3a21", "cloth": "#f28c28", "cloth2": "#f28c28", "hair": "#4a3a2a", "beard": true, "jata": true, "ash": true, "big": true},
+    "dialogue": [
+      {"when": {"quest_stage": ["q_diksha", 0]},
+       "lines": [{"nl": "Bala. Het lichaam. Klik met je linkermuisknop om te slaan; drie slagen zijn een Sankhala. Houd de knop vast voor een Mahaprahara. Rechtermuisknop blokkeert; spatie rolt. Zo, dat is de hele Hatha-yoga van de oorlog.", "en": "Bala. The body. Click the left mouse button to strike; three strikes are a Sankhala. Hold the button for a Mahaprahara. Right mouse blocks; space rolls. There, that is the whole Hatha yoga of war."},
+                 {"nl": "Sla op de oefenpalen tot je armen huilen. Dan ga je naar Sharanga.", "en": "Hit the training posts until your arms weep. Then go to Sharanga."}],
+       "effects": {"set_flag": "diksha_bala", "advance_quest": "q_diksha"}},
+      {"lines": [{"nl": "Deha, Prana, Kavacha: spieren, adem, huid. Verhoog ze in je sadhana. Of leer de siddhi's van het lichaam: Ugra Rupa, de stormloop, de honderd zwaarden, de sprong van Hanuman.", "en": "Deha, Prana, Kavacha: muscle, breath, skin. Raise them in your sadhana. Or learn the siddhis of the body: Ugra Rupa, the charge, the hundred swords, Hanuman's leap."}],
+       "choices": [{"text": {"nl": "Leer me een siddhi / de Hatha Panth.", "en": "Teach me a siddhi / the Hatha Panth."}, "open_trainer": "bhimnath"}, {"text": {"nl": "Mijn sadhana.", "en": "My sadhana."}, "open_sadhana": true}, {"text": {"nl": "Tot later.", "en": "Until later."}, "end": true}]}
+    ]},
+  "sharanga": {"name": {"nl": "Acharya Sharanga", "en": "Acharya Sharanga"}, "en_fable": "Skill trainer", "archetype": "dhanurdhara", "essential": true, "home": "vira_akhara", "trainer": "sharanga",
+    "role": {"nl": "Meester van Kaushala (boog en behendigheid)", "en": "Master of Kaushala (bow and agility)"},
+    "desc": {"nl": "Een pezige vrouw uit de heuvels van het oosten, die een mango op honderd pas doormidden schiet en daarna pas vraagt van wie hij was.", "en": "A wiry woman from the eastern hills who splits a mango at a hundred paces and only then asks whose it was."},
+    "body": {"skin": "#8d5a3a", "cloth": "#2e7d32", "cloth2": "#c2b280", "hair": "#1a1a1a", "female": true, "bow": true},
+    "dialogue": [
+      {"when": {"quest_stage": ["q_diksha", 1]},
+       "lines": [{"nl": "Kaushala. Druk op F voor je boog. Houd de linkermuisknop vast om te spannen, laat los om te schieten. Een volle spanning doet dubbel. Tab vergrendelt een doel. Shift laat je rennen.", "en": "Kaushala. Press F for your bow. Hold the left mouse button to draw, release to shoot. A full draw deals double. Tab locks a target. Shift lets you run."},
+                 {"nl": "Vega, Lakshya, Chaturya: snelheid, oog, sluwheid. Een Vira met Chaturya betaalt minder in de bazaar. Ga nu naar Shyamali; zij maakt je bang.", "en": "Vega, Lakshya, Chaturya: speed, eye, cunning. A Vira with Chaturya pays less in the bazaar. Now go to Shyamali; she will frighten you."}],
+       "effects": {"set_flag": "diksha_kaushala", "advance_quest": "q_diksha", "give": "dhanush_loha"}},
+      {"lines": [{"nl": "De pijlenregen van Arjuna, het oog van Garuda. Wil je leren? Of wil je de Dhanur Panth betreden?", "en": "Arjuna's rain of arrows, the eye of Garuda. Do you want to learn? Or do you want to enter the Dhanur Panth?"}],
+       "choices": [{"text": {"nl": "Leer me een siddhi / de Dhanur Panth.", "en": "Teach me a siddhi / the Dhanur Panth."}, "open_trainer": "sharanga"}, {"text": {"nl": "Tot later.", "en": "Until later."}, "end": true}]}
+    ]},
+  "shyamali": {"name": {"nl": "Tantrika Shyamali", "en": "Tantrika Shyamali"}, "en_fable": "Will trainer", "archetype": "tantrika", "essential": true, "home": "vira_akhara", "trainer": "shyamali",
+    "role": {"nl": "Tantrika, meesteres van Shakti (wil)", "en": "Tantrika, mistress of Shakti (will)"},
+    "desc": {"nl": "Een vrouw in rood met een derde oog van vermiljoen op haar voorhoofd en een schedelketting. Ze lacht als ze vuur maakt. De dorpelingen noemen haar heks; de Akhara noemt haar Acharya.", "en": "A woman in red with a third eye of vermilion on her forehead and a necklace of skulls. She laughs when she makes fire. Villagers call her witch; the Akhara calls her Acharya."},
+    "body": {"skin": "#5c3a21", "cloth": "#c0392b", "cloth2": "#000000", "hair": "#1a1a1a", "female": true, "third_eye": true},
+    "dialogue": [
+      {"when": {"quest_stage": ["q_diksha", 2]},
+       "lines": [{"nl": "Shakti. De wil. Alles wat bestaat is Shakti die beweegt; een siddhi is Shakti die jij beweegt. Je Ojas, je levensenergie, is de prijs. Hij groeit terug. Langzaam, sneller als je mediteert met H.", "en": "Shakti. The will. Everything that exists is Shakti moving; a siddhi is Shakti that you move. Your Ojas, your life energy, is the price. It grows back. Slowly, faster when you meditate with H."},
+                 {"nl": "Ik geef je Agni Astra, de vuurbal. Druk op 1. Richt op de pop daar. Nu.", "en": "I give you Agni Astra, the fireball. Press 1. Aim at that dummy. Now."}],
+       "effects": {"set_flag": "diksha_shakti", "advance_quest": "q_diksha", "learn_siddhi": "agni_astra"}},
+      {"lines": [{"nl": "Vuur, bliksem, wind, het pantser van mantra's. Ik leer alles wat brandt. En de Tantra Panth, voor wie zijn lichaam als yantra wil gebruiken.", "en": "Fire, lightning, wind, the armour of mantras. I teach everything that burns. And the Tantra Panth, for those who want to use their body as a yantra."}],
+       "choices": [{"text": {"nl": "Leer me een siddhi / de Tantra Panth.", "en": "Teach me a siddhi / the Tantra Panth."}, "open_trainer": "shyamali"}, {"text": {"nl": "Tot later.", "en": "Until later."}, "end": true}]}
+    ]},
+  "charaka": {"name": {"nl": "Vaidya Charaka", "en": "Vaidya Charaka"}, "en_fable": "Guild shopkeeper", "archetype": "vaidya", "essential": true, "home": "vira_akhara", "shop": "akhara_vaidya", "trainer": "charaka",
+    "role": {"nl": "Geneesheer van de Akhara", "en": "Physician of the Akhara"},
+    "desc": {"nl": "Een rondbuikige vaidya die naar kamfer ruikt en elke wond als een puzzel ziet. Hij verkoopt rasa's en leert Sanjivani aan wie het waard is.", "en": "A round-bellied vaidya who smells of camphor and sees every wound as a puzzle. He sells elixirs and teaches Sanjivani to the worthy."},
+    "body": {"skin": "#a0623e", "cloth": "#e8e0c8", "cloth2": "#2ecc71", "hair": "#6e6e6e", "beard": false},
+    "dialogue": [
+      {"lines": [{"nl": "Prana-rasa voor het lichaam, Ojas-rasa voor de wil, Amrita voor als het te laat is. Wat zal het zijn?", "en": "Prana elixir for the body, Ojas elixir for the will, Amrita for when it is too late. What will it be?"}],
+       "choices": [{"text": {"nl": "Laat me je waren zien.", "en": "Show me your wares."}, "open_shop": "akhara_vaidya"}, {"text": {"nl": "Leer me Sanjivani.", "en": "Teach me Sanjivani."}, "open_trainer": "charaka"}, {"text": {"nl": "Tot later.", "en": "Until later."}, "end": true}]}
+    ]},
+  "brahmachari_vidu": {"name": {"nl": "Vidu", "en": "Vidu"}, "en_fable": "Guild apprentice", "archetype": "brahmachari", "essential": false, "home": "vira_akhara",
+    "role": {"nl": "Brahmachari, leerling van de Akhara", "en": "Brahmachari, student of the Akhara"},
+    "desc": {"nl": "Een jongen met een shikha en een eeuwige honger. Hij is drie keer gezakt voor zijn Snatak en vindt dat niet erg.", "en": "A boy with a shikha and an eternal hunger. He has failed his Snatak three times and does not mind."},
+    "body": {"skin": "#a0623e", "cloth": "#f28c28", "cloth2": "#e8e0c8", "hair": "#1a1a1a", "shikha": true},
+    "dialogue": [
+      {"lines": [{"nl": "Psst. Als je ooit bij de Yaksha in het Akhara Vana komt: hij houdt van raadsels. Het antwoord is altijd iets dat je al hebt. Zeg niet dat ik het zei.", "en": "Psst. If you ever get to the Yaksha in the Akhara Vana: he loves riddles. The answer is always something you already have. Do not say I said it."},
+                 {"nl": "En Bhimnath eet 's nachts stiekem laddu's. Ik heb het gezien.", "en": "And Bhimnath secretly eats laddus at night. I have seen it."}]}
+    ]},
+  "pehlwan_dara": {"name": {"nl": "Pehlwan Dara", "en": "Pehlwan Dara"}, "en_fable": "Guild wrestler", "archetype": "pehlwan", "essential": false, "home": "vira_akhara",
+    "role": {"nl": "Worstelaar van de Akhara", "en": "Wrestler of the Akhara"},
+    "desc": {"nl": "Een worstelaar met oren als bloemkolen en een glimlach als een gebarsten pot. Hij doet elke ochtend duizend dand-baithaks in de modder.", "en": "A wrestler with cauliflower ears and a smile like a cracked pot. He does a thousand dand-baithaks in the mud every morning."},
+    "body": {"skin": "#5c3a21", "cloth": "#8b4513", "cloth2": "#8b4513", "hair": "#1a1a1a", "big": true},
+    "dialogue": [
+      {"lines": [{"nl": "Laat je Dand-Baithak eens zien, shishya! Druk op X en kies hem. Een echte pehlwan doet hem voor hij ontbijt.", "en": "Show me your Dand-Baithak, shishya! Press X and pick it. A real pehlwan does it before breakfast."}]}
+    ]},
+  "raktambari_akhara": {"name": {"nl": "Raktambari", "en": "Raktambari"}, "en_fable": "Scarlet Robe (at the Guild)", "archetype": "vira", "essential": true, "home": "vira_akhara",
+    "role": {"nl": "Je moeder, teruggekeerd naar de Akhara", "en": "Your mother, returned to the Akhara"},
+    "desc": {"nl": "Ze draagt weer rood. Ze slaapt niet. Ze kijkt naar elke deur.", "en": "She wears red again. She does not sleep. She watches every door."},
+    "body": {"skin": "#a0623e", "cloth": "#c0392b", "cloth2": "#8b0000", "hair": "#9e9e9e", "female": true},
+    "dialogue": [
+      {"lines": [{"nl": "Ik heb Mayacharya gezien in de hal. Hij lachte naar me. Ik ken die lach, kind. Ik zag hem de nacht dat Vatagram brandde, onder een rood masker. Pas op.", "en": "I saw Mayacharya in the hall. He smiled at me. I know that smile, child. I saw it the night Vatagram burned, under a red mask. Beware."}]}
+    ]},
+  "udasi_jogi": {"name": {"nl": "Udasi Jogi", "en": "Udasi Jogi"}, "en_fable": "Wandering NPC", "archetype": "udasi", "essential": false, "home": "akhara_vana",
+    "role": {"nl": "Rondtrekkende bedelmonnik", "en": "Wandering mendicant"},
+    "desc": {"nl": "Een jogi met een bedelnap en één sandaal. Hij heeft overal geslapen en van niets spijt.", "en": "A jogi with a begging bowl and one sandal. He has slept everywhere and regrets nothing."},
+    "body": {"skin": "#8d5a3a", "cloth": "#9e9e9e", "cloth2": "#f28c28", "hair": "#6e6e6e", "beard": true, "thin": true},
+    "dialogue": [
+      {"lines": [{"nl": "Een munt voor een jogi? Nee? Dan een raad: de zilveren sleutels liggen waar niemand kijkt: achter waterrad, onder dood hout, in de schaduw van torens.", "en": "A coin for a jogi? No? Then advice: the silver keys lie where no one looks: behind waterwheels, under dead wood, in the shadow of towers."}],
+       "choices": [{"text": {"nl": "Hier, tien goud. (Dharma)", "en": "Here, ten gold. (Dharma)"}, "cost": 10, "karma": 5, "lines": [{"nl": "Moge je pad lang zijn en je sandalen twee.", "en": "May your road be long and your sandals two."}]}, {"text": {"nl": "Ga weg.", "en": "Go away."}, "end": true}]}
+    ]},
+  "udasi_jogi_2": {"name": {"nl": "Udasi Jogi", "en": "Udasi Jogi"}, "en_fable": "Wandering NPC", "archetype": "udasi", "essential": false, "home": "mahavana_dvar",
+    "role": {"nl": "Rondtrekkende bedelmonnik", "en": "Wandering mendicant"},
+    "desc": {"nl": "Dezelfde jogi? Een andere? Ze lijken allemaal op elkaar, zeggen ze zelf.", "en": "The same jogi? Another? They all look alike, they say themselves."},
+    "body": {"skin": "#8d5a3a", "cloth": "#9e9e9e", "cloth2": "#f28c28", "hair": "#6e6e6e", "beard": true, "thin": true},
+    "dialogue": [
+      {"lines": [{"nl": "De Yaksha bij deze poort eet niet, maar hij wil zien dat jij eet. Iets zuivers. Iets sattvisch. Ik zeg het alleen omdat je er hongerig uitziet.", "en": "The Yaksha at this gate does not eat, but he wants to see you eat. Something pure. Something sattvic. I only say it because you look hungry."}]}
+    ]},
+  "naga_sadhu_rudra": {"name": {"nl": "Rudra Giri", "en": "Rudra Giri"}, "en_fable": "Lookout Point NPC", "archetype": "naga_sadhu", "essential": false, "home": "drishtikuta",
+    "role": {"nl": "Naga-sadhu op de wachtheuvel", "en": "Naga sadhu on the lookout hill"},
+    "desc": {"nl": "Hij zit al vijf jaar op de top van Drishtikuta, naakt in de wind, en wacht op een teken. Hij heeft er intussen honderden Dasyu's weggejaagd.", "en": "He has sat atop Drishtikuta for five years, naked in the wind, waiting for a sign. Meanwhile he has driven off hundreds of Dasyus."},
+    "body": {"skin": "#5c3a21", "cloth": "#f28c28", "cloth2": "#f28c28", "hair": "#4a3a2a", "beard": true, "jata": true, "ash": true},
+    "dialogue": [
+      {"lines": [{"nl": "Oost: de stad, met al haar lawaai. Zuid: het woud, met al zijn tanden. West: water, stilte, een visser. Noord: de Akhara, waar je vandaan komt. Kies. Ik kies al vijf jaar niet.", "en": "East: the city, with all its noise. South: the forest, with all its teeth. West: water, silence, a fisherman. North: the Akhara, where you came from. Choose. I have not chosen for five years."}]}
+    ]}
+}

@@ -1,0 +1,3921 @@
+{
+ "kisna": {
+  "name": {
+   "nl": "Kisna de handelaar",
+   "en": "Kisna the trader"
+  },
+  "en_fable": "Oakvale trader (childhood)",
+  "archetype": "vaishya",
+  "essential": true,
+  "home": "vatagram_bachpan",
+  "role": {
+   "nl": "Rondreizende handelaar",
+   "en": "Travelling trader"
+  },
+  "desc": {
+   "nl": "Een dikke man met een kar vol glas en kruiden. Hij vertrouwt kinderen meer dan volwassenen.",
+   "en": "A fat man with a cart full of glass and spices. He trusts children more than adults."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#e67e22",
+   "cloth2": "#8b4513",
+   "hair": "#1a1a1a",
+   "beard": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "all": [
+      {
+       "quest_active": "q_tara_janmadin"
+      },
+      {
+       "not_flag": "bachpan_kisna_done"
+      }
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Hé jongen! Ik moet even naar de put. Let jij op mijn kar? Niemand aankomen, hè. Eén munt als alles er nog is.",
+      "en": "Hey boy! I need to go to the well. Will you watch my cart? Nobody touches it, right. One coin if everything is still there."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik let goed op. (Dharma)",
+       "en": "I will watch it well. (Dharma)"
+      },
+      "set_flag": "bachpan_kisna_done",
+      "gold": 1,
+      "karma": 10,
+      "lines": [
+       {
+        "nl": "Hij komt terug, telt zijn flessen, en knikt. 'Eerlijk kind. Hier, je munt.'",
+        "en": "He comes back, counts his bottles, and nods. 'Honest child. Here, your coin.'"
+       }
+      ]
+     },
+     {
+      "text": {
+       "nl": "Neem stiekem een mango van de kar. (Adharma)",
+       "en": "Secretly take a mango from the cart. (Adharma)"
+      },
+      "set_flag": "bachpan_kisna_done",
+      "gold": 1,
+      "karma": -10,
+      "give": "phala",
+      "lines": [
+       {
+        "nl": "Hij komt terug, telt, fronst... en haalt zijn schouders op. 'Eén mango. Ach. Hier, je munt. Maar ik onthoud het.'",
+        "en": "He comes back, counts, frowns... and shrugs. 'One mango. Oh well. Here, your coin. But I will remember.'"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_active": "q_tara_janmadin",
+     "not_has_item": "kaanch_chudi"
+    },
+    "lines": [
+     {
+      "nl": "De rode armband? Drie munten. Voor je zusje, hè? Ze zal hem prachtig vinden.",
+      "en": "The red bangle? Three coins. For your little sister, eh? She will find it beautiful."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Koop de armband (3 munten).",
+       "en": "Buy the bangle (3 coins)."
+      },
+      "cost": 3,
+      "give": "kaanch_chudi",
+      "lines": [
+       {
+        "nl": "Hij wikkelt hem in een blad. 'Een kind dat voor zijn zusje werkt. Daar word ik blij van.'",
+        "en": "He wraps it in a leaf. 'A child who works for his sister. That makes me glad.'"
+       }
+      ]
+     },
+     {
+      "text": {
+       "nl": "Nog niet.",
+       "en": "Not yet."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Glas, kruiden, dromen. Kom terug als je munten hebt.",
+      "en": "Glass, spices, dreams. Come back when you have coins."
+     }
+    ]
+   }
+  ]
+ },
+ "meera": {
+  "name": {
+   "nl": "Meera",
+   "en": "Meera"
+  },
+  "en_fable": "Oakvale woman (childhood)",
+  "archetype": "gramvasi",
+  "essential": true,
+  "home": "vatagram_bachpan",
+  "role": {
+   "nl": "Dorpsvrouw, op zoek naar haar man",
+   "en": "Village woman, looking for her husband"
+  },
+  "desc": {
+   "nl": "Ze staat met haar handen in haar zij bij de put en kijkt naar het strand.",
+   "en": "She stands with her hands on her hips by the well, looking at the beach."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#27ae60",
+   "cloth2": "#f1c40f",
+   "hair": "#1a1a1a",
+   "female": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "all": [
+      {
+       "quest_active": "q_tara_janmadin"
+      },
+      {
+       "not_flag": "bachpan_meera_done"
+      }
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Jij daar. Heb je Ratan gezien, mijn man? Hij zei dat hij ging vissen, maar de boot ligt er nog. Als je hem ziet, zeg me waar hij is. Ik geef je een munt.",
+      "en": "You there. Have you seen Ratan, my husband? He said he went fishing, but the boat is still here. If you see him, tell me where he is. I will give you a coin."
+     }
+    ]
+   },
+   {
+    "when": {
+     "all": [
+      {
+       "flag": "bachpan_ratan_seen"
+      },
+      {
+       "not_flag": "bachpan_meera_done"
+      }
+     ]
+    },
+    "lines": [
+     {
+      "nl": "En? Waar is hij?",
+      "en": "Well? Where is he?"
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Hij is achter de huizen, met een andere vrouw. (Dharma: de waarheid)",
+       "en": "He is behind the houses, with another woman. (Dharma: the truth)"
+      },
+      "set_flag": "bachpan_meera_done",
+      "gold": 1,
+      "karma": 10,
+      "lines": [
+       {
+        "nl": "Haar gezicht wordt steen. 'Dank je, kind. Hier, je munt. Ratan!' Ze loopt weg als een moesson.",
+        "en": "Her face turns to stone. 'Thank you, child. Here, your coin. Ratan!' She walks off like a monsoon."
+       }
+      ]
+     },
+     {
+      "text": {
+       "nl": "Hij is aan het vissen bij de rotsen. (Adharma: de leugen)",
+       "en": "He is fishing by the rocks. (Adharma: the lie)"
+      },
+      "set_flag": "bachpan_meera_done",
+      "karma": -10,
+      "lines": [
+       {
+        "nl": "'Bij de rotsen? Ach, die man.' Ze geeft je niets; Ratan heeft je al betaald.",
+        "en": "'By the rocks? Oh, that man.' She gives you nothing; Ratan has already paid you."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Mannen. Vissen.",
+      "en": "Men. Fishing."
+     }
+    ]
+   }
+  ]
+ },
+ "ratan": {
+  "name": {
+   "nl": "Ratan",
+   "en": "Ratan"
+  },
+  "en_fable": "Oakvale man (childhood)",
+  "archetype": "gramvasi",
+  "essential": true,
+  "home": "vatagram_bachpan",
+  "role": {
+   "nl": "Meera's man, verstopt achter de huizen",
+   "en": "Meera's husband, hiding behind the houses"
+  },
+  "desc": {
+   "nl": "Hij staat veel te dicht bij een vrouw die niet Meera is en kijkt schuldig naar iedereen die langsloopt.",
+   "en": "He stands far too close to a woman who is not Meera and looks guiltily at everyone who passes."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#5b3d2e",
+   "cloth2": "#c8b48a",
+   "hair": "#1a1a1a"
+  },
+  "dialogue": [
+   {
+    "when": {
+     "all": [
+      {
+       "quest_active": "q_tara_janmadin"
+      },
+      {
+       "not_flag": "bachpan_ratan_seen"
+      }
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Sst! Jongen! Als Meera vraagt waar ik ben: ik vis bij de rotsen. Ja? Hier, een munt. Voor je zwijgen.",
+      "en": "Shh! Boy! If Meera asks where I am: I am fishing by the rocks. Yes? Here, a coin. For your silence."
+     }
+    ],
+    "effects": {
+     "set_flag": "bachpan_ratan_seen",
+     "gold": 1
+    }
+   },
+   {
+    "lines": [
+     {
+      "nl": "Bij de rotsen. Vissen. Onthoud het.",
+      "en": "By the rocks. Fishing. Remember it."
+     }
+    ]
+   }
+  ]
+ },
+ "balram": {
+  "name": {
+   "nl": "Balram",
+   "en": "Balram"
+  },
+  "en_fable": "Oakvale bully (childhood)",
+  "archetype": "gunda",
+  "essential": true,
+  "home": "vatagram_bachpan",
+  "role": {
+   "nl": "De pestkop van het dorp",
+   "en": "The village bully"
+  },
+  "desc": {
+   "nl": "Twee jaar ouder, twee koppen groter, en hij pakt de kleine Chhotu zijn speelgoed af omdat hij kan.",
+   "en": "Two years older, two heads taller, and he takes little Chhotu's toy because he can."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#7f8c8d",
+   "cloth2": "#2c3e50",
+   "hair": "#1a1a1a",
+   "child": true,
+   "big": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "all": [
+      {
+       "quest_active": "q_tara_janmadin"
+      },
+      {
+       "not_flag": "bachpan_balram_done"
+      }
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Kijk, de visserszoon. Chhotu hier wil zijn olifantje terug. Help me hem te laten huilen, dan krijg je een munt. Of ga weg.",
+      "en": "Look, the fisherman's son. Chhotu here wants his elephant back. Help me make him cry and you get a coin. Or go away."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Laat hem met rust, Balram. (Dharma)",
+       "en": "Leave him alone, Balram. (Dharma)"
+      },
+      "set_flag": "bachpan_balram_done",
+      "gold": 1,
+      "karma": 10,
+      "lines": [
+       {
+        "nl": "Je duwt hem. Hij valt in de modder en de hele straat lacht. Chhotu geeft je zijn enige munt. 'Voor jou. Dank je.'",
+        "en": "You push him. He falls in the mud and the whole street laughs. Chhotu gives you his only coin. 'For you. Thank you.'"
+       }
+      ]
+     },
+     {
+      "text": {
+       "nl": "Pak het olifantje en gooi het in de put. (Adharma)",
+       "en": "Take the elephant and throw it in the well. (Adharma)"
+      },
+      "set_flag": "bachpan_balram_done",
+      "gold": 1,
+      "karma": -10,
+      "lines": [
+       {
+        "nl": "Chhotu huilt. Balram grijnst en geeft je een munt. 'Je bent goed, visserszoon. Slecht, maar goed.'",
+        "en": "Chhotu cries. Balram grins and hands you a coin. 'You are good, fisherman's son. Bad, but good.'"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Wat kijk je?",
+      "en": "What are you looking at?"
+     }
+    ]
+   }
+  ]
+ },
+ "chhotu": {
+  "name": {
+   "nl": "Chhotu",
+   "en": "Chhotu"
+  },
+  "en_fable": "Bullied child (childhood)",
+  "archetype": "gramvasi",
+  "essential": true,
+  "home": "vatagram_bachpan",
+  "role": {
+   "nl": "Het kleinste kind van het dorp",
+   "en": "The smallest child of the village"
+  },
+  "desc": {
+   "nl": "Vijf jaar, een kleien olifantje, en een pestkop die het afpakt.",
+   "en": "Five years old, a clay elephant, and a bully who takes it."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#3498db",
+   "cloth2": "#ffffff",
+   "hair": "#1a1a1a",
+   "child": true,
+   "small": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "flag": "bachpan_balram_done",
+     "karma_min": 1
+    },
+    "lines": [
+     {
+      "nl": "Je bent mijn held. Als ik groot ben, word ik ook Vira.",
+      "en": "You are my hero. When I grow up I will be a Vira too."
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Balram heeft mijn olifantje...",
+      "en": "Balram has my elephant..."
+     }
+    ]
+   }
+  ]
+ },
+ "gramvasi_vatagram_1": {
+  "name": {
+   "nl": "Dorpeling",
+   "en": "Villager"
+  },
+  "en_fable": "Villager",
+  "archetype": "gramvasi",
+  "essential": false,
+  "home": "vatagram_bachpan",
+  "generic": true,
+  "role": {
+   "nl": "Een visser van Vatagram",
+   "en": "A fisherman of Vatagram"
+  },
+  "desc": {
+   "nl": "Een gewone dorpeling.",
+   "en": "An ordinary villager."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#c8b48a",
+   "cloth2": "#5b3d2e",
+   "hair": "#1a1a1a"
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Mooie dag. Tara's verjaardag, toch? Bhadra is zo trots op jullie.",
+      "en": "Lovely day. Tara's birthday, right? Bhadra is so proud of you both."
+     }
+    ]
+   }
+  ]
+ },
+ "sarpanch_govind": {
+  "name": {
+   "nl": "Sarpanch Govind",
+   "en": "Sarpanch Govind"
+  },
+  "en_fable": "Oakvale Headman",
+  "archetype": "grihastha",
+  "essential": true,
+  "home": "vatagram",
+  "role": {
+   "nl": "Dorpshoofd van Vatagram",
+   "en": "Headman of Vatagram"
+  },
+  "desc": {
+   "nl": "Een oude man met een witte snor die het dorp herbouwde met zijn eigen handen. Hij huilt elke keer als hij je ziet, en ontkent het.",
+   "en": "An old man with a white moustache who rebuilt the village with his own hands. He cries every time he sees you, and denies it."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#ffffff",
+   "cloth2": "#c8b48a",
+   "hair": "#e0e0e0",
+   "beard": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "region": "vatagram_bachpan"
+    },
+    "lines": [
+     {
+      "nl": "Bhadra's jongen! Loop niet te ver, de zee is onrustig vandaag.",
+      "en": "Bhadra's boy! Do not wander too far, the sea is restless today."
+     }
+    ]
+   },
+   {
+    "when": {
+     "not_flag": "house_vatagram"
+    },
+    "lines": [
+     {
+      "nl": "Je bent terug. Je vaders huis staat er weer, ik heb het zelf herbouwd. Het is van jou, voor drieduizend goud. Niet voor mij; voor het dorp, zodat het nooit meer brandt.",
+      "en": "You are back. Your father's house stands again, I rebuilt it myself. It is yours, for three thousand gold. Not for me; for the village, so it never burns again."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Koop Bhadra's huis (3000 goud).",
+       "en": "Buy Bhadra's house (3000 gold)."
+      },
+      "cost": 3000,
+      "buy_house": "vatagram",
+      "set_flag": "house_vatagram",
+      "yasha": 50,
+      "lines": [
+       {
+        "nl": "'Welkom thuis, Vira.' Hij huilt. Hij ontkent het.",
+        "en": "'Welcome home, Vira.' He cries. He denies it."
+       }
+      ]
+     },
+     {
+      "text": {
+       "nl": "Later.",
+       "en": "Later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Het dorp is trots op je. Priya vraagt elke dag naar je, weet je dat? En Keshav wil je zien yoga doen.",
+      "en": "The village is proud of you. Priya asks about you every day, do you know? And Keshav wants to see you do yoga."
+     }
+    ]
+   }
+  ]
+ },
+ "priya": {
+  "name": {
+   "nl": "Priya",
+   "en": "Priya"
+  },
+  "en_fable": "Marriageable villager",
+  "archetype": "gramvasi",
+  "essential": true,
+  "home": "vatagram",
+  "marriable": true,
+  "role": {
+   "nl": "Weefster van Vatagram",
+   "en": "Weaver of Vatagram"
+  },
+  "desc": {
+   "nl": "Ze weeft de mooiste sari's van de kust en lacht om je mudra's. Geschenken en vriendelijke gebaren doen haar hart groeien.",
+   "en": "She weaves the finest saris of the coast and laughs at your mudras. Gifts and kind gestures make her heart grow."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#e0115f",
+   "cloth2": "#f1c40f",
+   "hair": "#1a1a1a",
+   "female": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "flag": "priya_married"
+    },
+    "lines": [
+     {
+      "nl": "Mijn Vira! Het eten staat klaar. Kom je vanavond thuis slapen?",
+      "en": "My Vira! Dinner is ready. Will you come home to sleep tonight?"
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Slaap thuis.",
+       "en": "Sleep at home."
+      },
+      "sleep": true
+     },
+     {
+      "text": {
+       "nl": "Tot later, lief.",
+       "en": "Until later, love."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "all": [
+      {
+       "affection_min": [
+        "priya",
+        100
+       ]
+      },
+      {
+       "flag": "house_vatagram"
+      },
+      {
+       "has_item": "mangalsutra"
+      }
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Je hebt een mangalsutra bij je. Ik zie het. Vraag het dan, Vira.",
+      "en": "You carry a mangalsutra. I see it. Then ask, Vira."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Wil je met me trouwen, Priya?",
+       "en": "Will you marry me, Priya?"
+      },
+      "take": "mangalsutra",
+      "marry": "priya",
+      "set_flag": "priya_married",
+      "karma": 20,
+      "yasha": 100,
+      "complete_quest": "q_priya_shadi",
+      "lines": [
+       {
+        "nl": "Ze knoopt het koord om haar hals. De hele kust komt eten. Zeventien bellen.",
+        "en": "She ties the cord around her neck. The whole coast comes to eat. Seventeen bells."
+       }
+      ]
+     },
+     {
+      "text": {
+       "nl": "Nog niet.",
+       "en": "Not yet."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "affection_min": [
+      "priya",
+      100
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Iedereen in het dorp weet het al, behalve jij. Koop een huis, haal een mangalsutra bij de handelaar van Uttara, en vraag het.",
+      "en": "Everyone in the village knows already, except you. Buy a house, get a mangalsutra from the merchant of Uttara, and ask."
+     }
+    ],
+    "effects": {
+     "start_quest": "q_priya_shadi"
+    }
+   },
+   {
+    "lines": [
+     {
+      "nl": "De Vira van Vatagram. Breng je me ooit een roos, of alleen trofeeën?",
+      "en": "The Vira of Vatagram. Will you ever bring me a rose, or only trophies?"
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Geef een geschenk.",
+       "en": "Give a gift."
+      },
+      "gift_menu": "priya"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "vaidya_dhanvant": {
+  "name": {
+   "nl": "Vaidya Dhanvant",
+   "en": "Vaidya Dhanvant"
+  },
+  "en_fable": "Oakvale apothecary",
+  "archetype": "vaidya",
+  "essential": false,
+  "home": "vatagram",
+  "shop": "vatagram_vaidya",
+  "role": {
+   "nl": "Dorpsdokter",
+   "en": "Village doctor"
+  },
+  "desc": {
+   "nl": "Een jonge vaidya die bij Charaka leerde en terugkwam om zijn dorp te dienen.",
+   "en": "A young vaidya who learned from Charaka and returned to serve his village."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#e8e0c8",
+   "cloth2": "#2ecc71",
+   "hair": "#1a1a1a"
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Kruiden, rasa's en goede raad: eet sattvisch.",
+      "en": "Herbs, elixirs and good advice: eat sattvic."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Laat zien.",
+       "en": "Show me."
+      },
+      "open_shop": "vatagram_vaidya"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "vyapari_vatagram": {
+  "name": {
+   "nl": "Vyapari Gopal",
+   "en": "Vyapari Gopal"
+  },
+  "en_fable": "Oakvale general trader",
+  "archetype": "vaishya",
+  "essential": false,
+  "home": "vatagram",
+  "shop": "vatagram_vyapari",
+  "role": {
+   "nl": "Algemene handelaar van Vatagram",
+   "en": "General trader of Vatagram"
+  },
+  "desc": {
+   "nl": "Kisna's zoon, met dezelfde kar en dezelfde buik.",
+   "en": "Kisna's son, with the same cart and the same belly."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#e67e22",
+   "cloth2": "#8b4513",
+   "hair": "#1a1a1a"
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Mijn vader vertelde altijd over een jongen die op zijn kar paste. Of een mango stal. Hij was nooit zeker welke.",
+      "en": "My father always told of a boy who watched his cart. Or stole a mango. He was never sure which."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Laat je waren zien.",
+       "en": "Show me your wares."
+      },
+      "open_shop": "vatagram_vyapari"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "nai_vatagram": {
+  "name": {
+   "nl": "Nai Shambhu",
+   "en": "Nai Shambhu"
+  },
+  "en_fable": "Barber",
+  "archetype": "nai",
+  "essential": false,
+  "home": "vatagram",
+  "shop": "nai",
+  "role": {
+   "nl": "Barbier van Vatagram",
+   "en": "Barber of Vatagram"
+  },
+  "desc": {
+   "nl": "Een barbier met een scheermes en alle roddels van de kust.",
+   "en": "A barber with a razor and all the gossip of the coast."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#ffffff",
+   "cloth2": "#3498db",
+   "hair": "#1a1a1a"
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Jata, shikha, mundan? Of een snor als een Rajput? Ga zitten.",
+      "en": "Jata, shikha, mundan? Or a moustache like a Rajput? Sit down."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Knip me.",
+       "en": "Cut my hair."
+      },
+      "open_shop": "nai"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "gramvasi_vatagram_2": {
+  "name": {
+   "nl": "Dorpeling",
+   "en": "Villager"
+  },
+  "en_fable": "Villager",
+  "archetype": "gramvasi",
+  "essential": false,
+  "home": "vatagram",
+  "generic": true,
+  "role": {
+   "nl": "Een boerin van Vatagram",
+   "en": "A farmer of Vatagram"
+  },
+  "desc": {
+   "nl": "Een gewone dorpeling.",
+   "en": "An ordinary villager."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#27ae60",
+   "cloth2": "#f1c40f",
+   "hair": "#1a1a1a",
+   "female": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "De Vira! Mijn kinderen tekenen je in het zand.",
+      "en": "The Vira! My children draw you in the sand."
+     }
+    ]
+   }
+  ]
+ },
+ "gramvasi_vatagram_3": {
+  "name": {
+   "nl": "Dorpeling",
+   "en": "Villager"
+  },
+  "en_fable": "Villager",
+  "archetype": "gramvasi",
+  "essential": false,
+  "home": "vatagram",
+  "generic": true,
+  "role": {
+   "nl": "Een visser van Vatagram",
+   "en": "A fisherman of Vatagram"
+  },
+  "desc": {
+   "nl": "Een gewone dorpeling.",
+   "en": "An ordinary villager."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#c8b48a",
+   "cloth2": "#5b3d2e",
+   "hair": "#1a1a1a"
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Die nacht... ik was op zee. Toen ik terugkwam was alles as. Behalve de Vata-boom. Bomen onthouden.",
+      "en": "That night... I was at sea. When I came back everything was ash. Except the Vata tree. Trees remember."
+     }
+    ]
+   }
+  ]
+ },
+ "balram_vayask": {
+  "name": {
+   "nl": "Balram",
+   "en": "Balram"
+  },
+  "en_fable": "Grown-up bully",
+  "archetype": "gramvasi",
+  "essential": false,
+  "home": "vatagram",
+  "role": {
+   "nl": "De pestkop van vroeger, nu smid",
+   "en": "The bully of old, now a smith"
+  },
+  "desc": {
+   "nl": "Hij werd een stille man met grote armen. Hij kijkt je niet aan.",
+   "en": "He became a quiet man with big arms. He does not look at you."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#7f8c8d",
+   "cloth2": "#2c3e50",
+   "hair": "#1a1a1a",
+   "big": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Ik weet wat ik vroeger was. Ik smeed nu hekken. Het is iets.",
+      "en": "I know what I was. I forge fences now. It is something."
+     }
+    ]
+   }
+  ]
+ },
+ "yoga_guru_keshav": {
+  "name": {
+   "nl": "Guru Keshav",
+   "en": "Guru Keshav"
+  },
+  "en_fable": "Unique (SD)",
+  "archetype": "hatha_yogi",
+  "essential": true,
+  "home": "vatagram",
+  "role": {
+   "nl": "Hatha-yogi, leraar van de dorpskinderen",
+   "en": "Hatha yogi, teacher of the village children"
+  },
+  "desc": {
+   "nl": "Een lenige grijsaard die elke ochtend op het strand de Surya Namaskar leidt. Hij staat vaker op zijn hoofd dan op zijn voeten.",
+   "en": "A supple greybeard who leads the Surya Namaskar on the beach every morning. He stands on his head more often than on his feet."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#f28c28",
+   "cloth2": "#f28c28",
+   "hair": "#e0e0e0",
+   "beard": true,
+   "thin": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_inactive": "q_yoga_pratiyogita"
+    },
+    "lines": [
+     {
+      "nl": "Een Vira die zijn lichaam niet kent, is een zwaard zonder greep. Ik leer je Vrikshasana, de boomhouding. Laat me dan drie dingen zien: de boom, een namaste en een pranam. Dan weet ik of je een mens bent of alleen een wapen.",
+      "en": "A Vira who does not know his body is a sword without a hilt. I will teach you Vrikshasana, the tree pose. Then show me three things: the tree, a namaste and a pranam. Then I will know whether you are a man or only a weapon."
+     }
+    ],
+    "effects": {
+     "start_quest": "q_yoga_pratiyogita",
+     "add_mudra": "vrikshasana"
+    }
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_yoga_pratiyogita",
+      1
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Boom, namaste, pranam. Je bent een mens. Hier, lees de Pradipika; ze weet meer dan ik.",
+      "en": "Tree, namaste, pranam. You are a man. Here, read the Pradipika; it knows more than I."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_yoga_pratiyogita"
+    }
+   },
+   {
+    "lines": [
+     {
+      "nl": "Adem in. Adem uit. Alles daartussen is yoga.",
+      "en": "Breathe in. Breathe out. Everything in between is yoga."
+     }
+    ]
+   }
+  ]
+ },
+ "machhuara_vata": {
+  "name": {
+   "nl": "Visser Bhola",
+   "en": "Fisherman Bhola"
+  },
+  "en_fable": "Beach NPC",
+  "archetype": "gramvasi",
+  "essential": false,
+  "home": "vata_tata",
+  "role": {
+   "nl": "Visser van het strand",
+   "en": "Fisherman of the beach"
+  },
+  "desc": {
+   "nl": "Hij vist waar je vader viste. Hij heeft Bhadra's oude boot.",
+   "en": "He fishes where your father fished. He has Bhadra's old boat."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#3498db",
+   "cloth2": "#c8b48a",
+   "hair": "#1a1a1a"
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "De Yaksha in de rots wil dansen zien. Niet zomaar dansen: de Tandava. Je hebt er een damaru voor nodig; er ligt er een begraven bij de palmen, zeggen de oude mensen.",
+      "en": "The Yaksha in the rock wants to see dancing. Not just dancing: the Tandava. You need a damaru for it; one lies buried by the palms, the old people say."
+     }
+    ]
+   }
+  ]
+ },
+ "lohar_bhola": {
+  "name": {
+   "nl": "Lohar Bhola",
+   "en": "Lohar Bhola"
+  },
+  "en_fable": "Bowerstone blacksmith",
+  "archetype": "lohar",
+  "essential": true,
+  "home": "shringarapura_dakshina",
+  "shop": "lohar",
+  "role": {
+   "nl": "Smid van de bazaar",
+   "en": "Smith of the bazaar"
+  },
+  "desc": {
+   "nl": "Een reus met verbrande wenkbrauwen die wootz-staal smeedt zoals zijn grootvader. Hij droomt van een hart van steen om het echte werk mee te doen.",
+   "en": "A giant with singed eyebrows who forges wootz steel like his grandfather. He dreams of a heart of stone to do the real work with."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#5b3d2e",
+   "cloth2": "#8c8c8c",
+   "hair": "#1a1a1a",
+   "beard": true,
+   "big": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_inactive": "q_lohar_ratna"
+    },
+    "lines": [
+     {
+      "nl": "IJzer, staal, soms obsidiaan. Maar een Siddha-khanda? Daar heb ik een Daitya-hart voor nodig, om het vuur heet genoeg te krijgen. Breng me er een, en ik smeed hem voor je. Gratis. Voor de eer.",
+      "en": "Iron, steel, sometimes obsidian. But a Siddha khanda? For that I need a Daitya heart, to get the fire hot enough. Bring me one, and I will forge it for you. Free. For the honour."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik breng je een Daitya-hart.",
+       "en": "I will bring you a Daitya heart."
+      },
+      "start_quest": "q_lohar_ratna"
+     },
+     {
+      "text": {
+       "nl": "Laat je wapens zien.",
+       "en": "Show me your weapons."
+      },
+      "open_shop": "lohar"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_active": "q_lohar_ratna",
+     "has_item": "daitya_hridaya"
+    },
+    "lines": [
+     {
+      "nl": "Het klopt nog! Geef hier. Drie dagen... nee, ik doe het nu. Kijk niet. Zo. Een Siddha-khanda. Mijn grootvader zou huilen.",
+      "en": "It still beats! Give it here. Three days... no, I will do it now. Do not look. There. A Siddha khanda. My grandfather would weep."
+     }
+    ],
+    "effects": {
+     "take": "daitya_hridaya",
+     "complete_quest": "q_lohar_ratna"
+    }
+   },
+   {
+    "lines": [
+     {
+      "nl": "Wapens, edelstenen, en als je wilt zet ik een steen in je lemmet. Kom kijken.",
+      "en": "Weapons, gems, and if you like I will set a stone in your blade. Come and look."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Laat je wapens zien.",
+       "en": "Show me your weapons."
+      },
+      "open_shop": "lohar"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "darzi_sudama": {
+  "name": {
+   "nl": "Darzi Sudama",
+   "en": "Darzi Sudama"
+  },
+  "en_fable": "Bowerstone tailor",
+  "archetype": "darzi",
+  "essential": false,
+  "home": "shringarapura_dakshina",
+  "shop": "darzi",
+  "role": {
+   "nl": "Kleermaker en pantsermaker",
+   "en": "Tailor and armourer"
+  },
+  "desc": {
+   "nl": "Een magere man met spelden in zijn mond die elke Vira een maat beter maakt dan hij is.",
+   "en": "A thin man with pins in his mouth who makes every Vira look a size better than he is."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#9b59b6",
+   "cloth2": "#ffffff",
+   "hair": "#6e6e6e"
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Katoen voor de zomer, leer voor het woud, maliën voor de Dasyu's, plaat voor de Daitya's. Wat draag je vandaag?",
+      "en": "Cotton for summer, leather for the forest, mail for the Dasyus, plate for the Daityas. What will you wear today?"
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Laat zien.",
+       "en": "Show me."
+      },
+      "open_shop": "darzi"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "vyapari_bazaar": {
+  "name": {
+   "nl": "Vyapari Seth Dhanraj",
+   "en": "Vyapari Seth Dhanraj"
+  },
+  "en_fable": "Bowerstone general store",
+  "archetype": "vaishya",
+  "essential": false,
+  "home": "shringarapura_dakshina",
+  "shop": "bazaar_general",
+  "role": {
+   "nl": "Algemene handelaar van de bazaar",
+   "en": "General merchant of the bazaar"
+  },
+  "desc": {
+   "nl": "Een seth met ringen aan elke vinger en een kraam zo groot als een tempel.",
+   "en": "A seth with rings on every finger and a stall as big as a temple."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#e3b341",
+   "cloth2": "#8b0000",
+   "hair": "#1a1a1a",
+   "beard": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Alles wat Jambudvipa maakt, ligt hier. Alles wat het niet maakt, bestel ik.",
+      "en": "Everything Jambudvipa makes lies here. Everything it does not make, I order."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Laat je waren zien.",
+       "en": "Show me your wares."
+      },
+      "open_shop": "bazaar_general"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "chandrika": {
+  "name": {
+   "nl": "Chandrika",
+   "en": "Chandrika"
+  },
+  "en_fable": "Tavern keeper",
+  "archetype": "madhushala",
+  "essential": false,
+  "home": "shringarapura_dakshina",
+  "shop": "madhushala",
+  "role": {
+   "nl": "Eigenares van de madhushala",
+   "en": "Owner of the madhushala"
+  },
+  "desc": {
+   "nl": "Een weduwe met een harde lach en zachte ogen. Haar madhushala is de enige plek in de stad waar Vira's en Dasyu's samen drinken.",
+   "en": "A widow with a hard laugh and soft eyes. Her madhushala is the only place in the city where Viras and Dasyus drink together."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#c0392b",
+   "cloth2": "#e3b341",
+   "hair": "#1a1a1a",
+   "female": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Palmwijn, sura, bhang. Of een bed voor de nacht. Of allebei, dat gaat vaak samen.",
+      "en": "Palm wine, sura, bhang. Or a bed for the night. Or both, they often go together."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Drank en eten.",
+       "en": "Drink and food."
+      },
+      "open_shop": "madhushala"
+     },
+     {
+      "text": {
+       "nl": "Een bed (20 goud).",
+       "en": "A bed (20 gold)."
+      },
+      "cost": 20,
+      "sleep": true
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "nai_ramu": {
+  "name": {
+   "nl": "Nai Ramu",
+   "en": "Nai Ramu"
+  },
+  "en_fable": "Barber",
+  "archetype": "nai",
+  "essential": false,
+  "home": "shringarapura_dakshina",
+  "shop": "nai",
+  "role": {
+   "nl": "Barbier van de bazaar",
+   "en": "Barber of the bazaar"
+  },
+  "desc": {
+   "nl": "Hij knipte de Rani, zegt hij. Niemand gelooft het. Hij knipt wel heel goed.",
+   "en": "He cut the Rani's hair, he says. No one believes it. He does cut very well."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#ffffff",
+   "cloth2": "#3498db",
+   "hair": "#1a1a1a"
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Haar en baard, mijn Vira. Ga zitten, kijk in de spiegel, en word iemand anders.",
+      "en": "Hair and beard, my Vira. Sit, look in the mirror, and become someone else."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Knip me.",
+       "en": "Cut my hair."
+      },
+      "open_shop": "nai"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "chitrakar_madhav": {
+  "name": {
+   "nl": "Chitrakar Madhav",
+   "en": "Chitrakar Madhav"
+  },
+  "en_fable": "Tattooist",
+  "archetype": "chitrakar",
+  "essential": false,
+  "home": "shringarapura_dakshina",
+  "shop": "chitrakar",
+  "role": {
+   "nl": "Tatoeëerder en yantra-schilder",
+   "en": "Tattooist and yantra painter"
+  },
+  "desc": {
+   "nl": "Zijn eigen lichaam is een tempel van inkt: Om op zijn borst, een Naga om zijn arm, een Sri Chakra op zijn rug.",
+   "en": "His own body is a temple of ink: Om on his chest, a Naga around his arm, a Sri Chakra on his back."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#1a1a1a",
+   "cloth2": "#e3b341",
+   "hair": "#1a1a1a",
+   "tattoos": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Een yantra op de huid werkt als een yantra op papier, alleen beter: je draagt hem altijd. Welke kracht wil je dragen?",
+      "en": "A yantra on the skin works like a yantra on paper, only better: you always carry it. Which power do you want to carry?"
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Laat je ontwerpen zien.",
+       "en": "Show me your designs."
+      },
+      "open_shop": "chitrakar"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "jyotishi_bhrigu": {
+  "name": {
+   "nl": "Jyotishi Bhrigu",
+   "en": "Jyotishi Bhrigu"
+  },
+  "en_fable": "Bookseller / fortune teller",
+  "archetype": "jyotishi",
+  "essential": true,
+  "home": "shringarapura_dakshina",
+  "shop": "jyotishi",
+  "role": {
+   "nl": "Astroloog en boekhandelaar",
+   "en": "Astrologer and bookseller"
+  },
+  "desc": {
+   "nl": "Een man met een horoscoop voor iedereen en een boek voor elke vraag. Hij heeft je komst voorspeld. Hij voorspelt iedereens komst.",
+   "en": "A man with a horoscope for everyone and a book for every question. He foretold your coming. He foretells everyone's coming."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#2c3e50",
+   "cloth2": "#e3b341",
+   "hair": "#6e6e6e",
+   "beard": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_inactive": "q_jyotishi"
+    },
+    "lines": [
+     {
+      "nl": "Je ster staat in Rohini, met Mangala in het achtste huis. Dat betekent: veel vechten, lang leven, en een zus die alles ziet. Wil je meer weten? Breng me een Yaksha-bloem uit de Dakini Shila; die bloeit alleen bij maanlicht. Dan lees ik je hele leven.",
+      "en": "Your star is in Rohini, with Mangala in the eighth house. That means: much fighting, long life, and a sister who sees everything. Want to know more? Bring me a Yaksha flower from the Dakini Shila; it blooms only by moonlight. Then I will read your whole life."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik breng de bloem.",
+       "en": "I will bring the flower."
+      },
+      "start_quest": "q_jyotishi"
+     },
+     {
+      "text": {
+       "nl": "Boeken.",
+       "en": "Books."
+      },
+      "open_shop": "jyotishi"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_active": "q_jyotishi",
+     "has_item": "yaksha_phool"
+    },
+    "lines": [
+     {
+      "nl": "De bloem! Ze gloeit nog. Luister: een masker zonder mond wacht onder de plek waar je leerde vechten. Een vriend is geen vriend. En in het noorden wacht een draak. Dat is alles wat de sterren zeggen. Het is genoeg.",
+      "en": "The flower! It still glows. Listen: a mask without a mouth waits beneath the place where you learned to fight. A friend is no friend. And in the north a dragon waits. That is all the stars say. It is enough."
+     }
+    ],
+    "effects": {
+     "take": "yaksha_phool",
+     "complete_quest": "q_jyotishi"
+    }
+   },
+   {
+    "lines": [
+     {
+      "nl": "Boeken, horoscopen, en de geruchten van Uttara. De Rani's zus, bijvoorbeeld. Ananya. Verdwenen. Het huis bij de Samadhi-velden zingt 's nachts, zeggen ze.",
+      "en": "Books, horoscopes, and the rumours of Uttara. The Rani's sister, for instance. Ananya. Vanished. The house by the Samadhi fields sings at night, they say."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Boeken.",
+       "en": "Books."
+      },
+      "open_shop": "jyotishi"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "gramvasi_nagar_1": {
+  "name": {
+   "nl": "Stedeling",
+   "en": "Townsperson"
+  },
+  "en_fable": "Townsperson",
+  "archetype": "gramvasi",
+  "essential": false,
+  "home": "shringarapura_dakshina",
+  "generic": true,
+  "role": {
+   "nl": "Een kruidenverkoper",
+   "en": "A spice seller"
+  },
+  "desc": {
+   "nl": "Een gewone stedeling.",
+   "en": "An ordinary townsperson."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#e67e22",
+   "cloth2": "#ffffff",
+   "hair": "#1a1a1a"
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Kurkuma, komijn, kardemom! En nieuws: de Rani zoekt een gemaal. Weer.",
+      "en": "Turmeric, cumin, cardamom! And news: the Rani seeks a consort. Again."
+     }
+    ]
+   }
+  ]
+ },
+ "gramvasi_nagar_2": {
+  "name": {
+   "nl": "Stedeling",
+   "en": "Townsperson"
+  },
+  "en_fable": "Townsperson",
+  "archetype": "gramvasi",
+  "essential": false,
+  "home": "shringarapura_dakshina",
+  "generic": true,
+  "role": {
+   "nl": "Een waterdrager",
+   "en": "A water carrier"
+  },
+  "desc": {
+   "nl": "Een gewone stedeling.",
+   "en": "An ordinary townsperson."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#3498db",
+   "cloth2": "#c8b48a",
+   "hair": "#1a1a1a",
+   "female": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Pas op voor Lakhan de dief. Hij lacht vriendelijk en je beurs is weg.",
+      "en": "Beware of Lakhan the thief. He smiles kindly and your purse is gone."
+     }
+    ]
+   }
+  ]
+ },
+ "chor_lakhan": {
+  "name": {
+   "nl": "Lakhan",
+   "en": "Lakhan"
+  },
+  "en_fable": "Bowerstone thief",
+  "archetype": "chor",
+  "essential": true,
+  "home": "shringarapura_dakshina",
+  "role": {
+   "nl": "Zakkenroller van de bazaar",
+   "en": "Pickpocket of the bazaar"
+  },
+  "desc": {
+   "nl": "Een jongen met snelle vingers en een glimlach die alles vergeeft. Hij steelt voor zijn zieke moeder, zegt hij. Hij heeft drie zieke moeders.",
+   "en": "A boy with quick fingers and a smile that forgives everything. He steals for his sick mother, he says. He has three sick mothers."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#7f8c8d",
+   "cloth2": "#2c3e50",
+   "hair": "#1a1a1a",
+   "thin": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_active": "q_chor_bazaar",
+     "not_flag": "chor_resolved"
+    },
+    "lines": [
+     {
+      "nl": "De garde stuurt een Vira voor mij? Ik ben vereerd. Luister, held: ik kan drie keer zoveel betalen als de garde. Je kijkt weg, ik verdwijn, en jij krijgt driehonderd.",
+      "en": "The guard sends a Vira for me? I am honoured. Listen, hero: I can pay three times what the guard pays. You look away, I vanish, and you get three hundred."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Je gaat mee naar de garde. (Dharma)",
+       "en": "You are coming to the guard. (Dharma)"
+      },
+      "set_flag": [
+       "chor_resolved",
+       "chor_arrested"
+      ],
+      "karma": 30,
+      "advance_quest": "q_chor_bazaar",
+      "lines": [
+       {
+        "nl": "Hij zucht. 'Dat dacht ik al. Je hebt zo'n gezicht.'",
+        "en": "He sighs. 'I thought so. You have that kind of face.'"
+       }
+      ]
+     },
+     {
+      "text": {
+       "nl": "Driehonderd. Ik heb je nooit gezien. (Adharma)",
+       "en": "Three hundred. I never saw you. (Adharma)"
+      },
+      "set_flag": [
+       "chor_resolved",
+       "chor_freed"
+      ],
+      "karma": -30,
+      "gold": 300,
+      "advance_quest": "q_chor_bazaar",
+      "lines": [
+       {
+        "nl": "'Een Vira met verstand. Zeldzaam.' Hij is weg voor je knippert.",
+        "en": "'A Vira with sense. Rare.' He is gone before you blink.'"
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Mooie beurs. Ik bedoel, mooie dag.",
+      "en": "Nice purse. I mean, nice day."
+     }
+    ]
+   }
+  ]
+ },
+ "rakshaka_nagar": {
+  "name": {
+   "nl": "Senapati Arjun Rao",
+   "en": "Senapati Arjun Rao"
+  },
+  "en_fable": "Bowerstone guard captain",
+  "archetype": "kshatriya",
+  "essential": true,
+  "home": "shringarapura_dakshina",
+  "role": {
+   "nl": "Kapitein van de stadsgarde",
+   "en": "Captain of the city guard"
+  },
+  "desc": {
+   "nl": "Een rechte man in een rechte stad vol kromme mensen. Hij haat de Rani en dient haar. Dat is zijn dharma, zegt hij.",
+   "en": "A straight man in a straight city full of crooked people. He hates the Rani and serves her. That is his dharma, he says."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#2c3e50",
+   "cloth2": "#e3b341",
+   "hair": "#1a1a1a",
+   "beard": true,
+   "armor": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_active": "q_shyama_haveli",
+     "has_item": "ananya_patra"
+    },
+    "lines": [
+     {
+      "nl": "Ananya's dagboek. Ik heb zeventien jaar op bewijs gewacht. Ik kan de Rani niet arresteren; niemand kan dat. Maar de stad zal het weten. Dank je, Vira. Dit is dharma.",
+      "en": "Ananya's diary. I have waited seventeen years for proof. I cannot arrest the Rani; no one can. But the city will know. Thank you, Vira. This is dharma."
+     }
+    ],
+    "effects": {
+     "take": "ananya_patra",
+     "set_flag": "rani_exposed",
+     "karma": 60,
+     "yasha": 150,
+     "complete_quest": "q_shyama_haveli"
+    }
+   },
+   {
+    "when": {
+     "quest_inactive": "q_chor_bazaar"
+    },
+    "lines": [
+     {
+      "nl": "Lakhan de dief steelt al maanden in de bazaar. Mijn mannen vangen hem niet; hij kent elke steeg. Jij bent een Vira; vang hem. Tweehonderd goud van de stad.",
+      "en": "Lakhan the thief has been stealing in the bazaar for months. My men cannot catch him; he knows every alley. You are a Vira; catch him. Two hundred gold from the city."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik vind hem.",
+       "en": "I will find him."
+      },
+      "start_quest": "q_chor_bazaar"
+     },
+     {
+      "text": {
+       "nl": "Niet mijn zaak.",
+       "en": "Not my business."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "flag": "chor_arrested",
+     "quest_active": "q_chor_bazaar"
+    },
+    "lines": [
+     {
+      "nl": "Lakhan zit in de cel. Hier is je goud. De stad is je dankbaar; de zakkenrollers niet.",
+      "en": "Lakhan is in the cell. Here is your gold. The city is grateful; the pickpockets are not."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_chor_bazaar"
+    }
+   },
+   {
+    "when": {
+     "flag": "chor_freed",
+     "quest_active": "q_chor_bazaar"
+    },
+    "lines": [
+     {
+      "nl": "Hij is verdwenen, en jij hebt een nieuwe beurs. Ik kan niets bewijzen. Ga weg uit mijn ogen.",
+      "en": "He has vanished, and you have a new purse. I can prove nothing. Get out of my sight."
+     }
+    ],
+    "effects": {
+     "fail_quest": "q_chor_bazaar"
+    }
+   },
+   {
+    "lines": [
+     {
+      "nl": "Shringarapura is veilig zolang ik wakker ben. Ik slaap weinig.",
+      "en": "Shringarapura is safe as long as I am awake. I sleep little."
+     }
+    ]
+   }
+  ]
+ },
+ "vyapari_uttara": {
+  "name": {
+   "nl": "Seth Ratanlal",
+   "en": "Seth Ratanlal"
+  },
+  "en_fable": "Bowerstone North merchant",
+  "archetype": "vaishya",
+  "essential": false,
+  "home": "shringarapura_uttara",
+  "shop": "uttara_rich",
+  "role": {
+   "nl": "De rijkste handelaar van Jambudvipa",
+   "en": "The richest merchant of Jambudvipa"
+  },
+  "desc": {
+   "nl": "Hij verkoopt alleen aan wie hij kent, en hij kent alleen wie rijk is. Nu kent hij jou.",
+   "en": "He sells only to those he knows, and he knows only the rich. Now he knows you."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#ffffff",
+   "cloth2": "#e3b341",
+   "hair": "#6e6e6e",
+   "beard": true,
+   "jewels": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Surya Khanda. Siddha-staal. Navaratna. Het verjongingselixer van Chyavana. Niets hier is goedkoop, en alles is het waard.",
+      "en": "Surya Khanda. Siddha steel. Navaratna. The rejuvenation elixir of Chyavana. Nothing here is cheap, and everything is worth it."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Laat zien.",
+       "en": "Show me."
+      },
+      "open_shop": "uttara_rich"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "pujari_nagar": {
+  "name": {
+   "nl": "Pujari Govardhan",
+   "en": "Pujari Govardhan"
+  },
+  "en_fable": "City priest",
+  "archetype": "pujari",
+  "essential": false,
+  "home": "shringarapura_uttara",
+  "role": {
+   "nl": "Priester van de stadstempel",
+   "en": "Priest of the city temple"
+  },
+  "desc": {
+   "nl": "Hij bidt voor de Rani omdat hij betaald wordt, en voor de stad omdat hij gelooft.",
+   "en": "He prays for the Rani because he is paid, and for the city because he believes."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#ffffff",
+   "cloth2": "#f28c28",
+   "hair": "#6e6e6e",
+   "shikha": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Een huwelijk met de Rani? De bel luidt zeventien keer. Ik heb ze één keer eerder geluid. Voor Vajrasena. Hij is nog steeds hier.",
+      "en": "A marriage to the Rani? The bell rings seventeen times. I rang them once before. For Vajrasena. He is still here."
+     }
+    ]
+   }
+  ]
+ },
+ "gramvasi_nagar_3": {
+  "name": {
+   "nl": "Edelvrouw",
+   "en": "Noblewoman"
+  },
+  "en_fable": "Townsperson",
+  "archetype": "gramvasi",
+  "essential": false,
+  "home": "shringarapura_uttara",
+  "generic": true,
+  "role": {
+   "nl": "Een edelvrouw van Uttara",
+   "en": "A noblewoman of Uttara"
+  },
+  "desc": {
+   "nl": "Zijde, parels, verveling.",
+   "en": "Silk, pearls, boredom."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#9b59b6",
+   "cloth2": "#e3b341",
+   "hair": "#1a1a1a",
+   "female": true,
+   "jewels": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "De Vira van de arena! Doe eens de Tandava voor ons. Nee? Dan een krachtvertoon. We vervelen ons zo.",
+      "en": "The Vira of the arena! Do the Tandava for us. No? Then a show of strength. We are so bored."
+     }
+    ]
+   }
+  ]
+ },
+ "navik_damodar": {
+  "name": {
+   "nl": "Navik Damodar",
+   "en": "Navik Damodar"
+  },
+  "en_fable": "Ferryman",
+  "archetype": "navik",
+  "essential": true,
+  "home": "shringarapura_ghat",
+  "role": {
+   "nl": "Veerman naar Ankusha Tata",
+   "en": "Ferryman to Ankusha Tata"
+  },
+  "desc": {
+   "nl": "Een oude zeeman die de kust kent als zijn littekens. Hij vaart alleen als de Akhara het zegt.",
+   "en": "An old seaman who knows the coast like his scars. He sails only when the Akhara says so."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#3498db",
+   "cloth2": "#ffffff",
+   "hair": "#e0e0e0",
+   "beard": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "flag": "ghat_boat_open"
+    },
+    "lines": [
+     {
+      "nl": "Naar de Ankusha Tata? De Mahant heeft betaald. Stap in.",
+      "en": "To Ankusha Tata? The Mahant has paid. Step aboard."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Vaar naar Ankusha Tata.",
+       "en": "Sail to Ankusha Tata."
+      },
+      "teleport": "ankusha_tata"
+     },
+     {
+      "text": {
+       "nl": "Nog niet.",
+       "en": "Not yet."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "De zee is dicht voor Vira's zonder opdracht. Vraag het de Mahant.",
+      "en": "The sea is closed to Viras without a commission. Ask the Mahant."
+     }
+    ]
+   }
+  ]
+ },
+ "gramvasi_nagar_4": {
+  "name": {
+   "nl": "Wasvrouw",
+   "en": "Washerwoman"
+  },
+  "en_fable": "Townsperson",
+  "archetype": "gramvasi",
+  "essential": false,
+  "home": "shringarapura_ghat",
+  "generic": true,
+  "role": {
+   "nl": "Een wasvrouw van de ghat",
+   "en": "A washerwoman of the ghat"
+  },
+  "desc": {
+   "nl": "Ze slaat de was op de trappen en de roddels op de stad.",
+   "en": "She beats the laundry on the steps and the gossip on the city."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#27ae60",
+   "cloth2": "#ffffff",
+   "hair": "#1a1a1a",
+   "female": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Vis hier als je wilt; de rivier is vol. En de Rani's zus? Vraag het de jyotishi. Ik zeg niets. Ik zeg nooit iets.",
+      "en": "Fish here if you like; the river is full. And the Rani's sister? Ask the jyotishi. I say nothing. I never say anything."
+     }
+    ]
+   }
+  ]
+ },
+ "kisan_dhanpat": {
+  "name": {
+   "nl": "Kisan Dhanpat",
+   "en": "Kisan Dhanpat"
+  },
+  "en_fable": "Orchard Farm owner",
+  "archetype": "kisan",
+  "essential": true,
+  "home": "amrai",
+  "role": {
+   "nl": "Boer van de Amrai",
+   "en": "Farmer of the Amrai"
+  },
+  "desc": {
+   "nl": "Een boer met handen als wortels en een hekel aan iedereen die zijn mango's niet respecteert.",
+   "en": "A farmer with hands like roots and a dislike of anyone who does not respect his mangoes."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#c8b48a",
+   "cloth2": "#27ae60",
+   "hair": "#6e6e6e",
+   "beard": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_stage": [
+      "q_amrai_raksha",
+      1
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Ze zijn weg! Allemaal! Mijn mango's, mijn hek, mijn dochters: alles nog heel. Hier, Vira. En neem zoveel vruchten als je dragen kunt.",
+      "en": "They are gone! All of them! My mangoes, my fence, my daughters: all intact. Here, Vira. And take as many fruits as you can carry."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_amrai_raksha",
+     "give": [
+      {
+       "item": "phala",
+       "count": 5
+      }
+     ]
+    }
+   },
+   {
+    "when": {
+     "quest_active": "q_amrai_raksha"
+    },
+    "lines": [
+     {
+      "nl": "Daar komen ze! Dasyu's, bij het hek! Vecht, Vira, vecht!",
+      "en": "Here they come! Dasyus, at the fence! Fight, Vira, fight!"
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_done": "q_amrai_lut"
+    },
+    "lines": [
+     {
+      "nl": "Jij. Ik weet wat je deed. Ga weg van mijn land.",
+      "en": "You. I know what you did. Get off my land."
+     }
+    ]
+   },
+   {
+    "when": {
+     "all": [
+      {
+       "quest_done": "q_amrai_raksha"
+      },
+      {
+       "quest_inactive": "q_vrika_jhund"
+      }
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Nu de Dasyu's weg zijn, zijn het de wolven. Zes Vrika's bij de Mahavana Dvar, elke nacht bij het hek. Dood ze, en ik betaal.",
+      "en": "Now the Dasyus are gone, it is the wolves. Six Vrikas at the Mahavana Dvar, at the fence every night. Kill them, and I pay."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik regel de wolven.",
+       "en": "I will deal with the wolves."
+      },
+      "start_quest": "q_vrika_jhund"
+     },
+     {
+      "text": {
+       "nl": "Later.",
+       "en": "Later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_vrika_jhund",
+      1
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Geen gehuil vannacht. Je bent je geld waard, Vira.",
+      "en": "No howling tonight. You are worth your money, Vira."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_vrika_jhund"
+    }
+   },
+   {
+    "lines": [
+     {
+      "nl": "Mango's. De beste van Jambudvipa. Neem er een, maar één.",
+      "en": "Mangoes. The best of Jambudvipa. Take one, but one."
+     }
+    ]
+   }
+  ]
+ },
+ "gramvasi_amrai_1": {
+  "name": {
+   "nl": "Boerendochter",
+   "en": "Farmer's daughter"
+  },
+  "en_fable": "Farm worker",
+  "archetype": "gramvasi",
+  "essential": false,
+  "home": "amrai",
+  "generic": true,
+  "role": {
+   "nl": "Werkt in de boomgaard",
+   "en": "Works in the orchard"
+  },
+  "desc": {
+   "nl": "Dhanpats oudste dochter.",
+   "en": "Dhanpat's eldest daughter."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#f1c40f",
+   "cloth2": "#27ae60",
+   "hair": "#1a1a1a",
+   "female": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Vader zegt dat de Dasyu's komen. Vader zegt dat elk jaar. Dit jaar heeft hij gelijk.",
+      "en": "Father says the Dasyus are coming. Father says that every year. This year he is right."
+     }
+    ]
+   }
+  ]
+ },
+ "gramvasi_amrai_2": {
+  "name": {
+   "nl": "Knecht",
+   "en": "Farmhand"
+  },
+  "en_fable": "Farm worker",
+  "archetype": "gramvasi",
+  "essential": false,
+  "home": "amrai",
+  "generic": true,
+  "role": {
+   "nl": "Knecht van de Amrai",
+   "en": "Farmhand of the Amrai"
+  },
+  "desc": {
+   "nl": "Een jongen met een hark.",
+   "en": "A boy with a rake."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#c8b48a",
+   "cloth2": "#5b3d2e",
+   "hair": "#1a1a1a"
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Achter het waterrad ligt iets zilvers, maar ik durf er niet bij. Slangen.",
+      "en": "Behind the waterwheel lies something silver, but I dare not reach it. Snakes."
+     }
+    ]
+   }
+  ]
+ },
+ "dasyu_dut_amrai": {
+  "name": {
+   "nl": "Dasyu-tussenpersoon",
+   "en": "Dasyu go-between"
+  },
+  "en_fable": "Bandit contact",
+  "archetype": "dasyu",
+  "essential": true,
+  "home": "amrai",
+  "role": {
+   "nl": "Contactpersoon van de Dasyu's",
+   "en": "Contact of the Dasyus"
+  },
+  "desc": {
+   "nl": "Een man met een rode sjerp die bij het hek wacht en doet alsof hij mango's koopt.",
+   "en": "A man with a red sash who waits by the fence pretending to buy mangoes."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#5b3d2e",
+   "cloth2": "#c0392b",
+   "hair": "#1a1a1a",
+   "beard": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_stage": [
+      "q_amrai_lut",
+      1
+     ]
+    },
+    "lines": [
+     {
+      "nl": "De wachters zijn dood. Mijn mannen laden de karren. Hier, Vira: vijfhonderd. Dvikhadga zal je naam onthouden.",
+      "en": "The guards are dead. My men are loading the carts. Here, Vira: five hundred. Dvikhadga will remember your name."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_amrai_lut"
+    }
+   },
+   {
+    "lines": [
+     {
+      "nl": "Vier wachters. Dan praten we.",
+      "en": "Four guards. Then we talk."
+     }
+    ]
+   }
+  ]
+ },
+ "dadi_rukmini": {
+  "name": {
+   "nl": "Dadi Rukmini",
+   "en": "Dadi Rukmini"
+  },
+  "en_fable": "Rose Cottage grandmother",
+  "archetype": "grihastha",
+  "essential": true,
+  "home": "gulabi_kutir",
+  "role": {
+   "nl": "Grootmoeder van de Gulabi Kutir",
+   "en": "Grandmother of the Gulabi Kutir"
+  },
+  "desc": {
+   "nl": "Een oude vrouw met rozen in haar haar en laddu's in haar zakken. Ze kende je moeder.",
+   "en": "An old woman with roses in her hair and laddus in her pockets. She knew your mother."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#ffffff",
+   "cloth2": "#e0115f",
+   "hair": "#e0e0e0",
+   "female": true,
+   "old": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_inactive": "q_gulabi_kutir"
+    },
+    "lines": [
+     {
+      "nl": "Raktambari's jongen! Dezelfde ogen. Kom, eet. Nee, wacht: mijn honing is op, en zonder honing geen laddu's. Twee potten woudhoning uit de Udyana, en ik bak voor je als voor mijn eigen kleinzoon.",
+      "en": "Raktambari's boy! The same eyes. Come, eat. No, wait: my honey is gone, and without honey no laddus. Two pots of forest honey from the Udyana, and I will bake for you as for my own grandson."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik haal honing voor je.",
+       "en": "I will get honey for you."
+      },
+      "start_quest": "q_gulabi_kutir"
+     },
+     {
+      "text": {
+       "nl": "Later, dadi.",
+       "en": "Later, dadi."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_active": "q_gulabi_kutir",
+     "has_item": [
+      "madhu",
+      2
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Honing! Ga zitten. Nee, ga zitten. Zo. Drie laddu's, en een vlecht van jasmijn die ik voor je moeder maakte en nooit gaf.",
+      "en": "Honey! Sit down. No, sit down. There. Three laddus, and a jasmine braid I made for your mother and never gave."
+     }
+    ],
+    "effects": {
+     "take": [
+      {
+       "item": "madhu",
+       "count": 2
+      }
+     ],
+     "complete_quest": "q_gulabi_kutir"
+    }
+   },
+   {
+    "lines": [
+     {
+      "nl": "Je moeder kwam hier elke lente. Ze zei dat de rozen haar aan iets herinnerden. Ze zei nooit aan wat.",
+      "en": "Your mother came here every spring. She said the roses reminded her of something. She never said of what."
+     }
+    ]
+   }
+  ]
+ },
+ "maa_sumitra": {
+  "name": {
+   "nl": "Sumitra",
+   "en": "Sumitra"
+  },
+  "en_fable": "Hobbe Cave quest giver",
+  "archetype": "gramvasi",
+  "essential": true,
+  "home": "mahavana_hrada",
+  "role": {
+   "nl": "Een moeder wier kind door de Pisacha's is meegenomen",
+   "en": "A mother whose child was taken by the Pisachas"
+  },
+  "desc": {
+   "nl": "Ze zit aan de oever en roept de naam van haar zoon tegen het water.",
+   "en": "She sits on the shore calling her son's name at the water."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#3498db",
+   "cloth2": "#ffffff",
+   "hair": "#1a1a1a",
+   "female": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_inactive": "q_pisacha_guha"
+    },
+    "lines": [
+     {
+      "nl": "Mijn Chhotu! De Pisacha's namen hem, naar de grot in het westen. Hij is zeven. Alsjeblieft, Vira. Ik heb niets. Ik heb alleen hem.",
+      "en": "My Chhotu! The Pisachas took him, to the cave in the west. He is seven. Please, Vira. I have nothing. I have only him."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik haal hem terug.",
+       "en": "I will bring him back."
+      },
+      "start_quest": "q_pisacha_guha"
+     },
+     {
+      "text": {
+       "nl": "Ik heb geen tijd.",
+       "en": "I have no time."
+      },
+      "karma": -5,
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_pisacha_guha",
+      4
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Chhotu! Mijn jongen! Vira, ik heb niets om je te geven dan dit: de smaragd van mijn moeder. Neem hem. Neem hem!",
+      "en": "Chhotu! My boy! Vira, I have nothing to give you but this: my mother's emerald. Take it. Take it!"
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_pisacha_guha",
+     "unfollow": "chhotu_bachcha"
+    }
+   },
+   {
+    "lines": [
+     {
+      "nl": "De grot in het westen. Snel, voor ze... snel.",
+      "en": "The cave in the west. Quickly, before they... quickly."
+     }
+    ]
+   }
+  ]
+ },
+ "chhotu_bachcha": {
+  "name": {
+   "nl": "Chhotu (het kind)",
+   "en": "Chhotu (the child)"
+  },
+  "en_fable": "Kidnapped child",
+  "archetype": "gramvasi",
+  "essential": true,
+  "home": "pisacha_guha",
+  "role": {
+   "nl": "Gevangen kind in de Pisacha Guha",
+   "en": "Captive child in the Pisacha Guha"
+  },
+  "desc": {
+   "nl": "Een jongetje in een kooi van botten.",
+   "en": "A little boy in a cage of bones."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#3498db",
+   "cloth2": "#ffffff",
+   "hair": "#1a1a1a",
+   "child": true,
+   "small": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_stage": [
+      "q_pisacha_guha",
+      2
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Ben jij een Vira? Echt? Mama zei dat er een zou komen. Breng me naar het meer. Ik loop achter je. Ik ben niet bang. Een beetje.",
+      "en": "Are you a Vira? Really? Mama said one would come. Take me to the lake. I will walk behind you. I am not afraid. A little."
+     }
+    ],
+    "effects": {
+     "advance_quest": "q_pisacha_guha",
+     "follow": "chhotu_bachcha"
+    }
+   },
+   {
+    "lines": [
+     {
+      "nl": "Naar het meer, naar mama.",
+      "en": "To the lake, to mama."
+     }
+    ]
+   }
+  ]
+ },
+ "vyapari_mohan": {
+  "name": {
+   "nl": "Vyapari Mohan",
+   "en": "Vyapari Mohan"
+  },
+  "en_fable": "Trader (Darkwood escort)",
+  "archetype": "vaishya",
+  "essential": true,
+  "home": "tamovana_pravesh",
+  "role": {
+   "nl": "Handelaar die door het Tamovana moet",
+   "en": "Trader who must cross the Tamovana"
+  },
+  "desc": {
+   "nl": "Een nerveuze man met een baal zijde die te zwaar is om te dragen en te kostbaar om achter te laten.",
+   "en": "A nervous man with a bale of silk too heavy to carry and too precious to leave."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#9b59b6",
+   "cloth2": "#e3b341",
+   "hair": "#1a1a1a"
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_inactive": "q_vyapari_raksha"
+    },
+    "lines": [
+     {
+      "nl": "Een Vira! De goden zijn goed. Ik moet naar het kamp in het Tamovana, met deze baal. Rakshasa's, Preta's, moerassen. Breng me levend naar het vuur en ik betaal driehonderdvijftig. Levend, hè.",
+      "en": "A Vira! The gods are good. I must reach the camp in the Tamovana, with this bale. Rakshasas, Pretas, marshes. Get me to the fire alive and I pay three hundred and fifty. Alive, mind."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Blijf achter me.",
+       "en": "Stay behind me."
+      },
+      "start_quest": "q_vyapari_raksha",
+      "follow": "vyapari_mohan"
+     },
+     {
+      "text": {
+       "nl": "Of ik neem de baal en laat jou hier. (Adharma)",
+       "en": "Or I take the bale and leave you here. (Adharma)"
+      },
+      "karma": -50,
+      "give": "vyapari_gathri",
+      "gold": 200,
+      "set_flag": "mohan_robbed",
+      "remove_npc": true,
+      "lines": [
+       {
+        "nl": "Hij geeft de baal zonder een woord en rent terug naar het noorden. Je verkoopt de zijde later voor tweehonderd.",
+        "en": "He hands over the bale without a word and runs back north. You sell the silk later for two hundred."
+       }
+      ]
+     },
+     {
+      "text": {
+       "nl": "Later.",
+       "en": "Later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_vyapari_raksha",
+      1
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Het vuur! We leven! Hier, driehonderdvijftig, en mijn eeuwige dank. Ik ga nooit meer het woud in. Nooit.",
+      "en": "The fire! We live! Here, three hundred and fifty, and my eternal thanks. I will never enter the forest again. Never."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_vyapari_raksha",
+     "unfollow": "vyapari_mohan"
+    }
+   },
+   {
+    "lines": [
+     {
+      "nl": "Niet zo snel! Mijn benen zijn geen Vira-benen!",
+      "en": "Not so fast! My legs are not Vira legs!"
+     }
+    ]
+   }
+  ]
+ },
+ "vyapari_shivir": {
+  "name": {
+   "nl": "Kamphandelaar Jaggu",
+   "en": "Camp trader Jaggu"
+  },
+  "en_fable": "Darkwood Camp trader",
+  "archetype": "vaishya",
+  "essential": false,
+  "home": "tamovana_shivir",
+  "shop": "shivir_vyapari",
+  "role": {
+   "nl": "Handelaar van het Tamovana-kamp",
+   "en": "Trader of the Tamovana camp"
+  },
+  "desc": {
+   "nl": "Hij verkoopt alles wat een reiziger in het donker nodig heeft, tegen prijzen die alleen in het donker redelijk lijken.",
+   "en": "He sells everything a traveller needs in the dark, at prices that only seem reasonable in the dark."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#5b3d2e",
+   "cloth2": "#e67e22",
+   "hair": "#1a1a1a",
+   "beard": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Rasa's, vlees, drank, leer. En een plek bij het vuur. Alles kost. Zo is het woud.",
+      "en": "Elixirs, meat, drink, leather. And a place by the fire. Everything costs. Such is the forest."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Laat zien.",
+       "en": "Show me."
+      },
+      "open_shop": "shivir_vyapari"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "gramvasi_shivir_1": {
+  "name": {
+   "nl": "Reiziger",
+   "en": "Traveller"
+  },
+  "en_fable": "Camp NPC",
+  "archetype": "gramvasi",
+  "essential": false,
+  "home": "tamovana_shivir",
+  "generic": true,
+  "role": {
+   "nl": "Een reiziger bij het vuur",
+   "en": "A traveller by the fire"
+  },
+  "desc": {
+   "nl": "Hij staart in het vuur en praat niet graag.",
+   "en": "He stares into the fire and does not like to talk."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#7f8c8d",
+   "cloth2": "#2c3e50",
+   "hair": "#1a1a1a"
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Oost van hier: de Andhaka Pith. Ga er niet heen. Ik ging. Ik kwam terug. Niet iedereen.",
+      "en": "East of here: the Andhaka Pith. Do not go. I went. I came back. Not everyone."
+     }
+    ]
+   }
+  ]
+ },
+ "machhuara_kanha": {
+  "name": {
+   "nl": "Kanha de visser",
+   "en": "Kanha the fisherman"
+  },
+  "en_fable": "Fisher Creek fisherman",
+  "archetype": "gramvasi",
+  "essential": true,
+  "home": "dhivara_nala",
+  "shop": "machhuara",
+  "role": {
+   "nl": "Visser van de Dhivara Nala",
+   "en": "Fisherman of the Dhivara Nala"
+  },
+  "desc": {
+   "nl": "Een man die meer vis dan mensen kent en dat prima vindt.",
+   "en": "A man who knows more fish than people and is fine with that."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#3498db",
+   "cloth2": "#c8b48a",
+   "hair": "#6e6e6e",
+   "beard": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_inactive": "q_dhivara_nala"
+    },
+    "lines": [
+     {
+      "nl": "Vissen is yoga met een hengel. Hier, een bansi. Ga bij het water staan, druk E, en wacht tot de dobber trekt: dan druk je weer. Vang drie vissen en ik leer je het geheim van de gouden vis.",
+      "en": "Fishing is yoga with a rod. Here, a bansi. Stand by the water, press E, and wait for the float to pull: then press again. Catch three fish and I will teach you the secret of the golden fish."
+     }
+    ],
+    "effects": {
+     "start_quest": "q_dhivara_nala",
+     "give": "bansi"
+    }
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_dhivara_nala",
+      1
+     ],
+     "has_item": [
+      "matsya",
+      3
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Drie vissen! Het geheim: de gouden vis zwemt in het Mahavana Hrada, en alleen als het nacht is. Vang haar en breng haar hier. Honderd goud nu, en meer als je haar vangt.",
+      "en": "Three fish! The secret: the golden fish swims in the Mahavana Hrada, and only at night. Catch her and bring her here. A hundred gold now, and more if you catch her."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_dhivara_nala",
+     "start_quest": "q_suvarna_matsya"
+    }
+   },
+   {
+    "when": {
+     "quest_active": "q_suvarna_matsya",
+     "has_item": "suvarna_matsya"
+    },
+    "lines": [
+     {
+      "nl": "Ze is het. Ze is het echt. Vijfhonderd goud, en mijn naam zal je nooit vergeten. Kanha. Kanha die de gouden vis zag.",
+      "en": "It is her. It really is her. Five hundred gold, and my name you will never forget. Kanha. Kanha who saw the golden fish."
+     }
+    ],
+    "effects": {
+     "take": "suvarna_matsya",
+     "complete_quest": "q_suvarna_matsya"
+    }
+   },
+   {
+    "lines": [
+     {
+      "nl": "Water, geduld, en een beetje geluk. Meer is vissen niet.",
+      "en": "Water, patience, and a bit of luck. Fishing is nothing more."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Koop vis of een hengel.",
+       "en": "Buy fish or a rod."
+      },
+      "open_shop": "machhuara"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "mukhiya_birbal": {
+  "name": {
+   "nl": "Mukhiya Birbal",
+   "en": "Mukhiya Birbal"
+  },
+  "en_fable": "Knothole Glade chief",
+  "archetype": "grihastha",
+  "essential": true,
+  "home": "granthivana",
+  "role": {
+   "nl": "Hoofdman van Granthivana",
+   "en": "Chief of Granthivana"
+  },
+  "desc": {
+   "nl": "Een houthakker met een bijl die nooit uit zijn hand is, zelfs niet als hij slaapt. Drie van zijn wachters zijn verdwenen.",
+   "en": "A woodcutter with an axe that never leaves his hand, even when he sleeps. Three of his guards have vanished."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#5b3d2e",
+   "cloth2": "#27ae60",
+   "hair": "#1a1a1a",
+   "beard": true,
+   "big": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_active": "q_mahant_patra",
+     "has_item": "mahant_patra"
+    },
+    "lines": [
+     {
+      "nl": "Van de Mahant? Eindelijk. Hij schrijft dat jij komt helpen. Goed. We hebben een Witte Rakshasa. Hij komt elke nacht, en gewone wapens glijden van hem af als water.",
+      "en": "From the Mahant? At last. He writes that you come to help. Good. We have a White Rakshasa. It comes every night, and ordinary weapons slide off it like water."
+     }
+    ],
+    "effects": {
+     "take": "mahant_patra",
+     "complete_quest": "q_mahant_patra"
+    },
+    "choices": [
+     {
+      "text": {
+       "nl": "Vertel me over de Witte Rakshasa.",
+       "en": "Tell me about the White Rakshasa."
+      },
+      "start_quest": "q_shveta_rakshasa",
+      "give": [
+       "vaidurya",
+       "talwar_ispat"
+      ],
+      "lines": [
+       {
+        "nl": "Neem dit: een Vaidurya-steen en een stalen talwar met een vatting. Zet de steen erin; gewijd metaal is het enige wat hem raakt. Dood zijn roedel 's nachts, dan komt hij zelf.",
+        "en": "Take this: a Vaidurya stone and a steel talwar with a setting. Set the stone in it; consecrated metal is the only thing that touches it. Kill its pack at night, then it comes itself."
+       }
+      ]
+     },
+     {
+      "text": {
+       "nl": "Later.",
+       "en": "Later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "all": [
+      {
+       "quest_done": "q_mahant_patra"
+      },
+      {
+       "quest_inactive": "q_shveta_rakshasa"
+      }
+     ]
+    },
+    "lines": [
+     {
+      "nl": "De Witte Rakshasa wacht niet. Help je ons?",
+      "en": "The White Rakshasa does not wait. Will you help us?"
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik help.",
+       "en": "I will help."
+      },
+      "start_quest": "q_shveta_rakshasa",
+      "give": [
+       "vaidurya",
+       "talwar_ispat"
+      ]
+     },
+     {
+      "text": {
+       "nl": "Later.",
+       "en": "Later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_shveta_rakshasa",
+      2
+     ]
+    },
+    "lines": [
+     {
+      "nl": "De kop van het beest. Granthivana zal het aan zijn kinderen vertellen. Hier: ons goud, en het zegel van het dorp. Je bent een van ons.",
+      "en": "The head of the beast. Granthivana will tell it to its children. Here: our gold, and the seal of the village. You are one of us."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_shveta_rakshasa",
+     "give": "sarpanch_mohar"
+    }
+   },
+   {
+    "when": {
+     "quest_active": "q_shveta_rakshasa"
+    },
+    "lines": [
+     {
+      "nl": "'s Nachts, bij de palissade. Dood de roedel. Dan komt de witte.",
+      "en": "At night, by the palisade. Kill the pack. Then the white one comes."
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Hout, bijlen, en rust. Eindelijk rust.",
+      "en": "Wood, axes, and peace. At last, peace."
+     }
+    ]
+   }
+  ]
+ },
+ "vyapari_granthivana": {
+  "name": {
+   "nl": "Handelaar Tulsa",
+   "en": "Trader Tulsa"
+  },
+  "en_fable": "Knothole Glade trader",
+  "archetype": "vaishya",
+  "essential": false,
+  "home": "granthivana",
+  "shop": "granthivana_vyapari",
+  "role": {
+   "nl": "Handelaar van Granthivana",
+   "en": "Trader of Granthivana"
+  },
+  "desc": {
+   "nl": "Ze verkoopt bijlen, honing en leer, en ze telt het geld twee keer.",
+   "en": "She sells axes, honey and leather, and counts the money twice."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#27ae60",
+   "cloth2": "#5b3d2e",
+   "hair": "#1a1a1a",
+   "female": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Bijlen voor bomen, bijlen voor Rakshasa's. Dezelfde bijlen.",
+      "en": "Axes for trees, axes for Rakshasas. The same axes."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Laat zien.",
+       "en": "Show me."
+      },
+      "open_shop": "granthivana_vyapari"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "gramvasi_granthi_1": {
+  "name": {
+   "nl": "Houthakker",
+   "en": "Woodcutter"
+  },
+  "en_fable": "Villager",
+  "archetype": "gramvasi",
+  "essential": false,
+  "home": "granthivana",
+  "generic": true,
+  "role": {
+   "nl": "Houthakker van Granthivana",
+   "en": "Woodcutter of Granthivana"
+  },
+  "desc": {
+   "nl": "Hij slaapt met zijn bijl.",
+   "en": "He sleeps with his axe."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#5b3d2e",
+   "cloth2": "#c8b48a",
+   "hair": "#1a1a1a",
+   "beard": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "De Yaksha bij de put wil een geschenk. Een bloemenkrans, zeggen ze. Hij is een romanticus, voor een rots.",
+      "en": "The Yaksha by the well wants a gift. A flower garland, they say. He is a romantic, for a rock."
+     }
+    ]
+   }
+  ]
+ },
+ "gramvasi_granthi_2": {
+  "name": {
+   "nl": "Dorpsvrouw",
+   "en": "Village woman"
+  },
+  "en_fable": "Villager",
+  "archetype": "gramvasi",
+  "essential": false,
+  "home": "granthivana",
+  "generic": true,
+  "role": {
+   "nl": "Een moeder van Granthivana",
+   "en": "A mother of Granthivana"
+  },
+  "desc": {
+   "nl": "Ze houdt haar kinderen binnen na zonsondergang.",
+   "en": "She keeps her children inside after sunset."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#e0115f",
+   "cloth2": "#ffffff",
+   "hair": "#1a1a1a",
+   "female": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Wit als sneeuw, en ogen als ijs. Mijn man zag hem. Mijn man is er niet meer.",
+      "en": "White as snow, and eyes like ice. My husband saw it. My husband is no more."
+     }
+    ]
+   }
+  ]
+ },
+ "rangadhyaksha": {
+  "name": {
+   "nl": "Rangadhyaksha Bhanu",
+   "en": "Rangadhyaksha Bhanu"
+  },
+  "en_fable": "Arena master",
+  "archetype": "kshatriya",
+  "essential": true,
+  "home": "rangabhumi",
+  "role": {
+   "nl": "Meester van de Rangabhumi",
+   "en": "Master of the Rangabhumi"
+  },
+  "desc": {
+   "nl": "Een oud-kampioen met één oog en een stem die het hele amfitheater vult.",
+   "en": "A former champion with one eye and a voice that fills the whole amphitheatre."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#8b0000",
+   "cloth2": "#e3b341",
+   "hair": "#6e6e6e",
+   "beard": true,
+   "big": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_active": "q_rangabhumi",
+     "not_flag": "arena_won"
+    },
+    "lines": [
+     {
+      "nl": "De Vira van de Akhara! Acht rondes: kevers, Pisacha's, Dasyu's, Rakshasa's, Preta's, een Daitya, Dakini's, pehlwans. En dan... Marmara. Het publiek wil bloed. De Rani wil een held. Ik wil dat je overleeft; dat is goed voor de zaken. Klaar?",
+      "en": "The Vira of the Akhara! Eight rounds: beetles, Pisachas, Dasyus, Rakshasas, Pretas, a Daitya, Dakinis, pehlwans. And then... Marmara. The crowd wants blood. The Rani wants a hero. I want you to survive; that is good for business. Ready?"
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Open de poorten.",
+       "en": "Open the gates."
+      },
+      "arena_start": true,
+      "end": true
+     },
+     {
+      "text": {
+       "nl": "Nog niet.",
+       "en": "Not yet."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_active": "q_rangabhumi",
+     "flag": "arena_won"
+    },
+    "lines": [
+     {
+      "nl": "Nooit, in dertig jaar, heb ik zoiets gezien. Het masker... iedereen zag het. En jij staat nog. Hier, je prijs. En de Rani wil je spreken, in Uttara. Ga, voor ze van gedachten verandert.",
+      "en": "Never, in thirty years, have I seen such a thing. The mask... everyone saw it. And you still stand. Here, your prize. And the Rani wants to speak to you, in Uttara. Go, before she changes her mind."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_rangabhumi",
+     "set_flag": "rangabhumi_done"
+    }
+   },
+   {
+    "when": {
+     "flag": "rangabhumi_done"
+    },
+    "lines": [
+     {
+      "nl": "Kampioen! Wil je nog eens vechten? Vijf rondes, goud per ronde, geen Marmara dit keer.",
+      "en": "Champion! Want to fight again? Five rounds, gold per round, no Marmara this time."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Open de poorten.",
+       "en": "Open the gates."
+      },
+      "arena_start": true,
+      "end": true
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "De arena is voor Vira's met een naam. Kom terug met een opdracht van de Akhara.",
+      "en": "The arena is for Viras with a name. Come back with a commission from the Akhara."
+     }
+    ]
+   }
+  ]
+ },
+ "vyapari_rangabhumi": {
+  "name": {
+   "nl": "Arenahandelaar",
+   "en": "Arena trader"
+  },
+  "en_fable": "Arena shop",
+  "archetype": "vaishya",
+  "essential": false,
+  "home": "rangabhumi",
+  "shop": "rangabhumi_vyapari",
+  "role": {
+   "nl": "Verkoper onder de tribunes",
+   "en": "Seller beneath the stands"
+  },
+  "desc": {
+   "nl": "Rasa's voor de vechters, wijn voor het publiek.",
+   "en": "Elixirs for the fighters, wine for the crowd."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#e67e22",
+   "cloth2": "#8b0000",
+   "hair": "#1a1a1a"
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Drink voor je vecht. Niet te veel.",
+      "en": "Drink before you fight. Not too much."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Laat zien.",
+       "en": "Show me."
+      },
+      "open_shop": "rangabhumi_vyapari"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "bhaskara": {
+  "name": {
+   "nl": "Bhaskara",
+   "en": "Bhaskara"
+  },
+  "en_fable": "Lighthouse keeper",
+  "archetype": "gramvasi",
+  "essential": true,
+  "home": "ankusha_tata",
+  "role": {
+   "nl": "Wachter van de Deepastambha",
+   "en": "Keeper of the Deepastambha"
+  },
+  "desc": {
+   "nl": "Een eenzame man die elke nacht de vuurtoren brandend houdt en overdag naar de zee kijkt alsof ze hem iets schuldig is.",
+   "en": "A lonely man who keeps the lighthouse burning every night and by day looks at the sea as if it owes him something."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#3498db",
+   "cloth2": "#ffffff",
+   "hair": "#6e6e6e",
+   "beard": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "De lens is oud, de olie is duur, en het licht is het enige wat de schepen van de rotsen houdt. Als je ooit een Yaksha wilt verslaan: die van onze kust houdt van raadsels. 'Wat is het dat de kust omarmt en toch nooit blijft?' Denk erover na.",
+      "en": "The lens is old, the oil is expensive, and the light is the only thing that keeps the ships off the rocks. If you ever want to beat a Yaksha: ours on this coast loves riddles. 'What embraces the coast and yet never stays?' Think about it."
+     }
+    ]
+   }
+  ]
+ },
+ "vyapari_ankusha": {
+  "name": {
+   "nl": "Handelaar Varuna",
+   "en": "Trader Varuna"
+  },
+  "en_fable": "Hook Coast trader",
+  "archetype": "vaishya",
+  "essential": false,
+  "home": "ankusha_tata",
+  "shop": "ankusha_vyapari",
+  "role": {
+   "nl": "Havenhandelaar van Ankusha Tata",
+   "en": "Harbour trader of Ankusha Tata"
+  },
+  "desc": {
+   "nl": "Hij ruikt naar zout en verkoopt alles wat van de zee komt of ernaartoe gaat.",
+   "en": "He smells of salt and sells everything that comes from the sea or goes to it."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#3498db",
+   "cloth2": "#e3b341",
+   "hair": "#1a1a1a",
+   "beard": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Kokosnoten, vis, bogen van het zuiden, maliën uit het noorden. En saffieren, als je er een kunt betalen.",
+      "en": "Coconuts, fish, bows from the south, mail from the north. And sapphires, if you can afford one."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Laat zien.",
+       "en": "Show me."
+      },
+      "open_shop": "ankusha_vyapari"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "gramvasi_ankusha_1": {
+  "name": {
+   "nl": "Zeeman",
+   "en": "Sailor"
+  },
+  "en_fable": "Townsperson",
+  "archetype": "gramvasi",
+  "essential": false,
+  "home": "ankusha_tata",
+  "generic": true,
+  "role": {
+   "nl": "Een zeeman van de haven",
+   "en": "A sailor of the harbour"
+  },
+  "desc": {
+   "nl": "Hij heeft de hele kust gezien en gelooft geen woord ervan.",
+   "en": "He has seen the whole coast and believes not a word of it."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#ffffff",
+   "cloth2": "#3498db",
+   "hair": "#1a1a1a"
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Ze zeggen dat er een blauw zwaard in de zee ligt, hier bij de pier. Vissers hebben het gezien. Niemand heeft het gevangen. Nog niet.",
+      "en": "They say a blue sword lies in the sea, here by the pier. Fishermen have seen it. No one has caught it. Not yet."
+     }
+    ]
+   }
+  ]
+ },
+ "vadhaka_bhairon": {
+  "name": {
+   "nl": "Vadhaka Bhairon",
+   "en": "Vadhaka Bhairon"
+  },
+  "en_fable": "Headsman",
+  "archetype": "vadhaka",
+  "essential": false,
+  "home": "vadhyagiri",
+  "role": {
+   "nl": "De beul van Shringarapura",
+   "en": "The executioner of Shringarapura"
+  },
+  "desc": {
+   "nl": "Een man met een kap en een parashu die scherper is dan zijn geweten. Hij bidt voor elk hoofd dat hij neemt.",
+   "en": "A man with a hood and a parashu sharper than his conscience. He prays for every head he takes."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#1a1a1a",
+   "cloth2": "#8b0000",
+   "hair": "#000000",
+   "hood": true,
+   "big": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Oost ligt het Shmashana. Daar wonen de Aghori's. Ze zijn niet zoals ik. Ik dood op bevel. Zij lachen om de dood. Ik weet niet wie erger is.",
+      "en": "East lies the Shmashana. The Aghoris live there. They are not like me. I kill on command. They laugh at death. I do not know which is worse."
+     }
+    ]
+   }
+  ]
+ },
+ "karagar_mukhya": {
+  "name": {
+   "nl": "Cipier Yamadut",
+   "en": "Jailer Yamadut"
+  },
+  "en_fable": "Bargate Warden",
+  "archetype": "rakshaka",
+  "essential": false,
+  "home": "patala_karagar",
+  "as_enemy": "karagar_rakshak",
+  "role": {
+   "nl": "Hoofdcipier van Patala Karagar",
+   "en": "Head jailer of Patala Karagar"
+  },
+  "desc": {
+   "nl": "Een man zonder slaap en zonder medelijden, met een sleutel aan een koord om zijn nek.",
+   "en": "A man without sleep and without pity, with a key on a cord around his neck."
+  },
+  "body": {
+   "skin": "#6b4a3a",
+   "cloth": "#3e3e4e",
+   "cloth2": "#5d6d7e",
+   "hair": "#000000",
+   "armor": true,
+   "big": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_active": "q_patala_karagar"
+    },
+    "lines": [
+     {
+      "nl": "Een nieuwe gevangene die zichzelf aangeeft? Nee... het zegel van de Akhara. De Rode's zoon. Ze zei dat je zou komen. Twaalf jaar lang. Je krijgt haar niet. Ik heb de sleutel, en ik slaap nooit.",
+      "en": "A new prisoner who turns himself in? No... the seal of the Akhara. The Red One's son. She said you would come. For twelve years. You will not get her. I have the key, and I never sleep."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Dan sterf je wakker.",
+       "en": "Then you die awake."
+      },
+      "remove_npc": true,
+      "end": true,
+      "set_flag": "karagar_fight"
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Geen bezoek.",
+      "en": "No visitors."
+     }
+    ]
+   }
+  ]
+ },
+ "bandi_1": {
+  "name": {
+   "nl": "Gevangene Shankar",
+   "en": "Prisoner Shankar"
+  },
+  "en_fable": "Bargate prisoner",
+  "archetype": "gramvasi",
+  "essential": true,
+  "home": "patala_karagar",
+  "role": {
+   "nl": "Een gevangene uit Granthivana",
+   "en": "A prisoner from Granthivana"
+  },
+  "desc": {
+   "nl": "Een houthakker die een cipier sloeg en het nooit heeft betreurd.",
+   "en": "A woodcutter who struck a jailer and never regretted it."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#7a4a2a",
+   "cloth2": "#4a2c10",
+   "hair": "#1a1a1a",
+   "beard": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_inactive": "q_naga_patala"
+    },
+    "lines": [
+     {
+      "nl": "Vira. De Naga's op de Patala Marg hebben de trishula van mijn vader. Vier van hen bewaken hem. Dood ze, en hij is van jou; ik heb er hier toch niets aan.",
+      "en": "Vira. The Nagas on the Patala Marg have my father's trishula. Four of them guard it. Kill them, and it is yours; I have no use for it in here anyway."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik dood de Naga's.",
+       "en": "I will kill the Nagas."
+      },
+      "start_quest": "q_naga_patala"
+     },
+     {
+      "text": {
+       "nl": "Later.",
+       "en": "Later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_naga_patala",
+      1
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Vier Naga's. Je bent gek, en ik hou van gekken. De trishula is bij de trap, onder de grootste steen. Neem hem.",
+      "en": "Four Nagas. You are mad, and I love madmen. The trishula is by the stairs, under the biggest stone. Take it."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_naga_patala"
+    }
+   },
+   {
+    "lines": [
+     {
+      "nl": "Nog een dag. Nog een dag.",
+      "en": "Another day. Another day."
+     }
+    ]
+   }
+  ]
+ },
+ "bandi_2": {
+  "name": {
+   "nl": "Gevangene",
+   "en": "Prisoner"
+  },
+  "en_fable": "Bargate prisoner",
+  "archetype": "gramvasi",
+  "essential": false,
+  "home": "patala_karagar",
+  "generic": true,
+  "role": {
+   "nl": "Een gevangene",
+   "en": "A prisoner"
+  },
+  "desc": {
+   "nl": "Hij kerft dagen in de muur. Hij is bij vierduizend.",
+   "en": "He carves days into the wall. He is at four thousand."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#7a4a2a",
+   "cloth2": "#4a2c10",
+   "hair": "#9e9e9e",
+   "beard": true,
+   "thin": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "De Rode zit in de laatste cel. Ze zingt 's nachts. Vatagram-liederen. Niemand durft haar het zwijgen op te leggen.",
+      "en": "The Red One is in the last cell. She sings at night. Vatagram songs. No one dares silence her."
+     }
+    ]
+   }
+  ]
+ },
+ "vyapari_dasyu": {
+  "name": {
+   "nl": "Heler Gabbar",
+   "en": "Fence Gabbar"
+  },
+  "en_fable": "Bandit camp trader",
+  "archetype": "dasyu",
+  "essential": false,
+  "home": "dasyu_shivir",
+  "shop": "dasyu_vyapari",
+  "role": {
+   "nl": "Heler van het roverskamp",
+   "en": "Fence of the bandit camp"
+  },
+  "desc": {
+   "nl": "Hij koopt alles zonder vragen en verkoopt alles zonder garantie.",
+   "en": "He buys everything without questions and sells everything without guarantee."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#5b3d2e",
+   "cloth2": "#c0392b",
+   "hair": "#1a1a1a",
+   "beard": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Gestolen? Alles hier is gestolen. Dat maakt het goedkoper. Kijk maar.",
+      "en": "Stolen? Everything here is stolen. That makes it cheaper. Look."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Laat zien.",
+       "en": "Show me."
+      },
+      "open_shop": "dasyu_vyapari"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "dasyu_wachter_1": {
+  "name": {
+   "nl": "Dasyu-wachter",
+   "en": "Dasyu guard"
+  },
+  "en_fable": "Bandit",
+  "archetype": "dasyu",
+  "essential": false,
+  "home": "dasyu_shivir",
+  "generic": true,
+  "role": {
+   "nl": "Een wachter van het kamp",
+   "en": "A guard of the camp"
+  },
+  "desc": {
+   "nl": "Hij kijkt naar je vermomming. Hij kijkt lang.",
+   "en": "He looks at your disguise. He looks for a long time."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#5b3d2e",
+   "cloth2": "#c0392b",
+   "hair": "#1a1a1a"
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Nieuw? De Devi zit in de rode tent. Ze weet dingen. Ze wist dat ik mijn tanden zou verliezen. Ik heb er nog drie.",
+      "en": "New? The Devi is in the red tent. She knows things. She knew I would lose my teeth. I have three left."
+     }
+    ]
+   }
+  ]
+ },
+ "dasyu_wachter_2": {
+  "name": {
+   "nl": "Dasyu-wachter",
+   "en": "Dasyu guard"
+  },
+  "en_fable": "Bandit",
+  "archetype": "dasyu",
+  "essential": false,
+  "home": "dasyu_shivir",
+  "generic": true,
+  "role": {
+   "nl": "Een wachter van het kamp",
+   "en": "A guard of the camp"
+  },
+  "desc": {
+   "nl": "Hij drinkt sura uit een schedel. Het is geen echte schedel. Hij hoopt van wel.",
+   "en": "He drinks sura from a skull. It is not a real skull. He hopes it is."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#5b3d2e",
+   "cloth2": "#c0392b",
+   "hair": "#1a1a1a",
+   "beard": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Dvikhadga was een Vira, wist je dat? Hij zegt dat de Akhara hem liet sterven. Hij zegt dat elke avond. Dan drinkt hij.",
+      "en": "Dvikhadga was a Vira, did you know? He says the Akhara let him die. He says it every evening. Then he drinks."
+     }
+    ]
+   }
+  ]
+ },
+ "devi_himashikhara": {
+  "name": {
+   "nl": "De Devi van Himashikhara",
+   "en": "The Devi of Himashikhara"
+  },
+  "en_fable": "The Oracle of Snowspire",
+  "archetype": "devi",
+  "essential": true,
+  "home": "himashikhara",
+  "role": {
+   "nl": "Het orakel van het noorden",
+   "en": "The oracle of the north"
+  },
+  "desc": {
+   "nl": "Een vrouw zonder leeftijd in een grot van ijs, met ogen als twee bergmeren. Ze spreekt in het meervoud en ziet in het verleden.",
+   "en": "A woman without age in a cave of ice, with eyes like two mountain lakes. She speaks in the plural and sees in the past."
+  },
+  "body": {
+   "skin": "#e8e8ff",
+   "cloth": "#ffffff",
+   "cloth2": "#7fdbff",
+   "hair": "#ffffff",
+   "female": true,
+   "glow": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_stage": [
+      "q_himashikhara",
+      1
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Wij zagen je komen, Vira, al voor je geboren werd. Het masker is niet dood; het heeft alleen zijn lichaam verloren. Het zoekt een nieuw. Een groot. In de Hima Guha ligt ons Jyoti, ons licht, gestolen door zijn dienaren. Breng het terug, en wij laten je zien wat hij wordt.",
+      "en": "We saw you coming, Vira, before you were born. The mask is not dead; it has only lost its body. It seeks a new one. A large one. In the Hima Guha lies our Jyoti, our light, stolen by its servants. Bring it back, and we will show you what it becomes."
+     }
+    ],
+    "effects": {
+     "advance_quest": "q_himashikhara"
+    }
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_himashikhara",
+      3
+     ],
+     "has_item": "himashikhara_jyoti"
+    },
+    "lines": [
+     {
+      "nl": "Het licht. Kijk erin. Zie je? Een draak van droogte, Vritra, die Indra versloeg in het begin van de tijd. Khadgasura draagt hem nu. Hij wacht bij de Chakravartin Pith, voorbij de ijsgrotten. Je zult een wapen nodig hebben dat hem kan raken: Pashupata, in de Pretanagari. Haal het.",
+      "en": "The light. Look into it. Do you see? A dragon of drought, Vritra, whom Indra slew at the beginning of time. Khadgasura wears him now. He waits at the Chakravartin Pith, beyond the ice caves. You will need a weapon that can touch him: Pashupata, in the Pretanagari. Fetch it."
+     }
+    ],
+    "effects": {
+     "take": "himashikhara_jyoti",
+     "complete_quest": "q_himashikhara",
+     "start_quest": "q_pretanagari"
+    }
+   },
+   {
+    "when": {
+     "quest_active": "q_pretanagari",
+     "has_item": "pashupata"
+    },
+    "lines": [
+     {
+      "nl": "Pashupata. Het brandt in je handen, zie je? Goed. Ga naar de Pith. Wij kunnen niet met je mee; wij kunnen alleen kijken. Wij hebben altijd alleen gekeken.",
+      "en": "Pashupata. It burns in your hands, do you see? Good. Go to the Pith. We cannot go with you; we can only watch. We have only ever watched."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_pretanagari",
+     "start_quest": "q_vritra"
+    }
+   },
+   {
+    "when": {
+     "flag": "vritra_dead"
+    },
+    "lines": [
+     {
+      "nl": "Het is gedaan. Echt gedaan. De sneeuw smelt al. Ga naar huis, Vira. Wij zien je nog één keer: oud, in een dorp bij de zee, met een rode armband in je hand.",
+      "en": "It is done. Truly done. The snow is already melting. Go home, Vira. We see you once more: old, in a village by the sea, with a red bangle in your hand."
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Het licht, Vira. Het licht eerst.",
+      "en": "The light, Vira. The light first."
+     }
+    ]
+   }
+  ]
+ },
+ "himashikhara_mukhiya": {
+  "name": {
+   "nl": "Mukhiya Tenzing",
+   "en": "Mukhiya Tenzing"
+  },
+  "en_fable": "Snowspire elder",
+  "archetype": "grihastha",
+  "essential": true,
+  "home": "himashikhara",
+  "role": {
+   "nl": "Oudste van Himashikhara",
+   "en": "Elder of Himashikhara"
+  },
+  "desc": {
+   "nl": "Een man van de bergen met een gezicht als een kaart van de wind. Half zijn dorp staat bevroren in de grot.",
+   "en": "A man of the mountains with a face like a map of the wind. Half his village stands frozen in the cave."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#7f8c8d",
+   "cloth2": "#ffffff",
+   "hair": "#e0e0e0",
+   "beard": true,
+   "fur": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_inactive": "q_hima_guha"
+    },
+    "lines": [
+     {
+      "nl": "Mijn mensen staan in het ijs. Een Hima-daitya ademde over hen. Dood hem, en de kou breekt. Ik heb goud; ik heb het nooit nodig gehad.",
+      "en": "My people stand in the ice. A Hima daitya breathed over them. Kill it, and the cold breaks. I have gold; I have never needed it."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik dood de Daitya.",
+       "en": "I will kill the Daitya."
+      },
+      "start_quest": "q_hima_guha"
+     },
+     {
+      "text": {
+       "nl": "Later.",
+       "en": "Later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_hima_guha",
+      1
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Ze bewegen weer! Ze huilen, ze lachen, ze hebben honger. Hier, Vira. Alles wat we hebben.",
+      "en": "They move again! They cry, they laugh, they are hungry. Here, Vira. All we have."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_hima_guha"
+    }
+   },
+   {
+    "lines": [
+     {
+      "nl": "De kou komt uit de grot. Altijd uit de grot.",
+      "en": "The cold comes from the cave. Always from the cave."
+     }
+    ]
+   }
+  ]
+ },
+ "vyapari_hima": {
+  "name": {
+   "nl": "Handelaar Dorje",
+   "en": "Trader Dorje"
+  },
+  "en_fable": "Snowspire trader",
+  "archetype": "vaishya",
+  "essential": false,
+  "home": "himashikhara",
+  "shop": "himashikhara_vyapari",
+  "role": {
+   "nl": "Handelaar van de bergen",
+   "en": "Trader of the mountains"
+  },
+  "desc": {
+   "nl": "Hij verkoopt bont, thee en zware wapens, en hij vraagt nooit waar je heen gaat.",
+   "en": "He sells fur, tea and heavy weapons, and never asks where you are going."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#7f8c8d",
+   "cloth2": "#c0392b",
+   "hair": "#1a1a1a",
+   "fur": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Thee tegen de kou, plaat tegen de doden, obsidiaan tegen alles.",
+      "en": "Tea against the cold, plate against the dead, obsidian against everything."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Laat zien.",
+       "en": "Show me."
+      },
+      "open_shop": "himashikhara_vyapari"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "gramvasi_hima_1": {
+  "name": {
+   "nl": "Bergbewoner",
+   "en": "Mountain dweller"
+  },
+  "en_fable": "Villager",
+  "archetype": "gramvasi",
+  "essential": false,
+  "home": "himashikhara",
+  "generic": true,
+  "role": {
+   "nl": "Een jak-hoeder",
+   "en": "A yak herder"
+  },
+  "desc": {
+   "nl": "Hij heeft meer jaks dan woorden.",
+   "en": "He has more yaks than words."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#5b3d2e",
+   "cloth2": "#ffffff",
+   "hair": "#1a1a1a",
+   "fur": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "De Yaksha hier is hebzuchtig. Duizend goud wil hij zien. Alleen zien, zegt hij. Ik vertrouw het niet.",
+      "en": "The Yaksha here is greedy. A thousand gold he wants to see. Only see, he says. I do not trust it."
+     }
+    ]
+   }
+  ]
+ }
+}

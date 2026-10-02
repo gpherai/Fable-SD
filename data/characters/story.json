@@ -1,0 +1,2189 @@
+{
+ "bhadra": {
+  "name": {
+   "nl": "Bhadra",
+   "en": "Bhadra"
+  },
+  "en_fable": "Brom (the Hero's father)",
+  "archetype": "grihastha",
+  "essential": true,
+  "home": "vatagram_bachpan",
+  "role": {
+   "nl": "Je vader, visser en dorpsoudste",
+   "en": "Your father, fisherman and village elder"
+  },
+  "desc": {
+   "nl": "Een kalme man met een grijze snor en handen vol littekens van netten. Hij gelooft dat een kind leert door te doen, niet door te luisteren.",
+   "en": "A calm man with a grey moustache and hands scarred by nets. He believes a child learns by doing, not by listening."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#c8b48a",
+   "cloth2": "#5b3d2e",
+   "hair": "#6e6e6e",
+   "beard": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_inactive": "q_tara_janmadin"
+    },
+    "lines": [
+     {
+      "nl": "Daar ben je, zoon. Weet je welke dag het vandaag is? Tara's janmadin, haar verjaardag. En wij hebben nog geen cadeau.",
+      "en": "There you are, son. Do you know what day it is? Tara's janmadin, her birthday. And we have no gift yet."
+     },
+     {
+      "nl": "Kisna de handelaar verkoopt een rode glazen armband. Drie munten. Ik heb ze niet; de netten waren leeg deze week.",
+      "en": "Kisna the trader sells a red glass bangle. Three coins. I do not have them; the nets were empty this week."
+     },
+     {
+      "nl": "Een Vira verdient wat hij nodig heeft. Loop door het dorp, help wie hulp vraagt, en kies zelf hoe. Ik let op je.",
+      "en": "A Vira earns what he needs. Walk through the village, help whoever asks, and choose how. I will be watching."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik regel het, vader.",
+       "en": "I will manage it, father."
+      },
+      "start_quest": "q_tara_janmadin"
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_active": "q_tara_janmadin",
+     "not_has_item": "kaanch_chudi"
+    },
+    "lines": [
+     {
+      "nl": "Kisna staat bij de put. Meera zoekt haar man. En Balram pest de kleine Chhotu weer bij de Vata-boom. Een dorp is vol werk voor wie kijkt.",
+      "en": "Kisna is by the well. Meera is looking for her husband. And Balram is bullying little Chhotu by the Vata tree again. A village is full of work for those who look."
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_active": "q_tara_janmadin"
+    },
+    "lines": [
+     {
+      "nl": "Je hebt de armband! Ga naar Tara, ze zit bij de boom te dromen. En zoon... ik ben trots op je, hoe je het ook gedaan hebt. Nou ja, bijna hoe dan ook.",
+      "en": "You have the bangle! Go to Tara, she is dreaming by the tree. And son... I am proud of you, however you did it. Well, almost however."
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Ga spelen, jongen. De zon wacht niet.",
+      "en": "Go play, boy. The sun does not wait."
+     }
+    ]
+   }
+  ]
+ },
+ "raktambari": {
+  "name": {
+   "nl": "Raktambari",
+   "en": "Raktambari"
+  },
+  "en_fable": "Scarlet Robe",
+  "archetype": "vira",
+  "essential": true,
+  "home": "vatagram_bachpan",
+  "role": {
+   "nl": "Je moeder, ooit een Vira van de Akhara",
+   "en": "Your mother, once a Vira of the Akhara"
+  },
+  "desc": {
+   "nl": "Ze draagt een rode sari en loopt als iemand die ooit een zwaard droeg. Ze spreekt nooit over de Akhara. In het dorp noemen ze haar 'de Rode'.",
+   "en": "She wears a red sari and walks like someone who once carried a sword. She never speaks of the Akhara. In the village they call her 'the Red One'."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#c0392b",
+   "cloth2": "#8b0000",
+   "hair": "#1a1a1a",
+   "female": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Mijn kleine Vira. Je ogen staan vandaag anders. Ouder.",
+      "en": "My little Vira. Your eyes look different today. Older."
+     },
+     {
+      "nl": "Luister: wat je ook wordt in dit leven, onthoud dat kracht zonder dharma een Rakshasa maakt, en dharma zonder kracht een slachtoffer. Je hebt beide nodig.",
+      "en": "Listen: whatever you become in this life, remember that strength without dharma makes a Rakshasa, and dharma without strength makes a victim. You need both."
+     }
+    ]
+   }
+  ]
+ },
+ "tara": {
+  "name": {
+   "nl": "Tara",
+   "en": "Tara"
+  },
+  "en_fable": "Theresa",
+  "archetype": "siddha",
+  "essential": true,
+  "home": "vatagram_bachpan",
+  "role": {
+   "nl": "Je jongere zus",
+   "en": "Your younger sister"
+  },
+  "desc": {
+   "nl": "Een meisje van negen met belletjes aan haar enkels. Ze droomt al weken over een rood masker en wil het niemand vertellen.",
+   "en": "A girl of nine with bells on her ankles. She has dreamt of a red mask for weeks and will not tell anyone."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#e67e22",
+   "cloth2": "#f1c40f",
+   "hair": "#1a1a1a",
+   "female": true,
+   "child": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_active": "q_tara_janmadin",
+     "has_item": "kaanch_chudi"
+    },
+    "lines": [
+     {
+      "nl": "Bhaiya! Is dat... voor mij? Hij is rood als de zon bij de zee!",
+      "en": "Bhaiya! Is that... for me? It is red like the sun on the sea!"
+     },
+     {
+      "nl": "Ik droomde vannacht weer. Een man met een rood masker stond in het dorp en alles brandde. Maar jij was er, met een zwaard van licht. Het was maar een droom, toch?",
+      "en": "I dreamt again last night. A man with a red mask stood in the village and everything burned. But you were there, with a sword of light. It was only a dream, wasn't it?"
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Geef Tara de armband.",
+       "en": "Give Tara the bangle."
+      },
+      "take": "kaanch_chudi",
+      "set_flag": "tara_gift_given",
+      "advance_quest": "q_tara_janmadin",
+      "lines": [
+       {
+        "nl": "Dank je, bhaiya. Ik doe hem nooit meer af. Nooit.",
+        "en": "Thank you, bhaiya. I will never take it off. Never."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_active": "q_tara_janmadin"
+    },
+    "lines": [
+     {
+      "nl": "Vader zei dat je iets voor me hebt. Ik mag niet kijken. Ik kijk niet. Ik kijk een beetje.",
+      "en": "Father said you have something for me. I may not look. I am not looking. I am looking a little."
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Bhaiya, hoor jij de zee ook praten? Ze zegt dat er iemand komt.",
+      "en": "Bhaiya, do you hear the sea talking too? It says someone is coming."
+     }
+    ]
+   }
+  ]
+ },
+ "tara_devi": {
+  "name": {
+   "nl": "Dasyu Devi",
+   "en": "Dasyu Devi"
+  },
+  "en_fable": "The Bandit Seeress (Theresa)",
+  "archetype": "siddha",
+  "essential": true,
+  "home": "dasyu_shivir",
+  "role": {
+   "nl": "De blinde zieneres van het roverskamp",
+   "en": "The blind seeress of the bandit camp"
+  },
+  "desc": {
+   "nl": "Een vrouw in een rode sluier, blind, die de Dasyu's vertelt waar de karavanen rijden. Om haar pols een rode glazen armband.",
+   "en": "A woman in a red veil, blind, who tells the Dasyus where the caravans ride. On her wrist a red glass bangle."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#8b0000",
+   "cloth2": "#c0392b",
+   "hair": "#1a1a1a",
+   "female": true,
+   "blind": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_active": "q_dasyu_devi",
+     "not_flag": "tara_found"
+    },
+    "lines": [
+     {
+      "nl": "Kom dichterbij, Dasyu. Nee... je loopt niet als een Dasyu. Je loopt als iemand uit Vatagram. Zoals mijn vader liep.",
+      "en": "Come closer, Dasyu. No... you do not walk like a Dasyu. You walk like someone from Vatagram. Like my father walked."
+     },
+     {
+      "nl": "Ik zie niets met mijn ogen sinds de nacht van het vuur. Maar ik zie alles anders. Ik zag jou komen, bhaiya. Twaalf jaar lang zag ik je komen.",
+      "en": "I see nothing with my eyes since the night of the fire. But I see everything otherwise. I saw you coming, bhaiya. For twelve years I saw you coming."
+     },
+     {
+      "nl": "Ja. Ik ben Tara. Dvikhadga nam me mee, hij maakte me zijn orakel. Hij is niet wat je denkt. Hij was ooit een Vira, net als jij. Praat met hem voor je je zwaard trekt. Of trek het. Ik kan niet voor je kiezen.",
+      "en": "Yes. I am Tara. Dvikhadga took me, he made me his oracle. He is not what you think. He was once a Vira, like you. Talk to him before you draw your sword. Or draw it. I cannot choose for you."
+     }
+    ],
+    "effects": {
+     "set_flag": "tara_found",
+     "advance_quest": "q_dasyu_devi",
+     "yasha": 50
+    }
+   },
+   {
+    "when": {
+     "flag": "tara_found",
+     "not_flag": "dvikhadga_resolved"
+    },
+    "lines": [
+     {
+      "nl": "Hij zit in de grote tent, op een troon van zwaarden. Hij weet dat je komt. Hij heeft altijd geweten dat iemand zou komen.",
+      "en": "He sits in the great tent, on a throne of swords. He knows you are coming. He has always known someone would come."
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Ga naar de Akhara, bhaiya. Ik kom. Ik heb hier niets meer te zien.",
+      "en": "Go to the Akhara, bhaiya. I will come. I have nothing left to see here."
+     }
+    ]
+   }
+  ]
+ },
+ "tara_mandapa": {
+  "name": {
+   "nl": "Tara",
+   "en": "Tara"
+  },
+  "en_fable": "Theresa (Chamber of Fate)",
+  "archetype": "siddha",
+  "essential": true,
+  "home": "karma_mandapa",
+  "role": {
+   "nl": "Je zus, bevrijd uit de greep van Khadgasura",
+   "en": "Your sister, freed from Khadgasura's grip"
+  },
+  "desc": {
+   "nl": "Ze houdt het Zwaard van de Eonen in haar handen alsof het een slapend kind is.",
+   "en": "She holds the Sword of Aeons in her hands as if it were a sleeping child."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#8b0000",
+   "cloth2": "#c0392b",
+   "hair": "#1a1a1a",
+   "female": true,
+   "blind": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "not_flag": "ending_chosen"
+    },
+    "lines": [
+     {
+      "nl": "Het is voorbij, bhaiya. Het masker is leeg. Maar het zwaard... het zwaard fluistert nog.",
+      "en": "It is over, bhaiya. The mask is empty. But the sword... the sword still whispers."
+     },
+     {
+      "nl": "Kalakhadga kan alleen vernietigd worden door het bloed van onze lijn te weigeren. Gooi het in de Karma-vlam, en het is weg, voor altijd. Of houd het. Dan heb jij de macht van Khadgasura. Jij, niet hij. Dat is wat hij wilde dat je zou denken.",
+      "en": "Kalakhadga can only be destroyed by refusing the blood of our line. Throw it into the Karma flame, and it is gone forever. Or keep it. Then you have Khadgasura's power. You, not him. That is what he wanted you to think."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Vernietig het zwaard. (Dharma)",
+       "en": "Destroy the sword. (Dharma)"
+      },
+      "take": "kalakhadga",
+      "give": "dharma_ashru",
+      "karma": 300,
+      "set_flag": [
+       "ending_chosen",
+       "ending_dharma",
+       "himavat_open"
+      ],
+      "advance_quest": "q_karma_mandapa",
+      "lines": [
+       {
+        "nl": "Het zwaard schreeuwt in de vlam en wordt stil. Uit de as rijst een lemmet van licht: Dharmashru, de traan van Dharma. Tara glimlacht. 'Ik ga, bhaiya. Er is nog iets in het noorden dat ik moet zien.'",
+        "en": "The sword screams in the flame and falls silent. From the ash rises a blade of light: Dharmashru, the tear of Dharma. Tara smiles. 'I go, bhaiya. There is something in the north I still must see.'"
+       }
+      ]
+     },
+     {
+      "text": {
+       "nl": "Houd het zwaard. (Adharma)",
+       "en": "Keep the sword. (Adharma)"
+      },
+      "karma": -300,
+      "set_flag": [
+       "ending_chosen",
+       "ending_adharma",
+       "himavat_open"
+      ],
+      "advance_quest": "q_karma_mandapa",
+      "lines": [
+       {
+        "nl": "Tara laat het zwaard los. 'Dan ben je zijn erfgenaam.' Ze loopt de trap op, blind en zonder te struikelen, en kijkt niet om. Het zwaard voelt warm in je hand. Te warm.",
+        "en": "Tara lets go of the sword. 'Then you are his heir.' She walks up the stairs, blind and without stumbling, and does not look back. The sword feels warm in your hand. Too warm."
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "...",
+      "en": "..."
+     }
+    ]
+   }
+  ]
+ },
+ "mayacharya": {
+  "name": {
+   "nl": "Mayacharya",
+   "en": "Mayacharya"
+  },
+  "en_fable": "Maze",
+  "archetype": "siddha",
+  "essential": true,
+  "home": "vira_akhara",
+  "trainer": "mayacharya",
+  "role": {
+   "nl": "Acharya van de Akhara, meester van de Maya-siddhi's",
+   "en": "Acharya of the Akhara, master of the Maya siddhis"
+  },
+  "desc": {
+   "nl": "Een lange man in blauwe zijde met een staf van ebbenhout. Hij redde je uit het brandende Vatagram. Zijn ogen glimlachen nooit mee.",
+   "en": "A tall man in blue silk with an ebony staff. He saved you from burning Vatagram. His eyes never smile along."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#1b3a6b",
+   "cloth2": "#e3b341",
+   "hair": "#2c2c2c",
+   "staff": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_active": "q_diksha"
+    },
+    "lines": [
+     {
+      "nl": "Je bent wakker. Goed. Vatagram is as, je vader is dood, je moeder is weg, je zus... ik weet het niet. Ik weet alleen dat jij leeft, omdat ik je hier bracht.",
+      "en": "You are awake. Good. Vatagram is ash, your father is dead, your mother gone, your sister... I do not know. I only know that you live, because I brought you here."
+     },
+     {
+      "nl": "Dit is de Vira Akhara. Hier worden kinderen van het vuur gesmeed tot wapens. De Mahant verwacht je. Luister naar hem. En onthoud: ik heb je gered. Dat vergeet een Vira niet.",
+      "en": "This is the Vira Akhara. Here children of the fire are forged into weapons. The Mahant expects you. Listen to him. And remember: I saved you. A Vira does not forget that."
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_done": "q_rangabhumi",
+     "not_flag": "maya_revealed"
+    },
+    "lines": [
+     {
+      "nl": "De arena heeft je naam door heel Jambudvipa gedragen. En het masker... je zag het, nietwaar? Khadgasura. Vraag Kalayogi aan de Ankusha Tata naar hem. Vraag hem naar je moeder. Hij weet meer dan hij zegt. Zoals wij allemaal.",
+      "en": "The arena has carried your name across Jambudvipa. And the mask... you saw it, did you not? Khadgasura. Ask Kalayogi at Ankusha Tata about him. Ask him about your mother. He knows more than he says. As do we all."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Leer me een siddhi.",
+       "en": "Teach me a siddhi."
+      },
+      "open_trainer": "mayacharya"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Maya is geen leugen. Maya is de sluier die de wereld draagbaar maakt. Wil je leren hoe je haar beweegt?",
+      "en": "Maya is not a lie. Maya is the veil that makes the world bearable. Do you want to learn how to move it?"
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Leer me een siddhi.",
+       "en": "Teach me a siddhi."
+      },
+      "open_trainer": "mayacharya"
+     },
+     {
+      "text": {
+       "nl": "Niet nu.",
+       "en": "Not now."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "mayacharya_tata": {
+  "name": {
+   "nl": "Mayacharya",
+   "en": "Mayacharya"
+  },
+  "en_fable": "Maze (Hook Coast betrayal)",
+  "archetype": "siddha",
+  "essential": false,
+  "home": "ankusha_tata",
+  "as_enemy": "mayacharya_boss",
+  "role": {
+   "nl": "De verrader bij de vuurtoren",
+   "en": "The traitor at the lighthouse"
+  },
+  "desc": {
+   "nl": "Hij staat bovenop de Deepastambha, met Tara naast zich, en wacht op het masker.",
+   "en": "He stands atop the Deepastambha, Tara beside him, waiting for the mask."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#1b3a6b",
+   "cloth2": "#e3b341",
+   "hair": "#2c2c2c",
+   "staff": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_active": "q_deepastambha"
+    },
+    "lines": [
+     {
+      "nl": "Je bent gekomen. Met je moeder, zie ik. Raktambari, de Rode. Ze herkent me, kijk. Ze weet wat ik ben.",
+      "en": "You came. With your mother, I see. Raktambari, the Red One. She recognises me, look. She knows what I am."
+     },
+     {
+      "nl": "Ik heb je niet gered uit medelijden, jongen. Ik heb je bewaard. Jouw bloed is de sleutel tot het Zwaard van de Eonen, en Khadgasura heeft een sleutel nodig. Hij beloofde me wat hij iedereen belooft: nooit te sterven.",
+      "en": "I did not save you out of pity, boy. I preserved you. Your blood is the key to the Sword of Aeons, and Khadgasura needs a key. He promised me what he promises everyone: never to die."
+     },
+     {
+      "nl": "Het rode masker komt uit de mist. Een stem als twee zwaarden die over elkaar schuren: 'Dank je, Maya.' Een flits. Je moeder valt. Tara wordt opgetild door handen van rook. Dan is de vuurtoren leeg, op Mayacharya na.",
+      "en": "The red mask comes out of the mist. A voice like two swords grinding together: 'Thank you, Maya.' A flash. Your mother falls. Tara is lifted by hands of smoke. Then the lighthouse is empty, save for Mayacharya."
+     }
+    ],
+    "effects": {
+     "set_flag": [
+      "maya_revealed",
+      "mother_dead",
+      "tara_taken",
+      "mayacharya_left_akhara"
+     ],
+     "complete_quest": "q_deepastambha",
+     "start_quest": "q_mayacharya"
+    },
+    "choices": [
+     {
+      "text": {
+       "nl": "Je sterft hier, Maya.",
+       "en": "You die here, Maya."
+      },
+      "remove_npc": true,
+      "end": true,
+      "set_flag": "maya_fight"
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Vecht dan, kind van het vuur.",
+      "en": "Then fight, child of the fire."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Aanvallen.",
+       "en": "Attack."
+      },
+      "remove_npc": true,
+      "end": true,
+      "set_flag": "maya_fight"
+     }
+    ]
+   }
+  ]
+ },
+ "mahant": {
+  "name": {
+   "nl": "Guru Mahant Nirmalnath",
+   "en": "Guru Mahant Nirmalnath"
+  },
+  "en_fable": "The Guildmaster",
+  "archetype": "naga_sadhu",
+  "essential": true,
+  "home": "vira_akhara",
+  "role": {
+   "nl": "Hoofd van de Vira Akhara",
+   "en": "Head of the Vira Akhara"
+  },
+  "desc": {
+   "nl": "Een oude Naga-sadhu met asgrijze jata tot op zijn heupen en een lichaam als een gedraaid touw. Hij heeft zestig jaar Vira's opgeleid en begraven. Zijn stem klinkt in je hoofd, ook als hij ver weg is.",
+   "en": "An old Naga sadhu with ash-grey jata down to his hips and a body like twisted rope. He has trained and buried Viras for sixty years. His voice sounds in your head even when he is far away."
+  },
+  "body": {
+   "skin": "#7a4a2a",
+   "cloth": "#f28c28",
+   "cloth2": "#e8e0c8",
+   "hair": "#bdbdbd",
+   "beard": true,
+   "jata": true,
+   "ash": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_inactive": "q_diksha"
+    },
+    "lines": [
+     {
+      "nl": "Kind van Vatagram. Mayacharya bracht je als een bundel natte as. Nu sta je. Dat is het begin van alles.",
+      "en": "Child of Vatagram. Mayacharya brought you like a bundle of wet ash. Now you stand. That is the beginning of everything."
+     },
+     {
+      "nl": "Een Vira loopt drie wegen: Bala, de weg van het lichaam. Kaushala, de weg van het oog en de hand. Shakti, de weg van de wil. Je zult alle drie leren. Welke je het verst loopt, bepaal je zelf.",
+      "en": "A Vira walks three roads: Bala, the way of the body. Kaushala, the way of eye and hand. Shakti, the way of will. You will learn all three. How far you walk each, you decide yourself."
+     },
+     {
+      "nl": "Ga naar Bhimnath voor Bala, Sharanga voor Kaushala, Shyamali voor Shakti. Daarna dood je vijf kevers in het Akhara Vana. Dan praten we weer.",
+      "en": "Go to Bhimnath for Bala, Sharanga for Kaushala, Shyamali for Shakti. Then kill five beetles in the Akhara Vana. Then we talk again."
+     }
+    ],
+    "effects": {
+     "start_quest": "q_diksha"
+    }
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_diksha",
+      4
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Vijf kevers. Het is weinig, maar het is een begin, en elk begin is heilig. Hier: leer en kurta, een talwar van dorpsijzer. Je bent nu shishya van de Akhara.",
+      "en": "Five beetles. It is little, but it is a beginning, and every beginning is sacred. Here: a leather kurta, a talwar of village iron. You are now a shishya of the Akhara."
+     },
+     {
+      "nl": "Je Tapas, de ascese die je verzamelt door te vechten, besteed je in je sadhana. Druk op P en kies waar je groeit. Elke stap maakt je sterker, en ouder. Zo is het leven.",
+      "en": "Your Tapas, the austerity you gather by fighting, you spend in your sadhana. Press P and choose where you grow. Every step makes you stronger, and older. Such is life."
+     },
+     {
+      "nl": "Als je klaar bent voor je Snatak, je afstuderen, kom dan terug. Marmara wacht al jaren op iemand om tegen te vechten.",
+      "en": "When you are ready for your Snatak, your graduation, come back. Marmara has waited years for someone to fight."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_diksha"
+    }
+   },
+   {
+    "when": {
+     "quest_active": "q_diksha"
+    },
+    "lines": [
+     {
+      "nl": "Bhimnath, Sharanga, Shyamali, en dan de kevers. Haast is het lot van kleine mannen.",
+      "en": "Bhimnath, Sharanga, Shyamali, and then the beetles. Haste is the fate of small men."
+     }
+    ]
+   },
+   {
+    "when": {
+     "all": [
+      {
+       "quest_done": "q_diksha"
+      },
+      {
+       "quest_inactive": "q_snatak"
+      }
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Je Snatak. Eén proef: versla Marmara in een sparringgevecht op het oefenveld. Ze zal je niet sparen; doe het haar ook niet.",
+      "en": "Your Snatak. One test: defeat Marmara in a sparring match on the training field. She will not spare you; do not spare her either."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik ben klaar.",
+       "en": "I am ready."
+      },
+      "start_quest": "q_snatak"
+     },
+     {
+      "text": {
+       "nl": "Nog niet.",
+       "en": "Not yet."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_snatak",
+      1
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Marmara ligt in het stof, en lacht. Zo moet het. Neem deze Siddha-mudrika: je bent nu een Vira van de Akhara. De Tirtha-poorten herkennen je zegel; reis ermee door het land.",
+      "en": "Marmara lies in the dust, and laughs. So it should be. Take this Siddha mudrika: you are now a Vira of the Akhara. The Tirtha gates recognise your seal; travel the land with them."
+     },
+     {
+      "nl": "Opdrachten komen als kaarten op de tafel in de hal. Kom bij mij voor de belangrijke. De eerste: een Bhramara-koningin heeft de Udyana in de Mahavana tot nest gemaakt. Dood haar.",
+      "en": "Commissions come as cards on the table in the hall. Come to me for the important ones. The first: a Bhramara queen has made the Udyana in the Mahavana her nest. Kill her."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_snatak"
+    }
+   },
+   {
+    "when": {
+     "all": [
+      {
+       "flag": "snatak"
+      },
+      {
+       "quest_inactive": "q_bhramara_rani"
+      }
+     ]
+    },
+    "lines": [
+     {
+      "nl": "De Bhramara-koningin in de Udyana. Een Vira mag voor vertrek een Pratijna afleggen, een gelofte: zonder pantser, zonder drankjes. Wie zijn gelofte houdt, krijgt meer goud en meer roem. Wie hem breekt, krijgt niets dan schaamte.",
+      "en": "The Bhramara queen in the Udyana. A Vira may make a Pratijna before leaving, a vow: no armour, no potions. Whoever keeps his vow gains more gold and more fame. Whoever breaks it gains nothing but shame."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Geef me de opdracht.",
+       "en": "Give me the commission."
+      },
+      "start_quest": "q_bhramara_rani"
+     },
+     {
+      "text": {
+       "nl": "Later.",
+       "en": "Later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_bhramara_rani",
+      2
+     ]
+    },
+    "lines": [
+     {
+      "nl": "De angel van de koningin. Hang hem aan je gordel en de dorpen zullen je naam leren. Hier is je beloning.",
+      "en": "The queen's sting. Hang it from your belt and the villages will learn your name. Here is your reward."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_bhramara_rani"
+    }
+   },
+   {
+    "when": {
+     "all": [
+      {
+       "quest_done": "q_bhramara_rani"
+      },
+      {
+       "quest_inactive": "q_amrai_raksha"
+      },
+      {
+       "quest_inactive": "q_amrai_lut"
+      }
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Twee kaarten over de Amrai, de boomgaard van boer Dhanpat. De eerste: de Dasyu's komen de oogst roven; bescherm de boerderij. De tweede is van een Dasyu-tussenpersoon: dood de wachters zodat zij kunnen roven. De Akhara dient wie betaalt. Jij kiest wie je dient.",
+      "en": "Two cards about the Amrai, farmer Dhanpat's orchard. The first: the Dasyus are coming to rob the harvest; protect the farm. The second is from a Dasyu go-between: kill the guards so they can rob. The Akhara serves whoever pays. You choose whom you serve."
+     },
+     {
+      "nl": "Er is ook een brief voor Mukhiya Birbal van Granthivana, in het Dakinivana. Breng hem als je die kant op gaat.",
+      "en": "There is also a letter for Mukhiya Birbal of Granthivana, in the Dakinivana. Bring it if you go that way."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Bescherm de Amrai. (Dharma)",
+       "en": "Protect the Amrai. (Dharma)"
+      },
+      "start_quest": "q_amrai_raksha"
+     },
+     {
+      "text": {
+       "nl": "Help de Dasyu's. (Adharma)",
+       "en": "Help the Dasyus. (Adharma)"
+      },
+      "start_quest": "q_amrai_lut"
+     },
+     {
+      "text": {
+       "nl": "Geef me de brief voor Granthivana.",
+       "en": "Give me the letter for Granthivana."
+      },
+      "when": {
+       "quest_inactive": "q_mahant_patra"
+      },
+      "start_quest": "q_mahant_patra",
+      "give": "mahant_patra"
+     },
+     {
+      "text": {
+       "nl": "Ik denk erover na.",
+       "en": "I will think about it."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "all": [
+      {
+       "any": [
+        {
+         "quest_done": "q_amrai_raksha"
+        },
+        {
+         "quest_done": "q_amrai_lut"
+        }
+       ]
+      },
+      {
+       "quest_inactive": "q_mahant_patra"
+      }
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Een brief voor Mukhiya Birbal van Granthivana. De Witte Rakshasa, zegt men. Neem hem mee.",
+      "en": "A letter for Mukhiya Birbal of Granthivana. The White Rakshasa, they say. Take it."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Geef me de brief.",
+       "en": "Give me the letter."
+      },
+      "start_quest": "q_mahant_patra",
+      "give": "mahant_patra"
+     },
+     {
+      "text": {
+       "nl": "Later.",
+       "en": "Later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "all": [
+      {
+       "quest_done": "q_shveta_rakshasa"
+      },
+      {
+       "quest_inactive": "q_dasyu_devi"
+      }
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Nu iets dat ik je lang niet durfde te geven. De Dasyu-koning Dvikhadga heeft een zieneres, de 'Dasyu Devi'. Blind. Jong. Met een rode glazen armband.",
+      "en": "Now something I long did not dare to give you. The Dasyu king Dvikhadga has a seeress, the 'Dasyu Devi'. Blind. Young. With a red glass bangle."
+     },
+     {
+      "nl": "Het kamp ligt ten noorden van de Dakini Shila. Zonder vermomming schieten ze je neer. Vind een Dasyu-uitrusting bij de poort. En jongen... wat je daar ook vindt: blijf een Vira.",
+      "en": "The camp lies north of the Dakini Shila. Without a disguise they will shoot you. Find a Dasyu kit at the gate. And boy... whatever you find there: remain a Vira."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik ga.",
+       "en": "I go."
+      },
+      "start_quest": "q_dasyu_devi"
+     },
+     {
+      "text": {
+       "nl": "Later.",
+       "en": "Later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_dasyu_devi",
+      6
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Tara leeft. Ik had het niet durven hopen. En Dvikhadga... wat je ook deed, het is gedaan. Rust. Dan roept de Rangabhumi: de arena. Rani Kalavati zelf zal kijken.",
+      "en": "Tara lives. I had not dared to hope. And Dvikhadga... whatever you did, it is done. Rest. Then the Rangabhumi calls: the arena. Rani Kalavati herself will watch."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_dasyu_devi",
+     "set_flag": "marmara_left_akhara"
+    }
+   },
+   {
+    "when": {
+     "all": [
+      {
+       "quest_done": "q_dasyu_devi"
+      },
+      {
+       "quest_inactive": "q_rangabhumi"
+      }
+     ]
+    },
+    "lines": [
+     {
+      "nl": "De Rangabhumi ligt oostelijk van het Dakinivana Hrada. Meld je bij de Rangadhyaksha. Marmara is er al; ze wil je verslaan voor heel Jambudvipa.",
+      "en": "The Rangabhumi lies east of the Dakinivana Hrada. Report to the Rangadhyaksha. Marmara is already there; she wants to defeat you before all Jambudvipa."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Naar de arena.",
+       "en": "To the arena."
+      },
+      "start_quest": "q_rangabhumi"
+     },
+     {
+      "text": {
+       "nl": "Later.",
+       "en": "Later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "all": [
+      {
+       "quest_done": "q_rangabhumi"
+      },
+      {
+       "quest_inactive": "q_kalayogi"
+      }
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Het masker in de arena. Khadgasura. Ik heb die naam in zestig jaar niet hardop gezegd. Ga naar Kalayogi aan de Ankusha Tata. De veerboot bij de Ghat vaart weer; ik heb het geregeld. Hij weet wat er met je moeder gebeurde.",
+      "en": "The mask in the arena. Khadgasura. I have not said that name aloud in sixty years. Go to Kalayogi at Ankusha Tata. The ferry at the Ghat sails again; I arranged it. He knows what happened to your mother."
+     }
+    ],
+    "effects": {
+     "start_quest": "q_kalayogi",
+     "set_flag": "ghat_boat_open",
+     "unlock_tirtha": "ankusha_tata"
+    }
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_patala_karagar",
+      7
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Raktambari. Mijn beste leerling, levend. Jongen, ik... Ga naar Kalayogi. Hij heeft een plan voor Khadgasura, en ik ben te oud voor plannen.",
+      "en": "Raktambari. My best student, alive. Boy, I... Go to Kalayogi. He has a plan for Khadgasura, and I am too old for plans."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_patala_karagar",
+     "start_quest": "q_deepastambha",
+     "unfollow": "raktambari_bandi"
+    }
+   },
+   {
+    "when": {
+     "all": [
+      {
+       "quest_done": "q_mayacharya"
+      },
+      {
+       "quest_inactive": "q_karma_mandapa"
+      }
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Maya was mijn vriend. Zestig jaar. Ik zag het niet. Dat is mijn schuld, en ik zal ermee sterven.",
+      "en": "Maya was my friend. Sixty years. I did not see it. That is my fault, and I will die with it."
+     },
+     {
+      "nl": "Khadgasura is onder ons. Letterlijk: de Karma Mandapa onder deze hal, waar de eerste Mahant het zwaard begroef. Ik open de deur. Daarachter wacht hij, met Tara. Ga, Vira. Ga en kom terug.",
+      "en": "Khadgasura is beneath us. Literally: the Karma Mandapa beneath this hall, where the first Mahant buried the sword. I will open the door. Behind it he waits, with Tara. Go, Vira. Go and come back."
+     }
+    ],
+    "effects": {
+     "start_quest": "q_karma_mandapa",
+     "set_flag": "karma_mandapa_open"
+    }
+   },
+   {
+    "when": {
+     "flag": "ending_chosen"
+    },
+    "lines": [
+     {
+      "nl": "Het is gedaan. Wat je ook koos, de Akhara staat nog, en jij ook. In het noorden ligt de Himavat; Kalayogi is al vooruitgegaan. Hij zegt dat het nog niet voorbij is. Het is nooit voorbij.",
+      "en": "It is done. Whatever you chose, the Akhara still stands, and so do you. In the north lies the Himavat; Kalayogi has gone ahead. He says it is not over yet. It is never over."
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Train, vecht, mediteer. Kom terug als je kaarten nodig hebt.",
+      "en": "Train, fight, meditate. Come back when you need cards."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik wil mijn sadhana doen.",
+       "en": "I want to do my sadhana."
+      },
+      "open_sadhana": true
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "marmara": {
+  "name": {
+   "nl": "Marmara",
+   "en": "Marmara"
+  },
+  "en_fable": "Whisper",
+  "archetype": "vira",
+  "essential": true,
+  "home": "vira_akhara",
+  "role": {
+   "nl": "Je rivaal en vriendin van de Akhara",
+   "en": "Your rival and friend from the Akhara"
+  },
+  "desc": {
+   "nl": "Een meisje van de zuidelijke kust met een lathi en een grote mond. Ze is sneller dan jij, en dat weet ze. Haar broer Vajrasena is beroemd; zij wil beroemder worden.",
+   "en": "A girl from the southern coast with a lathi and a big mouth. She is faster than you, and she knows it. Her brother Vajrasena is famous; she wants to be more famous."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#27ae60",
+   "cloth2": "#f1c40f",
+   "hair": "#1a1a1a",
+   "female": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_stage": [
+      "q_snatak",
+      0
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Eindelijk! Ik heb drie jaar tegen palen gevochten. Kom, dorpsjongen. Laat zien of het vuur je iets heeft geleerd.",
+      "en": "At last! I have fought posts for three years. Come, village boy. Show me whether the fire taught you anything."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Vecht!",
+       "en": "Fight!"
+      },
+      "end": true,
+      "set_flag": "marmara_duel_started",
+      "remove_npc": true
+     },
+     {
+      "text": {
+       "nl": "Even wachten.",
+       "en": "Wait a moment."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_active": "q_diksha"
+    },
+    "lines": [
+     {
+      "nl": "Jij bent de nieuwe. Mayacharya droeg je binnen als een zak rijst. Ik ben Marmara. Als je wilt leren vechten, let dan niet op Bhimnath; let op mij.",
+      "en": "You are the new one. Mayacharya carried you in like a sack of rice. I am Marmara. If you want to learn to fight, do not watch Bhimnath; watch me."
+     }
+    ]
+   },
+   {
+    "when": {
+     "flag": "snatak"
+    },
+    "lines": [
+     {
+      "nl": "Je hebt me verslagen. Eén keer. In de arena doe ik het anders, dat beloof ik je.",
+      "en": "You beat me. Once. In the arena I will do it differently, I promise you."
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Train harder, dorpsjongen.",
+      "en": "Train harder, village boy."
+     }
+    ]
+   }
+  ]
+ },
+ "marmara_arena": {
+  "name": {
+   "nl": "Marmara",
+   "en": "Marmara"
+  },
+  "en_fable": "Whisper (Arena)",
+  "archetype": "vira",
+  "essential": true,
+  "home": "rangabhumi",
+  "role": {
+   "nl": "Je rivaal, kampioene van de Rangabhumi",
+   "en": "Your rival, champion of the Rangabhumi"
+  },
+  "desc": {
+   "nl": "Ze draagt nu maliën en een stalen khanda. Het publiek scandeert haar naam.",
+   "en": "She now wears mail and a steel khanda. The crowd chants her name."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#9aa3ad",
+   "cloth2": "#f1c40f",
+   "hair": "#1a1a1a",
+   "female": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Daar is hij, de held van Vatagram. Ze zeggen dat je Dvikhadga vond. Ik vond de arena. Laten we zien wie het verst is gekomen. Tot in de laatste ronde, bhai.",
+      "en": "There he is, the hero of Vatagram. They say you found Dvikhadga. I found the arena. Let us see who has come furthest. See you in the last round, bhai."
+     }
+    ]
+   }
+  ]
+ },
+ "vajrasena": {
+  "name": {
+   "nl": "Vajrasena",
+   "en": "Vajrasena"
+  },
+  "en_fable": "Thunder",
+  "archetype": "kshatriya",
+  "essential": false,
+  "home": "shringarapura_uttara",
+  "as_enemy": "vajrasena_boss",
+  "role": {
+   "nl": "Beroemde Vira, broer van Marmara, minnaar van de Rani",
+   "en": "Famous Vira, brother of Marmara, lover of the Rani"
+  },
+  "desc": {
+   "nl": "Een reus met een bliksemtatoeage over zijn hele rug. Hij won de Rangabhumi drie keer en denkt dat Rani Kalavati van hem is.",
+   "en": "A giant with a lightning tattoo across his whole back. He won the Rangabhumi three times and thinks Rani Kalavati is his."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#2c3e50",
+   "cloth2": "#7fdbff",
+   "hair": "#1a1a1a",
+   "big": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_stage": [
+      "q_rani_kalavati",
+      1
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Jij. De Rani kijkt naar je zoals ze vroeger naar mij keek. Dat accepteer ik niet. Buiten de stadspoort, bij de Vadhyagiri: jij en ik. Of ga weg uit Uttara en kom nooit terug.",
+      "en": "You. The Rani looks at you the way she used to look at me. I do not accept that. Outside the city gate, at the Vadhyagiri: you and I. Or leave Uttara and never return."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Dan vechten we hier en nu.",
+       "en": "Then we fight here and now."
+      },
+      "remove_npc": true,
+      "end": true,
+      "set_flag": "vajrasena_fight"
+     },
+     {
+      "text": {
+       "nl": "[Yasha 800] Jambudvipa kent mijn naam beter dan de jouwe. Ga opzij.",
+       "en": "[Yasha 800] Jambudvipa knows my name better than yours. Step aside."
+      },
+      "when": {
+       "yasha_min": 800
+      },
+      "set_flag": "vajrasena_defeated",
+      "yasha": 50,
+      "lines": [
+       {
+        "nl": "Hij kijkt naar het publiek dat zich verzamelt. Hij kent de blikken. 'Ze is van jou. Ze was nooit van iemand.' Hij loopt weg.",
+        "en": "He looks at the crowd gathering. He knows the looks. 'She is yours. She never belonged to anyone.' He walks away."
+       }
+      ]
+     },
+     {
+      "text": {
+       "nl": "Ik wil geen ruzie.",
+       "en": "I want no quarrel."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "De Vira van Vatagram. Ik heb je in de arena gezien. Niet slecht. Niet goed genoeg.",
+      "en": "The Vira of Vatagram. I saw you in the arena. Not bad. Not good enough."
+     }
+    ]
+   }
+  ]
+ },
+ "vajrasena_arena": {
+  "name": {
+   "nl": "Vajrasena",
+   "en": "Vajrasena"
+  },
+  "en_fable": "Thunder (Arena)",
+  "archetype": "kshatriya",
+  "essential": true,
+  "home": "rangabhumi",
+  "role": {
+   "nl": "Driewerf kampioen van de Rangabhumi",
+   "en": "Thrice champion of the Rangabhumi"
+  },
+  "desc": {
+   "nl": "Hij zit naast de Rani in de ereloge en kijkt alsof de arena van hem is.",
+   "en": "He sits beside the Rani in the box of honour and looks as if the arena belongs to him."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#2c3e50",
+   "cloth2": "#7fdbff",
+   "hair": "#1a1a1a",
+   "big": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Mijn zusje zegt dat je goed bent. Mijn zusje zegt veel. Overleef de Daitya en we praten verder.",
+      "en": "My sister says you are good. My sister says a lot. Survive the Daitya and we will talk further."
+     }
+    ]
+   }
+  ]
+ },
+ "khadgasura_npc": {
+  "name": {
+   "nl": "Khadgasura",
+   "en": "Khadgasura"
+  },
+  "en_fable": "Jack of Blades",
+  "archetype": "asura",
+  "essential": true,
+  "home": "karma_mandapa",
+  "role": {
+   "nl": "De gemaskerde Asura",
+   "en": "The masked Asura"
+  },
+  "desc": {
+   "nl": "Een gestalte in rood en goud, met een masker zonder mond. Achter hem hangt Tara in een kooi van licht. In zijn hand het Zwaard van de Eonen, nog dof, wachtend op bloed.",
+   "en": "A figure in red and gold, with a mask without a mouth. Behind him Tara hangs in a cage of light. In his hand the Sword of Aeons, still dull, waiting for blood."
+  },
+  "body": {
+   "skin": "#8b0000",
+   "cloth": "#8b0000",
+   "cloth2": "#e3b341",
+   "hair": "#000000",
+   "mask": true,
+   "cape": true,
+   "big": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_active": "q_karma_mandapa"
+    },
+    "lines": [
+     {
+      "nl": "Kind van Raktambari. Je bent precies op tijd; ik heb er duizend jaar op gewacht, een paar uur meer of minder voelt als niets.",
+      "en": "Child of Raktambari. You are exactly on time; I have waited a thousand years, a few hours more or less feels like nothing."
+     },
+     {
+      "nl": "Je moeder, je vader, je dorp: ik had ze nodig om jou te maken. Een Vira met jouw bloed. Het zwaard wordt wakker van het bloed van je lijn. Tara's bloed, of het jouwe. Kies maar.",
+      "en": "Your mother, your father, your village: I needed them to make you. A Vira with your blood. The sword wakes to the blood of your line. Tara's blood, or yours. Choose."
+     },
+     {
+      "nl": "Of... vecht. Dat deden ze allemaal. Maya niet, Maya was slim. Maar jij lijkt me niet slim. Jij lijkt me een held.",
+      "en": "Or... fight. They all did. Not Maya, Maya was clever. But you do not seem clever to me. You seem a hero."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik ben een Vira. Vecht.",
+       "en": "I am a Vira. Fight."
+      },
+      "set_flag": "khadgasura_fight",
+      "advance_quest": "q_karma_mandapa",
+      "remove_npc": true,
+      "end": true
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "...",
+      "en": "..."
+     }
+    ]
+   }
+  ]
+ },
+ "khadgasura_vritra_npc": {
+  "name": {
+   "nl": "Khadgasura",
+   "en": "Khadgasura"
+  },
+  "en_fable": "Jack of Blades (Northern Wastes)",
+  "archetype": "asura",
+  "essential": true,
+  "home": "chakravartin_pith",
+  "role": {
+   "nl": "De Asura, teruggekeerd in de Himavat",
+   "en": "The Asura, returned in the Himavat"
+  },
+  "desc": {
+   "nl": "Het masker zweeft boven het altaar van de Chakravartins. Het heeft geen lichaam meer nodig. Het heeft een draak.",
+   "en": "The mask floats above the altar of the Chakravartins. It no longer needs a body. It has a dragon."
+  },
+  "body": {
+   "skin": "#8b0000",
+   "cloth": "#8b0000",
+   "cloth2": "#e3b341",
+   "hair": "#000000",
+   "mask": true,
+   "cape": true,
+   "big": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_active": "q_vritra"
+    },
+    "lines": [
+     {
+      "nl": "Je dacht dat een masker sterft als het lichaam valt? Ik ben ouder dan lichamen. Ik was Vritra voor Indra geboren werd, en ik zal Vritra zijn als jij as bent.",
+      "en": "You thought a mask dies when the body falls? I am older than bodies. I was Vritra before Indra was born, and I will be Vritra when you are ash."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Dan verslaan we je nog een keer.",
+       "en": "Then we defeat you once more."
+      },
+      "set_flag": "vritra_fight",
+      "advance_quest": "q_vritra",
+      "remove_npc": true,
+      "end": true
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "...",
+      "en": "..."
+     }
+    ]
+   }
+  ]
+ },
+ "kalayogi": {
+  "name": {
+   "nl": "Kalayogi",
+   "en": "Kalayogi"
+  },
+  "en_fable": "Scythe",
+  "archetype": "nath_yogi",
+  "essential": true,
+  "home": "ankusha_tata",
+  "trainer": "kalayogi",
+  "role": {
+   "nl": "Een oeroude Vira, de laatste van de eerste generatie",
+   "en": "An ancient Vira, the last of the first generation"
+  },
+  "desc": {
+   "nl": "Een uitgemergelde man zonder leeftijd, in een grijze lendendoek, met een lichaam vol asmerken. Hij mediteert al eeuwen op de klippen. Niemand heeft hem ooit zien eten.",
+   "en": "An emaciated man without age, in a grey loincloth, with a body covered in ash marks. He has meditated on the cliffs for centuries. No one has ever seen him eat."
+  },
+  "body": {
+   "skin": "#6b4a3a",
+   "cloth": "#9e9e9e",
+   "cloth2": "#616161",
+   "hair": "#e0e0e0",
+   "beard": true,
+   "ash": true,
+   "thin": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_active": "q_kalayogi"
+    },
+    "lines": [
+     {
+      "nl": "Je moeder is niet dood, kind. Ik was er. Khadgasura nam haar mee naar Patala Karagar, de kerker onder het crematieveld, en liet haar leven omdat haar bloed het zwaard niet wekte. Het jouwe wel.",
+      "en": "Your mother is not dead, child. I was there. Khadgasura took her to Patala Karagar, the dungeon beneath the cremation ground, and let her live because her blood did not wake the sword. Yours does."
+     },
+     {
+      "nl": "De weg naar Patala loopt door het Shmashana Kshetra. De poort van botten opent alleen voor de eerste Mahant, en hij is al vierhonderd jaar dood. Gelukkig dwaalt hij er nog. Vraag het hem.",
+      "en": "The road to Patala runs through the Shmashana Kshetra. The gate of bones opens only for the first Mahant, and he has been dead four hundred years. Luckily he still wanders there. Ask him."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_kalayogi",
+     "start_quest": "q_patala_karagar",
+     "unlock_tirtha": "shmashana_kshetra"
+    }
+   },
+   {
+    "when": {
+     "all": [
+      {
+       "flag": "maya_dead"
+      },
+      {
+       "quest_active": "q_mayacharya"
+      }
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Het is gedaan. De Mahant weet nu wat te doen; ga naar hem. En kind: in de Karma Mandapa kies je niet alleen voor jezelf. Kalakhadga wekt het beste of het slechtste in een lijn. Jouw lijn.",
+      "en": "It is done. The Mahant now knows what to do; go to him. And child: in the Karma Mandapa you choose not only for yourself. Kalakhadga wakes the best or the worst in a line. Your line."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_mayacharya",
+     "set_flag": "kalayogi_wait"
+    }
+   },
+   {
+    "when": {
+     "quest_active": "q_mayacharya"
+    },
+    "lines": [
+     {
+      "nl": "Maya. Natuurlijk Maya. Begoocheling heet niet voor niets zo. Dood hem, kind. Dan praten we over de Mandapa.",
+      "en": "Maya. Of course Maya. Illusion is not called that for nothing. Kill him, child. Then we talk about the Mandapa."
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_done": "q_kalayogi"
+    },
+    "lines": [
+     {
+      "nl": "De Nath-yogi's leren dat het lichaam een tempel is en de adem de priester. Wil je de Nath Panth betreden?",
+      "en": "The Nath yogis teach that the body is a temple and the breath its priest. Do you wish to enter the Nath Panth?"
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Initieer me in de Nath Panth.",
+       "en": "Initiate me into the Nath Panth."
+      },
+      "open_trainer": "kalayogi"
+     },
+     {
+      "text": {
+       "nl": "Niet nu.",
+       "en": "Not now."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "De zee komt en gaat. Ik blijf. Dat is het hele geheim.",
+      "en": "The sea comes and goes. I remain. That is the whole secret."
+     }
+    ]
+   }
+  ]
+ },
+ "kalayogi_north": {
+  "name": {
+   "nl": "Kalayogi",
+   "en": "Kalayogi"
+  },
+  "en_fable": "Scythe (Northern Wastes)",
+  "archetype": "nath_yogi",
+  "essential": true,
+  "home": "himavat_dwar",
+  "trainer": "kalayogi",
+  "role": {
+   "nl": "De oude Vira, nu in de Himavat",
+   "en": "The ancient Vira, now in the Himavat"
+  },
+  "desc": {
+   "nl": "Hij zit in de sneeuw alsof het zomer is.",
+   "en": "He sits in the snow as if it were summer."
+  },
+  "body": {
+   "skin": "#6b4a3a",
+   "cloth": "#9e9e9e",
+   "cloth2": "#616161",
+   "hair": "#e0e0e0",
+   "beard": true,
+   "ash": true,
+   "thin": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_inactive": "q_himashikhara"
+    },
+    "lines": [
+     {
+      "nl": "Het masker viel, maar ik voelde het niet sterven. Iets is naar het noorden gevlucht. De Devi van Himashikhara ziet verder dan ik. Ga naar haar.",
+      "en": "The mask fell, but I did not feel it die. Something fled north. The Devi of Himashikhara sees further than I. Go to her."
+     }
+    ],
+    "effects": {
+     "start_quest": "q_himashikhara",
+     "set_flag": "kalayogi_north"
+    }
+   },
+   {
+    "lines": [
+     {
+      "nl": "De Devi wacht in haar grot. Het dorp ook, bevroren.",
+      "en": "The Devi waits in her cave. The village too, frozen."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "De Nath Panth.",
+       "en": "The Nath Panth."
+      },
+      "open_trainer": "kalayogi"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "rani_kalavati": {
+  "name": {
+   "nl": "Rani Kalavati",
+   "en": "Rani Kalavati"
+  },
+  "en_fable": "Lady Grey",
+  "archetype": "rani",
+  "essential": true,
+  "home": "shringarapura_uttara",
+  "role": {
+   "nl": "Heerseres van Shringarapura",
+   "en": "Ruler of Shringarapura"
+  },
+  "desc": {
+   "nl": "Mooi, scherp, en veel te jong om al zeventien jaar te regeren. Haar zus Ananya verdween de nacht voor de kroning. Niemand vraagt ernaar. Twee keer.",
+   "en": "Beautiful, sharp, and far too young to have ruled for seventeen years. Her sister Ananya vanished the night before the coronation. No one asks about it. Twice."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#8e44ad",
+   "cloth2": "#e3b341",
+   "hair": "#1a1a1a",
+   "female": true,
+   "jewels": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "flag": "rani_exposed"
+    },
+    "lines": [
+     {
+      "nl": "Je hebt het dagboek aan de garde gegeven. Ze durven me niet te arresteren, maar de stad weet het. Ga weg. Je hebt gewonnen.",
+      "en": "You gave the diary to the guard. They dare not arrest me, but the city knows. Go away. You have won."
+     }
+    ]
+   },
+   {
+    "when": {
+     "flag": "rani_married"
+    },
+    "lines": [
+     {
+      "nl": "Mijn Nagar Pramukh. De schatkist is in de haveli; neem wat je nodig hebt. De stad is van ons. Alleen van ons.",
+      "en": "My Nagar Pramukh. The treasury is in the haveli; take what you need. The city is ours. Only ours."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Neem 500 goud uit de schatkist.",
+       "en": "Take 500 gold from the treasury."
+      },
+      "when": {
+       "not_flag": "rani_gold_today"
+      },
+      "gold": 500,
+      "set_flag": "rani_gold_today"
+     },
+     {
+      "text": {
+       "nl": "Tot later, Rani.",
+       "en": "Until later, Rani."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_active": "q_shyama_haveli",
+     "has_item": "ananya_patra"
+    },
+    "lines": [
+     {
+      "nl": "Dat boek. Waar heb je... Luister. Ananya was ziek. Ze zou de stad vernietigd hebben. Wat ik deed, deed ik voor Shringarapura. Geef me het dagboek. Tweeduizend goud, en we vergeten dit allebei.",
+      "en": "That book. Where did you... Listen. Ananya was ill. She would have destroyed the city. What I did, I did for Shringarapura. Give me the diary. Two thousand gold, and we both forget this."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Neem het dagboek en het goud. (Adharma)",
+       "en": "Take the diary and the gold. (Adharma)"
+      },
+      "take": "ananya_patra",
+      "gold": 2000,
+      "karma": -60,
+      "set_flag": "rani_bribed",
+      "complete_quest": "q_shyama_haveli"
+     },
+     {
+      "text": {
+       "nl": "Nee. De garde krijgt het.",
+       "en": "No. The guard gets it."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "all": [
+      {
+       "quest_done": "q_rangabhumi"
+      },
+      {
+       "quest_inactive": "q_rani_kalavati"
+      },
+      {
+       "not_flag": "rani_bribed"
+      }
+     ]
+    },
+    "lines": [
+     {
+      "nl": "De Vira van de Rangabhumi. Ik heb je zien vechten; je deed me aan iemand denken. Mezelf, misschien. Een Rani heeft een gemaal nodig die niet bang is. Breng me een geschenk dat een koningin waardig is, en we praten over Shringarapura.",
+      "en": "The Vira of the Rangabhumi. I watched you fight; you reminded me of someone. Myself, perhaps. A Rani needs a consort who is not afraid. Bring me a gift worthy of a queen, and we will talk about Shringarapura."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik zal het brengen.",
+       "en": "I will bring it."
+      },
+      "start_quest": "q_rani_kalavati"
+     },
+     {
+      "text": {
+       "nl": "Ik ben niet te koop, Rani.",
+       "en": "I am not for sale, Rani."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_rani_kalavati",
+      0
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Een geschenk. Een juwelenketting, bijvoorbeeld. De handelaar van Uttara verkoopt ze. Of je vindt er een in het kamp van een roverskoning.",
+      "en": "A gift. A jewelled necklace, for instance. The merchant of Uttara sells them. Or you find one in the camp of a bandit king."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Geef de juwelenketting.",
+       "en": "Give the jewelled necklace."
+      },
+      "when": {
+       "has_item": "ratna_haar"
+      },
+      "take": "ratna_haar",
+      "set_flag": "rani_gift_given",
+      "advance_quest": "q_rani_kalavati",
+      "affection": [
+       "rani_kalavati",
+       60
+      ],
+      "lines": [
+       {
+        "nl": "Robijnen. Je hebt smaak, of geluk. Er is één probleem: Vajrasena. Hij denkt dat ik van hem ben. Zorg dat hij dat niet meer denkt.",
+        "en": "Rubies. You have taste, or luck. There is one problem: Vajrasena. He thinks I am his. Make sure he no longer thinks so."
+       }
+      ]
+     },
+     {
+      "text": {
+       "nl": "Ik kom terug.",
+       "en": "I will return."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_rani_kalavati",
+      1
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Vajrasena loopt hier rond als een stier in een tempel. Praat met hem. Of vecht. Mij maakt het niet uit, zolang hij weg is.",
+      "en": "Vajrasena walks around here like a bull in a temple. Talk to him. Or fight. I do not care, as long as he is gone."
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_rani_kalavati",
+      2
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Vajrasena is weg. Je bent sneller dan ik dacht. Nu dan: trouw met me, en Shringarapura is half van jou. Nagar Pramukh. Heer van de stad. Of loop weg, en ik laat je lopen.",
+      "en": "Vajrasena is gone. You are quicker than I thought. Now then: marry me, and Shringarapura is half yours. Nagar Pramukh. Lord of the city. Or walk away, and I will let you walk."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik trouw met je, Rani.",
+       "en": "I will marry you, Rani."
+      },
+      "marry": "rani_kalavati",
+      "set_flag": "rani_married",
+      "yasha": 500,
+      "gold": 3000,
+      "complete_quest": "q_rani_kalavati",
+      "lines": [
+       {
+        "nl": "De bruiloft duurt drie dagen. De stad eet op jouw kosten. Zo hoort het.",
+        "en": "The wedding lasts three days. The city eats at your expense. As it should be."
+       }
+      ]
+     },
+     {
+      "text": {
+       "nl": "Nee. Ik heb gezien wat je met Ananya deed.",
+       "en": "No. I have seen what you did to Ananya."
+      },
+      "when": {
+       "flag": "rani_exposed"
+      },
+      "complete_quest": "q_rani_kalavati",
+      "end": true
+     },
+     {
+      "text": {
+       "nl": "Ik moet erover nadenken.",
+       "en": "I must think about it."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "De Rani ontvangt alleen wie iets te zeggen heeft.",
+      "en": "The Rani receives only those who have something to say."
+     }
+    ]
+   }
+  ]
+ },
+ "kantika": {
+  "name": {
+   "nl": "Kantika",
+   "en": "Kantika"
+  },
+  "en_fable": "Briar Rose",
+  "archetype": "vira",
+  "essential": true,
+  "home": "vira_akhara",
+  "trainer": "kantika",
+  "role": {
+   "nl": "Vira van de Akhara, meesteres van de schaduwstap",
+   "en": "Vira of the Akhara, mistress of the shadow step"
+  },
+  "desc": {
+   "nl": "Een Vira met doornen in haar vlechten en een katar in elke mouw. Ze praat weinig en verliest nooit.",
+   "en": "A Vira with thorns in her braids and a katar in every sleeve. She speaks little and never loses."
+  },
+  "body": {
+   "skin": "#8d5a3a",
+   "cloth": "#1e1e26",
+   "cloth2": "#e0115f",
+   "hair": "#1a1a1a",
+   "female": true
+  },
+  "dialogue": [
+   {
+    "lines": [
+     {
+      "nl": "Chhaya Gati. De schaduwstap. Je verdwijnt, je verschijnt achter je vijand, en hij weet het pas als hij valt. Dat is het enige wat ik leer. Wil je het?",
+      "en": "Chhaya Gati. The shadow step. You vanish, you appear behind your enemy, and he only knows when he falls. That is the only thing I teach. Do you want it?"
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Leer het me.",
+       "en": "Teach me."
+      },
+      "open_trainer": "kantika"
+     },
+     {
+      "text": {
+       "nl": "Later.",
+       "en": "Later."
+      },
+      "end": true
+     }
+    ]
+   }
+  ]
+ },
+ "dvikhadga_npc": {
+  "name": {
+   "nl": "Dvikhadga",
+   "en": "Dvikhadga"
+  },
+  "en_fable": "Twinblade",
+  "archetype": "dasyu",
+  "essential": true,
+  "home": "dasyu_tambu",
+  "role": {
+   "nl": "Koning van de Dasyu's",
+   "en": "King of the Dasyus"
+  },
+  "desc": {
+   "nl": "Een berg van een man op een troon van buitgemaakte zwaarden. Twee khanda's op zijn rug. Het Akhara-zegel, doorgekrast, op zijn borst getatoeëerd.",
+   "en": "A mountain of a man on a throne of captured swords. Two khandas on his back. The Akhara seal, scratched out, tattooed on his chest."
+  },
+  "body": {
+   "skin": "#5c3a21",
+   "cloth": "#2d1d16",
+   "cloth2": "#c0392b",
+   "hair": "#1a1a1a",
+   "beard": true,
+   "big": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "flag": "tara_found"
+    },
+    "lines": [
+     {
+      "nl": "Dus de Devi had gelijk. Haar broer. Ga zitten, Vira. Nee? Dan sta je.",
+      "en": "So the Devi was right. Her brother. Sit, Vira. No? Then stand."
+     },
+     {
+      "nl": "Ik was een Vira als jij. De Akhara stuurde me om een dorp te beschermen, en toen de Dasyu's kwamen, kwam niemand om mij te beschermen. Dus werd ik Dasyu. Jouw dorp? Dat was Khadgasura's bevel, niet het mijne. Mijn mannen volgden het masker. Ik ook. Ik ben niet trots.",
+      "en": "I was a Vira like you. The Akhara sent me to protect a village, and when the Dasyus came, no one came to protect me. So I became a Dasyu. Your village? That was Khadgasura's order, not mine. My men followed the mask. So did I. I am not proud."
+     },
+     {
+      "nl": "Je kunt me doden. Je kunt je bij me aansluiten; ik heb een Vira nodig die geen bevelen van maskers aanneemt. Of je kunt weggaan met je zus en me vergeten. Kies.",
+      "en": "You can kill me. You can join me; I need a Vira who takes no orders from masks. Or you can leave with your sister and forget me. Choose."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Vatagram brandde door jouw mannen. Vecht.",
+       "en": "Vatagram burned by your men. Fight."
+      },
+      "set_flag": [
+       "dvikhadga_fight",
+       "dvikhadga_fight_or_join"
+      ],
+      "advance_quest": "q_dasyu_devi",
+      "remove_npc": true,
+      "end": true
+     },
+     {
+      "text": {
+       "nl": "Ik sluit me bij je aan. (Adharma)",
+       "en": "I join you. (Adharma)"
+      },
+      "set_flag": [
+       "dvikhadga_fight_or_join",
+       "dvikhadga_resolved",
+       "dasyu_joined",
+       "dasyu_disguised"
+      ],
+      "karma": -80,
+      "gold": 1000,
+      "yasha": 100,
+      "advance_quest": "q_dasyu_devi",
+      "lines": [
+       {
+        "nl": "Hij lacht als een vallende boom. 'Dan drinken we. Duizend goud voor mijn nieuwe senapati. En je zus is vrij, dat beloof ik. Ze was nooit echt een gevangene; ze was mijn geweten.'",
+        "en": "He laughs like a falling tree. 'Then we drink. A thousand gold for my new captain. And your sister is free, I promise. She was never really a prisoner; she was my conscience.'"
+       }
+      ]
+     },
+     {
+      "text": {
+       "nl": "Ik ga, met Tara. (Dharma)",
+       "en": "I leave, with Tara. (Dharma)"
+      },
+      "set_flag": [
+       "dvikhadga_fight_or_join",
+       "dvikhadga_resolved",
+       "dvikhadga_spared",
+       "dasyu_disguised"
+      ],
+      "karma": 40,
+      "yasha": 60,
+      "advance_quest": "q_dasyu_devi",
+      "lines": [
+       {
+        "nl": "'Dan ben je beter dan ik was.' Hij geeft je een zwaard van de troon. 'Voor het masker. Als je het vindt.'",
+        "en": "'Then you are better than I was.' He hands you a sword from the throne. 'For the mask. If you find it.'"
+       }
+      ],
+      "give": "talwar_krishnashila"
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Een Dasyu die ik niet ken. Praat met de Devi, dan praat je met mij.",
+      "en": "A Dasyu I do not know. Talk to the Devi, then talk to me."
+     }
+    ]
+   }
+  ]
+ },
+ "raktambari_bandi": {
+  "name": {
+   "nl": "Raktambari",
+   "en": "Raktambari"
+  },
+  "en_fable": "Scarlet Robe (Bargate prisoner)",
+  "archetype": "vira",
+  "essential": true,
+  "home": "patala_karagar",
+  "role": {
+   "nl": "Je moeder, gevangene van Patala",
+   "en": "Your mother, prisoner of Patala"
+  },
+  "desc": {
+   "nl": "Mager, grijs, maar met dezelfde rechte rug. Ze heeft twaalf jaar lang elke dag honderd dand-baithaks gedaan in haar cel.",
+   "en": "Thin, grey, but with the same straight back. For twelve years she did a hundred dand-baithaks every day in her cell."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#7a4a2a",
+   "cloth2": "#4a2c10",
+   "hair": "#9e9e9e",
+   "female": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "has_item": "karagar_kunji"
+    },
+    "lines": [
+     {
+      "nl": "Die ogen. Bhadra's ogen. Mijn zoon. Ik heb de tralies elke nacht geteld en gewacht tot iemand met jouw ogen ze zou openen.",
+      "en": "Those eyes. Bhadra's eyes. My son. I counted the bars every night and waited for someone with your eyes to open them."
+     },
+     {
+      "nl": "Khadgasura hield me in leven om jou te lokken. Hij is in de Akhara, kind. Hij is altijd in de Akhara geweest. Vertrouw niemand die je redde. Kom, we gaan naar huis.",
+      "en": "Khadgasura kept me alive to lure you. He is in the Akhara, child. He has always been in the Akhara. Trust no one who saved you. Come, we go home."
+     }
+    ],
+    "effects": {
+     "take": "karagar_kunji",
+     "set_flag": "mother_freed",
+     "advance_quest": "q_patala_karagar",
+     "follow": "raktambari_bandi",
+     "give": "raktambari_haar"
+    }
+   },
+   {
+    "lines": [
+     {
+      "nl": "De cipier heeft de sleutel. Hij draagt hem aan een koord om zijn nek, en hij slaapt nooit.",
+      "en": "The jailer has the key. He wears it on a cord around his neck, and he never sleeps."
+     }
+    ]
+   }
+  ]
+ },
+ "sutradhar": {
+  "name": {
+   "nl": "Sutradhar",
+   "en": "Sutradhar"
+  },
+  "en_fable": "Weaver (the archivist)",
+  "archetype": "pandit",
+  "essential": true,
+  "home": "vira_akhara",
+  "trainer": "sutradhar",
+  "role": {
+   "nl": "Archivaris van de Akhara, bewaarder van de kaarten en zegels",
+   "en": "Archivist of the Akhara, keeper of the cards and seals"
+  },
+  "desc": {
+   "nl": "Een kleine pandit met inktvlekken op zijn vingers en een geheugen als de Mahabharata: alles staat erin, maar je moet weten waar.",
+   "en": "A small pandit with ink stains on his fingers and a memory like the Mahabharata: everything is in it, but you must know where."
+  },
+  "body": {
+   "skin": "#a0623e",
+   "cloth": "#e8e0c8",
+   "cloth2": "#8b4513",
+   "hair": "#6e6e6e",
+   "beard": false,
+   "shikha": true
+  },
+  "dialogue": [
+   {
+    "when": {
+     "quest_inactive": "q_rajat_kunji"
+    },
+    "lines": [
+     {
+      "nl": "De Chakravartins van weleer verborgen zilveren sleutels door heel Jambudvipa, en zilveren kisten die alleen daarmee opengaan. Breng me het bewijs dat je er tien vond, en ik geef je wat de Akhara geeft: Tapas.",
+      "en": "The Chakravartins of old hid silver keys all over Jambudvipa, and silver chests that only open with them. Bring me proof that you found ten, and I will give you what the Akhara gives: Tapas."
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Ik zal ze zoeken.",
+       "en": "I will seek them."
+      },
+      "start_quest": "q_rajat_kunji"
+     },
+     {
+      "text": {
+       "nl": "Later.",
+       "en": "Later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "when": {
+     "quest_stage": [
+      "q_rajat_kunji",
+      1
+     ]
+    },
+    "lines": [
+     {
+      "nl": "Tien sleutels. Je ogen zijn beter dan je manieren. Hier, je Tapas.",
+      "en": "Ten keys. Your eyes are better than your manners. Here, your Tapas."
+     }
+    ],
+    "effects": {
+     "complete_quest": "q_rajat_kunji"
+    }
+   },
+   {
+    "when": {
+     "flag": "maya_revealed"
+    },
+    "lines": [
+     {
+      "nl": "Mayacharya's rollen zijn bij mij. Hij was een verrader, maar zijn siddhi's waren echt. Wil je ze leren?",
+      "en": "Mayacharya's scrolls are with me. He was a traitor, but his siddhis were real. Do you want to learn them?"
+     }
+    ],
+    "choices": [
+     {
+      "text": {
+       "nl": "Leer me de Maya-siddhi's.",
+       "en": "Teach me the Maya siddhis."
+      },
+      "open_trainer": "sutradhar"
+     },
+     {
+      "text": {
+       "nl": "Tot later.",
+       "en": "Until later."
+      },
+      "end": true
+     }
+    ]
+   },
+   {
+    "lines": [
+     {
+      "nl": "Elke Vira staat in mijn boeken. De doden het langst. Ga, maak je hoofdstuk lang.",
+      "en": "Every Vira is in my books. The dead the longest. Go, make your chapter long."
+     }
+    ]
+   }
+  ]
+ }
+}

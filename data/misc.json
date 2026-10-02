@@ -1,0 +1,213 @@
+{
+  "stats": {
+    "deha": {"name": {"nl": "Deha (lichaamskracht)", "en": "Deha (physique)"}, "en_fable": "Physique", "discipline": "bala", "desc": {"nl": "Spierkracht. Elk niveau: +30% schade met nabijgevechtswapens en vuisten.", "en": "Muscle. Each level: +30% damage with melee weapons and fists."}},
+    "prana": {"name": {"nl": "Prana (levensadem)", "en": "Prana (vitality)"}, "en_fable": "Health", "discipline": "bala", "desc": {"nl": "Levenskracht. Elk niveau: +35 maximale Prana en snellere genezing.", "en": "Life force. Each level: +35 maximum Prana and faster healing."}},
+    "kavacha": {"name": {"nl": "Kavacha (taaiheid)", "en": "Kavacha (toughness)"}, "en_fable": "Toughness", "discipline": "bala", "desc": {"nl": "Een huid als leer. Elk niveau: 6% minder schade van elke bron.", "en": "Skin like leather. Each level: 6% less damage from every source."}},
+    "vega": {"name": {"nl": "Vega (snelheid)", "en": "Vega (speed)"}, "en_fable": "Speed", "discipline": "kaushala", "desc": {"nl": "Loop-, aanvals- en rolsnelheid. Elk niveau: +7%.", "en": "Movement, attack and roll speed. Each level: +7%."}},
+    "lakshya": {"name": {"nl": "Lakshya (oog)", "en": "Lakshya (accuracy)"}, "en_fable": "Accuracy", "discipline": "kaushala", "desc": {"nl": "Het oog van de boogschutter. Elk niveau: +30% schade met boog en chakra, sneller spannen.", "en": "The archer's eye. Each level: +30% damage with bow and chakra, faster draw."}},
+    "chaturya": {"name": {"nl": "Chaturya (sluwheid)", "en": "Chaturya (guile)"}, "en_fable": "Guile", "discipline": "kaushala", "desc": {"nl": "Handel en list. Elk niveau: 5% betere prijzen, meer goud uit kisten, stiller sluipen.", "en": "Trade and cunning. Each level: 5% better prices, more gold from chests, quieter sneaking."}},
+    "siddhibala": {"name": {"nl": "Siddhi-bala (wilskracht)", "en": "Siddhi-bala (magic power)"}, "en_fable": "Magic Power", "discipline": "shakti", "desc": {"nl": "De kracht van je mantra's. Elk niveau: +30% schade en effect van siddhi's.", "en": "The power of your mantras. Each level: +30% damage and effect of siddhis."}},
+    "ojas": {"name": {"nl": "Ojas (levensenergie)", "en": "Ojas (will energy)"}, "en_fable": "Will Energy", "discipline": "shakti", "desc": {"nl": "Je voorraad subtiele energie. Elk niveau: +30 maximale Ojas en sneller herstel.", "en": "Your store of subtle energy. Each level: +30 maximum Ojas and faster recovery."}}
+  },
+  "disciplines": {
+    "bala": {"name": {"nl": "Bala (lichaam)", "en": "Bala (body)"}, "en_fable": "Strength", "color": "#e74c3c", "desc": {"nl": "De weg van het lichaam: Hatha-yoga van de oorlog. Nabijgevecht, uithoudingsvermogen, taaiheid.", "en": "The way of the body: Hatha yoga of war. Melee, endurance, toughness."}},
+    "kaushala": {"name": {"nl": "Kaushala (vaardigheid)", "en": "Kaushala (skill)"}, "en_fable": "Skill", "color": "#f1c40f", "desc": {"nl": "De weg van oog en hand: Dhanurveda. Boog, chakra, snelheid, sluwheid.", "en": "The way of eye and hand: Dhanurveda. Bow, chakra, speed, cunning."}},
+    "shakti": {"name": {"nl": "Shakti (wil)", "en": "Shakti (will)"}, "en_fable": "Will", "color": "#3498db", "desc": {"nl": "De weg van de wil: Tantra en mantra. Siddhi's, Ojas, de kracht die alles beweegt.", "en": "The way of will: Tantra and mantra. Siddhis, Ojas, the power that moves everything."}}
+  },
+  "stat_costs": [150, 560, 1200, 2100, 3200, 4500],
+  "age_per_level": 0.4,
+  "ashramas": [
+    {"id": "brahmacharya", "name": {"nl": "Brahmacharya (leerling)", "en": "Brahmacharya (student)"}, "min_age": 0, "max_age": 25, "bonus": {"tapas_mult": 0.10}, "desc": {"nl": "De leerjaren. Tapas komt 10% sneller binnen.", "en": "The years of learning. Tapas comes 10% faster."}},
+    {"id": "grihastha", "name": {"nl": "Grihastha (huishouder)", "en": "Grihastha (householder)"}, "min_age": 25, "max_age": 50, "bonus": {"gold_mult": 0.10}, "desc": {"nl": "De jaren van huis en gezin. 10% meer goud uit opdrachten.", "en": "The years of house and family. 10% more gold from commissions."}},
+    {"id": "vanaprastha", "name": {"nl": "Vanaprastha (woudbewoner)", "en": "Vanaprastha (forest dweller)"}, "min_age": 50, "max_age": 70, "bonus": {"ojas_regen": 0.5}, "desc": {"nl": "De terugtrekking. Ojas herstelt 50% sneller, het lichaam wordt trager.", "en": "The withdrawal. Ojas recovers 50% faster, the body slows."}},
+    {"id": "sannyasa", "name": {"nl": "Sannyasa (verzaking)", "en": "Sannyasa (renunciation)"}, "min_age": 70, "max_age": 999, "bonus": {"siddhi_mult": 0.25, "speed_mult": -0.10}, "desc": {"nl": "Alles losgelaten. Siddhi's doen 25% meer, maar je loopt 10% langzamer.", "en": "Everything let go. Siddhis do 25% more, but you walk 10% slower."}}
+  ],
+  "gunas": {
+    "sattva": {"name": {"nl": "Sattva (zuiverheid)", "en": "Sattva (purity)"}, "color": "#f5f5dc", "desc": {"nl": "Melk, vruchten, ghee, paneer. Sattvisch voedsel geneest en zuivert het karma een beetje.", "en": "Milk, fruit, ghee, paneer. Sattvic food heals and purifies karma a little."}},
+    "rajas": {"name": {"nl": "Rajas (beweging)", "en": "Rajas (activity)"}, "color": "#e67e22", "desc": {"nl": "Pepers, chai, samosa's. Rajasisch voedsel maakt snel en rusteloos.", "en": "Chillies, chai, samosas. Rajasic food makes one quick and restless."}},
+    "tamas": {"name": {"nl": "Tamas (duisternis)", "en": "Tamas (inertia)"}, "color": "#4a2a10", "desc": {"nl": "Vlees, drank, bhang. Tamasisch voedsel voedt het lichaam sterk en verduistert de geest.", "en": "Meat, liquor, bhang. Tamasic food feeds the body strongly and darkens the mind."}}
+  },
+  "karma_titles": [
+    {"min": 800, "name": {"nl": "Mahatma", "en": "Mahatma"}}, {"min": 500, "name": {"nl": "Dharmatma", "en": "Dharmatma"}}, {"min": 200, "name": {"nl": "Dharmika", "en": "Dharmika"}},
+    {"min": -199, "name": {"nl": "Samachitta", "en": "Samachitta"}}, {"min": -499, "name": {"nl": "Adharmika", "en": "Adharmika"}}, {"min": -799, "name": {"nl": "Rakshasa-hart", "en": "Rakshasa-heart"}}, {"min": -9999, "name": {"nl": "Asura", "en": "Asura"}}
+  ],
+  "yasha_titles": [
+    {"min": 2000, "name": {"nl": "Loknayak", "en": "Loknayak"}}, {"min": 1000, "name": {"nl": "Vikhyata", "en": "Vikhyata"}}, {"min": 600, "name": {"nl": "Mahavira", "en": "Mahavira"}},
+    {"min": 300, "name": {"nl": "Vira", "en": "Vira"}}, {"min": 100, "name": {"nl": "Shishya", "en": "Shishya"}}, {"min": 0, "name": {"nl": "Anaam", "en": "Anaam"}}
+  ],
+  "boasts": {
+    "no_armor": {"name": {"nl": "Zonder pantser", "en": "Without armour"}, "desc": {"nl": "Je draagt geen enkel pantserstuk tijdens de opdracht.", "en": "You wear no armour piece during the commission."}, "gold": 200, "yasha": 60},
+    "no_potion": {"name": {"nl": "Zonder drankjes", "en": "Without potions"}, "desc": {"nl": "Je drinkt geen rasa tijdens de opdracht.", "en": "You drink no elixir during the commission."}, "gold": 150, "yasha": 40},
+    "no_siddhi": {"name": {"nl": "Zonder siddhi's", "en": "Without siddhis"}, "desc": {"nl": "Je gebruikt geen siddhi tijdens de opdracht.", "en": "You use no siddhi during the commission."}, "gold": 200, "yasha": 50},
+    "melee_only": {"name": {"nl": "Alleen staal", "en": "Steel only"}, "desc": {"nl": "Je gebruikt geen boog of chakra tijdens de opdracht.", "en": "You use no bow or chakra during the commission."}, "gold": 150, "yasha": 40}
+  },
+  "panths": {
+    "hatha": {"name": {"nl": "Hatha Panth", "en": "Hatha Panth"}, "teacher": "bhimnath", "en_fable": "Unique (SD): initiation path", "bonus": {"melee_mult": 0.10, "hp_max": 30}, "requires": {"stat_min": ["deha", 3]}, "cost": 500,
+      "desc": {"nl": "De weg van het lichaam, zoals de Naga-sadhu's hem lopen. +10% nabijgevechtsschade, +30 Prana.", "en": "The way of the body, as the Naga sadhus walk it. +10% melee damage, +30 Prana."}},
+    "dhanur": {"name": {"nl": "Dhanur Panth", "en": "Dhanur Panth"}, "teacher": "sharanga", "en_fable": "Unique (SD): initiation path", "bonus": {"ranged_mult": 0.10, "speed_mult": 0.05}, "requires": {"stat_min": ["lakshya", 3]}, "cost": 500,
+      "desc": {"nl": "De weg van de boog. +10% afstandsschade, +5% snelheid.", "en": "The way of the bow. +10% ranged damage, +5% speed."}},
+    "tantra": {"name": {"nl": "Tantra Panth", "en": "Tantra Panth"}, "teacher": "shyamali", "en_fable": "Unique (SD): initiation path", "bonus": {"ojas_max": 40, "siddhi_mult": 0.10}, "requires": {"stat_min": ["siddhibala", 3]}, "cost": 500,
+      "desc": {"nl": "Het lichaam als yantra, de adem als mantra. +40 Ojas, +10% siddhi-kracht.", "en": "The body as yantra, the breath as mantra. +40 Ojas, +10% siddhi power."}},
+    "aghora": {"name": {"nl": "Aghora Panth", "en": "Aghora Panth"}, "teacher": "aghori_bhairavnath", "en_fable": "Unique (SD): initiation path", "bonus": {"drain_on_kill": 15, "fear_immune": true}, "requires": {"quest_done": "q_aghori_pariksha"}, "cost": 0,
+      "desc": {"nl": "Voorbij rein en onrein. Elke kill geneest 15 Prana; angst raakt je niet meer.", "en": "Beyond pure and impure. Every kill heals 15 Prana; fear no longer touches you."}},
+    "bhakti": {"name": {"nl": "Bhakti Panth", "en": "Bhakti Panth"}, "teacher": "pujari_aditya", "en_fable": "Unique (SD): initiation path", "bonus": {"affection_mult": 0.5, "yasha_mult": 0.2, "temple_heal": true}, "requires": {"karma_min": 200}, "cost": 300,
+      "desc": {"nl": "De weg van de toewijding. Dorpelingen houden sneller van je, roem groeit 20% sneller, tempels genezen je.", "en": "The way of devotion. Villagers love you faster, renown grows 20% faster, temples heal you."}},
+    "jnana": {"name": {"nl": "Jnana Panth", "en": "Jnana Panth"}, "teacher": "rishi_vamadeva", "en_fable": "Unique (SD): initiation path", "bonus": {"tapas_mult": 0.15}, "requires": {"quest_done": "q_rishi_vamadeva"}, "cost": 0,
+      "desc": {"nl": "De weg van de kennis. Je verzamelt 15% meer Tapas.", "en": "The way of knowledge. You gather 15% more Tapas."}},
+    "nath": {"name": {"nl": "Nath Panth", "en": "Nath Panth"}, "teacher": "kalayogi", "en_fable": "Unique (SD): initiation path", "bonus": {"ojas_regen": 0.5, "siddhi_cost": -0.10}, "requires": {"quest_done": "q_kalayogi"}, "cost": 0,
+      "desc": {"nl": "De weg van de Nath-yogi's: lichaam als tempel, adem als priester. Ojas herstelt 50% sneller, siddhi's kosten 10% minder.", "en": "The way of the Nath yogis: body as temple, breath as priest. Ojas recovers 50% faster, siddhis cost 10% less."}}
+  },
+  "trainers": {
+    "bhimnath": {"siddhis": ["ugra_rupa", "vrishabha_vega", "shata_khadga", "hanuman_langhana"], "panth": "hatha"},
+    "sharanga": {"siddhis": ["shara_varsha", "garuda_drishti"], "panth": "dhanur"},
+    "shyamali": {"siddhis": ["agni_astra", "vajra", "vayu_astra", "kavacha", "agni_kundala"], "panth": "tantra"},
+    "mayacharya": {"siddhis": ["kala_stambhana", "mohini_maya", "chhaya_khadga"]},
+    "sutradhar": {"siddhis": ["kala_stambhana", "mohini_maya", "chhaya_khadga"]},
+    "aghori_bhairavnath": {"siddhis": ["kalagni", "prana_harana", "naga_pasha", "bhuta_ahvana"], "panth": "aghora"},
+    "pujari_aditya": {"siddhis": ["surya_tejas"], "panth": "bhakti"},
+    "charaka": {"siddhis": ["sanjivani"]},
+    "kantika": {"siddhis": ["chhaya_gati"]},
+    "rishi_vamadeva": {"siddhis": [], "panth": "jnana"},
+    "kalayogi": {"siddhis": [], "panth": "nath"}
+  },
+  "archetypes": {
+    "vira": {"name": {"nl": "Vira (held)", "en": "Vira (hero)"}, "desc": {"nl": "Een opgeleide krijger van de Vira Akhara.", "en": "A trained warrior of the Vira Akhara."}},
+    "siddha": {"name": {"nl": "Siddha (volmaakte)", "en": "Siddha (perfected one)"}, "desc": {"nl": "Iemand die de siddhi's beheerst, vaak met zienersgaven.", "en": "One who masters the siddhis, often with seer's gifts."}},
+    "naga_sadhu": {"name": {"nl": "Naga-sadhu", "en": "Naga sadhu"}, "desc": {"nl": "Naakte krijgersasceet, bedekt met as, lid van een Akhara.", "en": "Naked warrior ascetic, covered in ash, member of an Akhara."}},
+    "tantrika": {"name": {"nl": "Tantrika", "en": "Tantrika"}, "desc": {"nl": "Beoefenaar van Tantra: mantra, yantra, en de kracht van Shakti.", "en": "Practitioner of Tantra: mantra, yantra, and the power of Shakti."}},
+    "aghori": {"name": {"nl": "Aghori", "en": "Aghori"}, "desc": {"nl": "Asceet van het crematieveld die rein en onrein verwerpt.", "en": "Ascetic of the cremation ground who rejects pure and impure."}},
+    "kapalika": {"name": {"nl": "Kapalika (schedeldrager)", "en": "Kapalika (skull-bearer)"}, "desc": {"nl": "Tantrische sekte die met schedels loopt en de donkere guna eert.", "en": "Tantric sect that walks with skulls and honours the dark guna."}},
+    "bhairavi": {"name": {"nl": "Bhairavi", "en": "Bhairavi"}, "desc": {"nl": "Vrouwelijke tantrika, gewijd aan Bhairava's gemalin.", "en": "Female tantrika, consecrated to Bhairava's consort."}},
+    "rishi": {"name": {"nl": "Rishi (ziener)", "en": "Rishi (seer)"}, "desc": {"nl": "Een ziener die de Veda's hoort en de wereld niet nodig heeft.", "en": "A seer who hears the Vedas and has no need of the world."}},
+    "sannyasi": {"name": {"nl": "Sannyasi", "en": "Sannyasi"}, "desc": {"nl": "Iemand die alles heeft losgelaten.", "en": "One who has let go of everything."}},
+    "sadhvi": {"name": {"nl": "Sadhvi", "en": "Sadhvi"}, "desc": {"nl": "Vrouwelijke asceet of heilige.", "en": "Female ascetic or holy woman."}},
+    "brahmachari": {"name": {"nl": "Brahmachari", "en": "Brahmachari"}, "desc": {"nl": "Leerling in de eerste levensfase.", "en": "Student in the first stage of life."}},
+    "bhakta": {"name": {"nl": "Bhakta", "en": "Bhakta"}, "desc": {"nl": "Devoot, iemand die het pad van de liefde loopt.", "en": "Devotee, one who walks the path of love."}},
+    "pujari": {"name": {"nl": "Pujari (priester)", "en": "Pujari (priest)"}, "desc": {"nl": "Tempelpriester die de puja verricht.", "en": "Temple priest who performs the puja."}},
+    "hatha_yogi": {"name": {"nl": "Hatha-yogi", "en": "Hatha yogi"}, "desc": {"nl": "Meester van asana en pranayama.", "en": "Master of asana and pranayama."}},
+    "nath_yogi": {"name": {"nl": "Nath-yogi", "en": "Nath yogi"}, "desc": {"nl": "Volgeling van Gorakhnath; het lichaam als tempel.", "en": "Follower of Gorakhnath; the body as temple."}},
+    "udasi": {"name": {"nl": "Udasi (zwerver)", "en": "Udasi (wanderer)"}, "desc": {"nl": "Rondtrekkende bedelmonnik zonder vaste plek.", "en": "Wandering mendicant without a fixed place."}},
+    "pehlwan": {"name": {"nl": "Pehlwan (worstelaar)", "en": "Pehlwan (wrestler)"}, "desc": {"nl": "Worstelaar van de modderput, kushti.", "en": "Wrestler of the mud pit, kushti."}},
+    "kshatriya": {"name": {"nl": "Kshatriya (krijger)", "en": "Kshatriya (warrior)"}, "desc": {"nl": "Van de krijgersstand; soldaten, kapiteins, kampioenen.", "en": "Of the warrior order; soldiers, captains, champions."}},
+    "dhanurdhara": {"name": {"nl": "Dhanurdhara (boogschutter)", "en": "Dhanurdhara (archer)"}, "desc": {"nl": "Meester van de Dhanurveda.", "en": "Master of the Dhanurveda."}},
+    "vaidya": {"name": {"nl": "Vaidya (geneesheer)", "en": "Vaidya (physician)"}, "desc": {"nl": "Ayurvedisch arts.", "en": "Ayurvedic physician."}},
+    "jyotishi": {"name": {"nl": "Jyotishi (astroloog)", "en": "Jyotishi (astrologer)"}, "desc": {"nl": "Lezer van sterren en horoscopen.", "en": "Reader of stars and horoscopes."}},
+    "vaishya": {"name": {"nl": "Vaishya (handelaar)", "en": "Vaishya (merchant)"}, "desc": {"nl": "Van de handelsstand.", "en": "Of the merchant order."}},
+    "grihastha": {"name": {"nl": "Grihastha (huishouder)", "en": "Grihastha (householder)"}, "desc": {"nl": "Een gewone man of vrouw met huis en gezin.", "en": "An ordinary man or woman with house and family."}},
+    "gramvasi": {"name": {"nl": "Gramvasi (dorpeling)", "en": "Gramvasi (villager)"}, "desc": {"nl": "Een inwoner van dorp of stad.", "en": "An inhabitant of village or town."}},
+    "dasyu": {"name": {"nl": "Dasyu (rover)", "en": "Dasyu (bandit)"}, "desc": {"nl": "Rover, plunderaar, buiten de wet.", "en": "Robber, raider, outside the law."}},
+    "asura": {"name": {"nl": "Asura", "en": "Asura"}, "desc": {"nl": "Een machtig wezen tegen de orde van de goden.", "en": "A powerful being against the order of the gods."}},
+    "asura_pujari": {"name": {"nl": "Asura-priester", "en": "Asura priest"}, "desc": {"nl": "Priester van een asura-cultus.", "en": "Priest of an asura cult."}},
+    "bhuta": {"name": {"nl": "Bhuta (geest)", "en": "Bhuta (ghost)"}, "desc": {"nl": "Een geest zonder lichaam.", "en": "A spirit without a body."}},
+    "rani": {"name": {"nl": "Rani (koningin)", "en": "Rani (queen)"}, "desc": {"nl": "Heerseres van een stad.", "en": "Ruler of a city."}},
+    "devi": {"name": {"nl": "Devi (godin)", "en": "Devi (goddess)"}, "desc": {"nl": "Een goddelijke of orakelachtige vrouw.", "en": "A divine or oracular woman."}},
+    "pandit": {"name": {"nl": "Pandit (geleerde)", "en": "Pandit (scholar)"}, "desc": {"nl": "Geleerde van de geschriften.", "en": "Scholar of the scriptures."}},
+    "lohar": {"name": {"nl": "Lohar (smid)", "en": "Lohar (smith)"}, "desc": {"nl": "Smid.", "en": "Smith."}},
+    "darzi": {"name": {"nl": "Darzi (kleermaker)", "en": "Darzi (tailor)"}, "desc": {"nl": "Kleermaker.", "en": "Tailor."}},
+    "nai": {"name": {"nl": "Nai (barbier)", "en": "Nai (barber)"}, "desc": {"nl": "Barbier.", "en": "Barber."}},
+    "chitrakar": {"name": {"nl": "Chitrakar (schilder)", "en": "Chitrakar (painter)"}, "desc": {"nl": "Schilder en tatoeëerder.", "en": "Painter and tattooist."}},
+    "madhushala": {"name": {"nl": "Madhushala-houder", "en": "Madhushala keeper"}, "desc": {"nl": "Uitbater van een drankhuis.", "en": "Keeper of a drinking house."}},
+    "kisan": {"name": {"nl": "Kisan (boer)", "en": "Kisan (farmer)"}, "desc": {"nl": "Boer.", "en": "Farmer."}},
+    "navik": {"name": {"nl": "Navik (schipper)", "en": "Navik (boatman)"}, "desc": {"nl": "Schipper.", "en": "Boatman."}},
+    "chor": {"name": {"nl": "Chor (dief)", "en": "Chor (thief)"}, "desc": {"nl": "Dief.", "en": "Thief."}},
+    "gunda": {"name": {"nl": "Gunda (pestkop)", "en": "Gunda (bully)"}, "desc": {"nl": "Pestkop, straatvechter.", "en": "Bully, street fighter."}},
+    "rakshaka": {"name": {"nl": "Rakshaka (wachter)", "en": "Rakshaka (guard)"}, "desc": {"nl": "Wachter of cipier.", "en": "Guard or jailer."}},
+    "vadhaka": {"name": {"nl": "Vadhaka (beul)", "en": "Vadhaka (executioner)"}, "desc": {"nl": "Beul.", "en": "Executioner."}}
+  },
+  "shops": {
+    "akhara_vaidya": {"name": {"nl": "Apotheek van de Akhara", "en": "Apothecary of the Akhara"}, "items": ["prana_rasa_laghu", "prana_rasa", "ojas_rasa", "vishahara", "tulsi", "bhasma", "amrita_phial", "kamandalu"], "buy_mult": 1.0},
+    "vatagram_vyapari": {"name": {"nl": "Kar van Gopal", "en": "Gopal's cart"}, "items": ["phala", "dudh", "ghee", "laddu", "kheer", "mala", "gulab", "mithai", "diya", "kamandalu", "bansi", "kudala", "talwar_loha", "katar_loha", "dhanush_loha", "gramin_topi", "gramin_kurta", "gramin_dastana", "gramin_dhoti", "gramin_jutti", "itihasa_jambudvipa"], "buy_mult": 1.0},
+    "vatagram_vaidya": {"name": {"nl": "Vaidya van Vatagram", "en": "Vaidya of Vatagram"}, "items": ["prana_rasa_laghu", "prana_rasa", "ojas_rasa", "tulsi", "amla", "vishahara"], "buy_mult": 1.0},
+    "bazaar_general": {"name": {"nl": "Kraam van Seth Dhanraj", "en": "Stall of Seth Dhanraj"}, "items": ["phala", "dudh", "ghee", "paneer", "kheer", "laddu", "jalebi", "samosa", "mirchi", "chai", "madhu", "gajar", "mala", "gulab", "mithai", "chandan_tel", "mitti_khilona", "diya", "kamandalu", "bansi", "kudala", "shankha", "damaru", "rudraksha_mala", "panchatantra", "itihasa_jambudvipa", "vira_akhara_niyam"], "buy_mult": 1.0},
+    "lohar": {"name": {"nl": "Smederij van Bhola", "en": "Bhola's smithy"}, "items": ["talwar_loha", "talwar_ispat", "talwar_krishnashila", "khanda_loha", "khanda_ispat", "khanda_krishnashila", "gada_loha", "gada_ispat", "parashu_loha", "parashu_ispat", "trishula_loha", "trishula_ispat", "katar_loha", "katar_ispat", "katar_krishnashila", "urumi_ispat", "dhanush_loha", "dhanush_ispat", "mahadhanush_loha", "mahadhanush_ispat", "chakra_loha", "chakra_ispat", "hira", "manikya"], "buy_mult": 1.0},
+    "darzi": {"name": {"nl": "Atelier van Sudama", "en": "Sudama's atelier"}, "items": ["gramin_topi", "gramin_kurta", "gramin_dastana", "gramin_dhoti", "gramin_jutti", "charma_topi", "charma_kurta", "charma_dastana", "charma_dhoti", "charma_jutti", "jhilam_topi", "jhilam_kurta", "jhilam_dastana", "jhilam_dhoti", "jhilam_jutti", "charaina_topi", "charaina_kurta", "charaina_dastana", "charaina_dhoti", "charaina_jutti", "yogi_topi", "yogi_kurta", "yogi_dastana", "yogi_dhoti", "yogi_jutti"], "buy_mult": 1.0},
+    "uttara_rich": {"name": {"nl": "Haveli van Seth Ratanlal", "en": "Haveli of Seth Ratanlal"}, "items": ["surya_khanda", "talwar_siddha", "khanda_siddha", "gada_siddha", "parashu_siddha", "trishula_siddha", "katar_siddha", "urumi_siddha", "dhanush_siddha", "mahadhanush_siddha", "chakra_siddha", "talwar_krishnashila", "urumi_krishnashila", "surya_kavach_topi", "surya_kavach_kurta", "surya_kavach_dastana", "surya_kavach_dhoti", "surya_kavach_jutti", "sattva_topi", "sattva_kurta", "sattva_dastana", "sattva_dhoti", "sattva_jutti", "hira", "manikya", "nilam", "panna", "pukhraj", "moti", "gomed", "vaidurya", "praval", "chyavana_rasa", "tapas_rasa", "ratna_haar", "mangalsutra", "soma"], "buy_mult": 1.2},
+    "madhushala": {"name": {"nl": "Madhushala van Chandrika", "en": "Chandrika's madhushala"}, "items": ["madira", "sura", "bhang_lassi", "mamsa", "samosa", "jalebi", "chai", "mirchi", "matsya", "kheer"], "buy_mult": 1.0},
+    "nai": {"name": {"nl": "Barbier", "en": "Barber"}, "items": ["kesh_mundan", "kesh_shikha", "kesh_jata", "kesh_choti", "kesh_lamba", "kesh_kesari", "dadhi_chhoti", "dadhi_sadhu", "dadhi_mooch"], "buy_mult": 1.0},
+    "chitrakar": {"name": {"nl": "Yantra-atelier van Madhav", "en": "Madhav's yantra atelier"}, "items": ["tilak_tripundra", "tilak_urdhva", "yantra_om", "yantra_sri", "yantra_trishul", "naga_tattoo", "mehndi", "kala_tilak", "rudra_netra"], "buy_mult": 1.0},
+    "jyotishi": {"name": {"nl": "Boeken van Bhrigu", "en": "Bhrigu's books"}, "items": ["veda_samhita", "upanishad", "yogasutra", "bhagavad_gita", "dhanurveda", "arthashastra", "hatha_yoga_pradipika", "vijnana_bhairava_tantra", "natyashastra", "charaka_samhita", "yaksha_prashna", "itihasa_jambudvipa", "ramayana", "mahabharata", "panchatantra"], "buy_mult": 1.0},
+    "shivir_vyapari": {"name": {"nl": "Kamphandel van Jaggu", "en": "Jaggu's camp trade"}, "items": ["prana_rasa", "prana_rasa_laghu", "ojas_rasa", "vishahara", "mamsa", "sura", "madira", "charma_kurta", "charma_dhoti", "talwar_ispat", "dhanush_ispat", "diya"], "buy_mult": 1.3},
+    "surya_mandir_prasad": {"name": {"nl": "Prasad van de Surya Mandir", "en": "Prasad of the Surya Mandir"}, "items": ["prasad", "mala", "ghee", "dudh", "sattva_topi", "sattva_kurta", "sattva_dhoti", "tilak_urdhva", "tilak_tripundra", "yantra_om", "bhagavad_gita"], "buy_mult": 1.0},
+    "himashikhara_vyapari": {"name": {"nl": "Handel van Dorje", "en": "Dorje's trade"}, "items": ["prana_rasa_maha", "ojas_rasa_maha", "chai", "ghee", "mamsa", "charaina_topi", "charaina_kurta", "charaina_dastana", "charaina_dhoti", "charaina_jutti", "khanda_krishnashila", "gada_krishnashila", "mahadhanush_krishnashila", "nilam", "amrita_phial"], "buy_mult": 1.4},
+    "dasyu_vyapari": {"name": {"nl": "Heler Gabbar", "en": "Fence Gabbar"}, "items": ["dasyu_topi", "dasyu_kurta", "dasyu_dastana", "dasyu_dhoti", "dasyu_jutti", "chhaya_topi", "chhaya_kurta", "chhaya_dastana", "chhaya_dhoti", "chhaya_jutti", "sura", "mamsa", "katar_ispat", "katar_krishnashila", "talwar_krishnashila", "praval", "gomed"], "buy_mult": 0.8},
+    "ankusha_vyapari": {"name": {"nl": "Havenhandel van Varuna", "en": "Varuna's harbour trade"}, "items": ["nariyal", "matsya", "mahadhanush_ispat", "mahadhanush_krishnashila", "chakra_ispat", "chakra_krishnashila", "jhilam_topi", "jhilam_kurta", "jhilam_dastana", "jhilam_dhoti", "jhilam_jutti", "nilam", "bansi", "prana_rasa", "ojas_rasa"], "buy_mult": 1.1},
+    "granthivana_vyapari": {"name": {"nl": "Handel van Tulsa", "en": "Tulsa's trade"}, "items": ["parashu_loha", "parashu_ispat", "parashu_krishnashila", "charma_topi", "charma_kurta", "charma_dastana", "charma_dhoti", "charma_jutti", "madhu", "mamsa", "vaidurya", "prana_rasa"], "buy_mult": 1.1},
+    "rangabhumi_vyapari": {"name": {"nl": "Arenahandel", "en": "Arena trade"}, "items": ["prana_rasa_maha", "prana_rasa", "ojas_rasa_maha", "ojas_rasa", "gada_krishnashila", "charaina_kurta", "charaina_dhoti", "madira", "samosa", "mirchi"], "buy_mult": 1.3},
+    "machhuara": {"name": {"nl": "Kanha's vis", "en": "Kanha's fish"}, "items": ["bansi", "matsya", "matsya", "nariyal"], "buy_mult": 1.0},
+    "kapalika_shop": {"name": {"nl": "Lijkkist van Dhumavati", "en": "Dhumavati's coffin"}, "items": ["bhasma", "bhasma", "tamas_topi", "tamas_kurta", "tamas_dastana", "tamas_dhoti", "tamas_jutti", "naga_tattoo", "bhasma_sharira", "kala_tilak", "rudraksha_mala"], "buy_mult": 1.1},
+    "andhaka_shop": {"name": {"nl": "Mantels van Tamas", "en": "Robes of Tamas"}, "items": ["tamas_topi", "tamas_kurta", "tamas_dastana", "tamas_dhoti", "tamas_jutti", "tamo_kavach_topi", "tamo_kavach_kurta", "tamo_kavach_dastana", "tamo_kavach_dhoti", "tamo_kavach_jutti", "kala_tilak", "sura", "mamsa", "praval"], "buy_mult": 1.3}
+  },
+  "arena": {
+    "waves": [
+      [{"enemy": "keeta", "count": 6}],
+      [{"enemy": "pisacha", "count": 5}, {"enemy": "pisacha_mantrika", "count": 1}],
+      [{"enemy": "dasyu", "count": 4}, {"enemy": "dasyu_dhanurdhara", "count": 2}],
+      [{"enemy": "rakshasa", "count": 3}],
+      [{"enemy": "preta", "count": 5}, {"enemy": "kankala", "count": 2}],
+      [{"enemy": "bhumi_daitya", "count": 1}],
+      [{"enemy": "dakini", "count": 2}, {"enemy": "bhramara", "count": 4}],
+      [{"enemy": "rangabhumi_pehlwan", "count": 3}],
+      [{"enemy": "marmara_duel", "count": 1}]
+    ],
+    "rematch_waves": 5,
+    "gold_per_wave": 100
+  },
+  "cutscenes": {
+    "intro": {"title": {"nl": "Jambudvipa", "en": "Jambudvipa"}, "pages": [
+      {"nl": "In het begin was er alleen de Akhara. De Vira's, krijgers die de drie wegen liepen, Bala, Kaushala en Shakti, hielden de Rakshasa's in de wouden en de Asura's onder de aarde.\n\nDat was vierhonderd jaar geleden.", "en": "In the beginning there was only the Akhara. The Viras, warriors who walked the three roads, Bala, Kaushala and Shakti, kept the Rakshasas in the forests and the Asuras beneath the earth.\n\nThat was four hundred years ago."},
+      {"nl": "Nu zijn de Vira's een handvol oude mannen in een vervallen loge, en de dorpen betalen Dasyu's om met rust gelaten te worden.\n\nMaar in het banyandorp Vatagram, aan de zee, is vandaag een meisje jarig. Haar broer heeft nog geen cadeau.", "en": "Now the Viras are a handful of old men in a crumbling lodge, and the villages pay Dasyus to be left alone.\n\nBut in the banyan village of Vatagram, by the sea, a girl has her birthday today. Her brother has no gift yet."}]},
+    "raid_vatagram": {"title": {"nl": "De nacht van het vuur", "en": "The Night of Fire"}, "pages": [
+      {"nl": "Tara draagt de armband. De zon zakt in zee. Je vader lacht om iets dat je moeder zegt.\n\nDan klinkt de hoorn.", "en": "Tara wears the bangle. The sun sinks into the sea. Your father laughs at something your mother says.\n\nThen the horn sounds."},
+      {"nl": "Dasyu's. Honderden. Ze komen over de duinen met fakkels en de rieten daken vatten vlam als droog gras. Je vader grijpt zijn harpoen. Je moeder grijpt een zwaard dat je nooit eerder zag.\n\nIn het midden van het dorp, onder de brandende Vata-boom, staat een gestalte in rood en goud, met een masker zonder mond.", "en": "Dasyus. Hundreds. They come over the dunes with torches and the thatched roofs catch like dry grass. Your father grabs his harpoon. Your mother grabs a sword you have never seen before.\n\nIn the centre of the village, beneath the burning Vata tree, stands a figure in red and gold, with a mask without a mouth."},
+      {"nl": "Je ziet je vader vallen. Je ziet je moeder vechten als een godin, en dan omringd worden, en dan niet meer. Je hoort Tara gillen, één keer, en dan stil zijn.\n\nIets slaat je neer. Het laatste wat je ziet is een lange man in blauwe zijde die over je heen buigt. 'Dit kind,' zegt hij tegen niemand. 'Dit kind neem ik mee.'", "en": "You see your father fall. You see your mother fight like a goddess, then be surrounded, then no more. You hear Tara scream, once, and then be silent.\n\nSomething strikes you down. The last thing you see is a tall man in blue silk bending over you. 'This child,' he says to no one. 'This child I take with me.'"},
+      {"nl": "Je wordt wakker op een stenen vloer, onder een dak van honderd pilaren. Een dhuni-vuur brandt. Iemand heeft je gewassen en in saffraan gekleed.\n\nAcht jaar zullen voorbijgaan voordat je het dorp terugziet. Dit is de Vira Akhara. Dit is het begin.", "en": "You wake on a stone floor, beneath a roof of a hundred pillars. A dhuni fire burns. Someone has washed you and dressed you in saffron.\n\nEight years will pass before you see the village again. This is the Vira Akhara. This is the beginning."}]},
+    "arena_mask": {"title": {"nl": "Het masker", "en": "The Mask"}, "pages": [
+      {"nl": "Marmara ligt in het zand. Het publiek schreeuwt om bloed; de Rani glimlacht; Vajrasena staat op.\n\nEn dan wordt het stil. In de ereloge, naast de Rani, zit een gestalte in rood en goud die er zojuist nog niet zat. Het masker zonder mond kijkt naar jou. Alleen naar jou.\n\n'Kind van Raktambari,' zegt een stem die je al twaalf jaar in je dromen hoort. 'Wat ben je groot geworden.'\n\nEen oogwenk, en de loge is leeg.", "en": "Marmara lies in the sand. The crowd screams for blood; the Rani smiles; Vajrasena rises.\n\nAnd then it goes quiet. In the box of honour, beside the Rani, sits a figure in red and gold that was not there a moment ago. The mask without a mouth looks at you. Only at you.\n\n'Child of Raktambari,' says a voice you have heard in your dreams for twelve years. 'How tall you have grown.'\n\nA blink, and the box is empty."}]},
+    "patala_captured": {"title": {"nl": "Een jaar in Patala", "en": "A Year in Patala"}, "pages": [
+      {"nl": "De poort valt achter je dicht. Twintig cipiers. Je wapens worden afgenomen. Een jaar lang breek je stenen in het donker, en elke nacht hoor je in de verste cel een vrouw Vatagram-liederen zingen.\n\nDan, op een ochtend, vergeet een cipier een deur. Je hebt een jaar gewacht. Je bent een jaar ouder. Je bent klaar.", "en": "The gate falls shut behind you. Twenty jailers. Your weapons are taken. For a year you break stones in the dark, and every night you hear, in the farthest cell, a woman singing Vatagram songs.\n\nThen, one morning, a jailer forgets a door. You have waited a year. You are a year older. You are ready."}]},
+    "ending": {"title": {"nl": "Karma", "en": "Karma"}, "pages": [
+      {"nl": "Het masker ligt in stukken op de yantra-vloer. Khadgasura, die duizend jaar op dit moment wachtte, is stil.\n\nDe Mahant komt de trap af, langzaam, en ziet wat je gekozen hebt. Hij zegt niets. Een Vira kiest; dat is de hele leer.", "en": "The mask lies in pieces on the yantra floor. Khadgasura, who waited a thousand years for this moment, is silent.\n\nThe Mahant comes down the stairs, slowly, and sees what you have chosen. He says nothing. A Vira chooses; that is the whole teaching."},
+      {"nl": "In de dorpen wordt je naam gezongen. In Vatagram staat de Vata-boom weer in blad. En in het noorden, waar de Himavat begint, valt sneeuw die niet smelt.\n\nKalayogi is al vooruitgegaan. Hij zegt dat het nog niet voorbij is.", "en": "In the villages your name is sung. In Vatagram the Vata tree is in leaf again. And in the north, where the Himavat begins, snow falls that does not melt.\n\nKalayogi has gone ahead. He says it is not over yet."}]},
+    "epilogue": {"title": {"nl": "Shanti", "en": "Shanti"}, "pages": [
+      {"nl": "Vritra valt, en met hem het laatste van het masker. De sneeuw op de Himavat begint te smelten; rivieren die duizend jaar droog stonden, stromen weer.\n\nDe Devi sluit haar ogen. 'Wij hebben lang genoeg gekeken.'", "en": "Vritra falls, and with him the last of the mask. The snow on the Himavat begins to melt; rivers that stood dry for a thousand years flow again.\n\nThe Devi closes her eyes. 'We have watched long enough.'"},
+      {"nl": "Jaren later zit een oude Vira op het strand van Vatagram, met een rode glazen armband in zijn hand. Kinderen vragen of de verhalen waar zijn.\n\n'Sommige,' zegt hij. 'Welke, moet je zelf kiezen.'\n\nOm shanti shanti shanti.", "en": "Years later an old Vira sits on the beach of Vatagram, with a red glass bangle in his hand. Children ask if the stories are true.\n\n'Some,' he says. 'Which ones, you must choose yourself.'\n\nOm shanti shanti shanti."}]}
+  },
+  "lore": [
+    {"id": "jambudvipa", "title": {"nl": "Jambudvipa", "en": "Jambudvipa"}, "text": {"nl": "Het continent van de rozenappelboom, zoals de Purana's het noemen. In het spel: het land tussen de zee van Vatagram en de sneeuw van de Himavat, met de Vira Akhara in het hart. Het equivalent van Albion.", "en": "The continent of the rose-apple tree, as the Puranas call it. In the game: the land between the sea of Vatagram and the snow of the Himavat, with the Vira Akhara at its heart. The equivalent of Albion."}},
+    {"id": "akhara", "title": {"nl": "De Vira Akhara", "en": "The Vira Akhara"}, "text": {"nl": "Een akhara is in werkelijkheid een loge van krijgersasceten (de Naga-sadhu's) of een worstelschool. De Vira Akhara van het spel is beide: de Heldengilde, gesticht door Yogiraj Vikrant, waar leerlingen de drie wegen leren en opdrachtkaarten ontvangen.", "en": "An akhara is in reality a lodge of warrior ascetics (the Naga sadhus) or a wrestling school. The Vira Akhara of the game is both: the Heroes' Guild, founded by Yogiraj Vikrant, where students learn the three roads and receive commission cards."}},
+    {"id": "three_roads", "title": {"nl": "De drie wegen", "en": "The three roads"}, "text": {"nl": "Bala (lichaam), Kaushala (vaardigheid) en Shakti (wil) komen overeen met Strength, Skill en Will. Elke weg heeft eigen Tapas en eigen sub-eigenschappen. Een Vira die alle drie loopt, wordt een Siddha.", "en": "Bala (body), Kaushala (skill) and Shakti (will) correspond to Strength, Skill and Will. Each road has its own Tapas and its own sub-attributes. A Vira who walks all three becomes a Siddha."}},
+    {"id": "tapas", "title": {"nl": "Tapas", "en": "Tapas"}, "text": {"nl": "Letterlijk 'hitte': de ascese die kracht opbouwt. In het spel is Tapas je ervaring, verzameld als gloeiende bollen uit verslagen vijanden. Groene bollen zijn algemeen; rode, gele en blauwe horen bij Bala, Kaushala en Shakti.", "en": "Literally 'heat': the austerity that builds power. In the game Tapas is your experience, gathered as glowing orbs from defeated foes. Green orbs are general; red, yellow and blue belong to Bala, Kaushala and Shakti."}},
+    {"id": "karma", "title": {"nl": "Dharma en Adharma", "en": "Dharma and Adharma"}, "text": {"nl": "In plaats van goed en kwaad meet het spel Dharma (orde, plicht, rechtvaardigheid) tegen Adharma. Je karma loopt van -1000 (Asura) tot +1000 (Mahatma). Dharmische helden krijgen een lichtkrans en worden door dorpelingen gezegend; adharmische krijgen een donkere aura en hoorns, en de Dasyu's knielen.", "en": "Instead of good and evil the game measures Dharma (order, duty, righteousness) against Adharma. Your karma runs from -1000 (Asura) to +1000 (Mahatma). Dharmic heroes gain a halo and are blessed by villagers; adharmic ones gain a dark aura and horns, and the Dasyus kneel."}},
+    {"id": "siddhi", "title": {"nl": "Siddhi's", "en": "Siddhis"}, "text": {"nl": "In de yoga-traditie zijn siddhi's de bovennatuurlijke vermogens die door tapas ontstaan. In het spel zijn het de Will-spreuken: astra's (wapens van de goden), kavacha's (beschermingen), maya (begoocheling), prana (levensenergie) en gati (beweging).", "en": "In the yoga tradition siddhis are the supernatural powers that arise through tapas. In the game they are the Will spells: astras (weapons of the gods), kavachas (protections), maya (illusion), prana (life energy) and gati (movement)."}},
+    {"id": "yaksha", "title": {"nl": "Yaksha-poorten", "en": "Yaksha doors"}, "text": {"nl": "Yaksha's zijn natuurgeesten die schatten bewaken en raadsels stellen; de beroemdste is de Yaksha die Yudhishthira ondervroeg bij het meer. De Yaksha-poorten van het spel zijn de Demon Doors: gezichten in rots of boom die iets van je willen voordat ze opengaan.", "en": "Yakshas are nature spirits that guard treasures and pose riddles; the most famous is the Yaksha who questioned Yudhishthira by the lake. The Yaksha doors of the game are the Demon Doors: faces in rock or tree that want something from you before they open."}},
+    {"id": "tirtha", "title": {"nl": "Tirtha-poorten", "en": "Tirtha gates"}, "text": {"nl": "Een tirtha is een 'oversteekplaats', een heilige plek waar werelden elkaar raken. De Tirtha-poorten zijn de Cullis Gates: stenen cirkels waarmee een Vira met het Akhara-zegel in een oogwenk door het land reist.", "en": "A tirtha is a 'crossing place', a holy spot where worlds touch. The Tirtha gates are the Cullis Gates: stone circles by which a Vira with the Akhara seal travels the land in a blink."}},
+    {"id": "khadgasura", "title": {"nl": "Khadgasura", "en": "Khadgasura"}, "text": {"nl": "De 'Zwaard-Asura', de Jack of Blades van dit verhaal. Een wezen van voor de goden dat lichamen draagt als kleren en een rood masker zonder mond. Hij smeedde Kalakhadga, het Zwaard van de Eonen, en liet het door de eerste Mahant begraven om het later door de bloedlijn van een Vira te laten wekken.", "en": "The 'Sword Asura', the Jack of Blades of this story. A being from before the gods that wears bodies like clothes and a red mask without a mouth. He forged Kalakhadga, the Sword of Aeons, and let the first Mahant bury it so it could later be woken by the bloodline of a Vira."}},
+    {"id": "gunas", "title": {"nl": "De drie guna's", "en": "The three gunas"}, "text": {"nl": "Sattva, rajas en tamas: de drie kwaliteiten van de natuur uit de Samkhya-filosofie. In het spel bepalen ze wat voedsel doet: sattvisch geneest en zuivert, rajasisch versnelt, tamasisch voedt sterk en verduistert het karma.", "en": "Sattva, rajas and tamas: the three qualities of nature from Samkhya philosophy. In the game they decide what food does: sattvic heals and purifies, rajasic speeds up, tamasic feeds strongly and darkens karma."}},
+    {"id": "ashramas", "title": {"nl": "De vier ashrama's", "en": "The four ashramas"}, "text": {"nl": "Brahmacharya, grihastha, vanaprastha, sannyasa: de vier levensfasen. Je held veroudert met elke eigenschap die hij verhoogt, en elke fase geeft een eigen bonus. Chyavana-rasa maakt jonger.", "en": "Brahmacharya, grihastha, vanaprastha, sannyasa: the four stages of life. Your hero ages with every attribute he raises, and each stage grants its own bonus. Chyavana elixir makes younger."}},
+    {"id": "panths", "title": {"nl": "Panths (inwijdingswegen)", "en": "Panths (initiation paths)"}, "text": {"nl": "Een panth is een religieuze weg of sekte. Je kunt je door een leraar laten inwijden in één panth tegelijk: Hatha, Dhanur, Tantra, Aghora, Bhakti, Jnana of Nath. Elke panth geeft blijvende voordelen die bij zijn leer passen.", "en": "A panth is a religious path or sect. A teacher can initiate you into one panth at a time: Hatha, Dhanur, Tantra, Aghora, Bhakti, Jnana or Nath. Each panth grants lasting benefits that fit its teaching."}},
+    {"id": "navaratna", "title": {"nl": "Navaratna", "en": "Navaratna"}, "text": {"nl": "De negen edelstenen van de negen planeten, in de Jyotish-traditie als amulet gedragen. In het spel zijn ze de Augmentations: zet ze in de vattingen van stalen, obsidianen en Siddha-wapens.", "en": "The nine gems of the nine planets, worn as an amulet in the Jyotish tradition. In the game they are the Augmentations: set them in the settings of steel, obsidian and Siddha weapons."}}
+  ],
+  "controls": [
+    {"keys": "W A S D", "action": {"nl": "Lopen", "en": "Move"}},
+    {"keys": "Muis", "action": {"nl": "Camera draaien", "en": "Rotate camera"}},
+    {"keys": "LMB / J", "action": {"nl": "Aanvallen (vasthouden: Mahaprahara)", "en": "Attack (hold: Mahaprahara)"}},
+    {"keys": "RMB / K", "action": {"nl": "Blokkeren (Rakshana)", "en": "Block (Rakshana)"}},
+    {"keys": "Spatie", "action": {"nl": "Rollen (Lunthana)", "en": "Roll (Lunthana)"}},
+    {"keys": "Shift", "action": {"nl": "Rennen", "en": "Sprint"}},
+    {"keys": "F", "action": {"nl": "Boog/chakra wisselen", "en": "Toggle ranged stance"}},
+    {"keys": "Tab / MMB", "action": {"nl": "Doel vergrendelen", "en": "Lock target"}},
+    {"keys": "1-6", "action": {"nl": "Siddhi's", "en": "Siddhis"}},
+    {"keys": "R / T", "action": {"nl": "Prana-rasa / Ojas-rasa drinken", "en": "Drink Prana / Ojas elixir"}},
+    {"keys": "H", "action": {"nl": "Mediteren (Dhyana)", "en": "Meditate (Dhyana)"}},
+    {"keys": "E / Enter", "action": {"nl": "Praten, oppakken, gebruiken", "en": "Talk, pick up, use"}},
+    {"keys": "I", "action": {"nl": "Inventaris en uitrusting", "en": "Inventory and equipment"}},
+    {"keys": "O", "action": {"nl": "Siddhi's en sneltoetsen", "en": "Siddhis and hotbar"}},
+    {"keys": "P", "action": {"nl": "Sadhana (eigenschappen, karma, leeftijd)", "en": "Sadhana (attributes, karma, age)"}},
+    {"keys": "Q", "action": {"nl": "Opdrachten", "en": "Quests"}},
+    {"keys": "M", "action": {"nl": "Kaart en Tirtha-reizen", "en": "Map and Tirtha travel"}},
+    {"keys": "X", "action": {"nl": "Mudra's (expressies)", "en": "Mudras (expressions)"}},
+    {"keys": "C", "action": {"nl": "Codex (alles in het spel)", "en": "Codex (everything in the game)"}},
+    {"keys": "F5 / F9", "action": {"nl": "Snel opslaan / laden", "en": "Quick save / load"}},
+    {"keys": "Esc", "action": {"nl": "Pauze / menu", "en": "Pause / menu"}}
+  ]
+}
