@@ -38,6 +38,7 @@ var arena_timer: float = 0.0
 var arena_pending: bool = false
 
 func _ready() -> void:
+	Game.world = self
 	_build_environment()
 	Events.player_died.connect(_on_player_died)
 
@@ -194,7 +195,7 @@ func _populate_interactables() -> void:
 		node.rotation.y = randf() * TAU
 		if rs.chests.has(i):
 			node.used = true
-			var lid := node.visual.get_node_or_null("Lid")
+			var lid: Node3D = node.visual.get_node_or_null("Lid")
 			if lid:
 				lid.rotation.x = -1.2
 				lid.position.z = -0.35
@@ -225,7 +226,7 @@ func _populate_interactables() -> void:
 		var y := _add_interactable("yaksha", {"door": region_data["yaksha"]}, gen.v3(pts.yaksha))
 		y.rotation.y = pts.yaksha_yaw
 		if rs.get("yaksha", false):
-			var mouth := y.visual.get_node_or_null("Mouth")
+			var mouth: Node3D = y.visual.get_node_or_null("Mouth")
 			if mouth:
 				mouth.visible = false
 	# Shrine
@@ -348,7 +349,7 @@ func _populate_enemies() -> void:
 				p = pts.boss
 			elif sp.get("boss", false) and pts.has("center"):
 				p = pts.center + Vector2(randf_range(-4, 4), 6.0)
-			var pos := gen.v3(p, 0.2)
+			var pos: Vector3 = gen.v3(p, 0.2)
 			if count > 1:
 				pos += Vector3(randf_range(-2.5, 2.5), 0, randf_range(-2.5, 2.5))
 			spawn_enemy(sp["enemy"], pos, {"spawn_index": si, "boss": sp.get("boss", false), "on_death_flags": sp.get("on_death_flags", []), "drop": sp.get("drop", ""), "name_override": sp.get("name_override", ""), "respawn": sp.get("respawn", true)})
@@ -504,9 +505,9 @@ func nearest_enemy(pos: Vector3, max_dist: float = 30.0, forward: Vector3 = Vect
 	for e in enemies:
 		if not is_instance_valid(e) or e.dead:
 			continue
-		var d := e.global_position.distance_to(pos)
+		var d: float = e.global_position.distance_to(pos)
 		if forward != Vector3.ZERO:
-			var to := (e.global_position - pos).normalized()
+			var to: Vector3 = (e.global_position - pos).normalized()
 			if to.dot(forward) < -0.2:
 				d += 10.0
 		if d < bd:
@@ -520,7 +521,7 @@ func nearest_npc(pos: Vector3, max_dist: float = 4.0) -> Node:
 	for n in npcs:
 		if not is_instance_valid(n):
 			continue
-		var d := n.global_position.distance_to(pos)
+		var d: float = n.global_position.distance_to(pos)
 		if d < bd:
 			bd = d
 			best = n
