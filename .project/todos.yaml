@@ -99,30 +99,43 @@ sections:
         created_at: '2026-10-03T08:45:22.856Z'
         updated_at: '2026-10-03T12:31:19.684Z'
         completed_at: '2026-10-03T12:31:19.684Z'
+      - id: lbuk3fo6un372a0gseanglnr
+        text: 'Bossbalans bijstellen (uit `--balance`, 2026-10-03; Gerald beslist, ontwerpkeuze). Streef: bazen ratio 1,5-3, gewone vijanden 0,6-1,0. Uitschieters: dakini_rani (boss) 0,33 = veel te makkelijk (held doodt haar in 7 s, zij hem in 21 s; summons zitten niet in de meting); bhramara_rani 1,30 en marmara_duel 1,30 aan de lage kant; vritra 6,97 en khadgasura 3,47 erg hoog (eindbazen, meting zonder ontwijken, dus misschien juist goed); niet-bazen shila_daitya 1,18 en hima_daitya 2,05 te hard. Veel afstandsvijanden/summoners (dakini 0,07, yatudhana 0,07) tonen een ratio die het gevecht niet weergeeft. Eerst in het proefspel voelen, dan pas getallen aanpassen.'
+        status: open
+        stage: plan
+        priority: P3
+        created_by: claude-code
+        model: claude-sonnet-5-5
+        tags:
+          - balance
+          - combat
+        initiative: speelbare-mvp
+        created_at: '2026-10-03T12:31:23.958Z'
+        updated_at: '2026-10-03T12:31:23.958Z'
+      - id: zdyz6waoszz8d9c9j0wetx5n
+        text: 'UI-vervolg (uit stap 3): (1) kamandalu wordt bij gebruik opgebruikt, `refill` heeft geen mechaniek (water bijvullen bij rivier); (2) kaart is een lijst, geen getekende kaart; (3) Yaksha-, schrijn- en Marmara-keuzeregels in de UI zijn door Claude bedacht (zie CLAUDE.md ''Door mij bedacht''), Gerald bevestigt of past aan; (4) dialoogkeuzes zonder `end` sluiten na een effect, controleer in het proefspel of dat natuurlijk voelt; (5) gamepad/toetsenbordnavigatie in menu''s ontbreekt (alleen muis); (6) UI-stijl hoort bij de visuals-todo.'
+        status: open
+        stage: plan
+        priority: P3
+        created_by: claude-code
+        model: claude-sonnet-5-5
+        tags:
+          - ui
+          - polish
+        initiative: speelbare-mvp
+        created_at: '2026-10-03T11:38:07.757Z'
+        updated_at: '2026-10-03T11:38:07.757Z'
       - id: pvryul391atmx4fo3kqu7v8e
-        text: 'Polish (alleen desktop, geen mobiele input). Onderzoek gedaan 2026-10-03 (zie .project/notes.md ''Polish-onderzoek''). Volgorde: (1) GELUID: voetstappen (sfx ''step'' bestaat maar wordt nergens gespeeld), looppunt van de drone klikt (fasen niet op hele cycli), natuurgeluid per biome (wind, vogels, krekels ''s nachts), losse muziek-lagen, meer treffer-varianten. (2) ANIMATIE: vierpotige vijanden (wolf/tijger/draak) en insecten lopen niet, want Body.pose_walk kent alleen LegL/LegR en niet Leg0-3; NPC idle (ademen, hoofd draait mee), vijand-idle, dood-animaties per vorm. (3) EFFECTEN: Effects.ring/wedge/bolt/sparks maken per aanroep nieuwe mesh+materiaal en tweens; hergebruiken; slag-trails, hit-stop, lichte camerashake. (4) PERFORMANCE: quality ''low'' raakt MSAA/SSAO niet; schaduwen verdubbelen draw calls; ~40 losse meshes per mens; gras is NIET het knelpunt (grasmesh-culling pas als meting dat zegt). Zie ook de physics-interpolatie-todo.'
+        text: 'Polish geluid en loopanimaties (alleen desktop; onafhankelijk van de artstijl, dus nu te doen). Onderzoek: .project/notes.md ''Polish-onderzoek''. (1) GELUID: voetstappen (sfx ''step'' bestaat maar wordt nergens gespeeld, per snelheid/oppervlak), de 6 s drone-loop klikt op het looppunt (fasen niet op hele cycli), natuurgeluid per biome (wind, vogels, krekels ''s nachts), losse muzieklagen, meer treffer-varianten; Audio.play laat een geluid vallen als alle 10 spelers bezet zijn. (2) ANIMATIE: vierpotige vijanden (wolf/tijger/draak) en insecten lopen niet, want Body.pose_walk kent alleen LegL/LegR en niet Leg0-3; NPC-idle (ademen, hoofd draait mee), vijand-idle, dood-animaties per vorm. Verifieer met tools/check.sh en luister/kijk op de host.'
         status: open
         stage: plan
-        priority: P4
+        priority: P3
         created_by: claude-code
         tags:
           - polish
         initiative: speelbare-mvp
-        blocked_by:
-          - pgt8s66avmyvsjzbfo3e7myx
         created_at: '2026-10-03T08:55:06.931Z'
-        updated_at: '2026-10-03T13:28:54.011Z'
-      - id: zryyx5zdbsjv6vlldp8b3zxq
-        text: 'Polish uit stap 1: physics-interpolatie aanzetten (gen_project.py) tegen camera-schokjes op 120/144 Hz-schermen, dan reset_physics_interpolation() bij teleports; NPC-lopen en vijand-idle-animaties; de ObjectDB-leak-waarschuwing bij afsluiten (statische Props-materiaalcache) opruimen als het stoort.'
-        status: open
-        stage: plan
-        priority: P4
-        created_by: claude-code
-        tags:
-          - polish
-        initiative: speelbare-mvp
-        created_at: '2026-10-03T09:58:35.219Z'
-        updated_at: '2026-10-03T09:58:35.219Z'
+        updated_at: '2026-10-03T13:30:09.527Z'
       - id: bbu7l6oh1p9xl4onnb3ac8t3
         text: 'Visuals en assets mooier maken (Gerald: "het is nogal fugly nu"). De modellen zijn nu losse kubussen en capsules uit Body.gd/Props.gd, de wereld is vlak en kaal. Aanpak eerst bespreken, dan stap voor stap: (1) artstijl kiezen (bv. stylized low-poly met een vaste kleurpalet per regio); (2) mens- en vijandmodellen: betere proporties, kleding en gezicht, vloeiender animatie; (3) wereld: terrein, water, bomen, gebouwen, gras, licht, mist en kleurgrading, schaduw- en glow-instellingen; (4) effecten: slag-trails, siddhi-vfx, orbs, treffer-feedback; (5) UI-stijl (komt samen met stap 3). Overweeg CC0-assets (bijv. Kenney, Quaternius) naast procedurele modellen. Raakt Body.gd, Props.gd, WorldGen.gd, Effects.gd, shaders/.'
         status: open
@@ -137,32 +150,6 @@ sections:
         initiative: speelbare-mvp
         created_at: '2026-10-03T10:40:05.157Z'
         updated_at: '2026-10-03T10:40:05.157Z'
-      - id: zdyz6waoszz8d9c9j0wetx5n
-        text: 'UI-vervolg (uit stap 3): (1) kamandalu wordt bij gebruik opgebruikt, `refill` heeft geen mechaniek (water bijvullen bij rivier); (2) kaart is een lijst, geen getekende kaart; (3) Yaksha-, schrijn- en Marmara-keuzeregels in de UI zijn door Claude bedacht (zie CLAUDE.md ''Door mij bedacht''), Gerald bevestigt of past aan; (4) dialoogkeuzes zonder `end` sluiten na een effect, controleer in het proefspel of dat natuurlijk voelt; (5) gamepad/toetsenbordnavigatie in menu''s ontbreekt (alleen muis); (6) UI-stijl hoort bij de visuals-todo.'
-        status: open
-        stage: plan
-        priority: P3
-        created_by: claude-code
-        model: claude-sonnet-5-5
-        tags:
-          - ui
-          - polish
-        initiative: speelbare-mvp
-        created_at: '2026-10-03T11:38:07.757Z'
-        updated_at: '2026-10-03T11:38:07.757Z'
-      - id: lbuk3fo6un372a0gseanglnr
-        text: 'Bossbalans bijstellen (uit `--balance`, 2026-10-03; Gerald beslist, ontwerpkeuze). Streef: bazen ratio 1,5-3, gewone vijanden 0,6-1,0. Uitschieters: dakini_rani (boss) 0,33 = veel te makkelijk (held doodt haar in 7 s, zij hem in 21 s; summons zitten niet in de meting); bhramara_rani 1,30 en marmara_duel 1,30 aan de lage kant; vritra 6,97 en khadgasura 3,47 erg hoog (eindbazen, meting zonder ontwijken, dus misschien juist goed); niet-bazen shila_daitya 1,18 en hima_daitya 2,05 te hard. Veel afstandsvijanden/summoners (dakini 0,07, yatudhana 0,07) tonen een ratio die het gevecht niet weergeeft. Eerst in het proefspel voelen, dan pas getallen aanpassen.'
-        status: open
-        stage: plan
-        priority: P3
-        created_by: claude-code
-        model: claude-sonnet-5-5
-        tags:
-          - balance
-          - combat
-        initiative: speelbare-mvp
-        created_at: '2026-10-03T12:31:23.958Z'
-        updated_at: '2026-10-03T12:31:23.958Z'
       - id: vb8ggmmzjjbxusm9hdaip5qt
         text: 'Rol-animatie (Gerald, proefspel 2026-10-03): Spatie hoort een koprol te zijn, maar de held leunt nu alleen schuin voorover en schiet sneller vooruit. In Player.gd (rond regel 287) is de rotatie een vaste hoek `model.rotation.x = -0.9` (de `-TAU * ...` voor een volledige draai is met `* 0.0` uitgezet). Maak er een echte salto van: model.rotation.x loopt over `ROLL_TIME` van 0 tot -TAU (eventueel het model om het lichaamsmidden laten draaien i.p.v. om de voeten), daarna terug naar 0; kijk dat camera en collider niet meedraaien. Raakt Player.gd en eventueel Body.gd.'
         status: completed
@@ -178,3 +165,16 @@ sections:
         created_at: '2026-10-03T12:34:50.239Z'
         updated_at: '2026-10-03T12:44:04.475Z'
         completed_at: '2026-10-03T12:44:04.475Z'
+      - id: zryyx5zdbsjv6vlldp8b3zxq
+        text: 'Polish effecten en performance (komt NA de visuals-todo, want die vervangt de modellen in Body.gd/Props.gd). Meting 2026-10-03 (--perf, zie .project/notes.md): MSAA ~10 ms, SSAO 3-6 ms, schaduwen verdubbelen de draw calls, ~40 losse meshes per mens/vijand; gras is niet het knelpunt (grasmesh-culling pas als een meting dat zegt). Gerald zag bij echt spelen met alles uit geen haperingen. (1) quality ''low'' zet nu alleen gras en zonneschaduw terug: ook MSAA/SSAO uit. (2) Effects.ring/wedge/bolt/sparks maken per aanroep nieuwe mesh+materiaal+tween: hergebruiken; slag-trails, hit-stop, lichte camerashake. (3) Modellen samenvoegen/delen, schaduwafstand. (4) physics-interpolatie aanzetten (gen_project.py) tegen camera-schokjes op 120/144 Hz, dan reset_physics_interpolation() bij teleports. (5) ObjectDB-leak bij afsluiten (statische Props-materiaalcache) opruimen als het stoort. Voor/na-vergelijking met --perf direct na elkaar op een rustige machine.'
+        status: open
+        stage: plan
+        priority: P4
+        created_by: claude-code
+        tags:
+          - polish
+          - performance
+          - vfx
+        initiative: speelbare-mvp
+        created_at: '2026-10-03T09:58:35.219Z'
+        updated_at: '2026-10-03T13:30:12.940Z'
