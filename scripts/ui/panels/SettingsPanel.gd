@@ -5,7 +5,7 @@ extends "res://scripts/ui/UIPanel.gd"
 func init() -> void:
 	kind = "settings"
 	live = false
-	win_size = Vector2(720, 600)
+	win_size = Vector2(720, 640)
 	set_title(Loc.t("UI_SETTINGS"))
 
 func build() -> void:
@@ -24,6 +24,7 @@ func build() -> void:
 	grid.add_child(lang_row)
 	# sliders
 	_slider(grid, "UI_MOUSE_SENS", "mouse_sens", 0.3, 3.0, 0.05, "x%.2f")
+	_slider(grid, "UI_PAD_SENS", "pad_sens", 0.3, 3.0, 0.05, "x%.2f")
 	_slider(grid, "UI_MUSIC", "music", 0.0, 1.0, 0.05, "%d%%", 100.0)
 	_slider(grid, "UI_SFX", "sfx", 0.0, 1.0, 0.05, "%d%%", 100.0)
 	_slider(grid, "UI_TIME_SPEED", "time_speed", 0.25, 3.0, 0.25, "x%.2f")

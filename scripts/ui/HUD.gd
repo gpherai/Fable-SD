@@ -24,6 +24,7 @@ var quest_title: Label
 var quest_text: Label
 var fps_lbl: Label
 var hint_lbl: Label
+var _hint_raw: String = ""
 var state_lbl: Label
 var toasts: VBoxContainer
 var banner: Label
@@ -56,7 +57,10 @@ func _ready() -> void:
 	_build_bottom()
 	_build_center()
 	Events.notify.connect(_on_notify)
-	Events.interact_hint.connect(func(t: String): hint_lbl.text = t)
+	Events.interact_hint.connect(func(t: String):
+		_hint_raw = t
+		hint_lbl.text = _hint_text())
+	Events.input_device_changed.connect(func(_pad: bool): _refresh_keys())
 	Events.player_damaged.connect(_on_hurt)
 	Events.region_entered.connect(func(_r): _slow_t = 0.0)
 	visible = false
@@ -248,6 +252,20 @@ func _build_center() -> void:
 	target_box.visible = false
 	root.add_child(target_box)
 
+## Hint text as the player should read it: the strings say [E], a gamepad calls that button A.
+func _hint_text() -> String:
+	return _hint_raw.replace("[E]", "[A]") if Game.pad_active else _hint_raw
+
+## Siddhi slot labels: 1-6 on the keyboard, LT + A / B / X / Y / left / right on a gamepad.
+const PAD_SLOT_KEYS := ["LT+A", "LT+B", "LT+X", "LT+Y", "LT+←", "LT+→"]
+
+func _refresh_keys() -> void:
+	hint_lbl.text = _hint_text()
+	for i in slots.size():
+		slots[i]["key"].text = PAD_SLOT_KEYS[i] if Game.pad_active else str(i + 1)
+	if Game.in_game and not Game.hero.is_empty():
+		_update_texts()
+
 ## A panel is open: the "[E] ..." hint would only be in the way.
 func set_modal(on: bool) -> void:
 	hint_lbl.visible = not on
@@ -287,9 +305,10 @@ func _update_texts() -> void:
 	region_lbl.text = Loc.t(Data.region(rid).get("name", {}))
 	time_lbl.text = "%s %d  ·  %s%s" % [Loc.t("UI_DAY"), int(Game.state.get("day", 1)), Game.time_string(), ("  ·  " + Loc.t("UI_NIGHT")) if Game.is_night() else ""]
 	fps_lbl.text = "%d fps" % Engine.get_frames_per_second() if bool(Game.settings.get("show_fps", false)) else ""
-	potion_lbl.text = "[R] %s x%d\n[T] %s x%d" % [Loc.t("UI_PRANA"), Game.potion_count("heal"), Loc.t("UI_OJAS"), Game.potion_count("ojas")]
+	var pad: bool = Game.pad_active
+	potion_lbl.text = "[%s] %s x%d\n[%s] %s x%d" % ["D↑" if pad else "R", Loc.t("UI_PRANA"), Game.potion_count("heal"), "D↓" if pad else "T", Loc.t("UI_OJAS"), Game.potion_count("ojas")]
 	var ranged: bool = pl != null and pl.combat.ranged_stance()
-	stance_lbl.text = "[F] " + Loc.t("UI_RANGED_STANCE" if ranged else "UI_MELEE_STANCE")
+	stance_lbl.text = "[%s] " % ("X" if pad else "F") + Loc.t("UI_RANGED_STANCE" if ranged else "UI_MELEE_STANCE")
 	_update_buffs()
 	_update_quest()
 

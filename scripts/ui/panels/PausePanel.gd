@@ -7,11 +7,22 @@ var _confirm_quit: bool = false
 func init() -> void:
 	kind = "pause"
 	live = false
-	win_size = Vector2(440, 560)
+	win_size = Vector2(500, 680)
 	set_title(Loc.t("UI_PAUSED"))
 
 func build() -> void:
 	body.add_child(T.button(Loc.t("UI_RESUME"), close, 0, 46))
+	# the screens that have a key on the keyboard (I, Q, M, P, O, X) are also reachable from here, for a gamepad
+	var grid := GridContainer.new()
+	grid.columns = 2
+	grid.add_theme_constant_override("h_separation", 8)
+	grid.add_theme_constant_override("v_separation", 8)
+	for entry in [["UI_INVENTORY", "inventory"], ["UI_QUESTS", "quests"], ["UI_MAP", "map"], ["UI_SADHANA", "sadhana"], ["UI_SIDDHIS", "siddhis"], ["UI_MUDRAS", "mudras"]]:
+		var b := T.button(Loc.t(entry[0]), func(): ui.open(entry[1], null, "pause"), 0, 42)
+		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		grid.add_child(b)
+	body.add_child(grid)
+	body.add_child(T.hsep())
 	body.add_child(T.button(Loc.t("UI_SAVE"), func(): ui.open("saves", {"mode": "save"}, "pause"), 0, 46))
 	var load_btn := T.button(Loc.t("UI_LOAD"), func(): ui.open("saves", {"mode": "load"}, "pause"), 0, 46)
 	load_btn.disabled = Game.latest_save_slot() < 0

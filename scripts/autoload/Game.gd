@@ -14,10 +14,12 @@ const EQUIP_SLOTS := ["melee", "ranged", "head", "chest", "hands", "legs", "feet
 
 var hero: Dictionary = {}
 var state: Dictionary = {}
-var settings: Dictionary = {"lang": "nl", "mouse_sens": 1.0, "time_speed": 1.0, "quality": "high", "music": 0.5, "sfx": 0.8, "invert_y": false, "show_fps": false}
+var settings: Dictionary = {"lang": "nl", "mouse_sens": 1.0, "pad_sens": 1.0, "time_speed": 1.0, "quality": "high", "music": 0.5, "sfx": 0.8, "invert_y": false, "show_fps": false}
 const QuestSystemScript = preload("res://scripts/systems/Quests.gd")
 var quests: QuestSystemScript
 var world = null
+## True once the last thing the player touched was a gamepad: hints then name gamepad buttons (UI.gd keeps it up to date).
+var pad_active: bool = false
 var player = null
 var in_game: bool = false
 var buffs: Array = []

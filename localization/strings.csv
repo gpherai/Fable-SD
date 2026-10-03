@@ -404,3 +404,6 @@ UI_MAP_LEGEND_UNKNOWN,Unexplored,Onverkend
 UI_MAP_LEGEND_LOCKED,Locked path,Vergrendeld pad
 UI_MAP_LEGEND_BOAT,Boat,Boot
 UI_MAP_UNKNOWN,You have not been here yet. A path leads this way.,Je bent hier nog niet geweest. Een pad leidt hierheen.
+UI_PAD_SENS,Gamepad camera speed,Camerasnelheid gamepad
+UI_CONTROLS_KEYBOARD,Keyboard and mouse,Toetsenbord en muis
+UI_CONTROLS_PAD,Gamepad,Gamepad

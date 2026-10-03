@@ -19,39 +19,55 @@ def joy(button):
     return ('Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,'
             f'"button_index":{button},"pressure":0.0,"pressed":true,"script":null)')
 
+def axis(a, value):
+    return ('Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,'
+            f'"axis":{a},"axis_value":{value},"script":null)')
+
+# Godot's standard layout: buttons A 0, B 1, X 2, Y 3, Back 4, Start 6, L3 7, R3 8, LB 9, RB 10, d-pad 11-14 (up, down, left, right);
+# axes left stick 0/1, right stick 2/3, LT 4, RT 5.
+J = dict(A=0, B=1, X=2, Y=3, BACK=4, START=6, L3=7, LB=9, RB=10, DUP=11, DDOWN=12, DLEFT=13, DRIGHT=14)
+LX, LY, RX, RY, LT, RT = 0, 1, 2, 3, 4, 5
+
 K = dict(W=87, A=65, S=83, D=68, E=69, F=70, Q=81, I=73, C=67, M=77, X=88, H=72, R=82, T=84, J=74, K=75, L=76, O=79, P=80,
          SPACE=32, TAB=4194306, SHIFT=4194325, ESC=4194305, ENTER=4194309, CTRL=4194326, F5=4194336, F9=4194340, F1=4194332,
          UP=4194320, DOWN=4194322, LEFT=4194319, RIGHT=4194321, N1=49, N2=50, N3=51, N4=52, N5=53, N6=54, KP_ENTER=4194310, BACKSPACE=4194308)
 
 actions = {
-    "move_forward": [key(K["W"]), key(K["UP"])],
-    "move_back": [key(K["S"]), key(K["DOWN"])],
-    "move_left": [key(K["A"]), key(K["LEFT"])],
-    "move_right": [key(K["D"]), key(K["RIGHT"])],
-    "attack": [mouse(1), key(K["J"])],
-    "block": [mouse(2), key(K["K"])],
-    "roll": [key(K["SPACE"])],
-    "sprint": [key(K["SHIFT"])],
-    "ranged_toggle": [key(K["F"])],
-    "interact": [key(K["E"]), key(K["ENTER"]), key(K["KP_ENTER"])],
-    "lock_target": [key(K["TAB"]), mouse(3)],
-    "meditate": [key(K["H"])],
+    "move_forward": [key(K["W"]), key(K["UP"]), axis(LY, -1.0)],
+    "move_back": [key(K["S"]), key(K["DOWN"]), axis(LY, 1.0)],
+    "move_left": [key(K["A"]), key(K["LEFT"]), axis(LX, -1.0)],
+    "move_right": [key(K["D"]), key(K["RIGHT"]), axis(LX, 1.0)],
+    "attack": [mouse(1), key(K["J"]), axis(RT, 1.0)],
+    "block": [mouse(2), key(K["K"]), joy(J["LB"])],
+    "roll": [key(K["SPACE"]), joy(J["B"])],
+    "sprint": [key(K["SHIFT"]), joy(J["L3"])],
+    "ranged_toggle": [key(K["F"]), joy(J["X"])],
+    "interact": [key(K["E"]), key(K["ENTER"]), key(K["KP_ENTER"]), joy(J["A"])],
+    "lock_target": [key(K["TAB"]), mouse(3), joy(J["RB"])],
+    "meditate": [key(K["H"]), joy(J["Y"])],
     "siddhi_1": [key(K["N1"])], "siddhi_2": [key(K["N2"])], "siddhi_3": [key(K["N3"])],
     "siddhi_4": [key(K["N4"])], "siddhi_5": [key(K["N5"])], "siddhi_6": [key(K["N6"])],
-    "potion_prana": [key(K["R"])],
-    "potion_ojas": [key(K["T"])],
-    "menu_inventory": [key(K["I"])],
+    "potion_prana": [key(K["R"]), joy(J["DUP"])],
+    "potion_ojas": [key(K["T"]), joy(J["DDOWN"])],
+    "menu_inventory": [key(K["I"]), joy(J["BACK"])],
     "menu_quests": [key(K["Q"])],
     "menu_codex": [key(K["C"])],
     "menu_map": [key(K["M"])],
     "menu_mudras": [key(K["X"])],
     "menu_sadhana": [key(K["P"])],
     "menu_siddhis": [key(K["O"])],
-    "pause": [key(K["ESC"]), joy(6)],   # Start; menus also take D-pad / A / B through Godot's ui_* actions
+    "pause": [key(K["ESC"]), joy(J["START"])],   # Start; menus also take D-pad / A / B through Godot's ui_* actions
     "quicksave": [key(K["F5"])],
     "quickload": [key(K["F9"])],
     "help": [key(K["F1"])],
-    "ui_back": [key(K["BACKSPACE"]), joy(1)],   # B: step back out of a menu
+    # gamepad only: right stick looks, d-pad left/right zooms, LT holds the siddhi layer (LT + A/B/X/Y/d-pad left/right = siddhi 1-6)
+    "look_left": [axis(RX, -1.0)], "look_right": [axis(RX, 1.0)],
+    "look_up": [axis(RY, -1.0)], "look_down": [axis(RY, 1.0)],
+    "cam_zoom_in": [joy(J["DLEFT"])], "cam_zoom_out": [joy(J["DRIGHT"])],
+    "pad_layer": [axis(LT, 1.0)],
+    "pad_siddhi_1": [joy(J["A"])], "pad_siddhi_2": [joy(J["B"])], "pad_siddhi_3": [joy(J["X"])],
+    "pad_siddhi_4": [joy(J["Y"])], "pad_siddhi_5": [joy(J["DLEFT"])], "pad_siddhi_6": [joy(J["DRIGHT"])],
+    "ui_back": [key(K["BACKSPACE"]), joy(J["B"])],   # B: step back out of a menu
 }
 
 lines = [
@@ -81,8 +97,9 @@ lines = [
     "window/vsync/vsync_mode=1", "",
     "[input]", "",
 ]
+DEADZONES = {"attack": 0.5, "pad_layer": 0.5, "look_left": 0.15, "look_right": 0.15, "look_up": 0.15, "look_down": 0.15}
 for name, evs in actions.items():
-    lines.append(f'{name}={{\n"deadzone": 0.2,\n"events": [{", ".join(evs)}]\n}}')
+    lines.append(f'{name}={{\n"deadzone": {DEADZONES.get(name, 0.2)},\n"events": [{", ".join(evs)}]\n}}')
 lines += ["",
     "[internationalization]", "",
     'locale/fallback="en"', "",

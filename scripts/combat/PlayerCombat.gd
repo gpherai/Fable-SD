@@ -71,6 +71,8 @@ var _was_active: bool = false
 var sit_k: float = 0.0           # 0 standing .. 1 seated (Dhyana pose blend)
 var _sitting: bool = false
 var _med_prev: bool = false
+var _stick_cd: float = 0.0       # pause between two stick flicks that switch the lock target
+var _stick_armed: bool = true
 
 # =====================================================================
 # Frame
@@ -93,7 +95,7 @@ func tick(delta: float) -> void:
 	buffered = maxf(0.0, buffered - delta)
 	shot_cd = maxf(0.0, shot_cd - delta)
 	_update_lock(delta)
-	var med := Input.is_action_pressed("meditate")
+	var med: bool = Input.is_action_pressed("meditate") and (state == S.MEDITATE or not player.pad_layer())   # Y is siddhi 4 under the pad layer
 	if med and not _med_prev:
 		_try_meditate()
 	_med_prev = med
@@ -107,10 +109,12 @@ func tick(delta: float) -> void:
 			return
 	if Input.is_action_just_pressed("lock_target"):
 		_lock_pressed()
-	if Input.is_action_just_pressed("ranged_toggle"):
+	_stick_switch_lock(delta)
+	if Input.is_action_just_pressed("ranged_toggle") and not player.pad_layer():
 		_toggle_stance()
+	var layer: bool = player.pad_layer()
 	for i in 6:
-		if Input.is_action_just_pressed("siddhi_%d" % (i + 1)):
+		if Input.is_action_just_pressed("siddhi_%d" % (i + 1)) or (layer and Input.is_action_just_pressed("pad_siddhi_%d" % (i + 1))):
 			cast_siddhi(str(Game.hero.hotbar[i]))
 	_block_input()
 	_attack_input(delta)
@@ -739,6 +743,39 @@ func _lock_pressed() -> void:
 			return
 		pick = cands[(idx + 1) % cands.size()]["e"]
 	_set_lock(pick)
+
+## With a target locked the right stick picks another one: flick it left or right and the lock moves to the
+## nearest enemy on that side (the camera is busy following the target, so the stick does not turn it then).
+func _stick_switch_lock(delta: float) -> void:
+	_stick_cd = maxf(0.0, _stick_cd - delta)
+	if not lock_valid():
+		return
+	var x := Input.get_axis("look_left", "look_right")
+	if absf(x) < 0.4:
+		_stick_armed = true
+		return
+	if absf(x) < 0.8 or not _stick_armed or _stick_cd > 0.0:
+		return
+	_stick_armed = false
+	_stick_cd = 0.3
+	var w = Game.world
+	if w == null:
+		return
+	var right: Vector3 = player.cam.global_transform.basis.x
+	var from: Vector3 = lock.global_position
+	var best: Node3D = null
+	var best_off := INF
+	for e in w.enemies:
+		if e == lock or not is_instance_valid(e) or e.dead or e.rising:
+			continue
+		if e.global_position.distance_to(player.global_position) > LOCK_RANGE:
+			continue
+		var off: float = (e.global_position - from).dot(right) * signf(x)
+		if off > 0.2 and off < best_off:
+			best_off = off
+			best = e
+	if best != null:
+		_set_lock(best)
 
 func _set_lock(e: Node3D) -> void:
 	release_lock()

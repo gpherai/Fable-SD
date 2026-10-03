@@ -212,5 +212,23 @@
     {"keys": "Pijltjes / WASD", "action": {"nl": "In menu's: kiezen (ook d-pad op een gamepad)", "en": "In menus: move the selection (also the d-pad on a gamepad)"}},
     {"keys": "Enter / Spatie", "action": {"nl": "In menu's: bevestigen (A op een gamepad)", "en": "In menus: confirm (A on a gamepad)"}},
     {"keys": "Esc / Backspace", "action": {"nl": "In menu's: terug of sluiten (B op een gamepad)", "en": "In menus: back or close (B on a gamepad)"}}
+  ],
+  "controls_pad": [
+    {"keys": "Linkerstick", "action": {"nl": "Lopen (hoe verder je duwt, hoe sneller)", "en": "Move (the further you push, the faster)"}},
+    {"keys": "Rechterstick", "action": {"nl": "Camera draaien (met vergrendeld doel: ander doel kiezen)", "en": "Rotate camera (with a locked target: pick another target)"}},
+    {"keys": "RT", "action": {"nl": "Aanvallen (vasthouden: Mahaprahara)", "en": "Attack (hold: Mahaprahara)"}},
+    {"keys": "LB", "action": {"nl": "Blokkeren (Rakshana)", "en": "Block (Rakshana)"}},
+    {"keys": "RB", "action": {"nl": "Doel vergrendelen (nogmaals: volgend doel)", "en": "Lock target (again: next target)"}},
+    {"keys": "B", "action": {"nl": "Rollen (Lunthana)", "en": "Roll (Lunthana)"}},
+    {"keys": "L3 (stick indrukken)", "action": {"nl": "Rennen (vasthouden)", "en": "Sprint (hold)"}},
+    {"keys": "A", "action": {"nl": "Praten, oppakken, gebruiken", "en": "Talk, pick up, use"}},
+    {"keys": "X", "action": {"nl": "Boog/chakra wisselen", "en": "Toggle ranged stance"}},
+    {"keys": "Y (vasthouden)", "action": {"nl": "Mediteren (Dhyana)", "en": "Meditate (Dhyana)"}},
+    {"keys": "LT + A / B / X / Y", "action": {"nl": "Siddhi 1 t/m 4", "en": "Siddhi 1 to 4"}},
+    {"keys": "LT + d-pad links / rechts", "action": {"nl": "Siddhi 5 en 6", "en": "Siddhi 5 and 6"}},
+    {"keys": "D-pad omhoog / omlaag", "action": {"nl": "Prana-rasa / Ojas-rasa drinken", "en": "Drink Prana / Ojas elixir"}},
+    {"keys": "D-pad links / rechts", "action": {"nl": "Camera inzoomen / uitzoomen", "en": "Zoom camera in / out"}},
+    {"keys": "Back", "action": {"nl": "Inventaris en uitrusting", "en": "Inventory and equipment"}},
+    {"keys": "Start", "action": {"nl": "Pauze / menu (daar vind je ook opdrachten, kaart, sadhana, siddhi's en mudra's)", "en": "Pause / menu (it also holds quests, map, sadhana, siddhis and mudras)"}}
   ]
 }

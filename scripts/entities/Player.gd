@@ -19,6 +19,7 @@ const ROLL_PIVOT := Vector3(0, 0.9, 0)   # the somersault turns about the middle
 const PITCH_MIN := -1.2
 const PITCH_MAX := 0.6
 const MOUSE_SENS := 0.0028
+const PAD_LOOK_SPEED := 2.8      # right stick at full tilt, radians per second (times the pad sensitivity setting)
 
 var model: Node3D
 var combat: Node
@@ -160,14 +161,36 @@ func _unhandled_input(event: InputEvent) -> void:
 			arm.spring_length = clampf(arm.spring_length - 0.5, 2.5, 12.0)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			arm.spring_length = clampf(arm.spring_length + 0.5, 2.5, 12.0)
-	elif event.is_action_pressed("interact") and _can_act():
+	elif event.is_action_pressed("interact") and _can_act() and not pad_layer():
 		_interact()
-	elif event.is_action_pressed("roll") and _can_act():
+	elif event.is_action_pressed("roll") and _can_act() and not pad_layer():
 		_start_roll()
 	elif event.is_action_pressed("potion_prana") and _can_act():
 		Game.quaff("heal")
 	elif event.is_action_pressed("potion_ojas") and _can_act():
 		Game.quaff("ojas")
+
+## Right stick (camera) and the d-pad zoom. Per frame, not per physics tick, so the camera stays smooth on fast screens.
+func _process(delta: float) -> void:
+	if not Game.in_game or not _can_move():
+		return
+	var v := Input.get_vector("look_left", "look_right", "look_up", "look_down")
+	if v != Vector2.ZERO and not combat.lock_valid():   # a locked target owns the camera; the stick then switches targets
+		var k := PAD_LOOK_SPEED * float(Game.settings.get("pad_sens", 1.0)) * delta
+		var inv := -1.0 if Game.settings.get("invert_y", false) else 1.0
+		v = v * v.length()   # a soft curve: small tilts turn slowly, a full tilt turns fast
+		yaw -= v.x * k
+		pitch = clampf(pitch - v.y * k * inv, PITCH_MIN, PITCH_MAX)
+		_apply_look()
+	if not pad_layer():   # under the siddhi layer the d-pad picks siddhis 5 and 6
+		if Input.is_action_just_pressed("cam_zoom_in"):
+			arm.spring_length = clampf(arm.spring_length - 1.0, 2.5, 12.0)
+		elif Input.is_action_just_pressed("cam_zoom_out"):
+			arm.spring_length = clampf(arm.spring_length + 1.0, 2.5, 12.0)
+
+## True while the gamepad's left trigger is held: A / B / X / Y and the d-pad then mean siddhis, not interact / roll / bow / meditate.
+func pad_layer() -> bool:
+	return Input.is_action_pressed("pad_layer")
 
 func _can_act() -> bool:
 	return not dead and Game.in_game and not Game.paused_for_ui and controls_on

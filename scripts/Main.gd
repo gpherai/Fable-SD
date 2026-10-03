@@ -253,6 +253,15 @@ func _ui_shot() -> void:
 	await _frames(20)
 	await RenderingServer.frame_post_draw
 	_save_shot("ui_hud")
+	# the same HUD for a player on a gamepad: hints name its buttons
+	Game.pad_active = true
+	Events.input_device_changed.emit(true)
+	Events.interact_hint.emit(Loc.t("HINT_TALK", {"name": "Bhimnath"}))
+	await _frames(10)
+	await RenderingServer.frame_post_draw
+	_save_shot("ui_hud_pad")
+	Game.pad_active = false
+	Events.input_device_changed.emit(false)
 	# a well-travelled hero, so the map has something to show
 	for rid in ["vira_akhara", "akhara_vana", "drishtikuta", "dhivara_nala", "shringarapura_dakshina", "shringarapura_uttara", "shringarapura_ghat",
 			"mahavana_dvar", "amrai", "udyana", "mahavana_hrada", "mahavana_gaurav", "pisacha_guha", "tamovana_pravesh", "tamovana_dalavana"]:
@@ -279,6 +288,12 @@ func _ui_shot() -> void:
 		await _ui_frames(2)
 		await RenderingServer.frame_post_draw
 		_save_shot(entry[0])
+		if entry[1] == "controls":   # the gamepad tab too
+			panel._pad_tab = true
+			panel.rebuild()
+			await _ui_frames(4)
+			await RenderingServer.frame_post_draw
+			_save_shot("ui_controls_pad")
 		ui.close(panel, false)
 		await _ui_frames(2)
 	get_tree().quit(0)
@@ -464,6 +479,8 @@ func _smoke() -> void:
 	# the interface: HUD, every panel, pause, dialogue, shop, death, save / load, title
 	fails += await _smoke_ui()
 	p = Game.player
+	# the gamepad: sticks, triggers, the siddhi layer, the hints
+	fails += await _smoke_pad(p)
 	# every region
 	var t0 := Time.get_ticks_msec()
 	var n := 0
@@ -475,6 +492,190 @@ func _smoke() -> void:
 	print("SMOKE ok: built %d regions with population in %d ms" % [n, Time.get_ticks_msec() - t0])
 	print("SMOKE ", "PASS" if fails == 0 else "FAILED (%d)" % fails)
 	get_tree().quit(1 if fails > 0 else 0)
+
+func _pad_axis(axis: JoyAxis, value: float) -> void:
+	var e := InputEventJoypadMotion.new()
+	e.axis = axis
+	e.axis_value = value
+	Input.parse_input_event(e)
+
+func _pad_button(button: JoyButton, pressed: bool) -> void:
+	var e := InputEventJoypadButton.new()
+	e.button_index = button
+	e.pressed = pressed
+	Input.parse_input_event(e)
+
+## Taps a gamepad button: down, a few frames, up.
+func _pad_tap(button: JoyButton) -> void:
+	_pad_button(button, true)
+	await _frames(3)
+	_pad_button(button, false)
+	await _frames(3)
+
+## Headless gamepad check: the left stick walks (harder push = faster), the right stick turns the camera, RT strikes,
+## LB blocks, A / B / X / Y act, LT + a face button casts a siddhi instead, and the hints name gamepad buttons.
+func _smoke_pad(p) -> int:
+	var fails := 0
+	var c = p.combat
+	for e in world.enemies.duplicate():
+		if is_instance_valid(e):
+			e.queue_free()
+	world.enemies.clear()
+	Game.hero.age = 20.0
+	Game.hero.hp = Game.hp_max()
+	Game.hero.ojas = Game.ojas_max()
+	p.invulnerable = true
+	p.global_position = world.ground_pos(p.global_position.x, p.global_position.z, 0.2)
+	p.velocity = Vector3.ZERO
+	await _frames(20)
+	# the left stick walks; half a push is slower than a full one
+	var start: Vector3 = p.global_position
+	_pad_axis(JOY_AXIS_LEFT_Y, -1.0)
+	await _frames(40)
+	_pad_axis(JOY_AXIS_LEFT_Y, 0.0)
+	var full := Vector3(p.global_position.x - start.x, 0, p.global_position.z - start.z).length()
+	await _frames(20)
+	start = p.global_position
+	_pad_axis(JOY_AXIS_LEFT_Y, -0.55)
+	await _frames(40)
+	_pad_axis(JOY_AXIS_LEFT_Y, 0.0)
+	var half := Vector3(p.global_position.x - start.x, 0, p.global_position.z - start.z).length()
+	fails += _report(full > 2.0 and half > 0.5 and half < full * 0.8, "gamepad: the left stick walks, a gentle push slower (full %.1f m, half %.1f m)" % [full, half])
+	# the right stick turns the camera, and is ignored while the controls are off
+	var yaw0: float = p.yaw
+	_pad_axis(JOY_AXIS_RIGHT_X, 1.0)
+	await _ui_frames(30)
+	_pad_axis(JOY_AXIS_RIGHT_X, 0.0)
+	var turned: float = yaw0 - p.yaw
+	fails += _report(turned > 0.5, "gamepad: the right stick turns the camera (%.2f rad in 30 frames)" % turned)
+	var pitch0: float = p.pitch
+	_pad_axis(JOY_AXIS_RIGHT_Y, -1.0)
+	await _ui_frames(30)
+	_pad_axis(JOY_AXIS_RIGHT_Y, 0.0)
+	fails += _report(p.pitch > pitch0 and p.pitch <= p.PITCH_MAX, "gamepad: pushing the right stick up tilts the camera up (pitch %.2f -> %.2f)" % [pitch0, p.pitch])
+	# d-pad left / right zoom; under the left trigger they are siddhi buttons
+	var zoom0: float = p.arm.spring_length
+	await _pad_tap(JOY_BUTTON_DPAD_RIGHT)
+	var zoomed_out: float = p.arm.spring_length
+	await _pad_tap(JOY_BUTTON_DPAD_LEFT)
+	fails += _report(zoomed_out > zoom0 and absf(p.arm.spring_length - zoom0) < 0.01, "gamepad: the d-pad zooms the camera out and in")
+	# RT strikes, LB blocks
+	_pad_axis(JOY_AXIS_TRIGGER_RIGHT, 1.0)
+	await _frames(4)
+	_pad_axis(JOY_AXIS_TRIGGER_RIGHT, 0.0)   # a tap swings when the trigger comes back
+	await _frames(3)
+	var struck: bool = c.state == c.S.SWING
+	await _frames(40)
+	fails += _report(struck, "gamepad: the right trigger strikes")
+	_pad_button(JOY_BUTTON_LEFT_SHOULDER, true)
+	await _frames(4)
+	var guarded: bool = c.blocking
+	_pad_button(JOY_BUTTON_LEFT_SHOULDER, false)
+	await _frames(4)
+	fails += _report(guarded and not c.blocking, "gamepad: LB blocks while held")
+	# B rolls; with LT held it is siddhi 2 and does not roll
+	await _frames(30)
+	await _pad_tap(JOY_BUTTON_B)
+	var rolled: bool = p.rolling or p.roll_cd > 0.0
+	await _frames(40)
+	Game.learn_siddhi("sanjivani", true)
+	Game.learn_siddhi("vajra", true)
+	Game.hero.hotbar[0] = "sanjivani"
+	Game.hero.hotbar[1] = "vajra"
+	c.siddhi_ready.clear()
+	var casts: Array = []
+	var on_cast := func(id: String, _lvl: int) -> void: casts.append(id)
+	Events.siddhi_cast.connect(on_cast)
+	_pad_axis(JOY_AXIS_TRIGGER_LEFT, 1.0)
+	await _frames(3)
+	await _pad_tap(JOY_BUTTON_A)
+	await _frames(30)
+	await _pad_tap(JOY_BUTTON_B)
+	var rolled_under_layer: bool = p.rolling
+	await _frames(30)
+	_pad_axis(JOY_AXIS_TRIGGER_LEFT, 0.0)
+	Events.siddhi_cast.disconnect(on_cast)
+	fails += _report(rolled, "gamepad: B rolls")
+	fails += _report(casts.has("sanjivani") and not rolled_under_layer, "gamepad: LT + A casts siddhi 1 and LT + B does not roll (casts: %s)" % str(casts))
+	# X toggles the bow stance, but not under the layer; Y sits down, but not under the layer
+	var stance0: bool = c.ranged_stance()
+	_pad_axis(JOY_AXIS_TRIGGER_LEFT, 1.0)
+	await _frames(3)
+	await _pad_tap(JOY_BUTTON_X)
+	_pad_axis(JOY_AXIS_TRIGGER_LEFT, 0.0)
+	await _frames(3)
+	fails += _report(c.ranged_stance() == stance0, "gamepad: LT + X is a siddhi, it leaves the stance alone")
+	_pad_axis(JOY_AXIS_TRIGGER_LEFT, 1.0)
+	await _frames(3)
+	_pad_button(JOY_BUTTON_Y, true)
+	await _frames(8)
+	var sat_under_layer: bool = c.is_meditating()
+	_pad_button(JOY_BUTTON_Y, false)
+	_pad_axis(JOY_AXIS_TRIGGER_LEFT, 0.0)
+	await _frames(4)
+	_pad_button(JOY_BUTTON_Y, true)
+	await _frames(8)
+	var sat: bool = c.is_meditating()
+	_pad_button(JOY_BUTTON_Y, false)
+	await _frames(30)
+	fails += _report(sat and not sat_under_layer, "gamepad: Y held sits down in Dhyana, LT + Y does not")
+	# the target lock follows the right stick: flick it and the lock jumps to the enemy on that side
+	var origin: Vector3 = p.global_position
+	var fwd: Vector3 = -p.cam.global_transform.basis.z
+	var right: Vector3 = p.cam.global_transform.basis.x
+	var e1 = world.spawn_enemy("maha_keeta", world.ground_pos(origin.x + fwd.x * 6.0 + right.x * -2.0, origin.z + fwd.z * 6.0 + right.z * -2.0, 0.3))
+	var e2 = world.spawn_enemy("maha_keeta", world.ground_pos(origin.x + fwd.x * 6.0 + right.x * 2.0, origin.z + fwd.z * 6.0 + right.z * 2.0, 0.3))
+	for e in [e1, e2]:
+		e.stationary = true
+		e.ai.cd["attack"] = 999.0
+	await _frames(5)
+	c._set_lock(e1)
+	await _frames(5)
+	_pad_axis(JOY_AXIS_RIGHT_X, 1.0)
+	await _frames(5)
+	_pad_axis(JOY_AXIS_RIGHT_X, 0.0)
+	await _frames(5)
+	fails += _report(c.lock == e2, "gamepad: flicking the right stick moves the lock to the enemy on that side")
+	c.release_lock()
+	for e in [e1, e2]:
+		e.queue_free()
+	world.enemies.clear()
+	# the hints name the buttons of whichever device was used last
+	await _ui_frames(3)
+	var hud = ui.hud
+	Events.interact_hint.emit("[E] Talk")
+	_pad_button(JOY_BUTTON_A, true)
+	_pad_button(JOY_BUTTON_A, false)
+	await _ui_frames(3)
+	fails += _report(Game.pad_active and hud.hint_lbl.text == "[A] Talk" and hud.slots[0]["key"].text == "LT+A" and hud.potion_lbl.text.begins_with("[D"), "gamepad: the hints turn into gamepad buttons (%s | %s)" % [hud.hint_lbl.text, hud.slots[0]["key"].text])
+	var mouse := InputEventMouseButton.new()
+	mouse.button_index = MOUSE_BUTTON_LEFT
+	mouse.pressed = true
+	Input.parse_input_event(mouse)
+	await _ui_frames(2)
+	var mouse_up := mouse.duplicate()   # one event object may not be parsed twice in a frame
+	mouse_up.pressed = false
+	Input.parse_input_event(mouse_up)
+	await _ui_frames(3)
+	fails += _report(not Game.pad_active and hud.hint_lbl.text == "[E] Talk" and hud.slots[0]["key"].text == "1" and hud.potion_lbl.text.begins_with("[R]"), "gamepad: and back to keys when the mouse is touched (%s | %s)" % [hud.hint_lbl.text, hud.slots[0]["key"].text])
+	Events.interact_hint.emit("")
+	# the pause menu reaches the screens that have keys on the keyboard
+	var pz = ui.open("pause")
+	await _ui_frames(3)
+	var names: Array = pz._focusables().map(func(b): return b.text)
+	var wanted: Array = [Loc.t("UI_INVENTORY"), Loc.t("UI_QUESTS"), Loc.t("UI_MAP"), Loc.t("UI_SADHANA"), Loc.t("UI_SIDDHIS"), Loc.t("UI_MUDRAS")]
+	var all_there := true
+	for w in wanted:
+		all_there = all_there and names.has(w)
+	fails += _report(all_there, "gamepad: the pause menu holds inventory, quests, map, sadhana, siddhis and mudras")
+	var inv_btn: Button = pz._focusables()[names.find(Loc.t("UI_INVENTORY"))]
+	inv_btn.pressed.emit()
+	await _ui_frames(3)
+	fails += _report(ui.is_open("inventory"), "gamepad: the inventory opens from the pause menu")
+	ui.close_all()
+	await _ui_frames(3)
+	p.invulnerable = false
+	return fails
 
 ## Presses and releases a keyboard key the way the OS would, so UI._unhandled_input hears it.
 func _press_key(code: Key) -> void:
@@ -558,7 +759,7 @@ func _smoke_ui() -> int:
 	await _press_key(KEY_S)
 	var after_s = vp.gui_get_focus_owner()
 	print("SMOKE info: pause list ", pz_list.map(func(c): return c.text), " load disabled=", load_disabled, " focus after S -> ", after_s.text if after_s != null else "none")
-	fails += _report(after_s == pz_list[2], "menus: S moves down like the arrow key (a disabled Load button is skipped)")
+	fails += _report(after_s != null and after_s != pz_list[1] and pz_list.has(after_s) and not after_s.disabled, "menus: S moves down like the arrow key (a disabled Load button is never focused)")
 	await _press_key(KEY_W)
 	await _press_key(KEY_UP)
 	fails += _report(vp.gui_get_focus_owner() == pz_list[0], "menus: W and Up move back up")

@@ -109,9 +109,23 @@ Vragen om op te letten: voelt de parry-timing eerlijk? is het blokkeren te sterk
   na de laatste regel niet meteen antwoord 1 kiest), tekent één focusring (`FocusRing`, alleen na toetsen: `nav_visible`) en geeft de focus na
   een herbouw terug. Een muisklik laat de focus los (anders drukt Spatie/Enter dezelfde knop opnieuw). Uitgeschakelde knoppen krijgen geen
   focus (`_sync_focus_modes`). `UI._menu_navigation` vangt de eerste toets zonder focus en maakt WASD tot pijltjes. Gamepad: Godot's `ui_*`
-  (d-pad, A) werken, Start = pauze en B = terug/sluiten (`ui_back`) via `gen_project.py`. **Er is geen gamepadbesturing in het spel zelf.**
+  (d-pad, A) werken, Start = pauze en B = terug/sluiten (`ui_back`) via `gen_project.py`. Gamepadbesturing in het spel zelf: zie 'Gamepad in het spel' hieronder.
 - Nog open uit de UI-todo: Gerald bevestigt de door mij bedachte Yaksha-/schrijn-/Marmara-regels, dialoog-sluit-na-effect voelen in het
   proefspel, en UI-stijl hoort bij de visuals-todo.
+
+## Gamepad in het spel (2026-10-03)
+
+Standaard-indeling van Godot (Xbox-achtig), alles via `tools/gen_project.py` (acties met `axis()`/`joy()`; deadzones per actie in `DEADZONES`):
+linkerstick lopen (analoog: halve duw = langzamer), rechterstick camera (`Player._process`, `PAD_LOOK_SPEED`, instelling `pad_sens`, volgt `invert_y`),
+RT aanval, LB blok, RB doel vergrendelen, B rol, L3 rennen, A interact, X boog/chakra, Y mediteren (vasthouden), d-pad omhoog/omlaag drankjes,
+d-pad links/rechts zoom, Back inventaris, Start pauze. **LT is de siddhi-laag**: LT + A/B/X/Y = siddhi 1-4, LT + d-pad links/rechts = 5-6 (`pad_siddhi_N`
+in `PlayerCombat.tick`); onder LT doen interact/rol/boog/mediteren/zoom niets (`Player.pad_layer()`). Met een vergrendeld doel wisselt een flick met de
+rechterstick (links/rechts) van doel (`_stick_switch_lock`) en draait de stick de camera niet. De andere panelen (opdrachten, kaart, sadhana, siddhi's, mudra's)
+zijn voor het pad bereikbaar via knoppen in het pauzemenu. `UI._input` houdt `Game.pad_active` bij (laatst gebruikte apparaat, signaal `Events.input_device_changed`);
+de HUD toont dan `[A]` i.p.v. `[E]`, `LT+A` op de siddhi-slots en `[D↑]`/`[D↓]`/`[X]` bij drankjes en houding. Het besturingspaneel (F1) heeft twee tabs
+(`controls` en `controls_pad` in misc.json). Rooktest: `_smoke_pad` (18 controles, scripted `InputEventJoypadMotion/Button`). **Niet bewezen met een echt pad**
+(er is er geen aangesloten geweest): trigger-assen, deadzone en gevoeligheid voelen is werk voor het proefspel. Open: rumble bij schade, tekst "Spatie" in
+`UI_CLICK_CONTINUE` noemt nog toetsen, geen herbindbare toetsen.
 
 ## Systemen getest (2026-10-03): `--systems`
 
@@ -144,7 +158,7 @@ geen onbekende conditie- of effectsleutels in de data.
 `tools/check.sh <godot-binary>` compileert alle scripts, valideert de data en bouwt alle
 48 regio's en draait daarna de rooktest (`--smoke`: start, lopen, vijand doden met orbs, projectiel,
 combat, drankjes, Dhyana, vuisten, Marmara's duel, de interface, alle 48 regio's bevolkt) en `--systems` (de systemen, zie hierboven).
-Laatste stand (2026-10-03): scripts 49/49 ok, data 0 fouten, regio's ok (~22.000 nodes), rooktest PASS (84 controles), systemen PASS
+Laatste stand (2026-10-03): scripts 49/49 ok, data 0 fouten, regio's ok (~22.000 nodes), rooktest PASS (84 controles + 18 gamepadcontroles), systemen PASS
 (176 controles). Exit-code 0 = alles groen.
 Losse hooks: `--balance` (balansrapport), `--combat-shot` / `--game-shot` / `--ui-shot` (venster, screenshots; op de host met `XDG_RUNTIME_DIR=/run/user/1000 WAYLAND_DISPLAY=wayland-0 godot --display-driver wayland`).
 Scratch-run op de host: rsync de repo naar `laptop:~/.cache/fable-sd-check` (excl. .git/.godot/screenshots), daar `tools/check.sh` draaien.

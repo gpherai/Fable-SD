@@ -166,6 +166,23 @@ func _open_death_later() -> void:
 # =====================================================================
 # Keys
 # =====================================================================
+## Remembers whether the player is on a gamepad or on keyboard and mouse, so hints name the right buttons.
+func _input(event: InputEvent) -> void:
+	var pad: bool
+	if event is InputEventJoypadButton and event.pressed:
+		pad = true
+	elif event is InputEventJoypadMotion and absf(event.axis_value) > 0.5:
+		pad = true
+	elif (event is InputEventKey or event is InputEventMouseButton) and event.pressed:
+		pad = false
+	elif event is InputEventMouseMotion and event.relative.length() >= 2.0:
+		pad = false
+	else:
+		return
+	if pad != Game.pad_active:
+		Game.pad_active = pad
+		Events.input_device_changed.emit(pad)
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not (event is InputEventKey or event is InputEventJoypadButton) or not event.pressed or event.is_echo():
 		return
