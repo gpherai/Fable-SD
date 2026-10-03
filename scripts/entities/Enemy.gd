@@ -110,8 +110,8 @@ func setup(eid: String, opts: Dictionary = {}) -> void:
 		add_child(label)
 	if float(opts.get("lifetime", 0.0)) > 0.0:
 		expires_at = float(opts["lifetime"])
-	if bool(data.get("rise", false)):
-		# buried until the player comes close (see EnemyAI)
+	if bool(data.get("rise", false)) and not arena:
+		# buried until the player comes close (see EnemyAI); arena fighters are already up and waiting
 		rising = true
 		collision_layer = 0
 		model.position.y = hover - height - 0.2

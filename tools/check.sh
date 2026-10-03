@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Headless checks: script compilation, data validation, region generation.
+# Headless checks: script compilation, data validation, region generation, smoke test, systems test.
 # Usage: tools/check.sh [path-to-godot-binary]
 set -u
 GODOT="${1:-${GODOT:-godot}}"
@@ -15,5 +15,11 @@ filter < "$smoke_log" | grep -E "SMOKE|SCRIPT ERROR|ERROR:|at: "
 # a runtime script error does not change Godot's exit code, so count them here
 if grep -q "SCRIPT ERROR" "$smoke_log"; then s4=1; fi
 rm -f "$smoke_log"
-echo "exit codes: scripts=$s1 data=$s2 regions=$s3 smoke=$s4"
-[ "$s1" = 0 ] && [ "$s2" = 0 ] && [ "$s3" = 0 ] && [ "$s4" = 0 ]
+echo "== systems =="
+sys_log=$(mktemp)
+timeout 900 "$GODOT" --headless --path . -- --systems > "$sys_log" 2>&1; s5=$?
+filter < "$sys_log" | grep -E "SYS FAIL|SYS   |SYSTEMS|SYS summary|SCRIPT ERROR|at: GDScript"
+if grep -q "SCRIPT ERROR" "$sys_log"; then s5=1; fi
+rm -f "$sys_log"
+echo "exit codes: scripts=$s1 data=$s2 regions=$s3 smoke=$s4 systems=$s5"
+[ "$s1" = 0 ] && [ "$s2" = 0 ] && [ "$s3" = 0 ] && [ "$s4" = 0 ] && [ "$s5" = 0 ]

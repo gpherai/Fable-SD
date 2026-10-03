@@ -97,16 +97,39 @@ Vragen om op te letten: voelt de parry-timing eerlijk? is het blokkeren te sterk
 - **Bekend**: de kamandalu (`refill`) wordt bij gebruik opgebruikt (navulmechaniek bestaat niet); de kaart is een lijst (geen getekende kaart);
   glyphs zoals ◆ ✓ ▸ renderen op de host, niet getest op andere systemen.
 
-Wat Haiku als "afgerond" opgaf maar **ongetest** is: save/load, arena-waves, dag/nacht, shrines,
-vissen/graven, followers, bossbalans. De rooktest raakt alleen start, lopen, vijand doden + orbs,
-projectiel en het opbouwen van alle 48 regio's. Vertrouw de rest niet zonder het te draaien.
+## Systemen getest (2026-10-03): `--systems`
+
+Wat Haiku als "afgerond" opgaf is nu headless doorgelicht met `--systems` (`scripts/tests/SystemsTest.gd`, 154 controles, onderdeel van
+`tools/check.sh`): save/load (ook kapotte en oude saves), dag/nacht en licht, nachtvijanden en -bloemen, bed, kisten/sleutels/pickups,
+graven, vissen, schrijnen (via het echte paneel), volgers en escort-quests, de arena (9 waves, herhaling, sterven), alle baas-spawns
+(vlaggen, drops, geen respawn), alle 39 quests van start tot klaar, progressie (stats, siddhi's), dood/respawn en alle 231 dialoogknopen
+met 239 effecten. Daarbij gevonden en opgelost:
+
+- `load_game`: JSON geeft getallen als float terug en `[0.0].has(0)` is `false`. Na laden waren geopende kisten weer lootbaar, kwamen
+  opgepakte items en gegraven plekken terug en keerden bazen met `respawn:false` terug. De slot-lijsten van `state.regions` worden nu
+  naar int terugvertaald. Dit is de valkuil voor alle toekomstige opgeslagen lijsten met getallen (`has`/`find` met ints).
+- `load_game` valideert nu eerst en laat het draaiende spel met rust bij een kapotte of onvolledige save; ontbrekende sleutels van
+  oudere saves komen uit `_new_hero`/`_new_state` (`_fill_defaults`).
+- `set_flag(naam, 5)` (niet-bool) gaf een SCRIPT ERROR; `damage_hero` op een dode held (poison) liet `player_died` elke frame vuren;
+  vijand-drops schreven index -1 in `region.picked`; arena-Preta's (`rise`) bleven begraven en onkwetsbaar tot de held binnen 7 m kwam,
+  waardoor een wave vastliep (arena-vijanden staan nu direct).
+- **Testveiligheid**: `Game.save_dir` is een var (was const `SAVE_DIR`). `--smoke` en `--systems` zetten hem op `user://test_saves`;
+  de rooktest overschreef en wiste voorheen slot 5 van de echte speler op de host. Draai nieuwe testhaken nooit tegen `user://saves`.
+- Testtips: een open UI-paneel pauzeert de boom (`SystemsTest.fresh()` sluit alles); vijanden met `sacred_only` (shveta_rakshasa) en `rise`
+  (preta) moeten met element `sacred` en herhaald geraakt worden (`slay()`); ontbrekende test-uitkomsten eerst als testfout verdenken.
+
+Nog **niet** bewezen: alles met echte muis/toetsen, en het gevoel van arena en baasgevechten (`--balance` meet alleen hero-vs-vijand
+duur; uitschieters staan als todo in PCC: dakini_rani 0,33 te makkelijk, vritra 6,97 en khadgasura 3,47 hoog, shila_daitya 1,18 en
+hima_daitya 2,05 voor gewone vijanden te hard). Statische data-audit (niet in de repo): alle quest-stappen zijn bereikbaar en er zijn
+geen onbekende conditie- of effectsleutels in de data.
 
 ## Controleren (headless) en draaien
 
 `tools/check.sh <godot-binary>` compileert alle scripts, valideert de data en bouwt alle
 48 regio's en draait daarna de rooktest (`--smoke`: start, lopen, vijand doden met orbs, projectiel,
-combat, drankjes, Dhyana, vuisten, Marmara's duel, de interface, alle 48 regio's bevolkt). Laatste stand (2026-10-03):
-scripts 48/48 ok, data 0 fouten, regio's ok (~22.000 nodes), rooktest PASS (67 controles). Exit-code 0 = alles groen.
+combat, drankjes, Dhyana, vuisten, Marmara's duel, de interface, alle 48 regio's bevolkt) en `--systems` (de systemen, zie hierboven).
+Laatste stand (2026-10-03): scripts 49/49 ok, data 0 fouten, regio's ok (~22.000 nodes), rooktest PASS (67 controles), systemen PASS
+(154 controles). Exit-code 0 = alles groen.
 Losse hooks: `--balance` (balansrapport), `--combat-shot` / `--game-shot` / `--ui-shot` (venster, screenshots; op de host met `XDG_RUNTIME_DIR=/run/user/1000 WAYLAND_DISPLAY=wayland-0 godot --display-driver wayland`).
 Scratch-run op de host: rsync de repo naar `laptop:~/.cache/fable-sd-check` (excl. .git/.godot/screenshots), daar `tools/check.sh` draaien.
 

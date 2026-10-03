@@ -3,7 +3,8 @@
 ## Yaksha doors and shrines. Everything here is plain data so it serialises to JSON.
 extends Node
 
-const SAVE_DIR := "user://saves"
+## Where saves and settings live. Test runs (--smoke, --systems) point this at a scratch folder so they never touch real saves.
+var save_dir := "user://saves"
 const SAVE_SLOTS := 6   # slot 0 = quick save and autosave, 1-5 = chosen by the player
 const KARMA_MIN := -1000
 const KARMA_MAX := 1000
@@ -34,7 +35,20 @@ func _ready() -> void:
 # New game
 # =====================================================================
 func new_game(hero_name: String) -> void:
-	hero = {
+	hero = _new_hero(hero_name)
+	for m in Data.mudras.keys():
+		if Data.mudras[m].get("unlock", "start") == "start":
+			hero.mudras.append(m)
+	state = _new_state()
+	buffs = []
+	hero.equipment["melee"] = "lathi"
+	give("lathi", 1, true)
+	in_game = true
+	Events.hero_changed.emit()
+
+## A fresh hero. load_game() also uses it to fill in whatever an older save does not have.
+func _new_hero(hero_name: String) -> Dictionary:
+	return {
 		"name": hero_name if hero_name.strip_edges() != "" else "Vira",
 		"age": 10.0,
 		"stats": {"deha": 1, "prana": 1, "kavacha": 1, "vega": 1, "lakshya": 1, "chaturya": 1, "siddhibala": 1, "ojas": 1},
@@ -50,20 +64,14 @@ func new_game(hero_name: String) -> void:
 		"drunk": 0.0, "poison": 0.0, "scars": 0,
 		"ranged_stance": false,
 	}
-	for m in Data.mudras.keys():
-		if Data.mudras[m].get("unlock", "start") == "start":
-			hero.mudras.append(m)
-	state = {
+
+func _new_state() -> Dictionary:
+	return {
 		"flags": {}, "quests": {}, "regions": {}, "affection": {}, "followers": [],
 		"region": "vatagram_bachpan", "entry": "", "pos": [0, 0, 0],
 		"time": 9.0, "day": 1, "play_time": 0.0,
 		"tirthas": [], "slot": 0, "version": SD_VERSION,
 	}
-	buffs = []
-	hero.equipment["melee"] = "lathi"
-	give("lathi", 1, true)
-	in_game = true
-	Events.hero_changed.emit()
 
 const SD_VERSION := "1.0.0"
 
@@ -657,7 +665,7 @@ func heal(amount: float) -> void:
 	Events.hero_changed.emit()
 
 func damage_hero(amount: float, source: String = "", silent: bool = false) -> void:
-	if amount <= 0.0:
+	if amount <= 0.0 or hero.hp <= 0.0:   # a dead hero (poison keeps ticking) must not die again
 		return
 	hero.hp -= amount
 	if not silent:
@@ -691,7 +699,7 @@ func flag(name: String) -> bool:
 	return bool(state.flags.get(name, false))
 
 func set_flag(name: String, value = true) -> void:
-	if value == false:
+	if value is bool and not value:
 		state.flags.erase(name)
 	else:
 		state.flags[name] = value
@@ -1070,7 +1078,7 @@ func apply_effects(e: Dictionary, npc_id: String = "") -> bool:
 # Save / load
 # =====================================================================
 func save_path(slot: int) -> String:
-	return "%s/slot_%d.json" % [SAVE_DIR, slot]
+	return "%s/slot_%d.json" % [save_dir, slot]
 
 func has_save(slot: int) -> bool:
 	return FileAccess.file_exists(save_path(slot))
@@ -1095,7 +1103,7 @@ func delete_save(slot: int) -> void:
 func save_game(slot: int, silent: bool = false) -> bool:
 	if not in_game:
 		return false
-	DirAccess.make_dir_recursive_absolute(SAVE_DIR)
+	DirAccess.make_dir_recursive_absolute(save_dir)
 	if player != null:
 		var p: Vector3 = player.global_position
 		state.pos = [p.x, p.y, p.z]
@@ -1122,20 +1130,41 @@ func load_game(slot: int) -> bool:
 		push_error("Corrupt save")
 		return false
 	f.close()
-	var d: Dictionary = json.data
-	hero = d.get("hero", {})
-	state = d.get("state", {})
-	buffs = d.get("buffs", [])
-	# JSON turns int arrays into float arrays; normalise what matters
-	if hero.has("hotbar"):
-		var hb := []
-		for h in hero.hotbar:
-			hb.append(str(h))
-		hero.hotbar = hb
+	# Check everything before touching the running game, so a bad file leaves it alone.
+	var d = json.data
+	if not d is Dictionary or not d.get("hero") is Dictionary or not d.get("state") is Dictionary \
+			or not d["hero"].has("stats") or not d["hero"].has("inventory") or not d["state"].has("region"):
+		push_error("Save file lacks hero or state data")
+		return false
+	hero = _fill_defaults(d["hero"], _new_hero(str(d["hero"].get("name", "Vira"))))
+	state = _fill_defaults(d["state"], _new_state())
+	buffs = d.get("buffs", []) if d.get("buffs") is Array else []
+	# JSON gives every number back as a float, and [0.0].has(0) is false: the lists of slot numbers
+	# the regions remember (opened chests, picked-up items, killed bosses...) must be ints again.
+	for rid in state.regions.keys():
+		var rs = state.regions[rid]
+		if not rs is Dictionary:
+			continue
+		for k in ["chests", "picked", "keys", "dug", "killed_once"]:
+			if rs.get(k) is Array:
+				rs[k] = rs[k].map(func(v): return int(v))
+	var hb := []
+	for h in hero.hotbar:
+		hb.append(str(h))
+	hero.hotbar = hb
 	in_game = true
 	Events.game_loaded.emit()
 	Events.hero_changed.emit()
 	return true
+
+## Adds to `d` every key `defaults` has and `d` lacks (older saves), down through nested dictionaries.
+func _fill_defaults(d: Dictionary, defaults: Dictionary) -> Dictionary:
+	for k in defaults.keys():
+		if not d.has(k) or typeof(d[k]) != typeof(defaults[k]) and not (d[k] is float and defaults[k] is int) and not (d[k] is int and defaults[k] is float):
+			d[k] = defaults[k]
+		elif defaults[k] is Dictionary:
+			_fill_defaults(d[k], defaults[k])
+	return d
 
 func save_meta(slot: int) -> Dictionary:
 	var f := FileAccess.open(save_path(slot), FileAccess.READ)
@@ -1150,15 +1179,15 @@ func save_meta(slot: int) -> Dictionary:
 	return {"name": d.get("hero", {}).get("name", "?"), "region": d.get("state", {}).get("region", ""), "day": int(d.get("state", {}).get("day", 1)), "saved_at": d.get("saved_at", ""), "age": d.get("hero", {}).get("age", 0)}
 
 func save_settings() -> void:
-	DirAccess.make_dir_recursive_absolute(SAVE_DIR)
-	var f := FileAccess.open(SAVE_DIR + "/settings.json", FileAccess.WRITE)
+	DirAccess.make_dir_recursive_absolute(save_dir)
+	var f := FileAccess.open(save_dir + "/settings.json", FileAccess.WRITE)
 	if f:
 		settings["lang"] = Loc.lang
 		f.store_string(JSON.stringify(settings))
 		f.close()
 
 func load_settings() -> void:
-	var f := FileAccess.open(SAVE_DIR + "/settings.json", FileAccess.READ)
+	var f := FileAccess.open(save_dir + "/settings.json", FileAccess.READ)
 	if f == null:
 		return
 	var json := JSON.new()

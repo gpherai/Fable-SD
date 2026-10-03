@@ -1,17 +1,20 @@
 extends Node
 ## Entry point. Without arguments it shows the main menu; with test hooks it runs a headless
-## check instead (--validate, --check-scripts, --gen-test, --smoke, --balance, --shot <region>, --game-shot,
+## check instead (--validate, --check-scripts, --gen-test, --smoke, --systems, --balance, --shot <region>, --game-shot,
 ## --combat-shot).
 
 const WorldGen = preload("res://scripts/world/WorldGen.gd")
 const WorldScript = preload("res://scripts/world/World.gd")
 const UIScript = preload("res://scripts/ui/UI.gd")
+const SystemsTestScript = preload("res://scripts/tests/SystemsTest.gd")
 
 var world: Node3D
 var ui: Node
 
 func _ready() -> void:
 	var args := OS.get_cmdline_user_args()
+	if "--smoke" in args or "--systems" in args:
+		Game.save_dir = "user://test_saves"   # test runs must never touch the player's real saves
 	if args.is_empty():
 		_make_ui()
 		ui.open("title")
@@ -26,6 +29,11 @@ func _ready() -> void:
 			_ui_shot()
 	elif "--smoke" in args:
 		_smoke()
+	elif "--systems" in args:
+		var st: Node = SystemsTestScript.new()
+		st.main = self
+		add_child(st)
+		st.run()
 	elif "--balance" in args:
 		_balance()
 	elif "--validate" in args:

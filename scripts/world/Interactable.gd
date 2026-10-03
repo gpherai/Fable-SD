@@ -146,7 +146,8 @@ func interact(world: Node) -> void:
 		"pickup":
 			used = true
 			Game.give(data.get("item", ""), 1)
-			Game.region_state(region_id).picked.append(index)
+			if index >= 0:   # enemy drops have no slot (index -1): they are gone with the region
+				Game.region_state(region_id).picked.append(index)
 			visual.visible = false
 		"key":
 			used = true
