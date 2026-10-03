@@ -392,3 +392,15 @@ UI_SHRINE_DHARMA_TEXT,Whoever gives with an open hand purifies their karma.,"Wie
 UI_SHRINE_ASURA_TEXT,"At night, three Preta bones and a thousand gold. The altar asks no more, and forgives nothing.","'s Nachts, drie Preta-botten en duizend goud. Het altaar vraagt niet meer, en vergeeft niets."
 UI_SHRINE_DONE,Offering made.,Offer gebracht.
 UI_SHRINE_NEED_BONES,You lack the Preta bones.,Je mist de Preta-botten.
+HINT_WATER,[E] Fill the kamandalu ({n}/{max}),[E] Vul de kamandalu ({n}/{max})
+UI_KAMANDALU_FILLED,You fill the kamandalu with clear water.,Je vult de kamandalu met helder water.
+UI_KAMANDALU_FULL,The kamandalu is already full.,De kamandalu is al vol.
+UI_KAMANDALU_EMPTY,The kamandalu is empty. Fill it at water.,De kamandalu is leeg. Vul hem bij water.
+UI_KAMANDALU_SIP,You sip from the kamandalu ({n}/{max} left).,Je drinkt uit de kamandalu ({n}/{max} over).
+UI_WATER_LEFT,Water,Water
+UI_MAP_LEGEND_HERE,You are here,Jij bent hier
+UI_MAP_LEGEND_TIRTHA,Tirtha gate,Tirtha-poort
+UI_MAP_LEGEND_UNKNOWN,Unexplored,Onverkend
+UI_MAP_LEGEND_LOCKED,Locked path,Vergrendeld pad
+UI_MAP_LEGEND_BOAT,Boat,Boot
+UI_MAP_UNKNOWN,You have not been here yet. A path leads this way.,Je bent hier nog niet geweest. Een pad leidt hierheen.

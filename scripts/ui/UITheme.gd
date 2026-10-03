@@ -57,7 +57,9 @@ static func theme() -> Theme:
 	t.set_stylebox("hover", "Button", box(WOOD3, GOLD, 5, 2, 12))
 	t.set_stylebox("pressed", "Button", box(Color("#5a3a1c"), SAFFRON, 5, 2, 12))
 	t.set_stylebox("disabled", "Button", box(Color("#1a120d"), Color("#3a2c1c"), 5, 1, 12))
-	t.set_stylebox("focus", "Button", StyleBoxEmpty.new())
+	# the focus ring is drawn by UIPanel for every kind of control, so the built-in ones stay empty
+	for cls in ["Button", "CheckBox", "CheckButton", "OptionButton", "HSlider"]:
+		t.set_stylebox("focus", cls, StyleBoxEmpty.new())
 	t.set_stylebox("panel", "PanelContainer", box(WOOD, GOLD, 10, 2, 16))
 	t.set_stylebox("panel", "Panel", box(WOOD, GOLD, 10, 2, 16))
 	t.set_stylebox("background", "ProgressBar", box(Color("#120c08"), Color("#5a4326"), 4, 1, 0))
@@ -123,7 +125,7 @@ static func title(text: String, size: int = 28) -> Label:
 static func button(text: String, cb: Callable = Callable(), min_w: float = 0.0, min_h: float = 0.0) -> Button:
 	var b := Button.new()
 	b.text = text
-	b.focus_mode = Control.FOCUS_NONE   # Space / Enter are game keys, a focused button would also fire on them
+	b.focus_mode = Control.FOCUS_ALL   # keyboard / gamepad focus; UIPanel drops it again after a mouse click
 	b.custom_minimum_size = Vector2(min_w, min_h)
 	if cb.is_valid():
 		b.pressed.connect(cb)
@@ -161,6 +163,7 @@ static func margin(child: Control, m: int = 8) -> MarginContainer:
 static func scroll(child: Control) -> ScrollContainer:
 	var sc := ScrollContainer.new()
 	sc.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	sc.follow_focus = true   # moving the focus with the keys scrolls the row into view
 	sc.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	sc.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	child.size_flags_horizontal = Control.SIZE_EXPAND_FILL

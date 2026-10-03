@@ -113,7 +113,7 @@ sections:
         created_at: '2026-10-03T12:31:23.958Z'
         updated_at: '2026-10-03T12:31:23.958Z'
       - id: zdyz6waoszz8d9c9j0wetx5n
-        text: 'UI-vervolg (uit stap 3): (1) kamandalu wordt bij gebruik opgebruikt, `refill` heeft geen mechaniek (water bijvullen bij rivier); (2) kaart is een lijst, geen getekende kaart; (3) Yaksha-, schrijn- en Marmara-keuzeregels in de UI zijn door Claude bedacht (zie CLAUDE.md ''Door mij bedacht''), Gerald bevestigt of past aan; (4) dialoogkeuzes zonder `end` sluiten na een effect, controleer in het proefspel of dat natuurlijk voelt; (5) gamepad/toetsenbordnavigatie in menu''s ontbreekt (alleen muis); (6) UI-stijl hoort bij de visuals-todo.'
+        text: 'UI-vervolg, rest (uit stap 3; 2026-10-03 zijn kamandalu-refill, getekende kaart en toetsenbord/gamepad-navigatie in menu''s gedaan, zie CLAUDE.md ''UI-vervolg gedaan''). Nog open: (1) Yaksha-, schrijn- en Marmara-keuzeregels in de UI zijn door Claude bedacht (CLAUDE.md ''Door mij bedacht''): Gerald bevestigt of past aan; (2) dialoogkeuzes zonder `end` sluiten na een effect: controleer in het proefspel of dat natuurlijk voelt; (3) UI-stijl hoort bij de visuals-todo; (4) gamepad in het spel zelf (lopen/vechten) bestaat niet, alleen menu''s; (5) kaart/focusring/kamandalu-hint met echte muis en toetsen proberen in het proefspel.'
         status: open
         stage: plan
         priority: P3
@@ -124,7 +124,7 @@ sections:
           - polish
         initiative: speelbare-mvp
         created_at: '2026-10-03T11:38:07.757Z'
-        updated_at: '2026-10-03T11:38:07.757Z'
+        updated_at: '2026-10-03T14:02:40.855Z'
       - id: pvryul391atmx4fo3kqu7v8e
         text: 'Polish geluid en loopanimaties (alleen desktop; onafhankelijk van de artstijl, dus nu te doen). Onderzoek: .project/notes.md ''Polish-onderzoek''. (1) GELUID: voetstappen (sfx ''step'' bestaat maar wordt nergens gespeeld, per snelheid/oppervlak), de 6 s drone-loop klikt op het looppunt (fasen niet op hele cycli), natuurgeluid per biome (wind, vogels, krekels ''s nachts), losse muzieklagen, meer treffer-varianten; Audio.play laat een geluid vallen als alle 10 spelers bezet zijn. (2) ANIMATIE: vierpotige vijanden (wolf/tijger/draak) en insecten lopen niet, want Body.pose_walk kent alleen LegL/LegR en niet Leg0-3; NPC-idle (ademen, hoofd draait mee), vijand-idle, dood-animaties per vorm. Verifieer met tools/check.sh en luister/kijk op de host.'
         status: open

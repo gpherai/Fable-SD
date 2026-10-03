@@ -57,7 +57,7 @@ func build(region_data: Dictionary, quality_: String = "high") -> Node3D:
 	noise2.frequency = 0.05
 	root = Node3D.new()
 	root.name = "Region_" + str(region.get("id", "x"))
-	points = {"exits": {}, "npc": [], "enemy": [], "chest": [], "pickup": [], "key": [], "dig": [], "fish": [], "dummies": [], "targets": [], "house_doors": [], "torches": []}
+	points = {"exits": {}, "npc": [], "enemy": [], "chest": [], "pickup": [], "key": [], "dig": [], "fish": [], "wells": [], "dummies": [], "targets": [], "house_doors": [], "torches": []}
 	tree_kind = biome.get("tree_kind", "deciduous")
 	lg("exits")
 	_compute_exits()
@@ -494,6 +494,7 @@ func _place_features() -> void:
 				_place_center(Props.tree("banyan", rng, 1.2), 8.0)
 			"well", "fountain":
 				_place_center(Props.well() if fname == "well" else Props.fountain(), 3.0)
+				points.wells.append(points.center_last)
 			"market":
 				for i in 4:
 					var p: Vector2 = points.hub + Vector2(cos(i * TAU / 4.0 + 0.4), sin(i * TAU / 4.0 + 0.4)) * 10.0

@@ -231,6 +231,7 @@ func validate() -> Array[String]:
 	for e in load_errors:
 		errs.append(e)
 	var all_items := items
+	var map_spots := {}
 	# Regions
 	for rid in regions.keys():
 		var r: Dictionary = regions[rid]
@@ -259,6 +260,15 @@ func validate() -> Array[String]:
 		for key in ["name", "desc", "biome"]:
 			if not r.has(key):
 				errs.append("region %s: missing %s" % [rid, key])
+		# where the region sits on the map (grid units, y grows southward); no two regions share a spot
+		var mp = r.get("map")
+		if not (mp is Array and mp.size() == 2 and (mp[0] is float or mp[0] is int) and (mp[1] is float or mp[1] is int)):
+			errs.append("region %s: map must be [x, y]" % rid)
+		else:
+			var spot := Vector2(float(mp[0]), float(mp[1]))
+			if map_spots.has(spot):
+				errs.append("region %s: same map spot as %s" % [rid, map_spots[spot]])
+			map_spots[spot] = rid
 	# Characters
 	for cid in characters.keys():
 		var c: Dictionary = characters[cid]

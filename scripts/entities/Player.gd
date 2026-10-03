@@ -347,6 +347,9 @@ func _find_target() -> Dictionary:
 		if nd < best_d:
 			best = npc
 	if best == null:
+		# nothing to act on: standing at water with a half-empty kamandalu, E fills it
+		if Game.has("kamandalu") and int(Game.hero.water) < Game.water_max() and world.water_near(global_position):
+			return {"node": null, "text": Loc.t("HINT_WATER", {"n": int(Game.hero.water), "max": Game.water_max()}), "action": Game.refill_water}
 		return {}
 	return {"node": best, "text": best.hint_text()}
 
@@ -362,6 +365,9 @@ func _interact() -> void:
 	if t.is_empty():
 		return
 	Audio.play("ui", -6.0)
+	if t.has("action"):
+		t["action"].call()
+		return
 	t["node"].interact(Game.world)
 
 # =====================================================================

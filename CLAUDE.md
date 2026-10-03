@@ -54,7 +54,7 @@ lokalisatie, shaders. Daarbovenop is nu geschreven (MVP stap 1):
   en 1,5-3 voor bazen. Bijgesteld: `marmara_sparring` hp 140 -> 120 (ratio 1,23 -> ~1,05 met alleen een lathi) en `dvikhadga` hp 1400 -> 1100
   (3,08 -> ~2,4). Speler-hp 100 tegenover vijand-dmg 90 is geen probleem zolang je meegroeit: een held met stat 7 heeft 310 hp en 36% minder schade.
   Multiplier-cap 10 (= 2x tapas) is zo gelaten.
-- Rooktest (`--smoke`) dekt drankjes, Dhyana, vuisten, Marmara's duel en (stap 3) de hele interface (67 controles);
+- Rooktest (`--smoke`) dekt drankjes, Dhyana, vuisten, Marmara's duel en de hele interface incl. kaart en menunavigatie (84 controles);
   `tools/check.sh` faalt bij runtime SCRIPT ERROR. Stand: alles groen.
 - `--combat-shot` (venster, host) maakt `screenshots/combat_1..4.png` (slag, siddhi's, telegraaf-flits, Dhyana). Schermshots isoleren
   het venster van echte muis/toetsen (`_isolate_window`), zodat meespelen de run niet verstoort (op Wayland niet bewezen: blijf er af tijdens een run).
@@ -94,8 +94,24 @@ Vragen om op te letten: voelt de parry-timing eerlijk? is het blokkeren te sterk
 - **Door mij bedacht, niet in de data** (pas aan als Gerald het anders wil): Yaksha-regels (`YakshaPanel.gd` voert de `demand`-types uit en beloont),
   schrijn-regels (Dharma: 1 karma per 20 goud, bij 5000 totaal vlag `mandir_daan_5000`; Asura: 's nachts 3 Preta-botten + 1000 goud, vlag
   `andhaka_bali_done`), Marmara-keuze (sparen +40 karma/+30 yasha, vlag `marmara_spared`; doden -60 karma, vlag `marmara_killed`; geen verhaalgevolg).
-- **Bekend**: de kamandalu (`refill`) wordt bij gebruik opgebruikt (navulmechaniek bestaat niet); de kaart is een lijst (geen getekende kaart);
-  glyphs zoals ◆ ✓ ▸ renderen op de host, niet getest op andere systemen.
+- **Bekend**: glyphs zoals ◆ ✓ ▸ renderen op de host, niet getest op andere systemen.
+
+## UI-vervolg gedaan (2026-10-03): kamandalu, getekende kaart, toetsenbord/gamepad in menu's
+
+- **Kamandalu**: heeft 3 slokken (`items.json` `charges`, `use.consume:false`), `hero.water` bewaart ze (nieuwe pot komt vol; oude saves met
+  een pot laden vol). Gebruik kost een slok en is weg bij leeg of een volle held (geen verspilling). Bijvullen: E aan de waterrand, bij een put
+  of fontein (`World.water_near`, `gen.points.wells`); `Player._find_target` geeft dan een pseudo-doel met `action` (`Game.refill_water`).
+- **Kaart** (`MapPanel.gd`, inner class `MapView`): getekende graaf op de `"map": [x, y]`-posities in `regions.json` (met de hand ontworpen,
+  want de exit-richtingen N/S/E/W passen niet op een raster; `--validate` eist een unieke plek per regio). Bezochte regio's zijn stippen,
+  buren onverkend ("?"), vergrendelde paden rood gestippeld, de boot blauw, Tirtha-poorten gouden ruiten; het kindertijd-dorp verdwijnt na vertrek.
+  Klik of pijltjes kiezen een regio, rechts staan de gegevens; reizen alleen bij een poort (knop of dubbelklik/Enter).
+- **Menunavigatie**: `T.button` is nu `FOCUS_ALL`. `UIPanel` zet de focus op het eerste bedienbare ding (`autofocus`; dialoog niet, zodat Enter
+  na de laatste regel niet meteen antwoord 1 kiest), tekent één focusring (`FocusRing`, alleen na toetsen: `nav_visible`) en geeft de focus na
+  een herbouw terug. Een muisklik laat de focus los (anders drukt Spatie/Enter dezelfde knop opnieuw). Uitgeschakelde knoppen krijgen geen
+  focus (`_sync_focus_modes`). `UI._menu_navigation` vangt de eerste toets zonder focus en maakt WASD tot pijltjes. Gamepad: Godot's `ui_*`
+  (d-pad, A) werken, Start = pauze en B = terug/sluiten (`ui_back`) via `gen_project.py`. **Er is geen gamepadbesturing in het spel zelf.**
+- Nog open uit de UI-todo: Gerald bevestigt de door mij bedachte Yaksha-/schrijn-/Marmara-regels, dialoog-sluit-na-effect voelen in het
+  proefspel, en UI-stijl hoort bij de visuals-todo.
 
 ## Systemen getest (2026-10-03): `--systems`
 
@@ -128,8 +144,8 @@ geen onbekende conditie- of effectsleutels in de data.
 `tools/check.sh <godot-binary>` compileert alle scripts, valideert de data en bouwt alle
 48 regio's en draait daarna de rooktest (`--smoke`: start, lopen, vijand doden met orbs, projectiel,
 combat, drankjes, Dhyana, vuisten, Marmara's duel, de interface, alle 48 regio's bevolkt) en `--systems` (de systemen, zie hierboven).
-Laatste stand (2026-10-03): scripts 49/49 ok, data 0 fouten, regio's ok (~22.000 nodes), rooktest PASS (67 controles), systemen PASS
-(154 controles). Exit-code 0 = alles groen.
+Laatste stand (2026-10-03): scripts 49/49 ok, data 0 fouten, regio's ok (~22.000 nodes), rooktest PASS (84 controles), systemen PASS
+(176 controles). Exit-code 0 = alles groen.
 Losse hooks: `--balance` (balansrapport), `--combat-shot` / `--game-shot` / `--ui-shot` (venster, screenshots; op de host met `XDG_RUNTIME_DIR=/run/user/1000 WAYLAND_DISPLAY=wayland-0 godot --display-driver wayland`).
 Scratch-run op de host: rsync de repo naar `laptop:~/.cache/fable-sd-check` (excl. .git/.godot/screenshots), daar `tools/check.sh` draaien.
 

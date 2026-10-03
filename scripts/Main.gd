@@ -253,6 +253,13 @@ func _ui_shot() -> void:
 	await _frames(20)
 	await RenderingServer.frame_post_draw
 	_save_shot("ui_hud")
+	# a well-travelled hero, so the map has something to show
+	for rid in ["vira_akhara", "akhara_vana", "drishtikuta", "dhivara_nala", "shringarapura_dakshina", "shringarapura_uttara", "shringarapura_ghat",
+			"mahavana_dvar", "amrai", "udyana", "mahavana_hrada", "mahavana_gaurav", "pisacha_guha", "tamovana_pravesh", "tamovana_dalavana"]:
+		Game.region_state(rid).visited = true
+	for rid in ["vira_akhara", "shringarapura_dakshina", "mahavana_dvar"]:
+		Game.unlock_tirtha(rid)
+	Game.state.region = "drishtikuta"
 	var list := [
 		["ui_inventory", "inventory", null], ["ui_quests", "quests", null], ["ui_sadhana", "sadhana", null],
 		["ui_siddhis", "siddhis", null], ["ui_mudras", "mudras", null], ["ui_map", "map", "tirtha"],
@@ -265,6 +272,7 @@ func _ui_shot() -> void:
 	]
 	for entry in list:
 		var panel = ui.open(entry[1], entry[2])
+		panel.nav_visible = true   # shots show the keyboard focus ring too
 		await _ui_frames(12)
 		if entry[1] == "dialogue":
 			panel._text_lbl.visible_ratio = 1.0
@@ -538,6 +546,90 @@ func _smoke_ui() -> int:
 	var pause_open: bool = ui.is_open("pause")
 	await _press_key(KEY_ESCAPE)
 	fails += _report(inv_open and inv_closed and pause_open and not ui.is_open(), "I toggles the inventory and Esc the pause menu")
+	# keyboard and gamepad navigation in the menus
+	var vp := get_viewport()
+	var pz = ui.open("pause")
+	await _ui_frames(3)
+	var pz_list: Array = pz._focusables()
+	var load_disabled: bool = Game.latest_save_slot() < 0
+	fails += _report(pz_list.size() >= 5 and vp.gui_get_focus_owner() == pz_list[0] and not pz.nav_visible, "menus: the first button has the focus when a menu opens, ring hidden until a key is used")
+	await _press_key(KEY_DOWN)
+	fails += _report(vp.gui_get_focus_owner() == pz_list[1] and pz.nav_visible, "menus: Down moves the focus to the next button and shows the ring")
+	await _press_key(KEY_S)
+	var after_s = vp.gui_get_focus_owner()
+	print("SMOKE info: pause list ", pz_list.map(func(c): return c.text), " load disabled=", load_disabled, " focus after S -> ", after_s.text if after_s != null else "none")
+	fails += _report(after_s == pz_list[2], "menus: S moves down like the arrow key (a disabled Load button is skipped)")
+	await _press_key(KEY_W)
+	await _press_key(KEY_UP)
+	fails += _report(vp.gui_get_focus_owner() == pz_list[0], "menus: W and Up move back up")
+	await _press_key(KEY_ENTER)
+	await _ui_frames(2)
+	fails += _report(not ui.is_open() and not get_tree().paused, "menus: Enter presses the focused button (Resume closes the pause menu)")
+	pz = ui.open("pause")
+	await get_tree().create_timer(0.25, true).timeout   # a panel ignores keys for 150 ms after opening
+	var pad_b := InputEventJoypadButton.new()
+	pad_b.button_index = JOY_BUTTON_B
+	pad_b.pressed = true
+	Input.parse_input_event(pad_b)
+	await _ui_frames(2)
+	fails += _report(not ui.is_open(), "menus: B on a gamepad closes the menu")
+	var pad_start := InputEventJoypadButton.new()
+	pad_start.button_index = JOY_BUTTON_START
+	pad_start.pressed = true
+	Input.parse_input_event(pad_start)
+	await _ui_frames(2)
+	fails += _report(ui.is_open("pause"), "menus: Start on a gamepad opens the pause menu")
+	var pad_down := InputEventJoypadButton.new()
+	pad_down.button_index = JOY_BUTTON_DPAD_DOWN
+	pad_down.pressed = true
+	Input.parse_input_event(pad_down)
+	await _ui_frames(2)
+	pz = ui.current
+	fails += _report(vp.gui_get_focus_owner() == pz._focusables()[1], "menus: the d-pad moves the focus")
+	ui.close_all()
+	# a mouse click leaves no focus behind, so Space / Enter cannot press the button a second time
+	var inv2 = ui.open("inventory")
+	await _ui_frames(3)
+	var tab_btn: Button = inv2._focusables()[1]
+	var click_at: Vector2 = tab_btn.get_global_rect().get_center()
+	var click := InputEventMouseButton.new()
+	click.button_index = MOUSE_BUTTON_LEFT
+	click.position = click_at
+	click.global_position = click_at
+	click.pressed = true
+	Input.parse_input_event(click)
+	await _ui_frames(2)
+	click.pressed = false
+	Input.parse_input_event(click)
+	await _ui_frames(3)
+	fails += _report(vp.gui_get_focus_owner() == null and not inv2.nav_visible, "menus: a mouse click on a button leaves no keyboard focus behind")
+	ui.close_all()
+	# the map takes the arrow keys itself
+	var nav_region: String = str(Game.state.region)
+	Game.state.region = "vira_akhara"
+	var mp2 = ui.open("map")
+	await _ui_frames(3)
+	var before: String = mp2.selected
+	await _press_key(KEY_DOWN)
+	fails += _report(vp.gui_get_focus_owner() == mp2.view and mp2.selected != before, "menus: the map has the focus at once and the arrow keys walk its selection (%s -> %s)" % [before, mp2.selected])
+	ui.close_all()
+	Game.state.region = nav_region
+	# a dialogue: no answer is pre-selected, the first Down picks the first one, Enter takes it
+	Events.dialogue_started.emit("charaka")
+	await get_tree().create_timer(0.25, true).timeout
+	var dl2 = ui.current
+	var guard := 0
+	while dl2 != null and ui.current == dl2 and dl2.phase == "lines" and guard < 30:
+		dl2._advance()
+		dl2._advance()
+		guard += 1
+	await _ui_frames(2)
+	var no_pre: bool = dl2 != null and dl2.phase == "choices" and vp.gui_get_focus_owner() == null
+	await _press_key(KEY_DOWN)
+	var first_pick = vp.gui_get_focus_owner()
+	var picked_first: bool = first_pick is Button and first_pick.text.begins_with("1.")
+	fails += _report(no_pre and picked_first, "dialogue: no answer is focused until a key is pressed, then the first one is")
+	ui.close_all()
 	# pausing stops the clock
 	var t_a: float = Game.state.play_time
 	ui.open("pause")
@@ -656,6 +748,40 @@ func _smoke_ui() -> int:
 	var mc = ui.open("marmara_choice")
 	mc._spare()
 	fails += _report(Game.flag("marmara_spared") and not ui.is_open(), "Marmara choice: sparing her sets her flag and closes")
+	# the map: seen regions are dots, their neighbours unexplored dots, locked paths are marked
+	var keep_region: String = str(Game.state.region)
+	Game.state.region = "vira_akhara"
+	Game.region_state("vira_akhara").visited = true
+	Game.region_state("akhara_vana").visited = true
+	Game.unlock_tirtha("vira_akhara")
+	var mp = ui.open("map", "tirtha")
+	await _ui_frames(3)
+	var mv = mp.view
+	var locked_edge := false
+	for e in mv.edges:
+		if e["kind"] == "locked" and (e["a"] == "karma_mandapa" or e["b"] == "karma_mandapa"):
+			locked_edge = true
+	fails += _report(mv.nodes.size() == 4 and mv.nodes["vira_akhara"]["state"] == "here" and mv.nodes["akhara_vana"]["state"] == "visited" and mv.nodes["karma_mandapa"]["state"] == "unknown" and mv.nodes["drishtikuta"]["state"] == "unknown" and locked_edge and not mv.nodes.has("vatagram_bachpan"), "map: seen regions, unexplored neighbours and the locked path to the mandapa (%d dots)" % mv.nodes.size())
+	mv._step(Vector2.DOWN)
+	var stepped: bool = mp.selected == "akhara_vana"
+	mv._step(Vector2.DOWN)
+	stepped = stepped and mp.selected == "drishtikuta"
+	fails += _report(stepped and mv.nodes[mp.selected]["state"] == "unknown", "map: the arrow keys walk the selection down the path, also onto an unexplored dot")
+	var click_pos: Vector2 = mv.to_screen(mv.nodes["akhara_vana"]["pos"])
+	fails += _report(mv.node_at(click_pos) == "akhara_vana" and mv.node_at(click_pos + Vector2(300, 0)) == "", "map: a click lands on the nearest dot only")
+	mp._select("vira_akhara")
+	fails += _report(not mp._can_travel("vira_akhara") and not mp._can_travel("akhara_vana"), "map: no travel to where you are or to a region without a gate")
+	Game.unlock_tirtha("shringarapura_dakshina")
+	Game.region_state("shringarapura_dakshina").visited = true
+	mp.rebuild()
+	await _ui_frames(2)
+	fails += _report(mp._can_travel("shringarapura_dakshina"), "map: an unlocked gate can be travelled to from a gate")
+	ui.close()
+	var far = ui.open("map")
+	await _ui_frames(2)
+	fails += _report(not far._can_travel("shringarapura_dakshina"), "map: away from a gate there is no travel")
+	ui.close()
+	Game.state.region = keep_region
 	# a cutscene ends with its callback
 	var done := [false]
 	ui.open("cutscene", {"title": "x", "pages": [{"nl": "a", "en": "a"}], "on_done": func(): done[0] = true})

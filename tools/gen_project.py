@@ -15,6 +15,10 @@ def mouse(button):
             '"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,'
             f'"button_index":{button},"canceled":false,"pressed":false,"double_click":false,"script":null)')
 
+def joy(button):
+    return ('Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,'
+            f'"button_index":{button},"pressure":0.0,"pressed":true,"script":null)')
+
 K = dict(W=87, A=65, S=83, D=68, E=69, F=70, Q=81, I=73, C=67, M=77, X=88, H=72, R=82, T=84, J=74, K=75, L=76, O=79, P=80,
          SPACE=32, TAB=4194306, SHIFT=4194325, ESC=4194305, ENTER=4194309, CTRL=4194326, F5=4194336, F9=4194340, F1=4194332,
          UP=4194320, DOWN=4194322, LEFT=4194319, RIGHT=4194321, N1=49, N2=50, N3=51, N4=52, N5=53, N6=54, KP_ENTER=4194310, BACKSPACE=4194308)
@@ -43,11 +47,11 @@ actions = {
     "menu_mudras": [key(K["X"])],
     "menu_sadhana": [key(K["P"])],
     "menu_siddhis": [key(K["O"])],
-    "pause": [key(K["ESC"])],
+    "pause": [key(K["ESC"]), joy(6)],   # Start; menus also take D-pad / A / B through Godot's ui_* actions
     "quicksave": [key(K["F5"])],
     "quickload": [key(K["F9"])],
     "help": [key(K["F1"])],
-    "ui_back": [key(K["BACKSPACE"])],
+    "ui_back": [key(K["BACKSPACE"]), joy(1)],   # B: step back out of a menu
 }
 
 lines = [

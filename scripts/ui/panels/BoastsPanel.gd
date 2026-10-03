@@ -23,7 +23,6 @@ func build() -> void:
 			continue
 		var blocked: bool = b == "no_armor" and Game.wearing_armor()
 		var cb := CheckBox.new()
-		cb.focus_mode = Control.FOCUS_NONE
 		cb.text = Loc.t(bd.get("name", {}))
 		cb.add_theme_font_size_override("font_size", 20)
 		cb.disabled = blocked

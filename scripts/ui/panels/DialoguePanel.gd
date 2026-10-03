@@ -24,6 +24,7 @@ var _more_lbl: Label
 
 func init() -> void:
 	kind = "dialogue"
+	autofocus = false   # Enter right after the last line must not pick the first answer
 	live = false
 	framed = true
 	align_bottom = true
@@ -110,6 +111,8 @@ func _render() -> void:
 			_choice_list.append(ch)
 		if _choice_list.is_empty():
 			close()
+		elif nav_visible:
+			focus_first()   # a keyboard player stays on the keys between answers
 
 func _process(delta: float) -> void:
 	if phase == "lines" and _text_lbl != null and is_instance_valid(_text_lbl) and _text_lbl.visible_ratio < 1.0:

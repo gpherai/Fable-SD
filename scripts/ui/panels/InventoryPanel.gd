@@ -147,7 +147,6 @@ func _row(id: String) -> Control:
 	if Game.count(id) > 1:
 		line.add_child(T.label("x%d" % Game.count(id), 17, T.GOLD))
 	var b := Button.new()
-	b.focus_mode = Control.FOCUS_NONE
 	b.flat = false
 	b.add_theme_stylebox_override("normal", T.box(Color("#5a3a1c") if id == selected else T.WOOD2, T.SAFFRON if id == selected else Color("#3a2a1a"), 5, 2 if id == selected else 1, 10))
 	b.add_theme_stylebox_override("hover", T.box(T.WOOD3, T.GOLD, 5, 2, 10))
@@ -214,6 +213,8 @@ func _item_facts(it: Dictionary) -> Array:
 		rows.append([Loc.t("UI_PRANA"), "+%d" % int(u["heal"])])
 	if u.has("ojas"):
 		rows.append([Loc.t("UI_OJAS"), "+%d" % int(u["ojas"])])
+	if it.get("refill", false):
+		rows.append([Loc.t("UI_WATER_LEFT"), "%d / %d" % [int(Game.hero.water), Game.water_max()]])
 	if u.has("tapas"):
 		rows.append([Loc.t("UI_TAPAS"), "+%d" % int(u["tapas"])])
 	if u.has("karma"):

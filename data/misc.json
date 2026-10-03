@@ -208,6 +208,9 @@
     {"keys": "X", "action": {"nl": "Mudra's (expressies)", "en": "Mudras (expressions)"}},
     {"keys": "C", "action": {"nl": "Codex (alles in het spel)", "en": "Codex (everything in the game)"}},
     {"keys": "F5 / F9", "action": {"nl": "Snel opslaan / laden", "en": "Quick save / load"}},
-    {"keys": "Esc", "action": {"nl": "Pauze / menu", "en": "Pause / menu"}}
+    {"keys": "Esc", "action": {"nl": "Pauze / menu", "en": "Pause / menu"}},
+    {"keys": "Pijltjes / WASD", "action": {"nl": "In menu's: kiezen (ook d-pad op een gamepad)", "en": "In menus: move the selection (also the d-pad on a gamepad)"}},
+    {"keys": "Enter / Spatie", "action": {"nl": "In menu's: bevestigen (A op een gamepad)", "en": "In menus: confirm (A on a gamepad)"}},
+    {"keys": "Esc / Backspace", "action": {"nl": "In menu's: terug of sluiten (B op een gamepad)", "en": "In menus: back or close (B on a gamepad)"}}
   ]
 }

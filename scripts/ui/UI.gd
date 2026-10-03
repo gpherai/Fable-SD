@@ -43,6 +43,9 @@ const MENU_KEYS := {
 
 ## panels that cover the whole screen, so the HUD is hidden behind them.
 const HIDE_HUD := ["title", "cutscene", "newgame", "dialogue"]
+## W A S D (and the arrow keys) -> the menu-navigation action they stand for while a panel is open.
+const NAV_ACTIONS := ["ui_up", "ui_down", "ui_left", "ui_right"]
+const WASD_TO_NAV := {"move_forward": "ui_up", "move_back": "ui_down", "move_left": "ui_left", "move_right": "ui_right"}
 ## panels that only the game itself closes (no Esc).
 const NO_ESCAPE := ["title", "death", "newgame"]
 
@@ -164,7 +167,7 @@ func _open_death_later() -> void:
 # Keys
 # =====================================================================
 func _unhandled_input(event: InputEvent) -> void:
-	if not (event is InputEventKey) or not event.pressed or event.is_echo():
+	if not (event is InputEventKey or event is InputEventJoypadButton) or not event.pressed or event.is_echo():
 		return
 	if current != null:
 		# the key press that opened the panel (E on an NPC) reaches this node too: it must not also act inside it
@@ -173,7 +176,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if current.on_key(event):
 			get_viewport().set_input_as_handled()
 			return
-		if event.is_action_pressed("pause"):
+		if event.is_action_pressed("pause") or event.is_action_pressed("ui_back"):   # Esc, Backspace, or B on a gamepad
 			if not current.on_escape() and current.closable and not NO_ESCAPE.has(current.kind):
 				close(current)
 			get_viewport().set_input_as_handled()
@@ -183,6 +186,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				close(current)
 				get_viewport().set_input_as_handled()
 				return
+		if _menu_navigation(event):
+			get_viewport().set_input_as_handled()
 		return
 	if not _can_open_menu():
 		return
@@ -204,6 +209,37 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			Events.notify.emit(Loc.t("UI_SLOT_EMPTY"), "bad")
 		get_viewport().set_input_as_handled()
+
+## Menu navigation that the focused control did not take itself. Arrow keys and the d-pad move the
+## focus by themselves (Godot's ui_* actions); this catches the first press when nothing has the focus
+## yet, and turns W A S D into the same arrows. Returns true when the event is used up.
+func _menu_navigation(event: InputEvent) -> bool:
+	var action := ""
+	for a in NAV_ACTIONS:
+		if event.is_action_pressed(a):
+			action = a
+	var wasd := ""
+	if action == "":
+		for w in WASD_TO_NAV.keys():
+			if event.is_action_pressed(w):
+				action = WASD_TO_NAV[w]
+				wasd = w
+	if action == "" and (event.is_action_pressed("ui_focus_next") or event.is_action_pressed("ui_focus_prev")):
+		action = "ui_down"
+	if action == "":
+		return false
+	current.nav_visible = true
+	var f := get_viewport().gui_get_focus_owner()
+	if f == null or not current.is_ancestor_of(f):
+		current.focus_first()
+		return true
+	if wasd != "":
+		var arrow := InputEventAction.new()   # the focused control reads it like the arrow key (slider, list, map...)
+		arrow.action = action
+		arrow.pressed = true
+		Input.parse_input_event(arrow)
+		return true
+	return false
 
 func _can_open_menu() -> bool:
 	var pl = Game.player

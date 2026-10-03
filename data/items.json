@@ -2159,14 +2159,16 @@
    "value": 25,
    "use": {
     "heal": 30,
-    "ojas": 15
+    "ojas": 15,
+    "consume": false
    },
    "refill": true,
+   "charges": 3,
    "color": "#b87333",
    "en_fable": "Unique (SD)",
    "desc": {
-    "nl": "De waterpot van de asceet. Vul hem bij een rivier; drinken herstelt 30 Prana en 15 Ojas.",
-    "en": "The ascetic's water pot. Refill at a river; drinking restores 30 Prana and 15 Ojas."
+    "nl": "De waterpot van de asceet. Drie slokken, elk herstelt 30 Prana en 15 Ojas. Vul hem bij water, een put of een fontein (E).",
+    "en": "The ascetic's water pot. Three sips, each restores 30 Prana and 15 Ojas. Refill at water, a well or a fountain (E)."
    }
   },
   "damaru": {

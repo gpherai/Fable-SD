@@ -63,6 +63,7 @@ func _new_hero(hero_name: String) -> Dictionary:
 		"mudras": [], "counters": {"keys_found": 0, "kills": 0, "fish": 0, "chests": 0, "donated": 0, "yaksha": 0},
 		"drunk": 0.0, "poison": 0.0, "scars": 0,
 		"ranged_stance": false,
+		"water": 0,   # sips left in the kamandalu
 	}
 
 func _new_state() -> Dictionary:
@@ -436,7 +437,10 @@ func give(item_id: String, n: int = 1, silent: bool = false) -> void:
 	if not Data.items.has(item_id):
 		push_warning("give: unknown item " + item_id)
 		return
-	hero.inventory[item_id] = count(item_id) + n
+	var had := count(item_id)
+	hero.inventory[item_id] = had + n
+	if item_id == "kamandalu" and had == 0:
+		hero.water = water_max()   # a pot you get comes full
 	if item_id == "rajat_kunji":
 		hero.counters.keys_found = int(hero.counters.keys_found) + n
 	if not silent:
@@ -518,6 +522,15 @@ func use_item(item_id: String) -> bool:
 			return equip(item_id)
 		return false
 	var consume := bool(u.get("consume", true))
+	if it.get("refill", false):
+		if int(hero.water) <= 0:
+			Events.notify.emit(Loc.t("UI_KAMANDALU_EMPTY"), "bad")
+			return false
+		if hero.hp >= hp_max() and hero.ojas >= ojas_max():
+			Events.notify.emit(Loc.t("UI_PRANA_FULL"), "info")   # no sip wasted on a full hero
+			return false
+		hero.water = int(hero.water) - 1
+		Events.notify.emit(Loc.t("UI_KAMANDALU_SIP", {"n": int(hero.water), "max": water_max()}), "item")
 	if it.get("cat", "") == "book":
 		var fl := "read_" + item_id
 		if flag(fl):
@@ -568,6 +581,23 @@ func use_item(item_id: String) -> bool:
 	Events.item_used.emit(item_id)
 	if consume:
 		take(item_id, 1)
+	Events.hero_changed.emit()
+	return true
+
+## Sips a full kamandalu holds.
+func water_max() -> int:
+	return int(Data.item("kamandalu").get("charges", 3))
+
+## Fill the kamandalu at water (E at a lake, river, well or fountain). False when there is nothing to fill.
+func refill_water() -> bool:
+	if not has("kamandalu"):
+		return false
+	if int(hero.water) >= water_max():
+		Events.notify.emit(Loc.t("UI_KAMANDALU_FULL"), "info")
+		return false
+	hero.water = water_max()
+	Audio.play("splash")
+	Events.notify.emit(Loc.t("UI_KAMANDALU_FILLED"), "good")
 	Events.hero_changed.emit()
 	return true
 
@@ -1136,7 +1166,11 @@ func load_game(slot: int) -> bool:
 			or not d["hero"].has("stats") or not d["hero"].has("inventory") or not d["state"].has("region"):
 		push_error("Save file lacks hero or state data")
 		return false
+	var had_water: bool = d["hero"].has("water")
 	hero = _fill_defaults(d["hero"], _new_hero(str(d["hero"].get("name", "Vira"))))
+	hero.water = int(hero.water)
+	if not had_water and has("kamandalu"):
+		hero.water = water_max()   # a save from before the pot could run dry
 	state = _fill_defaults(d["state"], _new_state())
 	buffs = d.get("buffs", []) if d.get("buffs") is Array else []
 	# JSON gives every number back as a float, and [0.0].has(0) is false: the lists of slot numbers

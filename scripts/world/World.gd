@@ -168,6 +168,23 @@ func ground_pos(x: float, z: float, lift: float = 0.0) -> Vector3:
 func is_interior() -> bool:
 	return bool(biome.get("interior", false))
 
+## True when `pos` is at the water's edge or at a well/fountain: the kamandalu can be filled here.
+func water_near(pos: Vector3, reach: float = 2.6) -> bool:
+	if gen == null:
+		return false
+	for w in gen.points.get("wells", []):
+		if Vector2(pos.x, pos.z).distance_to(w) < reach + 2.2:
+			return true
+	if not gen.has_water:
+		return false
+	if gen.is_water_at(pos.x, pos.z):
+		return true
+	for k in 8:
+		var a := k * TAU / 8.0
+		if gen.is_water_at(pos.x + cos(a) * reach, pos.z + sin(a) * reach):
+			return true
+	return false
+
 # =====================================================================
 # Population
 # =====================================================================

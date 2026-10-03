@@ -36,7 +36,6 @@ func build() -> void:
 	body.add_child(cols)
 	var list := ItemList.new()
 	list.custom_minimum_size = Vector2(380, 0)
-	list.focus_mode = Control.FOCUS_NONE
 	for e in entries:
 		list.add_item(str(e["title"]))
 	if not entries.is_empty():

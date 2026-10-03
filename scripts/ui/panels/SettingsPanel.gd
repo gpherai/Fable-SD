@@ -70,7 +70,6 @@ func _slider(grid: GridContainer, key: String, setting: String, lo: float, hi: f
 
 func _toggle(setting: String) -> Control:
 	var cb := CheckButton.new()
-	cb.focus_mode = Control.FOCUS_NONE
 	cb.button_pressed = bool(Game.settings.get(setting, false))
 	cb.toggled.connect(func(on: bool): Game.settings[setting] = on)
 	var holder := HBoxContainer.new()

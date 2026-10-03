@@ -60,7 +60,11 @@
    "beach_edge"
   ],
   "water": "sea_east",
-  "music": "village"
+  "music": "village",
+  "map": [
+   -1,
+   12
+  ]
  },
  "vira_akhara": {
   "name": {
@@ -191,7 +195,11 @@
    "huts:3"
   ],
   "water": "pond",
-  "music": "akhara"
+  "music": "akhara",
+  "map": [
+   0,
+   0
+  ]
  },
  "akhara_vana": {
   "name": {
@@ -265,7 +273,11 @@
    "fallen_logs:3"
   ],
   "water": "stream",
-  "music": "forest"
+  "music": "forest",
+  "map": [
+   0,
+   1
+  ]
  },
  "drishtikuta": {
   "name": {
@@ -345,7 +357,11 @@
    "stones:4"
   ],
   "water": "none",
-  "music": "overworld"
+  "music": "overworld",
+  "map": [
+   0,
+   2
+  ]
  },
  "dhivara_nala": {
   "name": {
@@ -403,7 +419,11 @@
    "boat"
   ],
   "water": "lake",
-  "music": "lake"
+  "music": "lake",
+  "map": [
+   -1,
+   2
+  ]
  },
  "shringarapura_dakshina": {
   "name": {
@@ -489,7 +509,11 @@
    "fence"
   ],
   "water": "none",
-  "music": "city"
+  "music": "city",
+  "map": [
+   1,
+   2
+  ]
  },
  "shringarapura_uttara": {
   "name": {
@@ -588,7 +612,11 @@
    "gate_arch"
   ],
   "water": "fountain",
-  "music": "city"
+  "music": "city",
+  "map": [
+   1,
+   1
+  ]
  },
  "shringarapura_ghat": {
   "name": {
@@ -650,7 +678,11 @@
    "torches:4"
   ],
   "water": "sea_east",
-  "music": "city"
+  "music": "city",
+  "map": [
+   2,
+   2
+  ]
  },
  "mahavana_dvar": {
   "name": {
@@ -733,7 +765,11 @@
    "shrine_small"
   ],
   "water": "stream",
-  "music": "forest"
+  "music": "forest",
+  "map": [
+   0,
+   3
+  ]
  },
  "udyana": {
   "name": {
@@ -803,7 +839,11 @@
    "wasp_nest"
   ],
   "water": "none",
-  "music": "forest"
+  "music": "forest",
+  "map": [
+   1,
+   3
+  ]
  },
  "amrai": {
   "name": {
@@ -895,7 +935,11 @@
    "well"
   ],
   "water": "stream",
-  "music": "village"
+  "music": "village",
+  "map": [
+   -1,
+   3
+  ]
  },
  "mahavana_hrada": {
   "name": {
@@ -991,7 +1035,11 @@
    "shrine_small"
   ],
   "water": "lake",
-  "music": "lake"
+  "music": "lake",
+  "map": [
+   0,
+   4
+  ]
  },
  "gulabi_kutir": {
   "name": {
@@ -1056,7 +1104,11 @@
    "well"
   ],
   "water": "none",
-  "music": "village"
+  "music": "village",
+  "map": [
+   1,
+   4
+  ]
  },
  "pisacha_guha": {
   "name": {
@@ -1147,7 +1199,11 @@
    "cage"
   ],
   "water": "none",
-  "music": "cave"
+  "music": "cave",
+  "map": [
+   -1,
+   4
+  ]
  },
  "mahavana_gaurav": {
   "name": {
@@ -1225,7 +1281,11 @@
    "fallen_logs:3"
   ],
   "water": "river",
-  "music": "forest"
+  "music": "forest",
+  "map": [
+   0,
+   5
+  ]
  },
  "mahavana_guha": {
   "name": {
@@ -1286,7 +1346,11 @@
    "crystals:4"
   ],
   "water": "none",
-  "music": "cave"
+  "music": "cave",
+  "map": [
+   1,
+   5
+  ]
  },
  "tamovana_pravesh": {
   "name": {
@@ -1358,7 +1422,11 @@
    "signpost"
   ],
   "water": "none",
-  "music": "dark"
+  "music": "dark",
+  "map": [
+   0,
+   6
+  ]
  },
  "tamovana_dalavana": {
   "name": {
@@ -1443,7 +1511,11 @@
    "bones:3"
   ],
   "water": "marsh",
-  "music": "dark"
+  "music": "dark",
+  "map": [
+   0,
+   7
+  ]
  },
  "praachin_mandir": {
   "name": {
@@ -1513,7 +1585,11 @@
    "torches:4"
   ],
   "water": "pond",
-  "music": "dark"
+  "music": "dark",
+  "map": [
+   1,
+   7
+  ]
  },
  "tamovana_shivir": {
   "name": {
@@ -1590,7 +1666,11 @@
    "torches:4"
   ],
   "water": "none",
-  "music": "camp"
+  "music": "camp",
+  "map": [
+   0,
+   8
+  ]
  },
  "andhaka_pith": {
   "name": {
@@ -1645,7 +1725,11 @@
    "statue_asura"
   ],
   "water": "none",
-  "music": "dark"
+  "music": "dark",
+  "map": [
+   1,
+   8
+  ]
  },
  "tamovana_hrada": {
   "name": {
@@ -1712,7 +1796,11 @@
    "jetty"
   ],
   "water": "lake",
-  "music": "dark"
+  "music": "dark",
+  "map": [
+   0,
+   9
+  ]
  },
  "tamovana_vanya": {
   "name": {
@@ -1777,7 +1865,11 @@
    "dead_trees:6"
   ],
   "water": "river",
-  "music": "dark"
+  "music": "dark",
+  "map": [
+   0,
+   10
+  ]
  },
  "samadhi_kshetra": {
   "name": {
@@ -1859,7 +1951,11 @@
    "shrine_small"
   ],
   "water": "none",
-  "music": "graveyard"
+  "music": "graveyard",
+  "map": [
+   0,
+   11
+  ]
  },
  "shyama_haveli": {
   "name": {
@@ -1932,7 +2028,11 @@
    "well"
   ],
   "water": "none",
-  "music": "graveyard"
+  "music": "graveyard",
+  "map": [
+   1,
+   11
+  ]
  },
  "vatagram": {
   "name": {
@@ -2019,7 +2119,11 @@
    "temple_small"
   ],
   "water": "stream",
-  "music": "village"
+  "music": "village",
+  "map": [
+   0,
+   12
+  ]
  },
  "vata_tata": {
   "name": {
@@ -2089,7 +2193,11 @@
    "rocks:6"
   ],
   "water": "sea_east",
-  "music": "coast"
+  "music": "coast",
+  "map": [
+   1,
+   12
+  ]
  },
  "dakinivana_guha": {
   "name": {
@@ -2161,7 +2269,11 @@
    "stalagmites:14"
   ],
   "water": "pond",
-  "music": "cave"
+  "music": "cave",
+  "map": [
+   2,
+   5
+  ]
  },
  "dakinivana_shila": {
   "name": {
@@ -2262,7 +2374,11 @@
    "altar"
   ],
   "water": "none",
-  "music": "witch"
+  "music": "witch",
+  "map": [
+   3,
+   5
+  ]
  },
  "surya_mandir": {
   "name": {
@@ -2320,7 +2436,11 @@
    "bell"
   ],
   "water": "pond",
-  "music": "temple"
+  "music": "temple",
+  "map": [
+   3,
+   6
+  ]
  },
  "granthivana": {
   "name": {
@@ -2407,7 +2527,11 @@
    "campfire"
   ],
   "water": "none",
-  "music": "village"
+  "music": "village",
+  "map": [
+   4,
+   5
+  ]
  },
  "dakinivana_hrada": {
   "name": {
@@ -2483,7 +2607,11 @@
    "stones:4"
   ],
   "water": "lake",
-  "music": "witch"
+  "music": "witch",
+  "map": [
+   2,
+   4
+  ]
  },
  "rangabhumi": {
   "name": {
@@ -2551,7 +2679,11 @@
    "gate_arch"
   ],
   "water": "none",
-  "music": "arena"
+  "music": "arena",
+  "map": [
+   3,
+   4
+  ]
  },
  "ankusha_tata": {
   "name": {
@@ -2690,7 +2822,11 @@
    "rocks:5"
   ],
   "water": "sea_east",
-  "music": "coast"
+  "music": "coast",
+  "map": [
+   6,
+   2
+  ]
  },
  "vadhyagiri": {
   "name": {
@@ -2753,7 +2889,11 @@
    "signpost"
   ],
   "water": "none",
-  "music": "graveyard"
+  "music": "graveyard",
+  "map": [
+   2,
+   1
+  ]
  },
  "shmashana_kshetra": {
   "name": {
@@ -2858,7 +2998,11 @@
    "ghat"
   ],
   "water": "river",
-  "music": "graveyard"
+  "music": "graveyard",
+  "map": [
+   3,
+   1
+  ]
  },
  "pretagiri": {
   "name": {
@@ -2937,7 +3081,11 @@
    "sarcophagi:6"
   ],
   "water": "none",
-  "music": "cave"
+  "music": "cave",
+  "map": [
+   3,
+   0
+  ]
  },
  "patala_marg": {
   "name": {
@@ -3001,7 +3149,11 @@
    "naga_statues:2"
   ],
   "water": "pond",
-  "music": "cave"
+  "music": "cave",
+  "map": [
+   3,
+   -1
+  ]
  },
  "patala_karagar": {
   "name": {
@@ -3110,7 +3262,11 @@
   "on_first_enter": {
    "cutscene": "patala_captured",
    "age": 1
-  }
+  },
+  "map": [
+   3,
+   -2
+  ]
  },
  "dasyu_shivir_dvar": {
   "name": {
@@ -3188,7 +3344,11 @@
    "torches:4"
   ],
   "water": "none",
-  "music": "camp"
+  "music": "camp",
+  "map": [
+   4,
+   4
+  ]
  },
  "dasyu_shivir": {
   "name": {
@@ -3284,7 +3444,11 @@
    "totem"
   ],
   "water": "none",
-  "music": "camp"
+  "music": "camp",
+  "map": [
+   4,
+   3
+  ]
  },
  "dasyu_tambu": {
   "name": {
@@ -3365,7 +3529,11 @@
    "loot_piles:4"
   ],
   "water": "none",
-  "music": "camp"
+  "music": "camp",
+  "map": [
+   5,
+   3
+  ]
  },
  "himavat_dwar": {
   "name": {
@@ -3434,7 +3602,11 @@
    "shrine_small"
   ],
   "water": "none",
-  "music": "snow"
+  "music": "snow",
+  "map": [
+   6,
+   1
+  ]
  },
  "himashikhara": {
   "name": {
@@ -3515,7 +3687,11 @@
    "statue"
   ],
   "water": "none",
-  "music": "snow"
+  "music": "snow",
+  "map": [
+   6,
+   0
+  ]
  },
  "hima_guha": {
   "name": {
@@ -3593,7 +3769,11 @@
    "torches:4"
   ],
   "water": "none",
-  "music": "cave"
+  "music": "cave",
+  "map": [
+   6,
+   -1
+  ]
  },
  "pretanagari": {
   "name": {
@@ -3674,7 +3854,11 @@
    "graves:20"
   ],
   "water": "none",
-  "music": "graveyard"
+  "music": "graveyard",
+  "map": [
+   7,
+   0
+  ]
  },
  "chakravartin_pith": {
   "name": {
@@ -3744,7 +3928,11 @@
    "torches:10"
   ],
   "water": "none",
-  "music": "boss"
+  "music": "boss",
+  "map": [
+   6,
+   -2
+  ]
  },
  "karma_mandapa": {
   "name": {
@@ -3820,6 +4008,10 @@
    "statue"
   ],
   "water": "none",
-  "music": "boss"
+  "music": "boss",
+  "map": [
+   -1,
+   0
+  ]
  }
 }

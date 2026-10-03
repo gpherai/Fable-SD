@@ -5,6 +5,38 @@ extends Control
 
 const T = preload("res://scripts/ui/UITheme.gd")
 
+## The ring that shows where the keyboard / gamepad focus is. One for the whole panel, drawn above
+## everything, so buttons, sliders, checkboxes, lists and the map all look alike.
+class FocusRing extends Control:
+	const T = preload("res://scripts/ui/UITheme.gd")
+	var _target: Control = null
+	var _rect := Rect2()
+	var _t: float = 0.0
+	var _box: StyleBoxFlat = T.box(Color(0, 0, 0, 0), Color("#fff3d0"), 7, 2, 0)
+
+	func _init() -> void:
+		mouse_filter = Control.MOUSE_FILTER_IGNORE
+		set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+
+	func _process(delta: float) -> void:
+		var panel = get_parent()
+		var f := get_viewport().gui_get_focus_owner()
+		var want: Control = f if (f != null and panel.nav_visible and panel.is_ancestor_of(f) and f.is_visible_in_tree()) else null
+		var r := Rect2() if want == null else want.get_global_rect()
+		if want != null:
+			_t += delta
+			queue_redraw()
+		elif _target != null:
+			queue_redraw()
+		_target = want
+		_rect = r
+
+	func _draw() -> void:
+		if _target == null:
+			return
+		_box.border_color = Color("#fff3d0", 0.65 + 0.35 * sin(_t * 6.0))
+		draw_style_box(_box, Rect2(_rect.position - get_global_rect().position - Vector2(3, 3), _rect.size + Vector2(6, 6)))
+
 var ui                       # the UI manager (UI.gd)
 var kind: String = ""
 var payload = null
@@ -17,6 +49,8 @@ var framed: bool = true      # false: no window frame or header (the title scree
 var show_header: bool = true     # false: no title row (the dialogue draws its own)
 var align_bottom: bool = false   # dock the window at the bottom of the screen (dialogue)
 var back_kind: String = ""   # panel to return to when this one closes (settings from the pause menu)
+var autofocus: bool = true   # the first control takes the keyboard focus when the panel opens
+var nav_visible: bool = false   # the player uses keys / gamepad: show the focus ring and keep the focus through redraws
 
 var window: PanelContainer
 var body: VBoxContainer
@@ -82,6 +116,10 @@ func _ready() -> void:
 	body.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	outer.add_child(body)
 	build()
+	add_child(FocusRing.new())
+	_sync_focus_modes()
+	if autofocus:
+		focus_first()
 	if live:
 		Events.hero_changed.connect(_queue_rebuild)
 	Events.language_changed.connect(func(_l): _queue_rebuild())
@@ -111,10 +149,15 @@ func rebuild() -> void:
 		return
 	var saved: Array = []
 	_collect_scroll(body, saved)
+	var focus_i := _focus_index()
 	for c in body.get_children():
 		body.remove_child(c)
 		c.queue_free()
 	build()
+	if nav_visible and focus_i >= 0:
+		var now_focusable := _focusables()
+		if not now_focusable.is_empty():
+			now_focusable[clampi(focus_i, 0, now_focusable.size() - 1)].grab_focus(true)
 	if not saved.is_empty():
 		await get_tree().process_frame
 		var now: Array = []
@@ -134,6 +177,67 @@ func _collect_nodes(n: Node, out: Array) -> void:
 		if c is ScrollContainer:
 			out.append(c)
 		_collect_nodes(c, out)
+
+# ---------------------------------------------------------------------
+# Keyboard and gamepad focus
+# ---------------------------------------------------------------------
+## Every control in the body the keys can land on, in tree order.
+func _focusables() -> Array:
+	var out: Array = []
+	_collect_focusables(body, out)
+	return out
+
+func _collect_focusables(n: Node, out: Array) -> void:
+	for c in n.get_children():
+		if c is Control:
+			if c.focus_mode == Control.FOCUS_ALL and c.is_visible_in_tree() and not (c is BaseButton and c.disabled):
+				out.append(c)
+			_collect_focusables(c, out)
+
+## A disabled button must not take the focus. Godot would still land on it, so the focus mode follows
+## the `disabled` flag, refreshed whenever the panel is drawn and before every navigation key.
+func _sync_focus_modes() -> void:
+	_sync_modes_in(self)
+
+func _sync_modes_in(n: Node) -> void:
+	for c in n.get_children():
+		if c is BaseButton:
+			c.focus_mode = Control.FOCUS_NONE if c.disabled else Control.FOCUS_ALL
+		_sync_modes_in(c)
+
+func _focus_index() -> int:
+	var f := get_viewport().gui_get_focus_owner() if is_inside_tree() else null
+	return _focusables().find(f) if f != null else -1
+
+## Puts the focus on the first control of the panel (the close button if the body has none),
+## unless something in the panel already has it.
+func focus_first() -> void:
+	var f := get_viewport().gui_get_focus_owner()
+	if f != null and is_ancestor_of(f):
+		return
+	var list := _focusables()
+	if not list.is_empty():
+		list[0].grab_focus(true)
+	elif _close_btn != null and _close_btn.is_visible_in_tree():
+		_close_btn.grab_focus(true)
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.pressed:
+			nav_visible = false
+		elif event.button_index == MOUSE_BUTTON_LEFT:
+			# a clicked button must not stay focused, or Space / Enter would press it again
+			call_deferred("_drop_button_focus")
+	elif (event is InputEventKey or event is InputEventJoypadButton) and event.pressed:
+		for a in ["ui_up", "ui_down", "ui_left", "ui_right", "ui_focus_next", "ui_focus_prev"]:
+			if event.is_action_pressed(a):
+				nav_visible = true
+				_sync_focus_modes()   # before Godot picks the next control: a disabled button is skipped
+
+func _drop_button_focus() -> void:
+	var f := get_viewport().gui_get_focus_owner() if is_inside_tree() else null
+	if f is BaseButton and is_ancestor_of(f):
+		f.release_focus()
 
 ## Esc / the menu key of this panel / the close button.
 func close() -> void:

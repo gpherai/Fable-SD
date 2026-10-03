@@ -118,6 +118,7 @@ func run() -> void:
 	await test_day_night()
 	await test_containers()
 	await test_minigames()
+	await test_kamandalu()
 	await test_shrines()
 	await test_followers()
 	await test_arena()
@@ -532,6 +533,92 @@ func test_minigames() -> void:
 	spot.interact(world)   # cast again
 	await seconds(6.5)
 	ok("cancelling and casting again does not double-fire the old bite timer", spot.fish_state in [0, 2], "state %d" % spot.fish_state)
+
+# =====================================================================
+# Kamandalu: sips and refilling
+# =====================================================================
+## A spot on the shore (not water, water within reach) with no interactable or NPC close by.
+func shore_spot() -> Variant:
+	var gen = world.gen
+	for ring in 12:
+		for k in 24:
+			var a := k * TAU / 24.0
+			var r: float = gen.lake_radius + 1.0 + ring * 0.7
+			var c: Vector2 = gen.lake_center + Vector2(cos(a), sin(a)) * r
+			if not gen.inside(c) or gen.is_water_at(c.x, c.y):
+				continue
+			var pos: Vector3 = world.ground_pos(c.x, c.y, 0.2)
+			if not world.water_near(pos):
+				continue
+			var clear := true
+			for i in world.interactables:
+				if is_instance_valid(i) and i.global_position.distance_to(pos) < 7.0:
+					clear = false
+			if clear and world.nearest_npc(pos, 5.0) == null:
+				return pos
+	return null
+
+func test_kamandalu() -> void:
+	print("-- kamandalu")
+	await fresh("dhivara_nala")
+	var pl = Game.player
+	Game.hero.hp = 10.0
+	ok("without a kamandalu water gives no target", not pl._find_target().has("action"))
+	ok("a kamandalu cannot be used when you do not have one", not Game.use_item("kamandalu"))
+	Game.give("kamandalu", 1, true)
+	ok("a new kamandalu comes full", int(Game.hero.water) == Game.water_max() and Game.water_max() == 3)
+	var hp0: float = Game.hero.hp
+	ok("a sip heals and costs one charge, the pot stays", Game.use_item("kamandalu") and Game.hero.hp > hp0 and int(Game.hero.water) == 2 and Game.count("kamandalu") == 1)
+	Game.hero.hp = 10.0
+	Game.use_item("kamandalu")
+	Game.hero.hp = 10.0
+	Game.use_item("kamandalu")
+	ok("three sips empty it", int(Game.hero.water) == 0)
+	Game.hero.hp = 10.0
+	ok("an empty kamandalu does nothing", not Game.use_item("kamandalu") and Game.hero.hp == 10.0 and Game.count("kamandalu") == 1)
+	Game.hero.hp = Game.hp_max()
+	Game.hero.ojas = Game.ojas_max()
+	Game.hero.water = 2
+	ok("no sip is wasted on a full hero", not Game.use_item("kamandalu") and int(Game.hero.water) == 2)
+	Game.hero.water = 0
+	# at the shore
+	var spot = shore_spot()
+	if ok("the lake has a free shore spot", spot != null):
+		pl.global_position = spot
+		await frames(2)
+		var t: Dictionary = pl._find_target()
+		ok("at the shore E offers to fill the kamandalu", t.has("action") and t.get("text", "").find("0/3") >= 0, str(t.get("text", "")))
+		pl._interact()
+		ok("E at the shore fills it", int(Game.hero.water) == 3)
+		await frames(2)
+		ok("a full kamandalu is not offered water", not pl._find_target().has("action"))
+		ok("refilling a full kamandalu does nothing", not Game.refill_water())
+	var hub: Vector2 = world.gen.points.hub
+	Game.hero.water = 0
+	ok("far from water there is nothing to fill", not world.water_near(Vector3(hub.x, 0.0, hub.y)) or world.gen.points.wells.size() > 0)
+	# a well counts as water
+	await fresh("vatagram_bachpan")
+	Game.give("kamandalu", 1, true)
+	Game.hero.water = 1
+	var wells: Array = world.gen.points.wells
+	if ok("the village has a well", wells.size() > 0):
+		var w: Vector2 = wells[0]
+		ok("a well is a water source", world.water_near(Vector3(w.x, 0.0, w.y)))
+	# the sips are saved, and a save from before the pot could run dry gets a full one
+	Game.hero.water = 1
+	Game.save_game(90, true)
+	Game.hero = {}
+	Game.load_game(90)
+	ok("sips survive a save and load (as int)", typeof(Game.hero.water) == TYPE_INT and Game.hero.water == 1)
+	var raw := FileAccess.open(Game.save_path(90), FileAccess.READ)
+	var data: Dictionary = JSON.parse_string(raw.get_as_text())
+	raw.close()
+	data.hero.erase("water")
+	var wf := FileAccess.open(Game.save_path(90), FileAccess.WRITE)
+	wf.store_string(JSON.stringify(data))
+	wf.close()
+	Game.load_game(90)
+	ok("an old save with a kamandalu loads it full", int(Game.hero.water) == Game.water_max())
 
 # =====================================================================
 # Shrines
