@@ -935,6 +935,8 @@ func apply_pose() -> void:
 	var m: Node3D = player.model
 	if m == null:
 		return
+	if state != S.BLOCK:
+		Body.clear_guard(m)
 	match state:
 		S.SWING:
 			if str(swing.get("kind", "melee")) == "melee":
@@ -950,7 +952,7 @@ func apply_pose() -> void:
 				Body.pose_attack(m, 0.39, true)
 			_posed = true
 		S.BLOCK:
-			Body.pose_block(m)
+			Body.pose_block(m, clampf((clock - block_t0) / 0.1, 0.0, 1.0))   # arms come up in 0.1 s
 			_posed = true
 		S.CAST:
 			Body.pose_cast(m, st_t)

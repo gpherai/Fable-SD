@@ -126,6 +126,7 @@ func run() -> void:
 	await test_progression()
 	await test_death()
 	await test_dialogue_effects()
+	await test_roll()
 	for slot in [0, 90, 91, 92, 93]:
 		Game.delete_save(slot)
 	print("SYS summary: %d checks, %d failed" % [checks, fails])
@@ -1081,3 +1082,33 @@ func test_dialogue_effects() -> void:
 		await frames(2)
 		world = main.world
 	ok("every dialogue condition and effect runs (%d nodes, %d effects)" % [nodes, effects], crashed.is_empty(), str(crashed.slice(0, 3)))
+
+# =====================================================================
+# The roll (Space): a real forward somersault
+# =====================================================================
+func test_roll() -> void:
+	print("-- roll")
+	await fresh("vatagram_bachpan")
+	var p = Game.player
+	await frames(30)
+	p.controls_on = true
+	p._start_roll()
+	ok("Space starts a roll and makes the hero invulnerable", p.rolling and p.invulnerable)
+	var min_x := 0.0
+	var min_mid_y := 99.0
+	var max_mid_y := -99.0
+	var start: Vector3 = p.global_position
+	var n := 0
+	while p.rolling and n < 120:
+		await get_tree().physics_frame
+		n += 1
+		min_x = minf(min_x, p.model.rotation.x)
+		var mid_y: float = (p.model.transform * Vector3(0, 0.9, 0)).y / p.model.scale.y   # relative to the model's own size
+		min_mid_y = minf(min_mid_y, mid_y)
+		max_mid_y = maxf(max_mid_y, mid_y)
+	await frames(3)
+	ok("the model turns a full circle forward during the roll", min_x < -TAU * 0.8, "furthest turn %.2f rad of %.2f" % [min_x, -TAU])
+	ok("it turns about the middle of the body (the middle stays put)", min_mid_y > 0.85 and max_mid_y < 0.95, "middle between %.2f and %.2f (of 0.90), model scale %.2f" % [min_mid_y, max_mid_y, p.model.scale.y])
+	ok("it lands upright, without unwinding", absf(p.model.rotation.x) < 0.05 and p.model.position.length() < 0.01 and not p.rolling and not p.invulnerable, "x %.3f pos %s" % [p.model.rotation.x, str(p.model.position)])
+	var moved := Vector2(p.global_position.x - start.x, p.global_position.z - start.z).length()
+	ok("the roll still carries the hero forward", moved > 2.5, "%.1f m" % moved)

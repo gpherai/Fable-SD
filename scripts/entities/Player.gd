@@ -15,6 +15,7 @@ const ACCEL := 45.0
 const ROLL_SPEED := 9.5
 const ROLL_TIME := 0.45
 const ROLL_COOLDOWN := 0.35
+const ROLL_PIVOT := Vector3(0, 0.9, 0)   # the somersault turns about the middle of the body
 const PITCH_MIN := -1.2
 const PITCH_MAX := 0.6
 const MOUSE_SENS := 0.0028
@@ -32,6 +33,7 @@ var rolling: bool = false
 var roll_left: float = 0.0
 var roll_cd: float = 0.0
 var roll_dir := Vector3.ZERO
+var _roll_anim: bool = false
 var walk_phase: float = 0.0
 var yaw: float = 0.0
 var pitch: float = -0.35
@@ -284,9 +286,18 @@ func _animate(delta: float, wish: Vector3, sprinting: bool) -> void:
 	if face != Vector3.ZERO:
 		model.rotation.y = lerp_angle(model.rotation.y, atan2(-face.x, -face.z), clampf(delta * (24.0 if ov != Vector3.ZERO else 14.0), 0.0, 1.0))
 	if rolling:
-		model.rotation.x = lerpf(model.rotation.x, -TAU * (1.0 - roll_left / ROLL_TIME) * 0.0 - 0.9, clampf(delta * 20.0, 0.0, 1.0))
-		model.position.y = 0.0
+		# a forward somersault: one full turn over the roll, about the middle of the body (so the head and
+		# feet never dip through the ground)
+		model.rotation.x = -TAU * clampf(1.0 - roll_left / ROLL_TIME, 0.0, 1.0)
+		var mid: Vector3 = ROLL_PIVOT * model.scale.y   # the model is scaled (a child is small): so is its middle
+		model.position = mid - Basis.from_euler(model.rotation, EULER_ORDER_YXZ) * mid
+		Body.pose_walk(model, 0.0, 0.0)
+		_roll_anim = true
 		return
+	if _roll_anim:   # a full turn is the same as none: land upright, do not unwind
+		_roll_anim = false
+		model.rotation.x = 0.0
+		model.position = Vector3.ZERO
 	model.rotation.x = lerpf(model.rotation.x, 0.0, clampf(delta * 12.0, 0.0, 1.0))
 	if flat.length() > 0.3:
 		walk_phase += delta * flat.length() * 2.0

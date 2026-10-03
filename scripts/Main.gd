@@ -144,7 +144,7 @@ func _isolate_window() -> void:
 
 ## Windowed only: a close-up fight. combat_1 = staff strike on a locked dasyu (hit number, hp bar,
 ## lock marker, follow-through), combat_2 = Ugra Rupa and Agni Astra, combat_3 = a second dasyu's
-## orange wind-up flash, combat_4 = Dhyana (seated). The hero cannot be hurt: these shots are about
+## orange wind-up flash, combat_4 = Dhyana (seated), combat_5 = Rakshana (the guard, from the front). The hero cannot be hurt: these shots are about
 ## how it looks.
 func _combat_shot() -> void:
 	var p = Game.player
@@ -201,6 +201,20 @@ func _combat_shot() -> void:
 	await RenderingServer.frame_post_draw
 	_save_shot("combat_4")
 	Input.action_release("meditate")
+	await _frames(60)
+	# Rakshana: the guard, seen from the front-left with a camera of its own
+	Input.action_press("block")
+	await _frames(20)
+	var cam := Camera3D.new()
+	world.add_child(cam)
+	var hp: Vector3 = p.global_position
+	cam.global_position = hp + Vector3(-1.6, 1.5, -2.4)
+	cam.look_at(hp + Vector3(0, 1.1, 0))
+	cam.current = true
+	await _frames(3)
+	await RenderingServer.frame_post_draw
+	_save_shot("combat_5")
+	Input.action_release("block")
 	get_tree().quit(0)
 
 ## Windowed only: the HUD and the panels as screenshots (screenshots/ui_*.png), with a hero who

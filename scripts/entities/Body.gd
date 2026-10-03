@@ -388,15 +388,25 @@ static func pose_attack(model: Node3D, t: float, heavy: bool = false) -> bool:
 		j["Torso"].rotation.y = twist
 	return true
 
-## Guard: both forearms raised in front of the chest.
-static func pose_block(model: Node3D) -> void:
+## Guard: both hands in front of the chest, the weapon held flat across the body (the arms are single
+## pieces, there is no elbow to bend; the weapon hand turns about the arm so the weapon lies sideways).
+## `k` (0..1) brings the arms up from the rest pose.
+static func pose_block(model: Node3D, k: float = 1.0) -> void:
 	var j := joints(model)
 	if j.has("ArmL"):
-		j["ArmL"].rotation.x = 1.35
-		j["ArmL"].rotation.z = -0.5
+		j["ArmL"].rotation.x = 1.5 * k
+		j["ArmL"].rotation.z = 0.55 * k
 	if j.has("ArmR"):
-		j["ArmR"].rotation.x = 1.35
-		j["ArmR"].rotation.z = 0.5
+		j["ArmR"].rotation.x = 1.6 * k
+		j["ArmR"].rotation.z = -0.45 * k
+	if j.has("WeaponHand"):
+		j["WeaponHand"].rotation.y = -PI / 2.0 * k
+
+## Undoes the weapon turn of pose_block (any other pose wants the weapon along the arm).
+static func clear_guard(model: Node3D) -> void:
+	var j := joints(model)
+	if j.has("WeaponHand"):
+		j["WeaponHand"].rotation.y = 0.0
 
 ## Drawing a bow: left arm out front holding it, right arm pulled back by `draw` (0..1).
 static func pose_draw(model: Node3D, draw: float) -> void:
