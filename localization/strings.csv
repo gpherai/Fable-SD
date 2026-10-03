@@ -311,7 +311,8 @@ UI_SAVE_FAILED,Could not save the game.,Kon het spel niet opslaan.
 UI_RESTART_REGION,Graphics quality applies from the next region.,Grafische kwaliteit werkt vanaf de volgende regio.
 UI_NAME_EMPTY,Vira,Vira
 UI_CONTINUE_DIALOGUE,Continue,Verder
-UI_CLICK_CONTINUE,Click or press Space to continue (Esc = skip),Klik of druk op Spatie om verder te gaan (Esc = overslaan)
+UI_CLICK_CONTINUE,Click or press Space or {key} to continue (Esc = skip),Klik of druk op Spatie of {key} om verder te gaan (Esc = overslaan)
+UI_CLICK_CONTINUE_PAD,Press {key} to continue ({back} = skip),Druk op {key} om verder te gaan ({back} = overslaan)
 UI_DEATH_LOAD,Load last save,Laad laatste opslag
 UI_BOAST_ARMOR_ON,Take off your armour first.,Leg eerst je pantser af.
 UI_BOAST_ACCEPT,Accept the commission,Aanvaard de opdracht
@@ -407,3 +408,45 @@ UI_MAP_UNKNOWN,You have not been here yet. A path leads this way.,Je bent hier n
 UI_PAD_SENS,Gamepad camera speed,Camerasnelheid gamepad
 UI_CONTROLS_KEYBOARD,Keyboard and mouse,Toetsenbord en muis
 UI_CONTROLS_PAD,Gamepad,Gamepad
+ACT_MOVE_FORWARD,Forward,Vooruit
+ACT_MOVE_BACK,Backward,Achteruit
+ACT_MOVE_LEFT,Left,Links
+ACT_MOVE_RIGHT,Right,Rechts
+ACT_ATTACK,Attack (hold: Mahaprahara),Aanvallen (vasthouden: Mahaprahara)
+ACT_BLOCK,Block (Rakshana),Blokkeren (Rakshana)
+ACT_ROLL,Roll (Lunthana),Rollen (Lunthana)
+ACT_SPRINT,Sprint,Rennen
+ACT_RANGED_TOGGLE,Toggle bow / chakra,Boog/chakra wisselen
+ACT_LOCK_TARGET,Lock target,Doel vergrendelen
+ACT_INTERACT,"Talk, pick up, use","Praten, oppakken, gebruiken"
+ACT_MEDITATE,"Meditate (Dhyana, hold)","Mediteren (Dhyana, vasthouden)"
+ACT_SIDDHI_1,Siddhi 1,Siddhi 1
+ACT_SIDDHI_2,Siddhi 2,Siddhi 2
+ACT_SIDDHI_3,Siddhi 3,Siddhi 3
+ACT_SIDDHI_4,Siddhi 4,Siddhi 4
+ACT_SIDDHI_5,Siddhi 5,Siddhi 5
+ACT_SIDDHI_6,Siddhi 6,Siddhi 6
+ACT_POTION_PRANA,Drink Prana elixir,Prana-rasa drinken
+ACT_POTION_OJAS,Drink Ojas elixir,Ojas-rasa drinken
+ACT_CAM_ZOOM_IN,Zoom camera in,Camera inzoomen
+ACT_CAM_ZOOM_OUT,Zoom camera out,Camera uitzoomen
+ACT_MENU_INVENTORY,Inventory and equipment,Inventaris en uitrusting
+ACT_MENU_SIDDHIS,Siddhis and hotbar,Siddhi's en sneltoetsen
+ACT_MENU_SADHANA,Sadhana,"Sadhana (eigenschappen, karma, leeftijd)"
+ACT_MENU_QUESTS,Quests,Opdrachten
+ACT_MENU_MAP,Map and Tirtha travel,Kaart en Tirtha-reizen
+ACT_MENU_MUDRAS,Mudras,Mudra's (expressies)
+ACT_MENU_CODEX,Codex,Codex
+ACT_QUICKSAVE,Quick save,Snel opslaan
+ACT_QUICKLOAD,Quick load,Snel laden
+ACT_HELP,Show controls,Besturing tonen
+UI_BIND_HINT,"Click a control, then press the new key or button. If that one is taken, the two actions swap.","Klik op een besturing en druk dan de nieuwe toets of knop in. Is die al in gebruik, dan wisselen de twee acties."
+UI_BIND_PRESS_KEY,"Press a key or mouse button for ""{action}""  (Esc = cancel)","Druk een toets of muisknop voor ""{action}""  (Esc = annuleren)"
+UI_BIND_PRESS_PAD,"Press a button or trigger for ""{action}""  (Start = cancel)","Druk een knop of trigger voor ""{action}""  (Start = annuleren)"
+UI_BIND_DONE,"""{action}"" is now {key}","""{action}"" is nu {key}"
+UI_BIND_SWAPPED,"""{action}"" is now {key}; ""{other}"" got the old binding","""{action}"" is nu {key}; ""{other}"" kreeg de oude toets"
+UI_BIND_RESERVED,{key} cannot be used: it is reserved for menus and the pause button,{key} kan niet: die is gereserveerd voor menu's en pauze
+UI_BIND_RESET,Reset to defaults,Standaard herstellen
+UI_BIND_RESET_DONE,Back to the default controls,Standaardbesturing hersteld
+UI_BIND_FIXED,Fixed,Vast
+UI_RUMBLE,Gamepad rumble,Gamepad trillen

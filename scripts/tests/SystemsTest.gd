@@ -4,6 +4,8 @@ extends Node
 ## progression and death. Prints SYS lines; exits non-zero when a check fails.
 ## Writes only to user://test_saves (Main sets Game.save_dir), never to the real saves.
 
+const Bindings = preload("res://scripts/systems/Bindings.gd")
+
 var main                 # Main.gd
 var world: Node3D
 var fails: int = 0
@@ -128,6 +130,8 @@ func run() -> void:
 	await test_death()
 	await test_dialogue_effects()
 	await test_roll()
+	await test_bindings()
+	await test_rumble()
 	for slot in [0, 90, 91, 92, 93]:
 		Game.delete_save(slot)
 	print("SYS summary: %d checks, %d failed" % [checks, fails])
@@ -1199,3 +1203,166 @@ func test_roll() -> void:
 	ok("it lands upright, without unwinding", absf(p.model.rotation.x) < 0.05 and p.model.position.length() < 0.01 and not p.rolling and not p.invulnerable, "x %.3f pos %s" % [p.model.rotation.x, str(p.model.position)])
 	var moved := Vector2(p.global_position.x - start.x, p.global_position.z - start.z).length()
 	ok("the roll still carries the hero forward", moved > 2.5, "%.1f m" % moved)
+
+# =====================================================================
+# Rebindable controls and rumble
+# =====================================================================
+func key_event(code: Key, pressed: bool = true) -> InputEventKey:
+	var e := InputEventKey.new()
+	e.physical_keycode = code
+	e.keycode = code
+	e.pressed = pressed
+	return e
+
+func test_bindings() -> void:
+	print("-- bindings")
+	var B = Bindings
+	var saved_settings: Dictionary = Game.settings.duplicate(true)
+	Game.settings["bindings"] = {}
+	B.apply(Game.settings)
+	ok("defaults: interact is E / A, attack is LMB / RT, the elixir is R / D-pad up",
+			B.label("interact", false) == "E" and B.label("interact", true) == "A" and B.label("attack", false) == "LMB"
+			and B.label("attack", true) == "RT" and B.label("potion_prana", false) == "R" and B.label("potion_prana", true) == "D↑",
+			"%s %s %s %s %s %s" % [B.label("interact", false), B.label("interact", true), B.label("attack", false), B.label("attack", true), B.label("potion_prana", false), B.label("potion_prana", true)])
+	# a plain rebind changes the keyboard only
+	var r: Dictionary = B.rebind(Game.settings, "potion_prana", B.KBM, B.from_dict({"k": KEY_Z}))
+	ok("rebinding the elixir to Z: the keyboard changes, the gamepad does not", bool(r["ok"]) and r["swapped"] == "" and B.label("potion_prana", false) == "Z" and B.label("potion_prana", true) == "D↑" and not B.is_default("potion_prana", B.KBM) and B.is_default("potion_prana", B.PAD))
+	ok("the old key is free again (R does nothing now)", not InputMap.action_has_event("potion_prana", B.from_dict({"k": KEY_R})))
+	ok("only the change is stored", Game.settings["bindings"].keys() == ["potion_prana"] and Game.settings["bindings"]["potion_prana"].keys() == ["kbm"], str(Game.settings["bindings"]))
+	# a key that is taken: the two swap
+	r = B.rebind(Game.settings, "potion_ojas", B.KBM, B.from_dict({"k": KEY_Z}))
+	ok("Z was taken: the actions swap, nobody ends up without a key", bool(r["ok"]) and r["swapped"] == "potion_prana" and B.label("potion_ojas", false) == "Z" and B.label("potion_prana", false) == "T", "%s / %s" % [B.label("potion_ojas", false), B.label("potion_prana", false)])
+	# reserved keys and the wrong device
+	var before: String = JSON.stringify(Game.settings["bindings"])
+	var esc: Dictionary = B.rebind(Game.settings, "roll", B.KBM, B.from_dict({"k": KEY_ESCAPE}))
+	var lt: Dictionary = B.rebind(Game.settings, "roll", B.PAD, B.from_dict({"a": JOY_AXIS_TRIGGER_LEFT, "v": 1}))
+	var wrong: Dictionary = B.rebind(Game.settings, "roll", B.PAD, B.from_dict({"k": KEY_Q}))
+	var fixed: Dictionary = B.rebind(Game.settings, "pause", B.KBM, B.from_dict({"k": KEY_Q}))
+	ok("Esc, LT, a key on the gamepad tab and the pause action are refused, nothing changes", not esc["ok"] and not lt["ok"] and not wrong["ok"] and not fixed["ok"] and JSON.stringify(Game.settings["bindings"]) == before)
+	# gamepad: a button swap and a trigger
+	r = B.rebind(Game.settings, "block", B.PAD, B.from_dict({"b": JOY_BUTTON_RIGHT_SHOULDER}))
+	ok("gamepad: block takes RB from the target lock, which gets LB", bool(r["ok"]) and r["swapped"] == "lock_target" and B.label("block", true) == "RB" and B.label("lock_target", true) == "LB")
+	r = B.rebind(Game.settings, "roll", B.PAD, B.from_dict({"a": JOY_AXIS_TRIGGER_RIGHT, "v": 1}))
+	ok("gamepad: a trigger works as a binding (roll on RT, attack gets B)", bool(r["ok"]) and B.label("roll", true) == "RT" and B.label("attack", true) == "B", "%s %s" % [B.label("roll", true), B.label("attack", true)])
+	ok("the keyboard bindings did not move with the gamepad ones", B.label("roll", false) == "Space" and B.label("attack", false) == "LMB")
+	# capture: what counts as a press
+	ok("capture: a key press, a mouse button and a trigger pull count; a release, the wheel and a stick tilt do not",
+			B.capture(key_event(KEY_X), B.KBM) != null and B.capture(key_event(KEY_X, false), B.KBM) == null
+			and B.capture(_mouse(MOUSE_BUTTON_RIGHT), B.KBM) != null and B.capture(_mouse(MOUSE_BUTTON_WHEEL_UP), B.KBM) == null
+			and B.capture(_axis(JOY_AXIS_TRIGGER_RIGHT, 0.9), B.PAD) != null and B.capture(_axis(JOY_AXIS_TRIGGER_RIGHT, 0.3), B.PAD) == null
+			and B.capture(_axis(JOY_AXIS_LEFT_X, 1.0), B.PAD) == null and B.capture(key_event(KEY_X), B.PAD) == null)
+	# JSON round trip: floats come back, the controls must too
+	var json := JSON.new()
+	ok("the settings survive JSON", json.parse(JSON.stringify(Game.settings)) == OK)
+	var loaded: Dictionary = {"bindings": json.data["bindings"]}
+	var want := {}
+	for a in ["potion_prana", "potion_ojas", "block", "lock_target", "roll", "attack"]:
+		want[a] = [B.label_all(a, B.KBM), B.label_all(a, B.PAD)]
+	B.apply({})   # all defaults
+	ok("apply({}) restores the defaults", B.label("potion_prana", false) == "R" and B.label("roll", true) == "B")
+	B.apply(loaded)
+	var same_again := true
+	for a in want.keys():
+		if want[a] != [B.label_all(a, B.KBM), B.label_all(a, B.PAD)]:
+			same_again = false
+			print("  differs: ", a, " ", want[a], " vs ", [B.label_all(a, B.KBM), B.label_all(a, B.PAD)])
+	ok("saved bindings come back as they were after the JSON round trip", same_again)
+	# a damaged or edited settings file must not break the controls
+	B.apply({"bindings": {"potion_prana": {"kbm": [{"k": "x"}, 5, null, {"m": 99}, {"b": 999}]}, "no_such_action": {"kbm": [{"k": 65}]}, "attack": "oops", "roll": {"pad": [{"k": 65}, {"k": 27}]}}})
+	ok("garbage in settings.json: the defaults stay, nothing crashes", B.label("potion_prana", false) == "R" and B.label("attack", false) == "LMB" and B.label("roll", true) == "B" and not InputMap.has_action("no_such_action"))
+	B.apply({})
+	# persistence through the real settings file
+	Game.settings["bindings"] = {}
+	B.rebind(Game.settings, "meditate", B.KBM, B.from_dict({"k": KEY_G}))
+	Game.save_settings()
+	Game.settings["bindings"] = {}
+	Game.load_settings()
+	B.apply(Game.settings)
+	ok("rebinding survives save_settings and load_settings", B.label("meditate", false) == "G", B.label("meditate", false))
+	# reset puts one device back and leaves the other
+	B.rebind(Game.settings, "block", B.PAD, B.from_dict({"b": JOY_BUTTON_Y}))
+	B.reset(Game.settings, B.KBM)
+	ok("reset of the keyboard: defaults back there, gamepad changes stay",
+			B.label("meditate", false) == "H" and B.label("potion_prana", false) == "R" and B.label("block", true) == "Y" and not Game.settings["bindings"].get("meditate", {}).has("kbm"))
+	B.reset(Game.settings, B.PAD)
+	ok("reset of the gamepad: all defaults, nothing left in the settings", B.label("block", true) == "LB" and Game.settings["bindings"].is_empty(), str(Game.settings["bindings"]))
+	# the game itself: the hints follow the keys
+	await fresh()
+	main._make_ui()
+	var hud = main.ui.hud
+	B.rebind(Game.settings, "potion_prana", B.KBM, B.from_dict({"k": KEY_Z}))
+	B.rebind(Game.settings, "interact", B.KBM, B.from_dict({"k": KEY_V}))
+	B.rebind(Game.settings, "siddhi_2", B.KBM, B.from_dict({"k": KEY_B}))
+	Events.interact_hint.emit("[E] Talk")
+	Events.bindings_changed.emit()
+	await frames(2)
+	ok("the HUD names the new keys: hint, elixir and siddhi slot", hud.hint_lbl.text == "[V] Talk" and hud.potion_lbl.text.begins_with("[Z]") and hud.slots[1]["key"].text == "B",
+			"%s | %s | %s" % [hud.hint_lbl.text, hud.potion_lbl.text.get_slice("\n", 0), hud.slots[1]["key"].text])
+	# the real panel: click a binding, press a key
+	var panel = main.ui.open("controls")
+	await get_tree().process_frame
+	panel._pad_tab = false
+	panel._start_capture("meditate")
+	await get_tree().process_frame
+	ok("a binding waits for its key", panel._capturing == "meditate")
+	Input.parse_input_event(key_event(KEY_ESCAPE))
+	await get_tree().process_frame
+	await get_tree().process_frame
+	ok("Esc cancels the wait and keeps the panel open", panel._capturing == "" and main.ui.is_open("controls") and B.label("meditate", false) == "H")
+	panel._start_capture("meditate")
+	await get_tree().process_frame
+	Input.parse_input_event(key_event(KEY_N))
+	await get_tree().process_frame
+	await get_tree().process_frame
+	ok("a real key press binds it, tells the HUD, and the panel shows it", panel._capturing == "" and B.label("meditate", false) == "N" and Game.settings["bindings"].has("meditate"), B.label("meditate", false))
+	panel._start_capture("roll")
+	await get_tree().process_frame
+	Input.parse_input_event(key_event(KEY_BACKSPACE))
+	await get_tree().process_frame
+	await get_tree().process_frame
+	ok("a reserved key is refused with a message and the roll keeps Space", B.label("roll", false) == "Space" and panel._status != "" and panel._capturing == "")
+	panel._reset()
+	ok("the reset button restores the keyboard", B.label("meditate", false) == "H" and B.label("potion_prana", false) == "R" and B.label("interact", false) == "E")
+	main.ui.close_all()
+	await get_tree().process_frame
+	Game.settings = saved_settings
+	Game.save_settings()
+	B.apply(Game.settings)
+
+func _mouse(button: MouseButton) -> InputEventMouseButton:
+	var e := InputEventMouseButton.new()
+	e.button_index = button
+	e.pressed = true
+	return e
+
+func _axis(axis: JoyAxis, value: float) -> InputEventJoypadMotion:
+	var e := InputEventJoypadMotion.new()
+	e.axis = axis
+	e.axis_value = value
+	return e
+
+func test_rumble() -> void:
+	print("-- rumble")
+	await fresh()
+	var p = Game.player
+	p.invulnerable = false
+	Game.settings["rumble"] = true
+	Game.pad_active = false
+	p.last_rumble = Vector3.ZERO
+	p.take_damage(10.0, "test")
+	ok("no rumble for a player on keyboard and mouse", p.last_rumble == Vector3.ZERO)
+	Game.pad_active = true
+	await frames(40)   # past the hurt flash
+	p.take_damage(5.0, "test")
+	var light: Vector3 = p.last_rumble
+	ok("a hit rumbles for a gamepad player", light.x > 0.0 and light.y > 0.0 and light.z > 0.0, str(light))
+	await frames(40)
+	p.take_damage(Game.hp_max() * 0.4, "test")
+	ok("a heavy blow rumbles harder and longer than a graze", p.last_rumble.y > light.y and p.last_rumble.z > light.z, "%s vs %s" % [str(p.last_rumble), str(light)])
+	Game.settings["rumble"] = false
+	p.last_rumble = Vector3.ZERO
+	p.rumble(1.0, 1.0, 1.0)
+	ok("the setting turns rumble off", p.last_rumble == Vector3.ZERO)
+	Game.settings["rumble"] = true
+	Game.pad_active = false
+	p.invulnerable = true

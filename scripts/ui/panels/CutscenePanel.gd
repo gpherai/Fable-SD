@@ -30,7 +30,7 @@ func build() -> void:
 	_text.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_text.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	body.add_child(_text)
-	_hint = T.label("%s  (%d/%d)" % [Loc.t("UI_CLICK_CONTINUE"), 1, maxi(1, pages.size())], 15, T.DIM)
+	_hint = T.label("%s  (%d/%d)" % [_continue_text(), 1, maxi(1, pages.size())], 15, T.DIM)
 	_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	body.add_child(_hint)
 	_show_page()
@@ -40,12 +40,18 @@ func _show_page() -> void:
 		close()
 		return
 	_text.text = Loc.t(pages[page])
-	_hint.text = "%s  (%d/%d)" % [Loc.t("UI_CLICK_CONTINUE"), page + 1, pages.size()]
+	_hint.text = "%s  (%d/%d)" % [_continue_text(), page + 1, pages.size()]
 	_text.modulate.a = 0.0
 	if _tween != null and _tween.is_valid():
 		_tween.kill()
 	_tween = create_tween()
 	_tween.tween_property(_text, "modulate:a", 1.0, 0.5)
+
+## "Click or press Space or E": the key is whatever interact is bound to; a gamepad names its own buttons.
+func _continue_text() -> String:
+	if Game.pad_active:
+		return Loc.t("UI_CLICK_CONTINUE_PAD", {"key": Bindings.label("interact", true), "back": "B"})
+	return Loc.t("UI_CLICK_CONTINUE", {"key": Bindings.label("interact", false)})
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:

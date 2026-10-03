@@ -146,6 +146,17 @@ func release_mouse() -> void:
 	controls_on = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
+## weak, strong motor and seconds of the last rumble pulse (the tests read it; a real pad feels it)
+var last_rumble := Vector3.ZERO
+
+## Rumble on every connected gamepad, but only for a player who is on a gamepad and has not turned it off.
+func rumble(weak: float, strong: float, duration: float) -> void:
+	if not Game.pad_active or not bool(Game.settings.get("rumble", true)):
+		return
+	last_rumble = Vector3(weak, strong, duration)
+	for device in Input.get_connected_joypads():
+		Input.start_joy_vibration(device, clampf(weak, 0.0, 1.0), clampf(strong, 0.0, 1.0), duration)
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and controls_on:
 		var sens := MOUSE_SENS * float(Game.settings.get("mouse_sens", 1.0))
@@ -277,6 +288,7 @@ func knock(impulse: Vector3) -> void:
 
 func _on_died() -> void:
 	dead = true
+	rumble(0.6, 1.0, 0.7)
 	combat.on_died()
 	if model != null:
 		var tw := create_tween()
@@ -416,6 +428,8 @@ func take_damage(amount: float, source: String = "", attacker: Node3D = null, ki
 	if dmg <= 0.0:
 		return 0.0
 	Audio.play("player_hit")
+	var weight: float = clampf(dmg / maxf(1.0, Game.hp_max()), 0.0, 1.0)   # a graze tickles, a heavy blow shakes
+	rumble(0.3 + 0.4 * weight, 0.2 + 0.8 * weight, 0.15 + 0.25 * weight)
 	combat_mult = int(combat_mult / 2.0)
 	Events.combat_multiplier_changed.emit(combat_mult)
 	var src := from_pos

@@ -41,6 +41,8 @@ func build() -> void:
 	grid.add_child(_toggle("invert_y"))
 	grid.add_child(T.label(Loc.t("UI_SHOW_FPS"), 19))
 	grid.add_child(_toggle("show_fps"))
+	grid.add_child(T.label(Loc.t("UI_RUMBLE"), 19))
+	grid.add_child(_toggle("rumble"))
 	body.add_child(T.para(Loc.t("UI_RESTART_REGION"), 14, T.DIM))
 	body.add_child(T.spacer(0, 0, true))
 	var row := T.hbox(8)
@@ -71,7 +73,7 @@ func _slider(grid: GridContainer, key: String, setting: String, lo: float, hi: f
 
 func _toggle(setting: String) -> Control:
 	var cb := CheckButton.new()
-	cb.button_pressed = bool(Game.settings.get(setting, false))
+	cb.button_pressed = bool(Game.settings.get(setting, setting == "rumble"))
 	cb.toggled.connect(func(on: bool): Game.settings[setting] = on)
 	var holder := HBoxContainer.new()
 	holder.add_child(cb)

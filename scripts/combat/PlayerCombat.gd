@@ -286,6 +286,7 @@ func filter_incoming(amount: float, attacker, kind: String, from_pos: Vector3) -
 	return res
 
 func on_parry(attacker) -> void:
+	player.rumble(0.6, 0.15, 0.1)
 	Audio.play("block", 2.0)
 	Audio.play("bell", -10.0)
 	var pos: Vector3 = player.global_position + Vector3(0, 1.2, 0) + facing() * 0.8
@@ -298,6 +299,7 @@ func on_parry(attacker) -> void:
 		attacker.stagger(0.9 if bool(attacker.is_boss) else 1.6)
 
 func on_blocked(pos_hint: Vector3) -> void:
+	player.rumble(0.15, 0.4, 0.12)
 	Audio.play("block")
 	Effects.sparks(Game.world, player.global_position + Vector3(0, 1.2, 0) + facing() * 0.7, Color("#d8e0ff"), 6)
 

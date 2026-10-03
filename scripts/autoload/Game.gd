@@ -14,8 +14,9 @@ const EQUIP_SLOTS := ["melee", "ranged", "head", "chest", "hands", "legs", "feet
 
 var hero: Dictionary = {}
 var state: Dictionary = {}
-var settings: Dictionary = {"lang": "nl", "mouse_sens": 1.0, "pad_sens": 1.0, "time_speed": 1.0, "quality": "high", "music": 0.5, "sfx": 0.8, "invert_y": false, "show_fps": false}
+var settings: Dictionary = {"lang": "nl", "mouse_sens": 1.0, "pad_sens": 1.0, "time_speed": 1.0, "quality": "high", "music": 0.5, "sfx": 0.8, "invert_y": false, "show_fps": false, "rumble": true, "bindings": {}}
 const QuestSystemScript = preload("res://scripts/systems/Quests.gd")
+const Bindings = preload("res://scripts/systems/Bindings.gd")
 var quests: QuestSystemScript
 var world = null
 ## True once the last thing the player touched was a gamepad: hints then name gamepad buttons (UI.gd keeps it up to date).
@@ -31,6 +32,7 @@ func _ready() -> void:
 	quests.name = "Quests"
 	add_child(quests)
 	load_settings()
+	Bindings.setup(settings)   # the player's own keys over the defaults of project.godot
 	Loc.set_lang(settings.get("lang", "nl"))
 
 # =====================================================================

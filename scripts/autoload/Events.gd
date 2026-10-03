@@ -50,6 +50,7 @@ signal panel_requested(panel: String, payload)
 signal panel_closed
 signal language_changed(lang: String)
 signal interact_hint(text: String)
+signal bindings_changed   # the player rebound a key or reset them: hints and labels must be read again
 signal input_device_changed(pad: bool)   # the player went from keyboard/mouse to gamepad or back
 signal game_loaded
 signal game_saved

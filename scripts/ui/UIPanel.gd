@@ -4,6 +4,7 @@
 extends Control
 
 const T = preload("res://scripts/ui/UITheme.gd")
+const Bindings = preload("res://scripts/systems/Bindings.gd")
 
 ## The ring that shows where the keyboard / gamepad focus is. One for the whole panel, drawn above
 ## everything, so buttons, sliders, checkboxes, lists and the map all look alike.

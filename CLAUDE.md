@@ -124,8 +124,21 @@ rechterstick (links/rechts) van doel (`_stick_switch_lock`) en draait de stick d
 zijn voor het pad bereikbaar via knoppen in het pauzemenu. `UI._input` houdt `Game.pad_active` bij (laatst gebruikte apparaat, signaal `Events.input_device_changed`);
 de HUD toont dan `[A]` i.p.v. `[E]`, `LT+A` op de siddhi-slots en `[D↑]`/`[D↓]`/`[X]` bij drankjes en houding. Het besturingspaneel (F1) heeft twee tabs
 (`controls` en `controls_pad` in misc.json). Rooktest: `_smoke_pad` (18 controles, scripted `InputEventJoypadMotion/Button`). **Niet bewezen met een echt pad**
-(er is er geen aangesloten geweest): trigger-assen, deadzone en gevoeligheid voelen is werk voor het proefspel. Open: rumble bij schade, tekst "Spatie" in
-`UI_CLICK_CONTINUE` noemt nog toetsen, geen herbindbare toetsen.
+(er is er geen aangesloten geweest): trigger-assen, deadzone en gevoeligheid voelen is werk voor het proefspel. Rumble en herbindbare toetsen: zie 'Herbindbare toetsen en rumble' hieronder.
+
+## Herbindbare toetsen en rumble (2026-10-03)
+
+- `scripts/systems/Bindings.gd` (statisch) legt `Game.settings["bindings"]` over de standaardmap van `gen_project.py`; `Game._ready` roept
+  `Bindings.setup` aan. Een actie heeft events van twee klassen, `kbm` en `pad`; een herbinding vervangt alle events van één klasse van één
+  actie. Alleen afwijkingen staan in settings.json. Herbindbaar: `KBM_ACTIONS` en `PAD_ACTIONS`; vast: Esc, Backspace, Start, LT (siddhi-laag),
+  sticks. Een toets die al bezet is wisselt tussen de twee acties. Beschadigde settings laten de standaard staan.
+- `ControlsPanel` (F1, ook in titel/pauze): per tab een rij per actie, klik, druk de nieuwe toets/knop (Esc/Start annuleert), "Standaard herstellen"
+  per apparaat. Vaste regels (muis, sticks, menutoetsen) komen uit `misc.json` `controls`/`controls_pad`. Actienamen: `ACT_<ACTIE>` in strings.csv.
+- HUD-hints ([E], drankjes, houding, siddhi-slots) en de cutscene-tekst (`UI_CLICK_CONTINUE`/`_PAD`) volgen de bindings (`Events.bindings_changed`).
+  Niet gevolgd: het dialoogvenster (Spatie blijft vast naast interact) en de statische tekst in `misc.json`.
+- **Rumble**: `Player.rumble(weak, strong, duur)` bij schade (schaalt met schade/hp_max), blok, parry en dood; alleen als `Game.pad_active` en
+  instelling `rumble` (Instellingen) aan staat. Niet gevoeld met een echt pad.
+- Tests: `test_bindings` en `test_rumble` in SystemsTest (203 controles in `--systems`). Stand 2026-10-03: scripts 50/50, data 0, rooktest PASS, systemen PASS.
 
 ## Systemen getest (2026-10-03): `--systems`
 
