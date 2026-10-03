@@ -1,0 +1,17 @@
+schema_version: 1
+
+initiatives:
+  - id: speelbare-mvp
+    title: "Speelbare MVP"
+    status: active
+    outcome: >
+      Van data- en wereldfundament naar een startbaar spel: speler, vijanden,
+      combat, HUD en menu's, zodat Main.tscn draait en tools/check.sh groen is.
+      Daarna de bestaande systemen testen en polijsten.
+    owner: Gerald
+
+    primary_artifacts:
+      - path: tools/check.sh
+        role: verification
+
+    started: "2026-10-03"

@@ -1,0 +1,180 @@
+schema_version: 1
+sections:
+  - id: inbox
+    title: Inbox
+    todos: []
+  - id: gxhi6g7choc0akjym2xq4phy
+    title: MVP speelbaar
+    todos:
+      - id: h3gontwedr1htgu8026b46vh
+        text: 'MVP stap 1: entity-scripts schrijven zodat het project compileert: res://scripts/entities/{Player,NPC,Enemy,Projectile}.gd (Player = beweging, camera, input) en res://scripts/combat/Effects.gd. World.gd preloadt ze al maar ze zijn nooit geschreven (de cloud-sessie meldde zelf dat Player Controller/Combat/AI/UI nog open staan). Doel: tools/check.sh groen (nu scripts=1 broken) en Main.tscn startbaar.'
+        status: completed
+        stage: implement
+        priority: P1
+        created_by: claude-code
+        tags:
+          - mvp
+          - player
+          - gdscript
+        initiative: speelbare-mvp
+        created_at: '2026-10-03T08:24:25.303Z'
+        updated_at: '2026-10-03T09:58:24.802Z'
+        completed_at: '2026-10-03T09:58:24.802Z'
+      - id: r0kqhh78w3k0gkwfmvdguczx
+        text: 'MVP stap 2: combat-gameplay en NPC/Enemy-AI op basis van data/enemies.json en data/moves.json. Stap 1 levert de haken: Enemy._think(delta) is leeg (vijanden staan stil), Enemy.take_damage(amount, source, element) en die() werken al, Player.take_damage(amount, source) bestaat, Projectile meldt contact via cfg.on_hit. Nog te doen: speler-aanval (LMB/J, Sankhala-combo, Mahaprahara laden), blokkeren/Pratiprahara, boog/chakra, doel vergrendelen, siddhi''s 1-6, knockback, combat_mult (Yuddha Guna) ophogen, vijand-AI (patrouille, agro, aanvalstiming, ranged/caster/summoner/boss-abilities, flying, pack, leap, teleport) en ally-gedrag. Let op: nonlethal-vijanden (marmara_*) worden nu gewoon gedood.'
+        status: completed
+        stage: implement
+        priority: P1
+        created_by: claude-code
+        tags:
+          - mvp
+          - combat
+          - ai
+        initiative: speelbare-mvp
+        blocked_by:
+          - h3gontwedr1htgu8026b46vh
+        created_at: '2026-10-03T08:45:19.744Z'
+        updated_at: '2026-10-03T10:27:52.421Z'
+        completed_at: '2026-10-03T10:27:52.421Z'
+      - id: tsbkjce6gi6c40qo484mhqva
+        text: 'Stap 2 afronden (volgorde): (1) `--combat-shot` draaien op de host (Wayland: XDG_RUNTIME_DIR=/run/user/1000 WAYLAND_DISPLAY=wayland-0) en screenshots/combat_1.png + combat_2.png bekijken (zwaardstand na zwaai, telegraaf-flits, hp-balkjes, lock-marker); (2) samen proefspelen met echte muis/toetsen (combo, charge, parry-venster 0,25 s, boog-richten, Tab-lock, siddhi 1-6); (3) balans tunen (speler-hp 100 tegenover vijand-dmg tot 90, multiplier-cap 10); (4) Dhyana (H), drankjes (R/T), Mushti-bala-tapas bouwen; (5) Marmara-duel (nonlethal) in de praktijk testen.'
+        status: completed
+        stage: review
+        priority: P1
+        created_by: claude-code
+        tags:
+          - mvp
+          - combat
+          - polish
+        initiative: speelbare-mvp
+        created_at: '2026-10-03T10:28:07.157Z'
+        updated_at: '2026-10-03T11:07:12.935Z'
+        completed_at: '2026-10-03T11:07:12.935Z'
+      - id: i4zg75uybr1o5xgzdrnbd712
+        text: 'MVP stap 3: UI-systeem (health/mana-HUD, inventory, quest log, equipment-menu) plus hoofdmenu en pauzemenu. Stap 1 levert: tijdelijke DebugOverlay (scripts/ui/DebugOverlay.gd, vervangen door de echte HUD), Main.gd start nu direct een nieuw spel (vervangen door hoofdmenu), Esc maakt alleen de muis vrij (pauzemenu ontbreekt). Events die de UI moet afhandelen en nu nergens aankomen: panel_requested ("death", "map", "shop", "trainer", "shrine", "yaksha", "boasts", "marmara_choice", "sadhana", "gift"), dialogue_started (NPC.interact), cutscene_requested, notify, interact_hint. Zonder "death"-paneel blijft de speler bevroren als hij sterft: dood-scherm met World.respawn_player() hoort hierbij. Regio-overgangen werken al (Interactable exit -> World.travel).'
+        status: completed
+        stage: implement
+        priority: P1
+        created_by: claude-code
+        tags:
+          - mvp
+          - ui
+          - menu
+        initiative: speelbare-mvp
+        blocked_by:
+          - h3gontwedr1htgu8026b46vh
+        created_at: '2026-10-03T08:45:21.180Z'
+        updated_at: '2026-10-03T11:38:00.992Z'
+        completed_at: '2026-10-03T11:38:00.992Z'
+      - id: fg3buv2w2ku8jxl5yv0dng5w
+        text: 'Proefspelen met echte muis en toetsen (Gerald): alles uit de checklist in CLAUDE.md (''Proefspel-checklist'') doorlopen op de host en opschrijven wat raar voelt: combo en geladen slag, parry-venster 0,25 s, Tab-lock en camera, boog richten, siddhi 1-6, Dhyana (H), drankjes (R/T), vuistgevecht, Marmara-duel. Sinds stap 3 ook de interface: hoofdmenu en nieuw spel, Esc-pauze, I/Q/P/O/X/M/C-panelen, dialoog met E (Spatie/Enter/E = verder, cijfers kiezen), winkel kopen/verkopen, dood-scherm, F5/F9, instellingen. Kijk of muis vrij/vast goed wisselt, of aanvallen niet per ongeluk bij een menuklik gebeuren en of de teksten prettig lezen. Bevindingen worden nieuwe todo''s of tuning-aanpassingen (balans: `--balance`).'
+        status: open
+        stage: review
+        priority: P2
+        created_by: claude-code
+        model: claude-sonnet-5-5
+        tags:
+          - mvp
+          - combat
+          - playtest
+        initiative: speelbare-mvp
+        created_at: '2026-10-03T11:07:16.406Z'
+        updated_at: '2026-10-03T11:38:04.268Z'
+  - id: aaz9lhcuuok1g1f6ev3cu265
+    title: Na MVP
+    todos:
+      - id: pgt8s66avmyvsjzbfo3e7myx
+        text: 'Bestaande systemen testen en uitwerken zodra het spel draait: dialoogsysteem, save/load, arena-waves, dag/nacht-impact, shrines, vis/graaf-minigames, quest-rewards, followers, bossbalans. Let op: de foundation-aanspraken (save/load, arena, followers e.d.) zijn ongetest omdat het project nog niet draait.'
+        status: completed
+        stage: plan
+        priority: P3
+        created_by: claude-code
+        tags:
+          - gameplay
+          - testing
+        initiative: speelbare-mvp
+        blocked_by:
+          - r0kqhh78w3k0gkwfmvdguczx
+          - i4zg75uybr1o5xgzdrnbd712
+        created_at: '2026-10-03T08:45:22.856Z'
+        updated_at: '2026-10-03T12:31:19.684Z'
+        completed_at: '2026-10-03T12:31:19.684Z'
+      - id: pvryul391atmx4fo3kqu7v8e
+        text: 'Polish: animaties voor NPC''s en vijanden, geluid en muziek, visuele effecten, performance (o.a. grasmesh-culling), eventueel mobiele input.'
+        status: open
+        stage: plan
+        priority: P4
+        created_by: claude-code
+        tags:
+          - polish
+        initiative: speelbare-mvp
+        blocked_by:
+          - pgt8s66avmyvsjzbfo3e7myx
+        created_at: '2026-10-03T08:55:06.931Z'
+        updated_at: '2026-10-03T08:56:39.692Z'
+      - id: zryyx5zdbsjv6vlldp8b3zxq
+        text: 'Polish uit stap 1: physics-interpolatie aanzetten (gen_project.py) tegen camera-schokjes op 120/144 Hz-schermen, dan reset_physics_interpolation() bij teleports; NPC-lopen en vijand-idle-animaties; de ObjectDB-leak-waarschuwing bij afsluiten (statische Props-materiaalcache) opruimen als het stoort.'
+        status: open
+        stage: plan
+        priority: P4
+        created_by: claude-code
+        tags:
+          - polish
+        initiative: speelbare-mvp
+        created_at: '2026-10-03T09:58:35.219Z'
+        updated_at: '2026-10-03T09:58:35.219Z'
+      - id: bbu7l6oh1p9xl4onnb3ac8t3
+        text: 'Visuals en assets mooier maken (Gerald: "het is nogal fugly nu"). De modellen zijn nu losse kubussen en capsules uit Body.gd/Props.gd, de wereld is vlak en kaal. Aanpak eerst bespreken, dan stap voor stap: (1) artstijl kiezen (bv. stylized low-poly met een vaste kleurpalet per regio); (2) mens- en vijandmodellen: betere proporties, kleding en gezicht, vloeiender animatie; (3) wereld: terrein, water, bomen, gebouwen, gras, licht, mist en kleurgrading, schaduw- en glow-instellingen; (4) effecten: slag-trails, siddhi-vfx, orbs, treffer-feedback; (5) UI-stijl (komt samen met stap 3). Overweeg CC0-assets (bijv. Kenney, Quaternius) naast procedurele modellen. Raakt Body.gd, Props.gd, WorldGen.gd, Effects.gd, shaders/.'
+        status: open
+        stage: plan
+        priority: P3
+        created_by: claude-code
+        model: claude-sonnet-5-5
+        tags:
+          - polish
+          - visuals
+          - art
+        initiative: speelbare-mvp
+        created_at: '2026-10-03T10:40:05.157Z'
+        updated_at: '2026-10-03T10:40:05.157Z'
+      - id: zdyz6waoszz8d9c9j0wetx5n
+        text: 'UI-vervolg (uit stap 3): (1) kamandalu wordt bij gebruik opgebruikt, `refill` heeft geen mechaniek (water bijvullen bij rivier); (2) kaart is een lijst, geen getekende kaart; (3) Yaksha-, schrijn- en Marmara-keuzeregels in de UI zijn door Claude bedacht (zie CLAUDE.md ''Door mij bedacht''), Gerald bevestigt of past aan; (4) dialoogkeuzes zonder `end` sluiten na een effect, controleer in het proefspel of dat natuurlijk voelt; (5) gamepad/toetsenbordnavigatie in menu''s ontbreekt (alleen muis); (6) UI-stijl hoort bij de visuals-todo.'
+        status: open
+        stage: plan
+        priority: P3
+        created_by: claude-code
+        model: claude-sonnet-5-5
+        tags:
+          - ui
+          - polish
+        initiative: speelbare-mvp
+        created_at: '2026-10-03T11:38:07.757Z'
+        updated_at: '2026-10-03T11:38:07.757Z'
+      - id: lbuk3fo6un372a0gseanglnr
+        text: 'Bossbalans bijstellen (uit `--balance`, 2026-10-03; Gerald beslist, ontwerpkeuze). Streef: bazen ratio 1,5-3, gewone vijanden 0,6-1,0. Uitschieters: dakini_rani (boss) 0,33 = veel te makkelijk (held doodt haar in 7 s, zij hem in 21 s; summons zitten niet in de meting); bhramara_rani 1,30 en marmara_duel 1,30 aan de lage kant; vritra 6,97 en khadgasura 3,47 erg hoog (eindbazen, meting zonder ontwijken, dus misschien juist goed); niet-bazen shila_daitya 1,18 en hima_daitya 2,05 te hard. Veel afstandsvijanden/summoners (dakini 0,07, yatudhana 0,07) tonen een ratio die het gevecht niet weergeeft. Eerst in het proefspel voelen, dan pas getallen aanpassen.'
+        status: open
+        stage: plan
+        priority: P3
+        created_by: claude-code
+        model: claude-sonnet-5-5
+        tags:
+          - balance
+          - combat
+        initiative: speelbare-mvp
+        created_at: '2026-10-03T12:31:23.958Z'
+        updated_at: '2026-10-03T12:31:23.958Z'
+      - id: vb8ggmmzjjbxusm9hdaip5qt
+        text: 'Rol-animatie (Gerald, proefspel 2026-10-03): Spatie hoort een koprol te zijn, maar de held leunt nu alleen schuin voorover en schiet sneller vooruit. In Player.gd (rond regel 287) is de rotatie een vaste hoek `model.rotation.x = -0.9` (de `-TAU * ...` voor een volledige draai is met `* 0.0` uitgezet). Maak er een echte salto van: model.rotation.x loopt over `ROLL_TIME` van 0 tot -TAU (eventueel het model om het lichaamsmidden laten draaien i.p.v. om de voeten), daarna terug naar 0; kijk dat camera en collider niet meedraaien. Raakt Player.gd en eventueel Body.gd.'
+        status: completed
+        stage: plan
+        priority: P3
+        created_by: claude-code
+        model: claude-sonnet-5-5
+        tags:
+          - combat
+          - animation
+          - playtest
+        initiative: speelbare-mvp
+        created_at: '2026-10-03T12:34:50.239Z'
+        updated_at: '2026-10-03T12:44:04.475Z'
+        completed_at: '2026-10-03T12:44:04.475Z'
