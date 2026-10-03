@@ -4,8 +4,8 @@ Sanatana Dharma-geïnspireerde actie-RPG in de geest van Fable. Godot 4.7, GDScr
 Forward Plus, procedurele 3D-wereld. Eigenaar: Gerald (spreek Nederlands).
 
 Oorsprong: op 2026-10-02 gebouwd door Haiku in een Claude cloud-sessie ("Initial Fable-SD
-game foundation", één commit). Remote: github.com/gpherai/Fable-SD, branch
-`ccr-53906461-obn4mq` (er is geen `main`).
+game foundation", één commit). Remote: github.com/gpherai/Fable-SD. Werkbranch is `main` (sinds 2026-10-03, Gerald: alles mag naar main);
+de oude cloud-branch `ccr-53906461-obn4mq` staat er nog en is voorlopig de standaardbranch op GitHub.
 
 ## Staat: het spel heeft menu's, HUD, dialoog en winkels (MVP stap 1, 2 en 3 klaar, 2026-10-03)
 
