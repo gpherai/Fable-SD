@@ -18,10 +18,12 @@ func _ready() -> void:
 	if args.is_empty():
 		_make_ui()
 		ui.open("title")
-	elif "--game-shot" in args or "--combat-shot" in args or "--ui-shot" in args:
+	elif "--game-shot" in args or "--combat-shot" in args or "--ui-shot" in args or "--perf" in args:
 		_start_game()
 		_isolate_window()
-		if "--game-shot" in args:
+		if "--perf" in args:
+			_perf()
+		elif "--game-shot" in args:
 			_game_shot()
 		elif "--combat-shot" in args:
 			_combat_shot()
@@ -272,6 +274,119 @@ func _ui_shot() -> void:
 		ui.close(panel, false)
 		await _ui_frames(2)
 	get_tree().quit(0)
+
+const PERF_REGIONS := ["vira_akhara", "shringarapura_dakshina", "akhara_vana", "dasyu_shivir", "pretanagari", "tamovana_dalavana", "rangabhumi"]
+
+## Windowed only (host GPU): frame time, draw calls and primitives per representative region, then
+## the same view with one feature switched off at a time, so the cost of each shows up as a difference.
+## Prints PERF lines. Vsync is off, so the frame time is the real cost, not the monitor's refresh.
+func _perf() -> void:
+	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+	Engine.max_fps = 0
+	var p = Game.player
+	p.invulnerable = true
+	var vp := get_viewport()
+	print("PERF gpu=", RenderingServer.get_video_adapter_name(), " res=", vp.size, " msaa=", vp.msaa_3d, " quality=", Game.settings.get("quality"))
+	for rid in PERF_REGIONS:
+		world.build_region(rid, "")
+		p.invulnerable = true   # build_region -> reset_state() clears it
+		await _ui_frames(40)
+		var env: Environment = world.env.environment
+		var meshes := _count_class(world, "MeshInstance3D")
+		var lights := _count_class(world, "OmniLight3D")
+		print("PERF == %s nodes=%d meshes=%d omni=%d npcs=%d enemies=%d" % [rid, int(Performance.get_monitor(Performance.OBJECT_NODE_COUNT)), meshes, lights, world.npcs.size(), world.enemies.size()])
+		var base := await _perf_sample("base")
+		var rows: Array = [["base", base]]
+		var grass: Node = world.region_node.get_node_or_null("Grass")
+		if grass != null:
+			grass.visible = false
+			rows.append(["no_grass", await _perf_sample("no_grass")])
+			grass.visible = true
+		for nm in ["Trunks", "Canopies"]:
+			var t: Node = world.region_node.get_node_or_null(nm)
+			if t != null:
+				t.visible = false
+		rows.append(["no_trees", await _perf_sample("no_trees")])
+		for nm in ["Trunks", "Canopies"]:
+			var t2: Node = world.region_node.get_node_or_null(nm)
+			if t2 != null:
+				t2.visible = true
+		for nd in world.npcs + world.enemies:
+			if is_instance_valid(nd):
+				nd.visible = false
+		rows.append(["no_actors", await _perf_sample("no_actors")])
+		for nd in world.npcs + world.enemies:
+			if is_instance_valid(nd):
+				nd.visible = true
+		var omnis: Array = []
+		_collect_class(world, "OmniLight3D", omnis)
+		for l in omnis:
+			l.visible = false
+		rows.append(["no_omni", await _perf_sample("no_omni")])
+		for l in omnis:
+			l.visible = true
+		var shadows: bool = world.sun.shadow_enabled
+		world.sun.shadow_enabled = false
+		rows.append(["no_shadows", await _perf_sample("no_shadows")])
+		world.sun.shadow_enabled = shadows
+		var ssao := env.ssao_enabled
+		env.ssao_enabled = false
+		rows.append(["no_ssao", await _perf_sample("no_ssao")])
+		env.ssao_enabled = ssao
+		var glow := env.glow_enabled
+		env.glow_enabled = false
+		rows.append(["no_glow", await _perf_sample("no_glow")])
+		env.glow_enabled = glow
+		var msaa := vp.msaa_3d
+		vp.msaa_3d = Viewport.MSAA_DISABLED
+		rows.append(["no_msaa", await _perf_sample("no_msaa")])
+		vp.msaa_3d = msaa
+		var fog := env.fog_enabled
+		env.fog_enabled = false
+		rows.append(["no_fog", await _perf_sample("no_fog")])
+		env.fog_enabled = fog
+		for r in rows:
+			var s: Dictionary = r[1]
+			print("PERF %-24s %-11s avg %6.2f ms  p95 %6.2f ms  max %6.2f ms  draws %4d  objs %4d  prims %7d" % [rid, r[0], s["avg"], s["p95"], s["max"], s["draws"], s["objs"], s["prims"]])
+	get_tree().quit(0)
+
+## Frame times over four views (the camera turned a quarter each), 45 frames per view after a short settle.
+func _perf_sample(_label: String) -> Dictionary:
+	var p = Game.player
+	var times: Array = []
+	var draws := 0
+	var objs := 0
+	var prims := 0
+	for v in 4:
+		p.yaw = v * PI / 2.0
+		p._apply_look()
+		await _ui_frames(8)
+		var last := Time.get_ticks_usec()
+		for i in 45:
+			await get_tree().process_frame
+			var now := Time.get_ticks_usec()
+			times.append(float(now - last) / 1000.0)
+			last = now
+		draws += int(RenderingServer.get_rendering_info(RenderingServer.RENDERING_INFO_TOTAL_DRAW_CALLS_IN_FRAME))
+		objs += int(RenderingServer.get_rendering_info(RenderingServer.RENDERING_INFO_TOTAL_OBJECTS_IN_FRAME))
+		prims += int(RenderingServer.get_rendering_info(RenderingServer.RENDERING_INFO_TOTAL_PRIMITIVES_IN_FRAME))
+	times.sort()
+	var sum := 0.0
+	for t in times:
+		sum += t
+	return {"avg": sum / times.size(), "p95": times[int(times.size() * 0.95)], "max": times[times.size() - 1], "draws": draws / 4, "objs": objs / 4, "prims": prims / 4}
+
+func _count_class(n: Node, cls: String) -> int:
+	var c := 1 if n.is_class(cls) else 0
+	for ch in n.get_children():
+		c += _count_class(ch, cls)
+	return c
+
+func _collect_class(n: Node, cls: String, out: Array) -> void:
+	if n.is_class(cls):
+		out.append(n)
+	for ch in n.get_children():
+		_collect_class(ch, cls, out)
 
 func _save_shot(nm: String) -> void:
 	var img := get_viewport().get_texture().get_image()

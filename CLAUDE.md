@@ -30,7 +30,7 @@ lokalisatie, shaders. Daarbovenop is nu geschreven (MVP stap 1):
 - `scripts/ui/`: de interface (stap 3, zie hieronder). `DebugOverlay` bestaat niet meer.
 - `scripts/Main.gd`: zonder argumenten toont hij het hoofdmenu; `start_new(naam)`, `load_slot(n)` en `to_title()` zijn de
   levenscyclus (wereld weggooien en opnieuw bouwen). Testhaken: `--validate`, `--check-scripts`, `--gen-test`, `--smoke`,
-  `--balance`, `--shot <regio>`, `--game-shot`, `--combat-shot`, `--ui-shot` (venster, schermafbeeldingen in `screenshots/`).
+  `--balance`, `--shot <regio>`, `--game-shot`, `--combat-shot`, `--ui-shot` (venster, schermafbeeldingen in `screenshots/`), `--perf` (venster, host: frametijd en draw calls per regio, met onderdelen een voor een uit; draai hem op een rustige machine).
 - `World.gd`: zes typefouten opgelost (expliciete types i.p.v. `:=` op ongetypeerde waarden) en
   `Game.world = self` gezet in `_ready` (dat ontbrak; `Game.set_flag` e.d. hangen eraan).
 
@@ -170,5 +170,7 @@ Zet todo's in PCC op `completed` zodra ze klaar zijn en leg niet-afleidbare besl
 
 - `.project/` (PCC-data) staat sinds 2026-10-03 in de repo (Gerald gaf akkoord); commit het mee als PCC iets wijzigt.
 - Er staat geen README.
+- Polish is alleen voor desktop (geen mobiele input). Het onderzoek en de gekozen volgorde staan in `.project/notes.md` ('Polish-onderzoek'); er is nog niets van uitgevoerd.
+- Spawn met entry `""` (nieuw spel, testhaken) valt terug op het hub-midden, waar kampvuur/dhuni staan; de held kan daar in een object beginnen (bij reizen via een uitgang niet).
 - Headless draaien geeft "ObjectDB instances were leaked at exit": waarschijnlijk de statische materiaalcache in `Props` (niet uitgezocht); geen functioneel effect gezien.
 - Alleen op de host kun je spelen; `tools/check.sh` draait ook in de VM als daar een Godot staat.
