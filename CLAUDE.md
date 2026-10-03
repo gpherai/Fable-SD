@@ -168,7 +168,7 @@ Zet todo's in PCC op `completed` zodra ze klaar zijn en leg niet-afleidbare besl
 
 ## Nog open
 
-- `.project/` (PCC-data) is nog niet gecommit; vraag Gerald of dat in deze repo mag.
+- `.project/` (PCC-data) staat sinds 2026-10-03 in de repo (Gerald gaf akkoord); commit het mee als PCC iets wijzigt.
 - Er staat geen README.
 - Headless draaien geeft "ObjectDB instances were leaked at exit": waarschijnlijk de statische materiaalcache in `Props` (niet uitgezocht); geen functioneel effect gezien.
 - Alleen op de host kun je spelen; `tools/check.sh` draait ook in de VM als daar een Godot staat.
