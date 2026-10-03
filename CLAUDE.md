@@ -35,9 +35,20 @@ lokalisatie, shaders. Daarbovenop is nu geschreven (MVP stap 1):
 - `World.gd`: zes typefouten opgelost (expliciete types i.p.v. `:=` op ongetypeerde waarden) en
   `Game.world = self` gezet in `_ready` (dat ontbrak; `Game.set_flag` e.d. hangen eraan).
 
-Wat er NOG NIET is: aanvallen/blokkeren/siddhi's/vergrendelen (stap 2), vijand-AI (stap 2), HUD, menu's,
-dialoogvenster, dood-scherm, hoofdmenu (stap 3). Gevolg: sterft de speler, dan blijft hij bevroren
-(`Player.dead`, `World` vraagt een "death"-paneel dat nog niet bestaat).
+## MVP stap 2 klaar (2026-10-03): gevechten en vijand-AI
+
+- `scripts/combat/PlayerCombat.gd` (kind van Player): LMB/J = slag, 3 slagen = Sankhala-combo, vasthouden = Mahaprahara,
+  RMB/K = blok (Rakshana), blok vlak voor de treffer = parry (Pratiprahara), F = boog/chakra, Tab/MMB = doel vergrendelen,
+  1-6 = siddhi's. `Player.take_damage(amount, source, attacker, kind, from_pos)` loopt via `filter_incoming`/`absorb`.
+- `scripts/combat/Siddhis.gd`: alle 20 siddhi's uit `siddhis.json`. `scripts/combat/EnemyAI.gd`: AI van alle 44 vijanden
+  (aanvallen als getimede acties met telegraaf; leap, teleport, summons, boss-abilities, rise, pack, nonlethal).
+- `Enemy.gd` heeft nu statuseffecten, hp-balkje, `hit_distance()`; `Projectile.gd` raakt op capsule, stopt op muren, `on_end`.
+- `DebugOverlay` is nog tijdelijk en herstelt de speler 4 s na de dood (echt dood-scherm = stap 3).
+- Rooktest (`--smoke`) dekt nu ook combat; `tools/check.sh` faalt bij runtime SCRIPT ERROR. Stand: alles groen.
+- `--combat-shot` (venster) rendert een gevecht naar `screenshots/combat_*.png`; compileert, maar nog niet gedraaid.
+- Niet gedaan: Dhyana (H), potions R/T, balans/tuning, echte toetsen/muis en visuele controle (alleen headless getest).
+
+Wat er NOG NIET is: HUD, menu's, dialoogvenster, dood-scherm, hoofdmenu (stap 3).
 
 Wat Haiku als "afgerond" opgaf maar **ongetest** is: save/load, arena-waves, dag/nacht, shrines,
 vissen/graven, followers, bossbalans. De rooktest raakt alleen start, lopen, vijand doden + orbs,
@@ -47,7 +58,7 @@ projectiel en het opbouwen van alle 48 regio's. Vertrouw de rest niet zonder het
 
 `tools/check.sh <godot-binary>` compileert alle scripts, valideert de data en bouwt alle
 48 regio's en draait daarna de rooktest (`--smoke`: start, lopen, vijand doden met orbs, projectiel,
-alle 48 regio's bevolkt). Laatste stand (2026-10-03): scripts 19/19 ok, data 0 fouten, regio's ok
+combat, alle 48 regio's bevolkt). Laatste stand (2026-10-03): scripts 19/19 ok, data 0 fouten, regio's ok
 (~22.000 nodes), rooktest PASS. Exit-code 0 = alles groen.
 
 Godot-binaries:

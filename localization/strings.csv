@@ -285,3 +285,7 @@ UI_MALE,Vira (male),Vira (man)
 UI_NEW_GAME_WARN,A new game overwrites the quicksave slot.,Een nieuw spel overschrijft het snelopslag-slot.
 UI_QUICKSAVE,Quick save,Snel opslaan
 UI_QUICKLOAD,Quick load,Snel laden
+UI_NO_RANGED,No ranged weapon equipped.,Geen afstandswapen uitgerust.
+UI_NO_OJAS,Not enough Ojas.,Niet genoeg Ojas.
+UI_NO_TARGET,No target in sight.,Geen doelwit in zicht.
+UI_YIELDS,{name} yields.,{name} geeft zich over.

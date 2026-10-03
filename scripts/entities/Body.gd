@@ -357,3 +357,72 @@ static func pose_walk(model: Node3D, phase: float, amp: float) -> void:
 		j["ArmL"].rotation.x = -s * 0.8
 	if j.has("ArmR"):
 		j["ArmR"].rotation.x = s * 0.8
+
+## Overhead swing with the right arm. t runs 0..1: wind-up (0-0.4), strike (0.4-0.6), recover.
+## Returns false when the model has no arms (animals, insects) so the caller can lunge instead.
+static func pose_attack(model: Node3D, t: float, heavy: bool = false) -> bool:
+	var j := joints(model)
+	if not j.has("ArmR"):
+		return false
+	var up := 2.9 if heavy else 2.6
+	var arm: Node3D = j["ArmR"]
+	var ang: float
+	var twist: float
+	if t < 0.4:
+		var k := t / 0.4
+		ang = lerpf(0.0, up, k * k)
+		twist = lerpf(0.0, 0.45, k)
+	elif t < 0.6:
+		var k2 := (t - 0.4) / 0.2
+		ang = lerpf(up, 1.1, k2)
+		twist = lerpf(0.45, -0.5, k2)
+	else:
+		var k3 := (t - 0.6) / 0.4
+		ang = lerpf(1.1, 0.0, k3)
+		twist = lerpf(-0.5, 0.0, k3)
+	arm.rotation.x = ang
+	arm.rotation.z = 0.0
+	if j.has("ArmL"):
+		j["ArmL"].rotation.x = -0.4 * sin(clampf(t, 0.0, 1.0) * PI)
+	if j.has("Torso"):
+		j["Torso"].rotation.y = twist
+	return true
+
+## Guard: both forearms raised in front of the chest.
+static func pose_block(model: Node3D) -> void:
+	var j := joints(model)
+	if j.has("ArmL"):
+		j["ArmL"].rotation.x = 1.35
+		j["ArmL"].rotation.z = -0.5
+	if j.has("ArmR"):
+		j["ArmR"].rotation.x = 1.35
+		j["ArmR"].rotation.z = 0.5
+
+## Drawing a bow: left arm out front holding it, right arm pulled back by `draw` (0..1).
+static func pose_draw(model: Node3D, draw: float) -> void:
+	var j := joints(model)
+	if j.has("ArmL"):
+		j["ArmL"].rotation.x = 1.45
+		j["ArmL"].rotation.z = 0.0
+	if j.has("ArmR"):
+		j["ArmR"].rotation.x = lerpf(1.45, 0.9, draw)
+		j["ArmR"].rotation.z = lerpf(0.0, -0.7, draw)
+
+## Casting: both arms thrown up and pulsing; t is seconds since the cast began.
+static func pose_cast(model: Node3D, t: float) -> void:
+	var j := joints(model)
+	var lift := 2.2 + 0.15 * sin(t * 18.0)
+	for nm in ["ArmL", "ArmR"]:
+		if j.has(nm):
+			j[nm].rotation.x = lift
+			j[nm].rotation.z = -0.25 if nm == "ArmL" else 0.25
+
+## Undo the combat poses (keeps the torso hunch that some enemy bodies have).
+static func pose_reset(model: Node3D) -> void:
+	var j := joints(model)
+	for nm in ["ArmL", "ArmR"]:
+		if j.has(nm):
+			j[nm].rotation.x = 0.0
+			j[nm].rotation.z = 0.0
+	if j.has("Torso"):
+		j["Torso"].rotation.y = 0.0

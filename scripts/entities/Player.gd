@@ -1,11 +1,13 @@
 ## The hero (Vira). Third-person movement relative to the camera, mouse-look camera on a
 ## spring arm, roll, sprint, and interacting with the world (E). Health and Ojas regenerate
-## here. Attacking, blocking and siddhis arrive with the combat step; `take_damage` is the
-## entry point enemies will use.
+## here. Fighting (attack, block, bow, lock, siddhis) is in scripts/combat/PlayerCombat.gd; this
+## script owns the body and `take_damage`, the entry point for enemies and hazards.
 extends CharacterBody3D
 
 const Body = preload("res://scripts/entities/Body.gd")
 const Props = preload("res://scripts/world/Props.gd")
+const Effects = preload("res://scripts/combat/Effects.gd")
+const PlayerCombat = preload("res://scripts/combat/PlayerCombat.gd")
 
 const WALK_SPEED := 5.0
 const SPRINT_MULT := 1.6
@@ -18,6 +20,7 @@ const PITCH_MAX := 0.6
 const MOUSE_SENS := 0.0028
 
 var model: Node3D
+var combat: Node
 var pivot: Node3D
 var arm: SpringArm3D
 var cam: Camera3D
@@ -34,6 +37,10 @@ var yaw: float = 0.0
 var pitch: float = -0.35
 var hint: String = ""
 var controls_on: bool = false
+var forced_dir := Vector3.ZERO
+var forced_speed: float = 0.0
+var forced_left: float = 0.0
+var knock_t: float = 0.0
 var _hint_timer: float = 0.0
 var _regen_emit: float = 0.0
 
@@ -53,7 +60,11 @@ func _ready() -> void:
 	_build_camera()
 	Events.equipment_changed.connect(rebuild_visual)
 	Events.stat_raised.connect(func(_s, _l): rebuild_visual())
-	Events.player_died.connect(func(): dead = true)
+	combat = PlayerCombat.new()
+	combat.name = "Combat"
+	combat.player = self
+	add_child(combat)
+	Events.player_died.connect(_on_died)
 	Events.panel_requested.connect(func(_p, _d): _release_mouse())
 	capture_mouse()
 	rebuild_visual()
@@ -167,6 +178,9 @@ func reset_state() -> void:
 	rolling = false
 	roll_left = 0.0
 	combat_mult = 0
+	forced_left = 0.0
+	knock_t = 0.0
+	combat.reset()
 	if model != null:
 		model.rotation = Vector3.ZERO
 		Body.pose_walk(model, 0.0, 0.0)
@@ -176,23 +190,33 @@ func _physics_process(delta: float) -> void:
 	if not Game.in_game:
 		return
 	roll_cd = maxf(0.0, roll_cd - delta)
+	combat.tick(delta)
 	var wish := Vector3.ZERO
 	var sprinting := false
 	if _can_move():
 		var v := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 		wish = Vector3(v.x, 0, v.y).rotated(Vector3.UP, yaw)
-		sprinting = Input.is_action_pressed("sprint") and wish != Vector3.ZERO
-	var target := wish * WALK_SPEED * Game.speed_mult() * (SPRINT_MULT if sprinting else 1.0)
+		sprinting = Input.is_action_pressed("sprint") and wish != Vector3.ZERO and combat.is_idle()
+	var target: Vector3 = wish * WALK_SPEED * Game.speed_mult() * (SPRINT_MULT if sprinting else 1.0) * combat.move_mult()
+	var accel := ACCEL
+	if knock_t > 0.0:
+		knock_t -= delta
+		accel = 6.0
+	if forced_left > 0.0:
+		forced_left -= delta
+		target = forced_dir * forced_speed
+		accel = 200.0
+		wish = forced_dir
 	if rolling:
 		roll_left -= delta
 		target = roll_dir * ROLL_SPEED
+		accel = 200.0
 		if roll_left <= 0.0:
 			rolling = false
 			invulnerable = false
-	var accel := ACCEL if not rolling else 200.0
 	velocity.x = move_toward(velocity.x, target.x, accel * delta)
 	velocity.z = move_toward(velocity.z, target.z, accel * delta)
-	if is_on_floor():
+	if is_on_floor() and velocity.y <= 0.0:
 		velocity.y = 0.0
 	else:
 		velocity.y -= 12.0 * delta
@@ -204,12 +228,40 @@ func _physics_process(delta: float) -> void:
 		_hint_timer = 0.1
 		_update_hint()
 
+## Used by dashes and leaps (siddhis): overrides the walking input for `seconds`.
+func begin_forced_move(dir: Vector3, speed: float, seconds: float) -> void:
+	forced_dir = Vector3(dir.x, 0, dir.z).normalized()
+	forced_speed = speed
+	forced_left = seconds
+
+func end_forced_move() -> void:
+	forced_left = 0.0
+
+## Turns the model straight away (attacks, shots and spells aim instantly).
+func face_now(dir: Vector3) -> void:
+	if model != null and Vector2(dir.x, dir.z).length() > 0.001:
+		model.rotation.y = atan2(-dir.x, -dir.z)
+
+## A shove (enemy blows, explosions): the hero slides for a moment.
+func knock(impulse: Vector3) -> void:
+	velocity.x += impulse.x
+	velocity.z += impulse.z
+	knock_t = 0.25
+
+func _on_died() -> void:
+	dead = true
+	combat.on_died()
+	if model != null:
+		var tw := create_tween()
+		tw.tween_property(model, "rotation:x", -PI / 2.0, 0.5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+
 func _can_move() -> bool:
 	return not dead and not Game.paused_for_ui and controls_on
 
 func _start_roll() -> void:
-	if rolling or roll_cd > 0.0 or not is_on_floor():
+	if rolling or roll_cd > 0.0 or not is_on_floor() or forced_left > 0.0:
 		return
+	combat.cancel()
 	var v := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var d := Vector3(v.x, 0, v.y).rotated(Vector3.UP, yaw)
 	if d == Vector3.ZERO:
@@ -222,12 +274,13 @@ func _start_roll() -> void:
 	Audio.play("roll")
 
 func _animate(delta: float, wish: Vector3, sprinting: bool) -> void:
-	if model == null:
+	if model == null or dead:
 		return
 	var flat := Vector3(velocity.x, 0, velocity.z)
-	var face := roll_dir if rolling else wish
+	var ov: Vector3 = combat.facing_override()
+	var face := roll_dir if rolling else (ov if ov != Vector3.ZERO else wish)
 	if face != Vector3.ZERO:
-		model.rotation.y = lerp_angle(model.rotation.y, atan2(-face.x, -face.z), clampf(delta * 14.0, 0.0, 1.0))
+		model.rotation.y = lerp_angle(model.rotation.y, atan2(-face.x, -face.z), clampf(delta * (24.0 if ov != Vector3.ZERO else 14.0), 0.0, 1.0))
 	if rolling:
 		model.rotation.x = lerpf(model.rotation.x, -TAU * (1.0 - roll_left / ROLL_TIME) * 0.0 - 0.9, clampf(delta * 20.0, 0.0, 1.0))
 		model.position.y = 0.0
@@ -238,6 +291,7 @@ func _animate(delta: float, wish: Vector3, sprinting: bool) -> void:
 		Body.pose_walk(model, walk_phase, 0.75 if sprinting else 0.55)
 	else:
 		Body.pose_walk(model, 0.0, 0.0)
+	combat.apply_pose()
 
 func _regen(delta: float) -> void:
 	if dead:
@@ -300,11 +354,36 @@ func _interact() -> void:
 # =====================================================================
 # Damage
 # =====================================================================
-## Enemy attacks and hazards enter here. Rolling is invulnerable; blocking arrives with combat.
-func take_damage(amount: float, source: String = "") -> void:
+## Enemy attacks and hazards enter here. Rolling is invulnerable. `kind` is "melee", "projectile"
+## or "magic" (only the first two can be blocked); `attacker` and `from_pos` say where it came
+## from (for the guard cone, parries and knockback). Returns the damage that got through.
+func take_damage(amount: float, source: String = "", attacker: Node3D = null, kind: String = "melee", from_pos: Vector3 = Vector3.INF) -> float:
 	if dead or invulnerable:
-		return
+		return 0.0
+	var world: Node = Game.world
+	var res: Dictionary = combat.filter_incoming(amount, attacker, kind, from_pos)
+	if bool(res["parried"]):
+		combat.on_parry(attacker)
+		return 0.0
+	if bool(res["blocked"]):
+		combat.on_blocked(from_pos)
+		if float(res["amount"]) <= 0.0:
+			return 0.0
+	var dmg: float = float(res["amount"]) * (1.0 - Game.dmg_reduction())
+	dmg = combat.absorb(dmg)
+	if dmg <= 0.0:
+		return 0.0
 	Audio.play("player_hit")
 	combat_mult = int(combat_mult / 2.0)
 	Events.combat_multiplier_changed.emit(combat_mult)
-	Game.damage_hero(amount * (1.0 - Game.dmg_reduction()), source)
+	var src := from_pos
+	if src == Vector3.INF and attacker != null and is_instance_valid(attacker):
+		src = attacker.global_position
+	if src != Vector3.INF and kind != "hazard":
+		var away := Vector3(global_position.x - src.x, 0, global_position.z - src.z)
+		if away.length() > 0.01:
+			knock(away.normalized() * (1.5 if bool(res["blocked"]) else 4.0))
+	Effects.damage_number(world, global_position + Vector3(0, 2.1, 0), dmg, Color("#ff5a4a"), dmg >= Game.hp_max() * 0.15)
+	combat.on_damaged(dmg)
+	Game.damage_hero(dmg, source)
+	return dmg

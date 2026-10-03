@@ -439,7 +439,7 @@ func on_enemy_died(en: Node) -> void:
 	var pos: Vector3 = en.global_position
 	enemies.erase(en)
 	allies.erase(en)
-	if en.is_ally:
+	if en.is_ally or en.no_reward:
 		return
 	# tapas orbs scaled by combat multiplier
 	var mult := 1.0 + 0.1 * float(player.combat_mult)

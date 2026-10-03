@@ -4,8 +4,11 @@
 ##
 ## cfg: pos: Vector3, dir: Vector3, speed: float (18), range: float (30), kind: String
 ## ("arrow", "fire", "rock", "chakra", anything else = glowing bolt), color: Color (optional),
-## radius: float (0.5, contact radius), pierce: bool, from_player: bool (targets enemies,
-## otherwise the player), gravity: float (0), on_hit: Callable(target, projectile).
+## radius: float (0.5, contact radius; a hit needs the body surface within 0.7x of it),
+## pierce: bool, from_player: bool (targets enemies, otherwise the player and allies),
+## from_enemy: bool (shot by an enemy: slowed by Kala Stambhana), gravity: float (0),
+## on_hit: Callable(target, projectile), on_end: Callable(position) called wherever it ends
+## (hit, wall, ground, range) - used for explosions.
 extends Node3D
 
 var cfg: Dictionary = {}
@@ -20,11 +23,15 @@ var from_player: bool = false
 var gravity: float = 0.0
 var kind: String = "bolt"
 var on_hit: Callable = Callable()
+var on_end: Callable = Callable()
+var slowable: bool = false
+var _ended: bool = false
 var _hit_ids: Dictionary = {}
 var _vy: float = 0.0
 var _spin: Node3D = null
 
 const Props = preload("res://scripts/world/Props.gd")
+const Effects = preload("res://scripts/combat/Effects.gd")
 
 func setup(cfg_: Dictionary, world_: Node) -> void:
 	cfg = cfg_
@@ -39,6 +46,9 @@ func setup(cfg_: Dictionary, world_: Node) -> void:
 	gravity = float(cfg.get("gravity", 0.0))
 	if cfg.get("on_hit", null) is Callable:
 		on_hit = cfg["on_hit"]
+	if cfg.get("on_end", null) is Callable:
+		on_end = cfg["on_end"]
+	slowable = bool(cfg.get("from_enemy", false)) and not from_player
 	name = "Projectile_" + kind
 	_build_visual()
 	global_position = cfg.get("pos", Vector3.ZERO)
@@ -71,13 +81,23 @@ func _build_visual() -> void:
 			add_child(Props.sphere(0.14, c, Vector3.ZERO, Vector3.ONE, 0.4, 0.0, Color(c.r, c.g, c.b, 0.9)))
 
 func _physics_process(delta: float) -> void:
-	var step := speed * delta
-	_vy -= gravity * delta
-	global_position += dir * step + Vector3(0, _vy * delta, 0)
+	var tf: float = float(world.time_factor) if (slowable and world != null) else 1.0
+	var step := speed * delta * tf
+	var prev := global_position
+	_vy -= gravity * delta * tf
+	global_position += dir * step + Vector3(0, _vy * delta * tf, 0)
 	travelled += step
 	if _spin != null:
 		_spin.rotation.z += delta * 14.0
 	if travelled >= max_range or (world != null and global_position.y <= world.height_at(global_position.x, global_position.z)):
+		_die()
+		return
+	# walls and props (collision layer 1)
+	var q := PhysicsRayQueryParameters3D.create(prev, global_position, 1)
+	var hit := get_world_3d().direct_space_state.intersect_ray(q)
+	if not hit.is_empty():
+		global_position = hit["position"]
+		Effects.sparks(world, global_position, Color("#ffd8a0"), 4)
 		_die()
 		return
 	_check_contacts()
@@ -86,12 +106,23 @@ func _check_contacts() -> void:
 	if world == null:
 		return
 	var targets: Array = []
+	var reach := radius * 0.7
 	if from_player:
-		targets = world.enemies_in_radius(global_position, radius + 0.6)
-	elif Game.player != null and is_instance_valid(Game.player):
-		var p: Node3D = Game.player
-		if p.global_position.distance_to(global_position + Vector3(0, -1.0, 0)) <= radius + 0.6:
-			targets = [p]
+		for e in world.enemies:
+			if is_instance_valid(e) and not e.dead and not e.rising and e.hit_distance(global_position) <= reach:
+				targets.append(e)
+	else:
+		var p = Game.player
+		if p != null and is_instance_valid(p) and not p.dead and not p.invulnerable:
+			# the player's body: a 0.35 m capsule from the feet up to 1.7 m
+			var feet: float = p.global_position.y
+			var cy := clampf(global_position.y, feet + 0.35, feet + 1.35)
+			var axis := Vector3(p.global_position.x, cy, p.global_position.z)
+			if axis.distance_to(global_position) - 0.35 <= reach:
+				targets.append(p)
+		for a in world.allies:
+			if is_instance_valid(a) and not a.dead and not bool(a.data.get("invulnerable", false)) and a.hit_distance(global_position) <= reach:
+				targets.append(a)
 	for t in targets:
 		var id: int = t.get_instance_id()
 		if _hit_ids.has(id):
@@ -104,5 +135,10 @@ func _check_contacts() -> void:
 			return
 
 func _die() -> void:
+	if _ended:
+		return
+	_ended = true
 	set_physics_process(false)
+	if on_end.is_valid():
+		on_end.call(global_position)
 	queue_free()

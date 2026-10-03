@@ -65,6 +65,168 @@ class Orb extends Node3D:
 			Audio.play("tapas", -6.0)
 		queue_free()
 
+static var _flash_mats: Dictionary = {}
+
+# =====================================================================
+# Combat feedback: damage numbers, rings, lightning, hit flash, sparks
+# =====================================================================
+static func _glow_mat(color: Color) -> StandardMaterial3D:
+	var m := StandardMaterial3D.new()
+	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	m.albedo_color = color
+	m.cull_mode = BaseMaterial3D.CULL_DISABLED
+	return m
+
+## A number that floats up from `pos` and fades.
+static func damage_number(world: Node, pos: Vector3, amount: float, color: Color = Color("#fff3d0"), big: bool = false) -> void:
+	popup(world, pos, str(maxi(1, int(round(amount)))) if amount >= 0.5 else "0", color, 64 if big else 44)
+
+## Floating text (damage numbers, move names) that drifts up and fades.
+static func popup(world: Node, pos: Vector3, text: String, color: Color = Color("#fff3d0"), font_size: int = 44) -> void:
+	if world == null or not world.is_inside_tree():
+		return
+	var l := Label3D.new()
+	l.text = text
+	l.font_size = font_size
+	l.pixel_size = 0.01
+	l.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	l.no_depth_test = true
+	l.modulate = color
+	l.outline_size = 12
+	l.outline_modulate = Color(0, 0, 0, 0.9)
+	world.add_child(l)
+	l.global_position = pos + Vector3(randf_range(-0.3, 0.3), 0.0, randf_range(-0.3, 0.3))
+	var tw := l.create_tween()
+	tw.set_parallel(true)
+	tw.tween_property(l, "position:y", l.position.y + 1.3, 0.8).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tw.tween_property(l, "modulate:a", 0.0, 0.8).set_delay(0.35)
+	tw.chain().tween_callback(l.queue_free)
+
+## A flat ring that expands from nothing to `radius` and fades (area spells, landings, shockwaves).
+static func ring(world: Node, pos: Vector3, radius: float, color: Color, duration: float = 0.45) -> void:
+	if world == null or not world.is_inside_tree():
+		return
+	var mat := _glow_mat(Color(color.r, color.g, color.b, 0.75))
+	var m := TorusMesh.new()
+	m.inner_radius = 0.9
+	m.outer_radius = 1.0
+	m.rings = 32
+	m.ring_segments = 8
+	var mi := MeshInstance3D.new()
+	mi.mesh = m
+	mi.material_override = mat
+	mi.scale = Vector3(0.2, 1.0, 0.2)
+	world.add_child(mi)
+	mi.global_position = pos + Vector3(0, 0.15, 0)
+	var tw := mi.create_tween()
+	tw.set_parallel(true)
+	tw.tween_property(mi, "scale", Vector3(radius, 1.0, radius), duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tw.tween_property(mat, "albedo_color:a", 0.0, duration)
+	tw.chain().tween_callback(mi.queue_free)
+
+## A wedge on the ground in front of `pos` (cone spells and breath attacks).
+static func wedge(world: Node, pos: Vector3, dir: Vector3, length: float, half_angle: float, color: Color, duration: float = 0.35) -> void:
+	if world == null or not world.is_inside_tree():
+		return
+	var holder := Node3D.new()
+	world.add_child(holder)
+	holder.global_position = pos + Vector3(0, 0.5, 0)
+	var flat := Vector3(dir.x, 0, dir.z)
+	if flat.length() > 0.001:
+		holder.look_at(holder.global_position + flat.normalized(), Vector3.UP)
+	var mat := _glow_mat(Color(color.r, color.g, color.b, 0.5))
+	var cm := CylinderMesh.new()
+	cm.top_radius = 0.0
+	cm.bottom_radius = length * tan(half_angle)
+	cm.height = length
+	cm.radial_segments = 16
+	var mi := MeshInstance3D.new()
+	mi.mesh = cm
+	mi.material_override = mat
+	mi.rotation = Vector3(PI / 2.0, 0, 0)
+	mi.position = Vector3(0, 0, -length / 2.0)
+	mi.scale = Vector3(1, 1, 0.12)
+	holder.add_child(mi)
+	var tw := holder.create_tween()
+	tw.set_parallel(true)
+	tw.tween_property(mi, "scale", Vector3(1, 1, 1), duration * 0.6).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tw.tween_property(mat, "albedo_color:a", 0.0, duration)
+	tw.chain().tween_callback(holder.queue_free)
+
+## A jagged bolt between two points that fades quickly (lightning, drain beams).
+static func bolt(world: Node, from: Vector3, to: Vector3, color: Color, duration: float = 0.25) -> void:
+	if world == null or not world.is_inside_tree():
+		return
+	var mat := _glow_mat(Color(color.r, color.g, color.b, 0.95))
+	var root := Node3D.new()
+	world.add_child(root)
+	root.global_position = Vector3.ZERO
+	var segs := 5
+	var prev := from
+	var axis := (to - from)
+	var side := axis.cross(Vector3.UP)
+	if side.length() < 0.01:
+		side = Vector3.RIGHT
+	side = side.normalized()
+	for i in range(1, segs + 1):
+		var p := from.lerp(to, float(i) / float(segs))
+		if i < segs:
+			p += side * randf_range(-0.35, 0.35) + Vector3.UP * randf_range(-0.35, 0.35)
+		var seg_len := prev.distance_to(p)
+		if seg_len > 0.01:
+			var bm := BoxMesh.new()
+			bm.size = Vector3(0.07, 0.07, seg_len)
+			var mi := MeshInstance3D.new()
+			mi.mesh = bm
+			mi.material_override = mat
+			root.add_child(mi)
+			mi.global_position = (prev + p) / 2.0
+			var up := Vector3.UP if absf((p - prev).normalized().y) < 0.99 else Vector3.RIGHT
+			mi.look_at(p, up)
+		prev = p
+	var tw := root.create_tween()
+	tw.tween_property(mat, "albedo_color:a", 0.0, duration)
+	tw.tween_callback(root.queue_free)
+
+## Briefly tints every mesh of a model (hit flash, attack telegraph). Cleared again after `duration`.
+static func flash(model: Node, color: Color, duration: float = 0.1) -> void:
+	if model == null or not model.is_inside_tree():
+		return
+	var key := color.to_html()
+	if not _flash_mats.has(key):
+		_flash_mats[key] = _glow_mat(color)
+	var ov: Material = _flash_mats[key]
+	var meshes: Array = []
+	_collect_meshes(model, meshes)
+	for mi in meshes:
+		mi.material_overlay = ov
+	model.get_tree().create_timer(duration).timeout.connect(func() -> void:
+		for mi in meshes:
+			if is_instance_valid(mi) and mi.material_overlay == ov:
+				mi.material_overlay = null)
+
+static func _collect_meshes(n: Node, out: Array) -> void:
+	if n is MeshInstance3D:
+		out.append(n)
+	for c in n.get_children():
+		_collect_meshes(c, out)
+
+## A few sparks that fly out and drop (weapon hits, parries, impacts).
+static func sparks(world: Node, pos: Vector3, color: Color, count: int = 6) -> void:
+	if world == null or not world.is_inside_tree():
+		return
+	for i in count:
+		var s := Props.sphere(0.045, color, Vector3.ZERO, Vector3.ONE, 0.4, 0.0, Color(color.r, color.g, color.b, 1.0))
+		world.add_child(s)
+		s.global_position = pos
+		var end := pos + Vector3(randf_range(-0.9, 0.9), randf_range(0.1, 0.9), randf_range(-0.9, 0.9))
+		var tw := s.create_tween()
+		tw.set_parallel(true)
+		tw.tween_property(s, "global_position", end, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tw.tween_property(s, "scale", Vector3.ZERO, 0.3).set_delay(0.1)
+		tw.chain().tween_callback(s.queue_free)
+
 ## Spawns tapas orbs. amounts: {general, bala, kaushala, shakti}.
 static func tapas_orbs(world: Node, pos: Vector3, amounts: Dictionary) -> void:
 	for kind in ["general", "bala", "kaushala", "shakti"]:
