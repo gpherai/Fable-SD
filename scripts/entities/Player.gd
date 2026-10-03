@@ -164,6 +164,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		_interact()
 	elif event.is_action_pressed("roll") and _can_act():
 		_start_roll()
+	elif event.is_action_pressed("potion_prana") and _can_act():
+		Game.quaff("heal")
+	elif event.is_action_pressed("potion_ojas") and _can_act():
+		Game.quaff("ojas")
 
 func _can_act() -> bool:
 	return not dead and Game.in_game and not Game.paused_for_ui and controls_on
@@ -303,7 +307,7 @@ func _regen(delta: float) -> void:
 		changed = true
 	var omax := Game.ojas_max()
 	if Game.hero.ojas < omax:
-		Game.hero.ojas = minf(omax, Game.hero.ojas + Game.ojas_regen() * delta)
+		Game.hero.ojas = minf(omax, Game.hero.ojas + Game.ojas_regen() * combat.ojas_regen_mult() * delta)
 		changed = true
 	if changed:
 		_regen_emit += delta

@@ -12,12 +12,14 @@ const Effects = preload("res://scripts/combat/Effects.gd")
 const Props = preload("res://scripts/world/Props.gd")
 const Siddhis = preload("res://scripts/combat/Siddhis.gd")
 
-enum S { IDLE, SWING, CHARGE, BLOCK, CAST }
+enum S { IDLE, SWING, CHARGE, BLOCK, CAST, MEDITATE }
 
 const HOLD_TIME := 0.18          # holding attack longer than this starts a charge
 const COMBO_WINDOW := 0.6
 const PARRY_WINDOW := 0.25       # Pratiprahara: block pressed this shortly before the hit
 const COMBAT_MULT_MAX := 10
+const MEDITATE_OJAS_MULT := 4.0  # Dhyana: Ojas comes back this many times faster
+const MEDITATE_SIT_TIME := 0.4
 const COMBO_MULT := [1.0, 1.15, 1.6]
 const LOCK_RANGE := 28.0
 const UNARMED := {"dmg": 3.0, "speed": 1.6, "reach": 1.1, "arc": 100.0, "stun": 0.0, "element": "blunt",
@@ -66,6 +68,9 @@ var _blk_down: bool = false
 var _ignore_atk: bool = false
 var _ignore_blk: bool = false
 var _was_active: bool = false
+var sit_k: float = 0.0           # 0 standing .. 1 seated (Dhyana pose blend)
+var _sitting: bool = false
+var _med_prev: bool = false
 
 # =====================================================================
 # Frame
@@ -88,6 +93,18 @@ func tick(delta: float) -> void:
 	buffered = maxf(0.0, buffered - delta)
 	shot_cd = maxf(0.0, shot_cd - delta)
 	_update_lock(delta)
+	var med := Input.is_action_pressed("meditate")
+	if med and not _med_prev:
+		_try_meditate()
+	_med_prev = med
+	if state == S.MEDITATE:
+		# seated and defenceless: no attack, block or siddhi, only letting go of H (or rolling) ends it
+		if not med:
+			cancel()
+		else:
+			_tick_state(delta)
+			_end_modifiers(delta)
+			return
 	if Input.is_action_just_pressed("lock_target"):
 		_lock_pressed()
 	if Input.is_action_just_pressed("ranged_toggle"):
@@ -133,6 +150,7 @@ func _end_modifiers(delta: float) -> void:
 	_tick_dash(delta)
 	_tick_leap(delta)
 	_tick_scale(delta)
+	sit_k = move_toward(sit_k, 1.0 if state == S.MEDITATE else 0.0, delta / MEDITATE_SIT_TIME)
 	summons = summons.filter(func(s) -> bool: return is_instance_valid(s) and not s.dead)
 
 func is_idle() -> bool:
@@ -304,6 +322,8 @@ func _drop_shield() -> void:
 		shield_node.visible = false
 
 func on_damaged(amount: float) -> void:
+	if state == S.MEDITATE:
+		cancel()   # a blow breaks Dhyana
 	# a hit breaks a charge or a bow draw, but not a light swing
 	if state == S.CHARGE:
 		cancel()
@@ -382,6 +402,30 @@ func _tick_state(delta: float) -> void:
 				state = S.IDLE
 		S.BLOCK:
 			st_t += delta
+		S.MEDITATE:
+			var rings := int(st_t / 1.6)
+			st_t += delta
+			if int(st_t / 1.6) != rings:
+				Effects.ring(Game.world, player.global_position + Vector3(0, 0.05, 0), 1.6, Color("#7ec8ff"), 0.9)
+
+# =====================================================================
+# Dhyana (hold H): sit in lotus pose, Ojas returns four times as fast, but you are defenceless
+# =====================================================================
+func _try_meditate() -> void:
+	if state != S.IDLE or player.rolling or player.forced_left > 0.0 or leaping or dash_left > 0.0 or not player.is_on_floor():
+		return
+	cancel()
+	state = S.MEDITATE
+	st_t = 0.0
+	Events.notify.emit(Loc.t("UI_MEDITATING"), "info")
+	Audio.play("ui_open", -6.0)
+	Effects.ring(Game.world, player.global_position + Vector3(0, 0.05, 0), 1.6, Color("#7ec8ff"), 0.9)
+
+func is_meditating() -> bool:
+	return state == S.MEDITATE
+
+func ojas_regen_mult() -> float:
+	return MEDITATE_OJAS_MULT if state == S.MEDITATE else 1.0
 
 func move_mult() -> float:
 	match state:
@@ -393,6 +437,8 @@ func move_mult() -> float:
 			return 0.45
 		S.CAST:
 			return 0.55
+		S.MEDITATE:
+			return 0.0
 	return 1.0
 
 # =====================================================================
@@ -445,7 +491,7 @@ func _melee_strike() -> void:
 			stun = 0.9
 		if randf() < float(prof["stun"]):
 			stun = maxf(stun, 0.8)
-		var opts := {"knock": knock, "stun": stun, "break_guard": heavy, "pierce_def": float(prof["pierce_def"])}
+		var opts := {"knock": knock, "stun": stun, "break_guard": heavy, "pierce_def": float(prof["pierce_def"]), "fist": Game.equipped("melee") == ""}
 		var dealt: float = e.take_damage(base, player, str(prof["element"]), opts)
 		if float(prof["bonus_flat"]) > 0.0 and not e.dead:
 			e.take_damage(float(prof["bonus_flat"]) * Game.melee_mult(), player, str(prof["bonus_element"]), {"dot": true})
@@ -904,8 +950,19 @@ func apply_pose() -> void:
 		S.CAST:
 			Body.pose_cast(m, st_t)
 			_posed = true
+		S.MEDITATE:
+			Body.pose_sit(m, sit_k)
+			_sitting = true
+			_posed = true
 		_:
-			if ranged_stance():
+			if _sitting:
+				# standing up again: blend out, then drop back to the plain pose
+				Body.pose_sit(m, sit_k)
+				if sit_k <= 0.0:
+					_sitting = false
+					Body.pose_reset(m)
+					_posed = false
+			elif ranged_stance():
 				Body.pose_draw(m, 0.0)
 				_posed = true
 			elif _posed:

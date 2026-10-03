@@ -289,3 +289,8 @@ UI_NO_RANGED,No ranged weapon equipped.,Geen afstandswapen uitgerust.
 UI_NO_OJAS,Not enough Ojas.,Niet genoeg Ojas.
 UI_NO_TARGET,No target in sight.,Geen doelwit in zicht.
 UI_YIELDS,{name} yields.,{name} geeft zich over.
+UI_PRANA_FULL,Prana is already full.,Je Prana is al vol.
+UI_OJAS_FULL,Ojas is already full.,Je Ojas is al vol.
+UI_NO_PRANA_RASA,No Prana elixir left.,Geen Prana-rasa meer.
+UI_NO_OJAS_RASA,No Ojas elixir left.,Geen Ojas-rasa meer.
+UI_DRANK,You drink {name}.,Je drinkt {name}.

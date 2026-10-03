@@ -7,7 +7,7 @@ Oorsprong: op 2026-10-02 gebouwd door Haiku in een Claude cloud-sessie ("Initial
 game foundation", één commit). Remote: github.com/gpherai/Fable-SD, branch
 `ccr-53906461-obn4mq` (er is geen `main`).
 
-## Staat: het spel start en je kunt rondlopen (MVP stap 1 klaar, 2026-10-03)
+## Staat: het spel start, je kunt rondlopen en vechten (MVP stap 1 en 2 klaar, 2026-10-03)
 
 Fundament (door Haiku in de cloud-sessie): data, wereldgeneratie, quests, audio-synthese,
 lokalisatie, shaders. Daarbovenop is nu geschreven (MVP stap 1):
@@ -35,18 +35,47 @@ lokalisatie, shaders. Daarbovenop is nu geschreven (MVP stap 1):
 - `World.gd`: zes typefouten opgelost (expliciete types i.p.v. `:=` op ongetypeerde waarden) en
   `Game.world = self` gezet in `_ready` (dat ontbrak; `Game.set_flag` e.d. hangen eraan).
 
-## MVP stap 2 klaar (2026-10-03): gevechten en vijand-AI
+## MVP stap 2 klaar en afgerond (2026-10-03): gevechten, vijand-AI, drankjes, Dhyana
 
 - `scripts/combat/PlayerCombat.gd` (kind van Player): LMB/J = slag, 3 slagen = Sankhala-combo, vasthouden = Mahaprahara,
   RMB/K = blok (Rakshana), blok vlak voor de treffer = parry (Pratiprahara), F = boog/chakra, Tab/MMB = doel vergrendelen,
-  1-6 = siddhi's. `Player.take_damage(amount, source, attacker, kind, from_pos)` loopt via `filter_incoming`/`absorb`.
+  1-6 = siddhi's, **H vasthouden = Dhyana**. `Player.take_damage(amount, source, attacker, kind, from_pos)` loopt via `filter_incoming`/`absorb`.
 - `scripts/combat/Siddhis.gd`: alle 20 siddhi's uit `siddhis.json`. `scripts/combat/EnemyAI.gd`: AI van alle 44 vijanden
   (aanvallen als getimede acties met telegraaf; leap, teleport, summons, boss-abilities, rise, pack, nonlethal).
-- `Enemy.gd` heeft nu statuseffecten, hp-balkje, `hit_distance()`; `Projectile.gd` raakt op capsule, stopt op muren, `on_end`.
-- `DebugOverlay` is nog tijdelijk en herstelt de speler 4 s na de dood (echt dood-scherm = stap 3).
-- Rooktest (`--smoke`) dekt nu ook combat; `tools/check.sh` faalt bij runtime SCRIPT ERROR. Stand: alles groen.
-- `--combat-shot` (venster) rendert een gevecht naar `screenshots/combat_*.png`; compileert, maar nog niet gedraaid.
-- Niet gedaan: Dhyana (H), potions R/T, balans/tuning, echte toetsen/muis en visuele controle (alleen headless getest).
+- `Enemy.gd` heeft statuseffecten, hp-balkje, `hit_distance()`, `last_hit_fist`; `Projectile.gd` raakt op capsule, stopt op muren, `on_end`.
+- **Dhyana** (state `S.MEDITATE`): houd H vast, de held zit in lotushouding (`Body.pose_sit`), Ojas komt 4x zo snel terug
+  (`MEDITATE_OJAS_MULT`), maar hij kan niet lopen, slaan, blokken of siddhi's gebruiken. Een treffer of een rol (Spatie) beeindigt het;
+  daarna moet H opnieuw worden ingedrukt (edge-gestuurd). Een blauwe ring pulseert elke 1,6 s.
+- **Drankjes**: R = Prana-rasa, T = Ojas-rasa (`Game.quaff`, `best_potion`): kleinste drankje dat het tekort vult, anders het grootste;
+  geen drankje verspild bij een volle balk; Vishahara (antigif) wordt nooit door R gedronken. Drinken breekt de pratijna `no_potion` via `Events.item_used`.
+- **Mushti Yuddha**: zonder melee-wapen (`Game.unequip("melee")`) vecht de held met vuisten (dmg 3, snelheid 1,6, bereik 1,1). Een kill met
+  vuisten geeft `Game.FIST_BALA_MULT` (1,5x) Bala-tapas (opts `fist` -> `Enemy.last_hit_fist` -> `World.on_enemy_died`).
+- **Balans**: `--balance` (headless) drukt per vijand af hoe lang de held erover doet om hem te doden en omgekeerd, met een bij het
+  level passende build (`BALANCE_BUILDS` in Main.gd, zonder pantser en zonder ontwijken). Streef naar ratio 0,6-1,0 voor gewone vijanden
+  en 1,5-3 voor bazen. Bijgesteld: `marmara_sparring` hp 140 -> 120 (ratio 1,23 -> ~1,05 met alleen een lathi) en `dvikhadga` hp 1400 -> 1100
+  (3,08 -> ~2,4). Speler-hp 100 tegenover vijand-dmg 90 is geen probleem zolang je meegroeit: een held met stat 7 heeft 310 hp en 36% minder schade.
+  Multiplier-cap 10 (= 2x tapas) is zo gelaten.
+- `DebugOverlay` is nog tijdelijk: toont nu ook drankjes en "(mediteert)", en herstelt de speler 4 s na de dood (echt dood-scherm = stap 3).
+- Rooktest (`--smoke`) dekt nu ook drankjes, Dhyana, vuisten en Marmara's duel in haar echte regio met echte slagen (47 controles);
+  `tools/check.sh` faalt bij runtime SCRIPT ERROR. Stand: alles groen.
+- `--combat-shot` (venster, host) maakt `screenshots/combat_1..4.png` (slag, siddhi's, telegraaf-flits, Dhyana). Schermshots isoleren
+  het venster van echte muis/toetsen (`_isolate_window`), zodat meespelen de run niet verstoort (op Wayland niet bewezen: blijf er af tijdens een run).
+- Let op voor stap 3: het dood-paneel (`panel_requested`) laat de muis los (`controls_on = false`); iets in de UI moet na de respawn
+  `Player.capture_mouse()` aanroepen, zoals DebugOverlay nu doet. De held start in vira_akhara (entry "") op een richel 2,2 m boven het oefenveld:
+  niet onderzocht of dat bij echte aankomst via een uitgang ook zo is.
+
+### Proefspel-checklist (alleen Gerald kan dit doen: echte muis en toetsen)
+
+Start het spel op de host en loop dit af; schrijf op wat raar voelt:
+1. Slag (LMB/J) driemaal achter elkaar = combo met afmaker; vasthouden (>0,2 s) = geladen slag, bij volle lading flitst de held geel.
+2. Blok (RMB/K): vijand die oranje flitst vlak voor de treffer blokkeren (binnen 0,25 s) = parry, de vijand wankelt.
+3. Tab of middelste muisknop = doel vergrendelen (rode kegel), nogmaals = volgend doel; camera draait mee.
+4. F = boog of chakra (heb er een uitgerust), vasthouden = spannen, loslaten = schieten; kruisje in het midden.
+5. 1-6 = siddhi's (eerst leren, zie `Game.learn_siddhi`); let op kosten in Ojas en cooldown.
+6. H vasthouden = zitten, Ojas stijgt snel; klap erop = opstaan. R en T = drankjes (je hebt ze alleen als je ze koopt of vindt).
+7. Zonder wapen vechten: leg de lathi af (inventaris komt in stap 3; tot dan via code `Game.unequip("melee")`).
+8. Marmara: zet `Game.set_flag("marmara_duel_started")` en ga naar `vira_akhara`; ze geeft zich over op 1 hp.
+Vragen om op te letten: voelt de parry-timing eerlijk? is het blokkeren te sterk/zwak? is de camera bij Tab-lock prettig? zijn de vijanden te snel of te hard?
 
 Wat er NOG NIET is: HUD, menu's, dialoogvenster, dood-scherm, hoofdmenu (stap 3).
 
@@ -58,8 +87,10 @@ projectiel en het opbouwen van alle 48 regio's. Vertrouw de rest niet zonder het
 
 `tools/check.sh <godot-binary>` compileert alle scripts, valideert de data en bouwt alle
 48 regio's en draait daarna de rooktest (`--smoke`: start, lopen, vijand doden met orbs, projectiel,
-combat, alle 48 regio's bevolkt). Laatste stand (2026-10-03): scripts 19/19 ok, data 0 fouten, regio's ok
-(~22.000 nodes), rooktest PASS. Exit-code 0 = alles groen.
+combat, drankjes, Dhyana, vuisten, Marmara's duel, alle 48 regio's bevolkt). Laatste stand (2026-10-03):
+scripts 22/22 ok, data 0 fouten, regio's ok (~22.000 nodes), rooktest PASS (47 controles). Exit-code 0 = alles groen.
+Losse hooks: `--balance` (balansrapport), `--combat-shot` / `--game-shot` (venster, screenshots).
+Scratch-run op de host: rsync de repo naar `laptop:~/.cache/fable-sd-check` (excl. .git/.godot/screenshots), daar `tools/check.sh` draaien.
 
 Godot-binaries:
 

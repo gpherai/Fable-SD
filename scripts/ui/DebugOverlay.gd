@@ -83,7 +83,9 @@ func _process(delta: float) -> void:
 	var region := Loc.t(Data.region(Game.state.get("region", "")).get("name", {}))
 	var stance := "boog/chakra" if (pc != null and pc.ranged_stance()) else "melee"
 	var lock_txt := "  doel vergrendeld" if (pc != null and pc.lock_valid()) else ""
-	info.text = "%s\nDag %d  %s\nHP %d/%d   Ojas %d/%d   Goud %d\nTapas %d   Multiplier x%d   Vijanden: %d   Stand: %s%s\n[LMB/J] slag (vasthouden: zware slag)  [RMB/K] blok  [F] boog/melee  [Tab] doel  [1-6] siddhi's\n[Esc] muis vrijmaken   [Spatie] rollen   [Shift] rennen   [E] gebruiken   [scrollwiel] zoom" % [
+	var seated := " (mediteert)" if (pc != null and pc.is_meditating()) else ""
+	info.text = "%s\nDag %d  %s\nHP %d/%d   Ojas %d/%d%s   Goud %d   Rasa: Prana x%d [R]  Ojas x%d [T]\nTapas %d   Multiplier x%d   Vijanden: %d   Stand: %s%s\n[LMB/J] slag (vasthouden: zware slag)  [RMB/K] blok  [F] boog/melee  [Tab] doel  [1-6] siddhi's  [H] mediteren (vasthouden)\n[Esc] muis vrijmaken   [Spatie] rollen   [Shift] rennen   [E] gebruiken   [scrollwiel] zoom" % [
 		region, int(Game.state.get("day", 1)), Game.time_string(),
-		int(Game.hero.hp), int(Game.hp_max()), int(Game.hero.ojas), int(Game.ojas_max()), int(Game.hero.gold),
+		int(Game.hero.hp), int(Game.hp_max()), int(Game.hero.ojas), int(Game.ojas_max()), seated, int(Game.hero.gold),
+		Game.potion_count("heal"), Game.potion_count("ojas"),
 		int(Game.hero.tapas_total), (Game.player.combat_mult if Game.player != null else 0), (w.enemies.size() if w != null else 0), stance, lock_txt]

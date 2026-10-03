@@ -33,6 +33,7 @@ var hover: float = 0.0
 var flying: bool = false
 var stationary: bool = false
 var nonlethal: bool = false
+var last_hit_fist: bool = false   # the last real blow came from bare fists (Mushti Yuddha)
 var size: float = 1.0
 var radius: float = 0.35
 var height: float = 1.8
@@ -267,6 +268,8 @@ func take_damage(amount: float, source: Node = null, element: String = "", opts:
 	if dead or rising or bool(data.get("invulnerable", false)):
 		return 0.0
 	var is_dot: bool = bool(opts.get("dot", false))
+	if not is_dot:
+		last_hit_fist = bool(opts.get("fist", false))
 	if data.get("sacred_only", false) and element not in ["sacred", "light"]:
 		if not is_dot:
 			Effects.damage_number(Game.world, center() + Vector3(0, height * 0.5, 0), 0.0, Color("#9a9a9a"))

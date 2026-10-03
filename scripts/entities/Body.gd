@@ -417,6 +417,20 @@ static func pose_cast(model: Node3D, t: float) -> void:
 			j[nm].rotation.x = lift
 			j[nm].rotation.z = -0.25 if nm == "ArmL" else 0.25
 
+## Dhyana: sits down cross-legged with the hands resting on the knees. k blends 0 (standing)..1.
+## The model is lowered so the hips rest on the ground; pose_sit(model, 0.0) stands it up again.
+static func pose_sit(model: Node3D, k: float) -> void:
+	var j := joints(model)
+	model.position.y = -0.73 * model.scale.y * k
+	for nm in ["LegL", "LegR"]:
+		if j.has(nm):
+			j[nm].rotation.x = lerpf(0.0, PI / 2.0 - 0.15, k)
+			j[nm].rotation.z = (-0.5 if nm == "LegL" else 0.5) * k
+	for nm in ["ArmL", "ArmR"]:
+		if j.has(nm):
+			j[nm].rotation.x = lerpf(0.0, 0.85, k)
+			j[nm].rotation.z = 0.0
+
 ## Undo the combat poses (keeps the torso hunch that some enemy bodies have).
 static func pose_reset(model: Node3D) -> void:
 	var j := joints(model)

@@ -1,6 +1,6 @@
 extends Node
 ## Entry point. Without arguments it starts a new game; with test hooks it runs a headless
-## check instead (--validate, --check-scripts, --gen-test, --smoke, --shot <region>, --game-shot,
+## check instead (--validate, --check-scripts, --gen-test, --smoke, --balance, --shot <region>, --game-shot,
 ## --combat-shot).
 
 const WorldGen = preload("res://scripts/world/WorldGen.gd")
@@ -13,12 +13,16 @@ func _ready() -> void:
 	var args := OS.get_cmdline_user_args()
 	if args.is_empty() or "--game-shot" in args or "--combat-shot" in args:
 		_start_game()
+		if not args.is_empty():
+			_isolate_window()
 		if "--game-shot" in args:
 			_game_shot()
 		elif "--combat-shot" in args:
 			_combat_shot()
 	elif "--smoke" in args:
 		_smoke()
+	elif "--balance" in args:
+		_balance()
 	elif "--validate" in args:
 		_validate_and_quit()
 	elif "--check-scripts" in args:
@@ -49,8 +53,20 @@ func _game_shot() -> void:
 	print("saved screenshots/game.png")
 	get_tree().quit(0)
 
-## Windowed only: stages a small fight (bandit, fire caster, rakshasa), lets it run, swings the
-## staff and throws a fireball, and saves screenshots/combat_1.png and combat_2.png.
+## Screenshot runs open a real window on the desktop. This keeps real keys and mouse out of it
+## (they would mix with the scripted input) and leaves the pointer free.
+func _isolate_window() -> void:
+	var w := get_window()
+	w.unfocusable = true
+	w.mouse_passthrough_polygon = PackedVector2Array([Vector2(0, 0), Vector2(1, 0), Vector2(1, 1)])
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	Game.player.set_process_unhandled_input(false)
+	Game.player.controls_on = true   # scripted Input.action_press still has to drive the hero
+
+## Windowed only: a close-up fight. combat_1 = staff strike on a locked dasyu (hit number, hp bar,
+## lock marker, follow-through), combat_2 = Ugra Rupa and Agni Astra, combat_3 = a second dasyu's
+## orange wind-up flash, combat_4 = Dhyana (seated). The hero cannot be hurt: these shots are about
+## how it looks.
 func _combat_shot() -> void:
 	var p = Game.player
 	var c = p.combat
@@ -62,26 +78,50 @@ func _combat_shot() -> void:
 	Game.learn_siddhi("agni_astra", true)
 	Game.learn_siddhi("ugra_rupa", true)
 	Game.hero.ojas = Game.ojas_max()
+	p.invulnerable = true
 	await _frames(60)
+	p.arm.spring_length = 4.2
 	var o: Vector3 = p.global_position
-	var a = world.spawn_enemy("dasyu", o + Vector3(2.5, 0.3, -3.0))
-	world.spawn_enemy("pisacha_mantrika", o + Vector3(-5.0, 0.3, -8.0))
-	world.spawn_enemy("rakshasa", o + Vector3(6.0, 0.3, -9.0))
+	var a = world.spawn_enemy("dasyu", o + Vector3(0.0, 0.3, -1.7))
+	a.stationary = true
+	a.ai.cd["attack"] = 999.0
+	world.spawn_enemy("rakshasa", o + Vector3(5.0, 0.3, -8.0)).stationary = true
 	c._set_lock(a)
-	await _frames(150)
+	await _frames(60)
 	Input.action_press("attack")
-	await _frames(4)
+	await _frames(3)
 	Input.action_release("attack")
-	await _frames(14)
+	await _frames(15)   # the strike lands at 45% of the swing
 	await RenderingServer.frame_post_draw
 	_save_shot("combat_1")
+	await _frames(40)
 	c.cast_siddhi("ugra_rupa")
 	await _frames(20)
 	c.siddhi_ready.clear()
 	c.cast_siddhi("agni_astra")
-	await _frames(28)
+	await _frames(22)
 	await RenderingServer.frame_post_draw
 	_save_shot("combat_2")
+	# wind-up flash: a free dasyu walks up and starts its attack; shoot the moment it does
+	a.take_damage(99999.0)
+	var b = world.spawn_enemy("dasyu", o + Vector3(3.0, 0.3, -3.0))
+	c._set_lock(b)
+	for i in 600:
+		await get_tree().physics_frame
+		if not b.ai.action.is_empty():
+			break
+	await _frames(4)
+	await RenderingServer.frame_post_draw
+	_save_shot("combat_3")
+	# Dhyana: the hero sits down in lotus pose
+	b.take_damage(99999.0)
+	c.release_lock()
+	await _frames(60)
+	Input.action_press("meditate")
+	await _frames(45)
+	await RenderingServer.frame_post_draw
+	_save_shot("combat_4")
+	Input.action_release("meditate")
 	get_tree().quit(0)
 
 func _save_shot(nm: String) -> void:
@@ -160,6 +200,80 @@ func _smoke() -> void:
 	print("SMOKE ok: built %d regions with population in %d ms" % [n, Time.get_ticks_msec() - t0])
 	print("SMOKE ", "PASS" if fails == 0 else "FAILED (%d)" % fails)
 	get_tree().quit(1 if fails > 0 else 0)
+
+## Balance report (headless): for every enemy, a hero build that fits its level fights it with
+## light strikes only, every blow landing, no armour, no dodging. Prints how long the hero needs to
+## kill it and how long it needs to kill the hero. Ratio < 1 = the hero is faster. A fair fight is
+## roughly 0.6-1.0 for ordinary foes (dodging and blocking make up the difference) and 1.5-3 for bosses.
+const BALANCE_BUILDS := [
+	{"upto": 4, "stat": 1, "weapon": "lathi"},
+	{"upto": 8, "stat": 2, "weapon": "talwar_loha"},
+	{"upto": 15, "stat": 4, "weapon": "khanda_ispat"},
+	{"upto": 24, "stat": 6, "weapon": "talwar_krishnashila"},
+	{"upto": 99, "stat": 7, "weapon": "khanda_krishnashila"},
+]
+
+func _balance() -> void:
+	Game.new_game("Vira")
+	Game.hero.age = 20.0
+	var rows: Array = []
+	for eid in Data.enemies.keys():
+		var ed: Dictionary = Data.enemies[eid]
+		if bool(ed.get("ally", false)) or float(ed.get("hp", 0)) >= 9000.0 and not bool(ed.get("boss", false)):
+			continue
+		var lvl := int(ed.get("level", 1))
+		var build: Dictionary = BALANCE_BUILDS[BALANCE_BUILDS.size() - 1]
+		for b in BALANCE_BUILDS:
+			if lvl <= int(b["upto"]):
+				build = b
+				break
+		for s in Game.hero.stats.keys():
+			Game.hero.stats[s] = int(build["stat"])
+		if not Game.has(str(build["weapon"])):
+			Game.give(str(build["weapon"]), 1, true)
+		Game.equip(str(build["weapon"]))
+		Game.hero.hp = Game.hp_max()
+		var w: Dictionary = Data.item(str(build["weapon"]))
+		var spd := float(w.get("speed", 1.0))
+		var period := clampf(0.5 / spd, 0.2, 1.0)
+		var hit: float = float(w.get("dmg", 4)) * Game.melee_mult() * (1.0 - clampf(float(ed.get("def", 0.0)), 0.0, 0.9)) * 1.25   # 1.25 = average of the three combo strikes
+		var hero_ttk := ceilf(float(ed.get("hp", 1)) / hit) * period
+		var foe_hit: float = float(ed.get("dmg", 1)) * (1.0 - Game.dmg_reduction())
+		var foe_ttk := ceilf(Game.hp_max() / foe_hit) * float(ed.get("attack_cd", 1.2))
+		rows.append([lvl, eid, bool(ed.get("boss", false)), build["weapon"], int(build["stat"]), float(ed.get("hp", 0)), float(ed.get("dmg", 0)), hero_ttk, foe_ttk, hero_ttk / foe_ttk, Game.hp_max()])
+	rows.sort_custom(func(a, b) -> bool: return a[0] < b[0] or (a[0] == b[0] and str(a[1]) < str(b[1])))
+	print("%3s %-22s %-4s %-22s %4s %6s %5s %9s %9s %6s" % ["lvl", "enemy", "boss", "hero weapon", "stat", "hp", "dmg", "hero kills", "foe kills", "ratio"])
+	for r in rows:
+		print("%3d %-22s %-4s %-22s %4d %6.0f %5.0f %8.1fs %8.1fs %6.2f" % [r[0], r[1], "boss" if r[2] else "", r[3], r[4], r[5], r[6], r[7], r[8], r[9]])
+	get_tree().quit(0)
+
+## Taps an action the way a keyboard does: as an InputEvent, so Player._unhandled_input hears it.
+func _tap(action: String) -> void:
+	var down := InputEventAction.new()
+	down.action = action
+	down.pressed = true
+	Input.parse_input_event(down)
+	await _frames(3)
+	var up := InputEventAction.new()
+	up.action = action
+	up.pressed = false
+	Input.parse_input_event(up)
+	await _frames(2)
+
+## A spot on the ground about 1.5 m from `pos`, as level with it as possible (`pref` = the
+## direction to try first), so a scripted hero stands where a strike can reach.
+func _ground_beside(pos: Vector3, pref: Vector3) -> Vector3:
+	var best := pos
+	var best_gap := INF
+	var base := atan2(pref.z, pref.x)
+	for k in 8:
+		var a := base + float(k) * TAU / 8.0
+		var q: Vector3 = world.ground_pos(pos.x + cos(a) * 1.5, pos.z + sin(a) * 1.5, 0.2)
+		var gap := absf(q.y - pos.y)
+		if gap < best_gap - 0.05:
+			best_gap = gap
+			best = q
+	return best
 
 func _frames(n: int) -> void:
 	for i in n:
@@ -299,7 +413,105 @@ func _smoke_combat(p) -> int:
 	duel.take_damage(99999.0)
 	await _frames(3)
 	fails += _report(duel.dead and duel.hp == 1.0 and Game.flag("smoke_duel_won"), "Marmara yields and sets her flag")
-	# 8. every enemy type runs its AI for ten seconds against a hero who cannot die
+	# 8. potions: R and T drink the fitting elixir and never waste one
+	var notes: Array = []
+	Events.notify.connect(func(t, _k) -> void: notes.append(t))
+	for id in ["prana_rasa_laghu", "prana_rasa_laghu", "prana_rasa", "ojas_rasa", "vishahara"]:
+		Game.give(id, 1, true)
+	p.invulnerable = false
+	Game.hero.hp = 90.0
+	await _tap("potion_prana")
+	fails += _report(Game.count("prana_rasa_laghu") == 1 and Game.count("prana_rasa") == 1 and Game.hero.hp >= 99.9, "R with 10 Prana missing drinks the small elixir (hp %.0f)" % Game.hero.hp)
+	Game.hero.hp = 20.0
+	await _tap("potion_prana")
+	fails += _report(Game.count("prana_rasa") == 0 and Game.count("prana_rasa_laghu") == 1 and Game.hero.hp >= 99.9, "R with 80 missing takes the bigger elixir (hp %.0f)" % Game.hero.hp)
+	Game.hero.hp = Game.hp_max()
+	notes.clear()
+	await _tap("potion_prana")
+	fails += _report(Game.count("prana_rasa_laghu") == 1 and notes.has(Loc.t("UI_PRANA_FULL")), "R on full Prana wastes nothing and says so")
+	Game.hero.hp = 10.0
+	await _tap("potion_prana")
+	fails += _report(Game.count("prana_rasa_laghu") == 0 and Game.hero.hp > 49.0 and Game.hero.hp < 53.0, "R drinks the last small elixir (hp %.0f)" % Game.hero.hp)
+	notes.clear()
+	await _tap("potion_prana")
+	fails += _report(notes.has(Loc.t("UI_NO_PRANA_RASA")) and Game.count("vishahara") == 1, "R with no elixir says so and leaves the antidote alone")
+	Game.hero.ojas = 10.0
+	await _tap("potion_ojas")
+	fails += _report(Game.count("ojas_rasa") == 0 and Game.hero.ojas >= Game.ojas_max() - 0.1, "T drinks the Ojas elixir (ojas %.0f)" % Game.hero.ojas)
+	notes.clear()
+	Game.hero.ojas = 10.0
+	await _tap("potion_ojas")
+	fails += _report(notes.has(Loc.t("UI_NO_OJAS_RASA")), "T with no Ojas elixir says so")
+	Game.take("vishahara", 1)
+	Game.hero.hp = Game.hp_max()
+	Game.hero.ojas = Game.ojas_max()
+	# 9. Dhyana: hold H to sit, Ojas flows back four times faster, a seated hero neither walks nor
+	# fights, and a blow (or a roll) ends it
+	p.global_position = world.ground_pos(origin.x, origin.z, 0.2)
+	p.velocity = Vector3.ZERO
+	await _frames(10)
+	Game.hero.ojas = 0.0
+	Input.action_press("meditate")
+	await _frames(6)
+	fails += _report(c.is_meditating(), "holding H sits the hero down (Dhyana)")
+	var ojas0: float = Game.hero.ojas
+	var seat: Vector3 = p.global_position
+	Input.action_press("move_forward")
+	Input.action_press("attack")
+	await _frames(60)
+	Input.action_release("move_forward")
+	Input.action_release("attack")
+	var gain: float = Game.hero.ojas - ojas0
+	fails += _report(gain > Game.ojas_regen() * 3.0, "Ojas flows back %.1f in 1 s (normal %.1f)" % [gain, Game.ojas_regen()])
+	fails += _report(c.is_meditating() and c.combo_step == 0 and p.global_position.distance_to(seat) < 0.2 and p.model.position.y < -0.3, "seated: no walking, no swinging, body is low (y %.2f)" % p.model.position.y)
+	p.take_damage(5.0, "test", null, "hazard")
+	await _frames(10)
+	fails += _report(not c.is_meditating(), "a blow ends Dhyana, even with H still held")
+	Input.action_release("meditate")
+	await _frames(3)
+	Input.action_press("meditate")
+	await _frames(6)
+	fails += _report(c.is_meditating(), "pressing H again sits down again")
+	p._start_roll()
+	await _frames(3)
+	fails += _report(not c.is_meditating() and p.rolling, "a roll gets the hero up")
+	Input.action_release("meditate")
+	await _frames(60)
+	fails += _report(not c.is_meditating() and p.model.position.y > -0.05, "hero stands again (y %.2f)" % p.model.position.y)
+	Game.hero.hp = Game.hp_max()
+	# 10. Mushti Yuddha: bare fists are quick, and a kill with them gives more Bala tapas
+	Game.unequip("melee")
+	var fist: Dictionary = c.melee_profile()
+	fails += _report(float(fist["dmg"]) == 3.0 and float(fist["speed"]) > 1.5, "without a weapon the hero fights with fists (dmg %.0f, speed %.1f)" % [float(fist["dmg"]), float(fist["speed"])])
+	var bala_gain: Array = []
+	for use_fist in [false, true]:
+		var bala0 := int(Game.hero.tapas.get("bala", 0))
+		p.combat_mult = 0
+		var spar = world.spawn_enemy("marmara_sparring", origin + Vector3(3, 0.3, 0))
+		await _frames(3)
+		spar.take_damage(99999.0, p, "", {"fist": true} if use_fist else {})
+		await _frames(300)
+		bala_gain.append(int(Game.hero.tapas.get("bala", 0)) - bala0)
+	fails += _report(float(bala_gain[1]) > float(bala_gain[0]) * 1.35 and float(bala_gain[1]) < float(bala_gain[0]) * 1.65, "a fist kill gave %d Bala tapas against %d for any other kill" % [bala_gain[1], bala_gain[0]])
+	p.global_position = world.ground_pos(origin.x, origin.z, 0.2)
+	p.velocity = Vector3.ZERO
+	p.face_now(Vector3(0, 0, -1))
+	await _frames(5)
+	var keeta = world.spawn_enemy("keeta", origin + Vector3(0, 0.3, -1.2))
+	keeta.stationary = true
+	keeta.ai.cd["attack"] = 999.0
+	await _frames(3)
+	for i in 30:
+		if keeta.dead:
+			break
+		Input.action_press("attack")
+		await _frames(3)
+		Input.action_release("attack")
+		await _frames(20)
+	fails += _report(keeta.dead and keeta.last_hit_fist, "the hero killed a beetle with real fist blows")
+	await _frames(120)
+	Game.equip("lathi")
+	# 11. every enemy type runs its AI for ten seconds against a hero who cannot die
 	Game.hero.hp = 1000000.0
 	var all: Array = []
 	var ids := Data.enemies.keys()
@@ -328,7 +540,7 @@ func _smoke_combat(p) -> int:
 			e.queue_free()
 	world.enemies.clear()
 	await _frames(5)
-	# 9. dying and waking again
+	# 12. dying and waking again
 	Game.hero.hp = 30.0
 	p.invulnerable = false
 	p.take_damage(500.0, "test", null, "hazard")
@@ -337,6 +549,64 @@ func _smoke_combat(p) -> int:
 	world.respawn_player()
 	await _frames(3)
 	fails += _report(died and not p.dead and Game.hero.hp > 50.0, "the hero fell and woke again")
+	fails += await _smoke_marmara(p)
+	return fails
+
+## Marmara's graduation duel in her real region, fought with real staff strikes (the hero is
+## unhurtable here: this checks the flow, not the odds, which --balance covers).
+func _smoke_marmara(p) -> int:
+	var fails := 0
+	var c = p.combat
+	Game.hero.age = 20.0
+	Game.equip("lathi")
+	# the death panel of the previous check let go of the mouse; the overlay normally takes it back
+	p.capture_mouse()
+	Game.set_flag("marmara_duel_started", true)
+	world.build_region("vira_akhara", "")
+	await _frames(30)
+	var duel = null
+	for e in world.enemies:
+		if is_instance_valid(e) and e.enemy_id == "marmara_sparring":
+			duel = e
+	fails += _report(duel != null and duel.nonlethal and duel.is_boss, "Marmara waits on the training field once the duel has begun")
+	if duel == null:
+		return fails
+	Game.hero.hp = Game.hp_max()
+	p.invulnerable = true
+	var tapas0 := int(Game.hero.tapas_total)
+	var swings := 0
+	for i in 4000:
+		await get_tree().physics_frame
+		if duel.dead:
+			break
+		var to: Vector3 = duel.global_position - p.global_position
+		to.y = 0.0
+		if to.length() > 2.2 or absf(duel.global_position.y - p.global_position.y) > 1.0:
+			p.global_position = _ground_beside(duel.global_position, -to)
+			p.velocity = Vector3.ZERO
+			to = duel.global_position - p.global_position
+			to.y = 0.0
+		p.face_now(to)
+		if i % 40 == 0:
+			Input.action_press("attack")
+			swings += 1
+		elif i % 40 == 3:
+			Input.action_release("attack")
+	Input.action_release("attack")
+	fails += _report(duel.dead and duel.hp == 1.0, "Marmara yields at 1 hp after %d real strikes instead of dying" % swings)
+	fails += _report(Game.flag("marmara_duel_won"), "her yielding sets marmara_duel_won (the quest condition)")
+	p.invulnerable = false
+	var hp_after: float = Game.hero.hp
+	await _frames(300)
+	fails += _report(not p.dead and Game.hero.hp >= hp_after - 0.01, "she does not hit the hero after yielding")
+	fails += _report(int(Game.hero.tapas_total) > tapas0, "the duel paid out tapas (+%d)" % (int(Game.hero.tapas_total) - tapas0))
+	world.build_region("vira_akhara", "")
+	await _frames(30)
+	var again := false
+	for e in world.enemies:
+		if is_instance_valid(e) and e.enemy_id == "marmara_sparring":
+			again = true
+	fails += _report(not again, "she does not come back when the region is rebuilt")
 	return fails
 
 func _check_scripts() -> void:

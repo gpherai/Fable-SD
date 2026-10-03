@@ -443,10 +443,11 @@ func on_enemy_died(en: Node) -> void:
 		return
 	# tapas orbs scaled by combat multiplier
 	var mult := 1.0 + 0.1 * float(player.combat_mult)
+	var bala_mult := mult * (Game.FIST_BALA_MULT if en.last_hit_fist else 1.0)
 	var t: Dictionary = ed.get("tapas", {})
 	Effects.tapas_orbs(self, pos, {
 		"general": int(round(float(t.get("general", 0)) * mult)),
-		"bala": int(round(float(t.get("bala", 0)) * mult)),
+		"bala": int(round(float(t.get("bala", 0)) * bala_mult)),
 		"kaushala": int(round(float(t.get("kaushala", 0)) * mult)),
 		"shakti": int(round(float(t.get("shakti", 0)) * mult))})
 	var g: Array = ed.get("gold", [0, 0])

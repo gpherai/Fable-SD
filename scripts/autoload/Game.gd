@@ -6,6 +6,7 @@ extends Node
 const SAVE_DIR := "user://saves"
 const KARMA_MIN := -1000
 const KARMA_MAX := 1000
+const FIST_BALA_MULT := 1.5   # Mushti Yuddha: a kill with bare fists gives this much more Bala tapas
 const ARMOR_SLOTS := ["head", "chest", "hands", "legs", "feet"]
 const EQUIP_SLOTS := ["melee", "ranged", "head", "chest", "hands", "legs", "feet", "hair", "beard", "tattoo"]
 
@@ -559,6 +560,53 @@ func use_item(item_id: String) -> bool:
 	if consume:
 		take(item_id, 1)
 	Events.hero_changed.emit()
+	return true
+
+## Elixirs that restore `stat_key` ("heal" = Prana, "ojas"): {item id: amount}. Antidotes (cure)
+## are left out, they are for poison.
+func potions_for(stat_key: String) -> Dictionary:
+	var out := {}
+	for id in hero.inventory.keys():
+		var it := Data.item(id)
+		var u: Dictionary = it.get("use", {})
+		if it.get("cat", "") == "potion" and u.has(stat_key) and not u.has("cure"):
+			out[id] = float(u[stat_key])
+	return out
+
+func potion_count(stat_key: String) -> int:
+	var n := 0
+	for id in potions_for(stat_key).keys():
+		n += count(id)
+	return n
+
+## The elixir a hotkey drinks: the smallest one that fills what is missing, else the biggest.
+func best_potion(stat_key: String) -> String:
+	var missing := (hp_max() - float(hero.hp)) if stat_key == "heal" else (ojas_max() - float(hero.ojas))
+	var best := ""
+	var best_amt := 0.0
+	for id in potions_for(stat_key).keys():
+		var amt: float = potions_for(stat_key)[id]
+		var fits := amt >= missing
+		var best_fits := best_amt >= missing
+		if best == "" or (fits and (not best_fits or amt < best_amt)) or (not fits and not best_fits and amt > best_amt):
+			best = id
+			best_amt = amt
+	return best
+
+## R / T: drink an elixir for Prana ("heal") or Ojas ("ojas"). Never wastes one on a full bar.
+func quaff(stat_key: String) -> bool:
+	var is_prana := stat_key == "heal"
+	var missing := (hp_max() - float(hero.hp)) if is_prana else (ojas_max() - float(hero.ojas))
+	if missing < 1.0:
+		Events.notify.emit(Loc.t("UI_PRANA_FULL" if is_prana else "UI_OJAS_FULL"), "info")
+		return false
+	var id := best_potion(stat_key)
+	if id == "":
+		Events.notify.emit(Loc.t("UI_NO_PRANA_RASA" if is_prana else "UI_NO_OJAS_RASA"), "bad")
+		return false
+	if not use_item(id):
+		return false
+	Events.notify.emit(Loc.t("UI_DRANK", {"name": Loc.t(Data.item(id)["name"])}), "item")
 	return true
 
 # ---------- augmentation gems ----------
