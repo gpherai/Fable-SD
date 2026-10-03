@@ -7,7 +7,7 @@ Oorsprong: op 2026-10-02 gebouwd door Haiku in een Claude cloud-sessie ("Initial
 game foundation", één commit). Remote: github.com/gpherai/Fable-SD, branch
 `ccr-53906461-obn4mq` (er is geen `main`).
 
-## Staat: het spel start, je kunt rondlopen en vechten (MVP stap 1 en 2 klaar, 2026-10-03)
+## Staat: het spel heeft menu's, HUD, dialoog en winkels (MVP stap 1, 2 en 3 klaar, 2026-10-03)
 
 Fundament (door Haiku in de cloud-sessie): data, wereldgeneratie, quests, audio-synthese,
 lokalisatie, shaders. Daarbovenop is nu geschreven (MVP stap 1):
@@ -27,11 +27,10 @@ lokalisatie, shaders. Daarbovenop is nu geschreven (MVP stap 1):
 - `scripts/entities/Projectile.gd`: rechte vlucht, sterft op terrein/bereik, meldt contact via
   `cfg.on_hit` (Callable). Schade-afhandeling hoort bij stap 2.
 - `scripts/combat/Effects.gd`: tapas- en goudorbs die naar de speler vliegen (`Effects.Orb`).
-- `scripts/ui/DebugOverlay.gd`: TIJDELIJKE tekst-overlay (regio, hp, goud, hint, meldingen). Wordt
-  vervangen door de echte HUD in stap 3.
-- `scripts/Main.gd`: zonder argumenten start hij direct een nieuw spel (`Game.new_game("Vira")`, tijdelijk
-  tot het hoofdmenu er is). Testhaken: `--validate`, `--check-scripts`, `--gen-test`, `--smoke`,
-  `--shot <regio>`, `--game-shot` (venster, slaat `screenshots/game.png` op).
+- `scripts/ui/`: de interface (stap 3, zie hieronder). `DebugOverlay` bestaat niet meer.
+- `scripts/Main.gd`: zonder argumenten toont hij het hoofdmenu; `start_new(naam)`, `load_slot(n)` en `to_title()` zijn de
+  levenscyclus (wereld weggooien en opnieuw bouwen). Testhaken: `--validate`, `--check-scripts`, `--gen-test`, `--smoke`,
+  `--balance`, `--shot <regio>`, `--game-shot`, `--combat-shot`, `--ui-shot` (venster, schermafbeeldingen in `screenshots/`).
 - `World.gd`: zes typefouten opgelost (expliciete types i.p.v. `:=` op ongetypeerde waarden) en
   `Game.world = self` gezet in `_ready` (dat ontbrak; `Game.set_flag` e.d. hangen eraan).
 
@@ -55,14 +54,11 @@ lokalisatie, shaders. Daarbovenop is nu geschreven (MVP stap 1):
   en 1,5-3 voor bazen. Bijgesteld: `marmara_sparring` hp 140 -> 120 (ratio 1,23 -> ~1,05 met alleen een lathi) en `dvikhadga` hp 1400 -> 1100
   (3,08 -> ~2,4). Speler-hp 100 tegenover vijand-dmg 90 is geen probleem zolang je meegroeit: een held met stat 7 heeft 310 hp en 36% minder schade.
   Multiplier-cap 10 (= 2x tapas) is zo gelaten.
-- `DebugOverlay` is nog tijdelijk: toont nu ook drankjes en "(mediteert)", en herstelt de speler 4 s na de dood (echt dood-scherm = stap 3).
-- Rooktest (`--smoke`) dekt nu ook drankjes, Dhyana, vuisten en Marmara's duel in haar echte regio met echte slagen (47 controles);
+- Rooktest (`--smoke`) dekt drankjes, Dhyana, vuisten, Marmara's duel en (stap 3) de hele interface (67 controles);
   `tools/check.sh` faalt bij runtime SCRIPT ERROR. Stand: alles groen.
 - `--combat-shot` (venster, host) maakt `screenshots/combat_1..4.png` (slag, siddhi's, telegraaf-flits, Dhyana). Schermshots isoleren
   het venster van echte muis/toetsen (`_isolate_window`), zodat meespelen de run niet verstoort (op Wayland niet bewezen: blijf er af tijdens een run).
-- Let op voor stap 3: het dood-paneel (`panel_requested`) laat de muis los (`controls_on = false`); iets in de UI moet na de respawn
-  `Player.capture_mouse()` aanroepen, zoals DebugOverlay nu doet. De held start in vira_akhara (entry "") op een richel 2,2 m boven het oefenveld:
-  niet onderzocht of dat bij echte aankomst via een uitgang ook zo is.
+- De held start in vira_akhara (entry "") op een richel 2,2 m boven het oefenveld: niet onderzocht of dat bij echte aankomst via een uitgang ook zo is.
 
 ### Proefspel-checklist (alleen Gerald kan dit doen: echte muis en toetsen)
 
@@ -77,7 +73,29 @@ Start het spel op de host en loop dit af; schrijf op wat raar voelt:
 8. Marmara: zet `Game.set_flag("marmara_duel_started")` en ga naar `vira_akhara`; ze geeft zich over op 1 hp.
 Vragen om op te letten: voelt de parry-timing eerlijk? is het blokkeren te sterk/zwak? is de camera bij Tab-lock prettig? zijn de vijanden te snel of te hard?
 
-Wat er NOG NIET is: HUD, menu's, dialoogvenster, dood-scherm, hoofdmenu (stap 3).
+## MVP stap 3 klaar (2026-10-03): de interface (`scripts/ui/`)
+
+- **Opbouw**: `UI.gd` (beheer, in Main) bezit de HUD en hoogstens één modaal paneel. Een open paneel pauzeert de wereld
+  (`get_tree().paused`), maakt de muis vrij en zet `Game.paused_for_ui`; sluiten geeft alles terug (muis vast, `combat.ignore_held_buttons()`).
+  Alle UI-nodes draaien met `process_mode ALWAYS`. Panelen zijn `scripts/ui/panels/*.gd` (basis `UIPanel.gd`: venster, titel, `build()`,
+  `rebuild()` bij `hero_changed`). `UITheme.gd` = kleuren, Theme en bouwhulpjes (alles uit code, geen afbeeldingen).
+  Nieuw paneel = bestand + regel in `UI.PANELS`. Knoppen hebben `focus_mode NONE` (Spatie/Enter zijn spelertoetsen).
+- **HUD** (`HUD.gd`): Prana/Ojas, goud, tapas, multiplier, regio/dag/tijd, gevolgde opdracht, doelwit-balk, buffs, 6 siddhi-slots met
+  cooldown, drankjes R/T, houding, berichten (`notify`), banner bij nieuwe regio/baas, `[E]`-hint, richtkruis, rode flits bij schade.
+- **Toetsen**: Esc pauze, I inventaris/uitrusting, Q opdrachten, P sadhana, O siddhi's (hotbar), X mudra's, M kaart, C codex, F1 besturing,
+  F5/F9 snel opslaan/laden (slot 0). Dezelfde toets sluit het paneel weer.
+- **Menu's**: hoofdmenu (Verder, Nieuw spel met naam + intro, Laden, Instellingen, Besturing), pauzemenu (opslaan/laden in 5 slots, instellingen,
+  codex, naar titel met bevestiging), instellingen worden in `user://saves/settings.json` bewaard.
+- **Game-panelen** (`panel_requested`): death (verschijnt 1,2 s na de dood; "Sta weer op" = `World.respawn_player()`), dialogue, cutscene,
+  boasts, yaksha, marmara_choice, map (Tirtha: reizen alleen bij een poort), trainer, shop, gift, shrine, sadhana.
+- **Dialoog** (`DialoguePanel.gd`): eerste node waarvan `when` klopt; `effects` bij start; keuzes met `when`/effecten/`lines`/`end`. Een keuze met
+  een effect (zoals een opdracht starten) of `end` sluit het gesprek na zijn antwoord; een keuze met alleen een antwoord keert terug naar de lijst.
+  Het gesprek wordt 150 ms genegeerd na openen, zodat de E die het opende niet ook "verder" drukt.
+- **Door mij bedacht, niet in de data** (pas aan als Gerald het anders wil): Yaksha-regels (`YakshaPanel.gd` voert de `demand`-types uit en beloont),
+  schrijn-regels (Dharma: 1 karma per 20 goud, bij 5000 totaal vlag `mandir_daan_5000`; Asura: 's nachts 3 Preta-botten + 1000 goud, vlag
+  `andhaka_bali_done`), Marmara-keuze (sparen +40 karma/+30 yasha, vlag `marmara_spared`; doden -60 karma, vlag `marmara_killed`; geen verhaalgevolg).
+- **Bekend**: de kamandalu (`refill`) wordt bij gebruik opgebruikt (navulmechaniek bestaat niet); de kaart is een lijst (geen getekende kaart);
+  glyphs zoals ◆ ✓ ▸ renderen op de host, niet getest op andere systemen.
 
 Wat Haiku als "afgerond" opgaf maar **ongetest** is: save/load, arena-waves, dag/nacht, shrines,
 vissen/graven, followers, bossbalans. De rooktest raakt alleen start, lopen, vijand doden + orbs,
@@ -87,9 +105,9 @@ projectiel en het opbouwen van alle 48 regio's. Vertrouw de rest niet zonder het
 
 `tools/check.sh <godot-binary>` compileert alle scripts, valideert de data en bouwt alle
 48 regio's en draait daarna de rooktest (`--smoke`: start, lopen, vijand doden met orbs, projectiel,
-combat, drankjes, Dhyana, vuisten, Marmara's duel, alle 48 regio's bevolkt). Laatste stand (2026-10-03):
-scripts 22/22 ok, data 0 fouten, regio's ok (~22.000 nodes), rooktest PASS (47 controles). Exit-code 0 = alles groen.
-Losse hooks: `--balance` (balansrapport), `--combat-shot` / `--game-shot` (venster, screenshots).
+combat, drankjes, Dhyana, vuisten, Marmara's duel, de interface, alle 48 regio's bevolkt). Laatste stand (2026-10-03):
+scripts 48/48 ok, data 0 fouten, regio's ok (~22.000 nodes), rooktest PASS (67 controles). Exit-code 0 = alles groen.
+Losse hooks: `--balance` (balansrapport), `--combat-shot` / `--game-shot` / `--ui-shot` (venster, screenshots; op de host met `XDG_RUNTIME_DIR=/run/user/1000 WAYLAND_DISPLAY=wayland-0 godot --display-driver wayland`).
 Scratch-run op de host: rsync de repo naar `laptop:~/.cache/fable-sd-check` (excl. .git/.godot/screenshots), daar `tools/check.sh` draaien.
 
 Godot-binaries:
@@ -118,17 +136,9 @@ Godot-binaries:
 Project `fable-sd` (silo labs, status early-development), initiative `speelbare-mvp`. Gebruik de
 `project-center`-MCP (`get_project_context fable-sd`) voor het actuele bord. Stand bij overdracht:
 
-Sectie **MVP speelbaar** (P1, op volgorde):
-1. Entity-scripts schrijven (Player, NPC, Enemy, Projectile, Effects) zodat het project compileert,
-   `tools/check.sh` groen is en `Main.tscn` start.
-2. Combat (damage, knockback, effecten) en NPC/Enemy-AI (patrouille, agro, aanvalstiming), op basis
-   van `data/enemies.json` en `data/moves.json`. Wacht op 1.
-3. UI: health/mana-HUD, inventory, quest log, equipment-menu, hoofdmenu, regio-overgangen/spawn-logica.
-   Wacht op 1.
-
-Sectie **Na MVP**: bestaande systemen testen (dialoog, save/load, arena, dag/nacht, shrines,
-minigames, rewards, followers, bosses), daarna polish (animaties, geluid, effecten, performance,
-grasmesh-culling). Wacht op 2 en 3.
+Sectie **MVP speelbaar**: stap 1, 2 en 3 klaar; open blijft "Proefspelen met echte muis en toetsen" (Gerald, ook voor de nieuwe UI).
+Sectie **Na MVP**: bestaande systemen testen (dialoog nu bruikbaar via de UI, save/load deels getest in de rooktest, arena, dag/nacht, shrines,
+minigames, followers, bosses), polish (animaties, geluid, effecten, performance) en visuals/assets mooier maken.
 
 Zet todo's in PCC op `completed` zodra ze klaar zijn en leg niet-afleidbare besluiten vast in
 `.project/state.md` of `.project/notes.md`.

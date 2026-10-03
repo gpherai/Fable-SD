@@ -294,3 +294,101 @@ UI_OJAS_FULL,Ojas is already full.,Je Ojas is al vol.
 UI_NO_PRANA_RASA,No Prana elixir left.,Geen Prana-rasa meer.
 UI_NO_OJAS_RASA,No Ojas elixir left.,Geen Ojas-rasa meer.
 UI_DRANK,You drink {name}.,Je drinkt {name}.
+HUD_BUFF_DAMAGE,Strength,Kracht
+HUD_BUFF_SPEED,Swiftness,Snelheid
+HUD_BUFF_OJAS,Ojas flow,Ojas-stroom
+HUD_BUFF_UGRA,Ugra Rupa,Ugra Rupa
+GAME_TITLE,Vira of Jambudvipa,Vira van Jambudvipa
+UI_SURE,Are you sure?,Zeker weten?
+UI_CONFIRM_TITLE,Unsaved progress is lost. Click again to confirm.,Niet-opgeslagen voortgang gaat verloren. Klik nogmaals om te bevestigen.
+UI_QUICK_SLOT,Quick save / autosave,Snelopslag / automatisch
+UI_SAVE_GAME,Save game,Spel opslaan
+UI_LOAD_GAME,Load game,Spel laden
+UI_NO_SAVES,No saved games yet.,Nog geen opgeslagen spellen.
+UI_SHOW_FPS,Show frames per second,Toon beelden per seconde
+UI_LOAD_FAILED,Could not load that save.,Kon die opslag niet laden.
+UI_SAVE_FAILED,Could not save the game.,Kon het spel niet opslaan.
+UI_RESTART_REGION,Graphics quality applies from the next region.,Grafische kwaliteit werkt vanaf de volgende regio.
+UI_NAME_EMPTY,Vira,Vira
+UI_CONTINUE_DIALOGUE,Continue,Verder
+UI_CLICK_CONTINUE,Click or press Space to continue (Esc = skip),Klik of druk op Spatie om verder te gaan (Esc = overslaan)
+UI_DEATH_LOAD,Load last save,Laad laatste opslag
+UI_BOAST_ARMOR_ON,Take off your armour first.,Leg eerst je pantser af.
+UI_BOAST_ACCEPT,Accept the commission,Aanvaard de opdracht
+UI_BOAST_REWARD,"If kept: +{gold} gold, +{yasha} renown","Bij naleving: +{gold} goud, +{yasha} roem"
+UI_YAKSHA_WATCHES,Eat something sattvic while the Yaksha watches:,Eet iets sattvisch terwijl de Yaksha toekijkt:
+UI_YAKSHA_NO_SATTVA,You carry nothing sattvic to eat.,Je draagt niets sattvisch bij je om te eten.
+UI_YAKSHA_DRINK,Drink something:,Drink iets:
+UI_YAKSHA_SHOW,Show yourself,Toon jezelf
+UI_YAKSHA_SHOW_GOLD,Show your gold,Toon je goud
+UI_YAKSHA_GIVE,Give {name},Geef {name}
+UI_YAKSHA_NIGHT_ONLY,(only at night),(alleen 's nachts)
+UI_YAKSHA_PERFORM,Perform {name},Voer {name} uit
+UI_YAKSHA_LEAVE,Leave,Weggaan
+UI_MARMARA_TITLE,Marmara lies in the sand,Marmara ligt in het zand
+UI_MARMARA_TEXT,"The crowd screams for blood. Marmara looks up at you, with no fear, and waits. What do you do?","Het publiek schreeuwt om bloed. Marmara kijkt naar je op, zonder angst, en wacht. Wat doe je?"
+UI_MARMARA_SPARE,Spare her. (Dharma),Spaar haar. (Dharma)
+UI_MARMARA_KILL,Give the crowd its blood. (Adharma),Geef het publiek zijn bloed. (Adharma)
+UI_MARMARA_SPARED,You lower your weapon. Marmara grins in the dust.,Je laat je wapen zakken. Marmara grijnst in het stof.
+UI_MARMARA_KILLED,The sand drinks. The crowd roars. Something in you goes quiet.,Het zand drinkt. Het publiek brult. Iets in jou wordt stil.
+UI_EQUIPPED,equipped,uitgerust
+UI_REDUCTION,Damage reduction,Schadevermindering
+UI_MELEE_POWER,Melee power,Nabijgevechtskracht
+UI_RANGED_POWER,Ranged power,Afstandskracht
+UI_SIDDHI_POWER,Siddhi power,Siddhi-kracht
+UI_MOVE_SPEED,Movement,Beweging
+UI_NO_ITEMS,Nothing here.,Niets hier.
+UI_SELECT_ITEM,Select an item.,Kies een voorwerp.
+UI_CANNOT_DROP,This cannot be dropped.,Dit kun je niet weggooien.
+UI_GEM_FREE,Free sockets: {n},Vrije vattingen: {n}
+UI_GIFT_FOR,Gift (affection +{n}),Geschenk (genegenheid +{n})
+UI_PRESTIGE,Renown when shown,Roem bij tonen
+UI_TWO_HANDED,Two-handed,Tweehandig
+UI_BASE_STATS,Hero,Held
+UI_EQUIP_SLOTS,Worn,Gedragen
+UI_ITEM_AUG,Gem effect,Edelsteeneffect
+UI_QUEST_GIVER,Given by,Gegeven door
+UI_QUEST_DESC,Story,Verhaal
+UI_QUEST_VOWS_KEPT,kept,nageleefd
+UI_QUEST_VOWS_BROKEN,broken,gebroken
+UI_QUEST_TRACKED,Tracked,Gevolgd
+UI_MAP_AT_GATE,Choose a destination.,Kies een bestemming.
+UI_MAP_EXITS,Paths from here,Wegen vanaf hier
+UI_MAP_TIRTHAS,Tirtha gates,Tirtha-poorten
+UI_MAP_NO_TIRTHAS,No Tirtha gate unlocked yet.,Nog geen Tirtha-poort ontgrendeld.
+UI_MAP_DIR_N,North,Noord
+UI_MAP_DIR_S,South,Zuid
+UI_MAP_DIR_E,East,Oost
+UI_MAP_DIR_W,West,West
+UI_STAT_POINTS,Raise with,Verhogen met
+UI_STAT_MAXED,Mastered,Meester
+UI_TAPAS_POOL,Available for this:,Beschikbaar hiervoor:
+UI_YEARS_OLD,{n} years old,{n} jaar oud
+UI_KARMA_TITLE,Karma,Karma
+UI_PANTH_NONE,You walk no Panth yet.,Je loopt nog geen Panth.
+UI_HERO_SUMMARY,Life,Leven
+UI_FOUND_KEYS,Silver keys,Zilveren sleutels
+UI_HOTBAR_HINT,Click a number to put the siddhi on that key. Click again to clear it.,Klik op een cijfer om de siddhi op die toets te zetten. Klik nogmaals om te wissen.
+UI_NO_SIDDHIS,You know no siddhi yet. Find a teacher.,Je kent nog geen siddhi. Zoek een leraar.
+UI_SIDDHI_KNOWN,Known,Bekend
+UI_SIDDHI_COOLDOWN,Cooldown,Afkoeltijd
+UI_SIDDHI_NEXT,Next level,Volgend niveau
+UI_SIDDHI_LEARN_COST,{n} tapas,{n} tapas
+UI_TRAINER_PANTH,Path of initiation,Pad van inwijding
+UI_TRAINER_NONE,This teacher has nothing more to teach.,Deze leraar heeft je niets meer te leren.
+UI_MUDRA_PERFORMED,You make the gesture: {name},Je maakt het gebaar: {name}
+UI_MUDRA_KNOWN,Known,Bekend
+UI_CODEX_EMPTY,Nothing to show.,Niets te tonen.
+UI_SHOP_BUY_TAB,For sale,Te koop
+UI_SHOP_SELL_TAB,Your goods,Jouw spullen
+UI_SHOP_NOTHING_TO_SELL,You have nothing to sell.,Je hebt niets te verkopen.
+UI_SOLD,Sold {name} for {n} gold.,{name} verkocht voor {n} goud.
+UI_BOUGHT,Bought {name}.,{name} gekocht.
+UI_GIFT_GIVEN,{name} gladly accepts {item}.,{name} neemt {item} dankbaar aan.
+UI_GIFT_PICK,Choose a gift for {name}:,Kies een geschenk voor {name}:
+UI_SHRINE_DHARMA,Temple of light,Tempel van het licht
+UI_SHRINE_ASURA,Altar of Andhaka,Altaar van Andhaka
+UI_SHRINE_DHARMA_TEXT,Whoever gives with an open hand purifies their karma.,"Wie met open hand geeft, zuivert zijn karma."
+UI_SHRINE_ASURA_TEXT,"At night, three Preta bones and a thousand gold. The altar asks no more, and forgives nothing.","'s Nachts, drie Preta-botten en duizend goud. Het altaar vraagt niet meer, en vergeeft niets."
+UI_SHRINE_DONE,Offering made.,Offer gebracht.
+UI_SHRINE_NEED_BONES,You lack the Preta bones.,Je mist de Preta-botten.

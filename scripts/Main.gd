@@ -1,24 +1,29 @@
 extends Node
-## Entry point. Without arguments it starts a new game; with test hooks it runs a headless
+## Entry point. Without arguments it shows the main menu; with test hooks it runs a headless
 ## check instead (--validate, --check-scripts, --gen-test, --smoke, --balance, --shot <region>, --game-shot,
 ## --combat-shot).
 
 const WorldGen = preload("res://scripts/world/WorldGen.gd")
 const WorldScript = preload("res://scripts/world/World.gd")
-const DebugOverlay = preload("res://scripts/ui/DebugOverlay.gd")
+const UIScript = preload("res://scripts/ui/UI.gd")
 
 var world: Node3D
+var ui: Node
 
 func _ready() -> void:
 	var args := OS.get_cmdline_user_args()
-	if args.is_empty() or "--game-shot" in args or "--combat-shot" in args:
+	if args.is_empty():
+		_make_ui()
+		ui.open("title")
+	elif "--game-shot" in args or "--combat-shot" in args or "--ui-shot" in args:
 		_start_game()
-		if not args.is_empty():
-			_isolate_window()
+		_isolate_window()
 		if "--game-shot" in args:
 			_game_shot()
 		elif "--combat-shot" in args:
 			_combat_shot()
+		else:
+			_ui_shot()
 	elif "--smoke" in args:
 		_smoke()
 	elif "--balance" in args:
@@ -33,14 +38,80 @@ func _ready() -> void:
 		var i := args.find("--shot")
 		_shot(args[i + 1] if i + 1 < args.size() else "vatagram")
 
-## Temporary: starts a fresh hero straight away until the main menu exists.
-func _start_game() -> void:
-	Game.new_game("Vira")
+# =====================================================================
+# Starting, loading and leaving a game (the menus call these)
+# =====================================================================
+func _make_ui() -> void:
+	if ui != null:
+		return
+	ui = UIScript.new()
+	ui.name = "UI"
+	ui.main = self
+	add_child(ui)
+
+func _make_world() -> void:
 	world = WorldScript.new()
 	world.name = "World"
 	add_child(world)
-	add_child(DebugOverlay.new())
+
+## Throws the running world away (hero, region, enemies and all). Nothing of the game survives but Game's data.
+func _drop_world() -> void:
+	if world != null and is_instance_valid(world):
+		remove_child(world)
+		world.queue_free()
+	world = null
+	Game.world = null
+	Game.player = null
+	Game.arena_running = false
+	Audio.stop_ambient()
+
+## New game: name entered in the menu, then the story intro.
+func start_new(hero_name: String) -> void:
+	_make_ui()
+	_drop_world()
+	ui.close_all()
+	Game.new_game(hero_name)
+	_make_world()
 	world.start_game()
+	ui.hud.visible = true
+	var cs: Dictionary = Data.misc.get("cutscenes", {}).get("intro", {})
+	if not cs.is_empty():
+		ui.open("cutscene", {"title": Loc.t(cs.get("title", {})), "pages": cs.get("pages", []), "on_done": Callable()})
+
+## Loads a save slot (from the title screen, the pause menu or F9) and puts the hero back where they stood.
+func load_slot(slot: int) -> void:
+	_make_ui()
+	if not Game.has_save(slot):
+		Events.notify.emit(Loc.t("UI_SLOT_EMPTY"), "bad")
+		return
+	_drop_world()
+	ui.close_all()
+	if not Game.load_game(slot):
+		Events.notify.emit(Loc.t("UI_LOAD_FAILED"), "bad")
+		Game.in_game = false
+		ui.open("title")
+		return
+	Game.state["restore_pos"] = true
+	_make_world()
+	world.start_game()
+	ui.hud.visible = true
+	Events.notify.emit(Loc.t("UI_LOADED"), "info")
+
+func to_title() -> void:
+	_make_ui()
+	ui.close_all()
+	_drop_world()
+	Game.in_game = false
+	ui.hud.visible = false
+	ui.open("title")
+
+## Shot runs (--game-shot, --combat-shot, --ui-shot): a fresh hero straight away, no menu.
+func _start_game() -> void:
+	_make_ui()
+	Game.new_game("Vira")
+	_make_world()
+	world.start_game()
+	ui.hud.visible = true
 
 ## Windowed only: lets the world settle, saves a screenshot of the real game view, quits.
 func _game_shot() -> void:
@@ -124,6 +195,62 @@ func _combat_shot() -> void:
 	Input.action_release("meditate")
 	get_tree().quit(0)
 
+## Windowed only: the HUD and the panels as screenshots (screenshots/ui_*.png), with a hero who
+## has something to show. Look at them to judge layout, colours and whether the glyphs render.
+func _ui_shot() -> void:
+	var p = Game.player
+	Game.hero.age = 20.0
+	Game.hero.gold = 1234
+	Game.hero.karma = 240
+	Game.hero.yasha = 130
+	Game.hero.tapas = {"general": 800, "bala": 420, "kaushala": 150, "shakti": 610}
+	Game.hero.tapas_total = 2400
+	for id in ["prana_rasa", "prana_rasa", "ojas_rasa", "talwar_loha", "dhanush_loha", "gramin_kurta", "gramin_dhoti", "hira", "veda_samhita", "phala", "phala", "laddu", "kamandalu", "tripundra"]:
+		Game.give(id, 1, true)
+	Game.equip("talwar_loha")
+	Game.equip("gramin_kurta")
+	for sid in ["agni_astra", "ugra_rupa", "kavacha", "sanjivani"]:
+		Game.learn_siddhi(sid, true)
+	Game.hero.hp = 64.0
+	Game.hero.ojas = 38.0
+	Game.state.quests["q_diksha"] = {"state": "active", "stage": 0, "counters": {}, "boasts": [], "broken": [], "mudras": [], "start_day": 1}
+	Game.state.quests["q_dasyu_hamla"] = {"state": "active", "stage": 0, "counters": {"kill": 2}, "boasts": ["no_potion"], "broken": [], "mudras": [], "start_day": 1}
+	Game.state.quests["q_rangabhumi"] = {"state": "done", "stage": 1, "counters": {}, "boasts": [], "broken": [], "mudras": [], "start_day": 1}
+	Game.add_buff("damage", 1.25, 40.0)
+	await _frames(90)
+	var e = world.spawn_enemy("dasyu", p.global_position + Vector3(0.0, 0.3, -6.0))
+	e.stationary = true
+	p.combat._set_lock(e)
+	Events.notify.emit("+120 goud", "gold")
+	Events.notify.emit("Opdracht gestart: Diksha", "quest")
+	Events.notify.emit("Vrucht x2", "item")
+	Events.interact_hint.emit(Loc.t("HINT_TALK", {"name": "Bhimnath"}))
+	Events.player_damaged.emit(30.0)
+	await _frames(20)
+	await RenderingServer.frame_post_draw
+	_save_shot("ui_hud")
+	var list := [
+		["ui_inventory", "inventory", null], ["ui_quests", "quests", null], ["ui_sadhana", "sadhana", null],
+		["ui_siddhis", "siddhis", null], ["ui_mudras", "mudras", null], ["ui_map", "map", "tirtha"],
+		["ui_codex", "codex", null], ["ui_pause", "pause", null], ["ui_settings", "settings", null],
+		["ui_saves", "saves", {"mode": "save"}], ["ui_controls", "controls", null], ["ui_trainer", "trainer", "bhimnath"],
+		["ui_shop", "shop", "akhara_vaidya"], ["ui_dialogue", "dialogue", "bhimnath"], ["ui_yaksha", "yaksha", {"door": "yaksha_akhara_vana"}],
+		["ui_boasts", "boasts", "q_dasyu_hamla"], ["ui_shrine", "shrine", "dharma"], ["ui_death", "death", null],
+		["ui_cutscene", "cutscene", {"title": Loc.t(Data.misc.cutscenes.intro.title), "pages": Data.misc.cutscenes.intro.pages, "on_done": Callable()}],
+		["ui_title", "title", null],
+	]
+	for entry in list:
+		var panel = ui.open(entry[1], entry[2])
+		await _ui_frames(12)
+		if entry[1] == "dialogue":
+			panel._text_lbl.visible_ratio = 1.0
+		await _ui_frames(2)
+		await RenderingServer.frame_post_draw
+		_save_shot(entry[0])
+		ui.close(panel, false)
+		await _ui_frames(2)
+	get_tree().quit(0)
+
 func _save_shot(nm: String) -> void:
 	var img := get_viewport().get_texture().get_image()
 	DirAccess.make_dir_recursive_absolute("res://screenshots")
@@ -189,6 +316,9 @@ func _smoke() -> void:
 		fails += 1
 	# combat: strikes, enemy attacks, block and parry, bow, siddhis, every enemy type, death
 	fails += await _smoke_combat(p)
+	# the interface: HUD, every panel, pause, dialogue, shop, death, save / load, title
+	fails += await _smoke_ui()
+	p = Game.player
 	# every region
 	var t0 := Time.get_ticks_msec()
 	var n := 0
@@ -200,6 +330,237 @@ func _smoke() -> void:
 	print("SMOKE ok: built %d regions with population in %d ms" % [n, Time.get_ticks_msec() - t0])
 	print("SMOKE ", "PASS" if fails == 0 else "FAILED (%d)" % fails)
 	get_tree().quit(1 if fails > 0 else 0)
+
+## Presses and releases a keyboard key the way the OS would, so UI._unhandled_input hears it.
+func _press_key(code: Key) -> void:
+	var down := InputEventKey.new()
+	down.physical_keycode = code
+	down.keycode = code
+	down.pressed = true
+	Input.parse_input_event(down)
+	await get_tree().process_frame
+	var up := InputEventKey.new()
+	up.physical_keycode = code
+	up.keycode = code
+	up.pressed = false
+	Input.parse_input_event(up)
+	await get_tree().process_frame
+	await get_tree().create_timer(0.2, true).timeout   # past the 150 ms guard that follows opening a panel
+
+func _ui_frames(n: int) -> void:
+	for i in n:
+		await get_tree().process_frame
+
+## Headless interface check. Returns the number of failed checks.
+func _smoke_ui() -> int:
+	var fails := 0
+	_make_ui()
+	var p = Game.player
+	p.invulnerable = true
+	Game.hero.hp = Game.hp_max()
+	Game.hero.age = 20.0
+	await _ui_frames(5)
+	# HUD
+	var hud = ui.hud
+	hud.visible = true
+	await _ui_frames(40)
+	fails += _report(hud.hp_txt.text.contains("/") and hud.region_lbl.text != "" and hud.slots.size() == 6, "HUD shows Prana, region and six siddhi slots (%s | %s)" % [hud.hp_txt.text, hud.region_lbl.text])
+	# every panel opens, pauses the world, frees the mouse and closes again
+	Game.give("dhanush_loha", 1, true)
+	Game.give("nilakantha_talwar", 1, true)
+	var samples := {
+		"inventory": null, "quests": null, "sadhana": null, "siddhis": null, "mudras": null, "map": "tirtha", "codex": null,
+		"controls": null, "settings": null, "saves": {"mode": "save"}, "pause": null, "newgame": null, "title": null,
+		"trainer": "bhimnath", "shop": "akhara_vaidya", "gift": "tara", "shrine": "dharma", "boasts": "q_rangabhumi",
+		"yaksha": {"door": "yaksha_akhara_vana"}, "marmara_choice": null,
+		"cutscene": {"title": "Smoke", "pages": [{"nl": "een", "en": "one"}, {"nl": "twee", "en": "two"}], "on_done": Callable()},
+	}
+	var all_ok := true
+	for kind in samples.keys():
+		var panel = ui.open(kind, samples[kind])
+		await _ui_frames(3)
+		var ok: bool = panel != null and ui.current == panel and get_tree().paused and Game.paused_for_ui and not p.controls_on and panel.body.get_child_count() > 0
+		if not ok:
+			all_ok = false
+			print("SMOKE FAIL: panel ", kind, " did not open properly")
+		panel.rebuild()   # a redraw (what hero_changed triggers) must work too
+		await _ui_frames(3)
+		ui.close(panel)
+		await _ui_frames(2)
+		if get_tree().paused or Game.paused_for_ui:
+			all_ok = false
+			print("SMOKE FAIL: panel ", kind, " left the game paused")
+	fails += _report(all_ok, "%d panels open, draw, redraw and close" % samples.size())
+	fails += _report(p.controls_on and not get_tree().paused, "closing the last panel gives the mouse and the world back")
+	# the menu keys
+	await _press_key(KEY_I)
+	var inv_open: bool = ui.is_open("inventory")
+	await _press_key(KEY_I)
+	var inv_closed: bool = not ui.is_open()
+	await _press_key(KEY_ESCAPE)
+	var pause_open: bool = ui.is_open("pause")
+	await _press_key(KEY_ESCAPE)
+	fails += _report(inv_open and inv_closed and pause_open and not ui.is_open(), "I toggles the inventory and Esc the pause menu")
+	# pausing stops the clock
+	var t_a: float = Game.state.play_time
+	ui.open("pause")
+	await _ui_frames(30)
+	var frozen: bool = is_equal_approx(float(Game.state.play_time), t_a)
+	ui.close()
+	await _ui_frames(30)
+	fails += _report(frozen and float(Game.state.play_time) > t_a, "the world stands still behind a panel and runs again after it")
+	# inventory actions: equip, unequip, use
+	var inv = ui.open("inventory")
+	inv.selected = "nilakantha_talwar"
+	inv.rebuild()
+	await _ui_frames(2)
+	inv._equip("nilakantha_talwar")
+	var worn: bool = Game.equipped("melee") == "nilakantha_talwar"
+	Game.unequip("melee")
+	Game.equip("lathi")
+	Game.hero.hp = 20.0
+	Game.give("prana_rasa", 1, true)
+	inv.selected = "prana_rasa"
+	Game.use_item("prana_rasa")
+	await _ui_frames(2)
+	ui.close()
+	fails += _report(worn and Game.hero.hp >= 99.0 and Game.equipped("melee") == "lathi", "inventory: equip, unequip and drink (hp %.0f)" % Game.hero.hp)
+	# shop: buy and sell
+	Game.hero.gold = 500
+	var shop = ui.open("shop", "akhara_vaidya")
+	var n0 := Game.count("prana_rasa_laghu")
+	var price := Game.item_buy_price("prana_rasa_laghu", 1.0)
+	shop._buy("prana_rasa_laghu", price)
+	var bought: bool = Game.count("prana_rasa_laghu") == n0 + 1 and Game.hero.gold == 500 - price
+	shop._sell("prana_rasa_laghu", Game.item_sell_price("prana_rasa_laghu"))
+	var sold: bool = Game.count("prana_rasa_laghu") == n0 and Game.hero.gold > 500 - price
+	ui.close()
+	fails += _report(bought and sold, "shop: buying takes gold and gives the item, selling returns it")
+	# trainer: learn a siddhi with tapas
+	Game.hero.tapas.shakti = 5000
+	var tr = ui.open("trainer", "bhimnath")
+	await _ui_frames(2)
+	var lvl0 := Game.siddhi_level("ugra_rupa")
+	var learned: bool = Game.learn_siddhi("ugra_rupa")
+	tr.rebuild()
+	await _ui_frames(2)
+	ui.close()
+	fails += _report(learned and Game.siddhi_level("ugra_rupa") == lvl0 + 1 and str(Game.hero.hotbar[0]) != "", "trainer: a siddhi is learned and lands on the hotbar")
+	# sadhana: raise a stat
+	Game.hero.tapas.bala = 5000
+	var deha0 := Game.stat("deha")
+	ui.open("sadhana")
+	Game.raise_stat("deha")
+	await _ui_frames(2)
+	ui.close()
+	fails += _report(Game.stat("deha") == deha0 + 1, "sadhana: Deha raised with tapas")
+	# dialogue: every character's first node opens, and a real conversation is walked through
+	var opened := 0
+	for cid in Data.characters.keys():
+		Events.dialogue_started.emit(cid)
+		await _ui_frames(1)
+		if ui.is_open("dialogue") or ui.current != null:
+			opened += 1
+		ui.close_all()
+	fails += _report(opened == Data.characters.size(), "all %d characters open a dialogue (%d did)" % [Data.characters.size(), opened])
+	Events.dialogue_started.emit("charaka")
+	await _ui_frames(2)
+	var dlg = ui.current
+	var steps := 0
+	while dlg != null and is_instance_valid(dlg) and ui.current == dlg and dlg.phase == "lines" and steps < 30:
+		dlg._advance()
+		dlg._advance()
+		steps += 1
+	var reached_choices: bool = ui.current == dlg and dlg != null and dlg.phase == "choices" and dlg._choice_list.size() > 0
+	var shop_choice := -1
+	if reached_choices:
+		for i in dlg._choice_list.size():
+			if dlg._choice_list[i].has("open_shop"):
+				shop_choice = i
+	if shop_choice >= 0:
+		dlg._choose(dlg._choice_list[shop_choice])
+	await _ui_frames(2)
+	fails += _report(reached_choices and shop_choice >= 0 and ui.is_open("shop"), "dialogue: lines, choices and a choice that opens a shop")
+	ui.close_all()
+	# the E that opens a dialogue must not also press "continue" inside it
+	Events.dialogue_started.emit("charaka")
+	var fresh = ui.current
+	var down := InputEventKey.new()
+	down.physical_keycode = KEY_E
+	down.keycode = KEY_E
+	down.pressed = true
+	Input.parse_input_event(down)
+	await get_tree().process_frame
+	var up := InputEventKey.new()
+	up.physical_keycode = KEY_E
+	up.keycode = KEY_E
+	up.pressed = false
+	Input.parse_input_event(up)
+	await get_tree().process_frame
+	var untouched: bool = fresh != null and ui.current == fresh and fresh.line_i == 0 and fresh._text_lbl.visible_ratio < 1.0
+	fails += _report(untouched, "the key press that opened a dialogue does not also skip its first line")
+	ui.close_all()
+	# the Yaksha riddle: a wrong answer keeps the door shut, the right one opens it
+	var yk = ui.open("yaksha", {"door": "yaksha_akhara_vana", "node": null})
+	yk._try(false)
+	var shut: bool = not yk.open_now
+	yk._try(true)
+	var opened_door: bool = yk.open_now and Game.region_state(str(Game.state.region)).yaksha
+	ui.close_all()
+	fails += _report(shut and opened_door, "Yaksha: a wrong answer keeps the door shut, the right one opens it and pays")
+	# vows
+	Game.state.quests["q_rangabhumi"] = {"state": "active", "stage": 0, "counters": {}, "boasts": [], "broken": [], "mudras": [], "start_day": 1}
+	var bp = ui.open("boasts", "q_rangabhumi")
+	bp.chosen = ["no_potion"]
+	bp._accept()
+	fails += _report(Game.state.quests["q_rangabhumi"]["boasts"] == ["no_potion"], "vows chosen in the panel are stored on the quest")
+	Game.state.quests.erase("q_rangabhumi")
+	# the Marmara choice
+	var mc = ui.open("marmara_choice")
+	mc._spare()
+	fails += _report(Game.flag("marmara_spared") and not ui.is_open(), "Marmara choice: sparing her sets her flag and closes")
+	# a cutscene ends with its callback
+	var done := [false]
+	ui.open("cutscene", {"title": "x", "pages": [{"nl": "a", "en": "a"}], "on_done": func(): done[0] = true})
+	await _ui_frames(2)
+	ui.current._next()
+	await _ui_frames(2)
+	fails += _report(done[0] and not ui.is_open(), "a cutscene runs its on_done when the last page is passed")
+	# dying: the death screen comes after a moment, rising again wakes the hero
+	p.invulnerable = false
+	Game.hero.hp = 10.0
+	p.take_damage(500.0, "test", null, "hazard")
+	await get_tree().create_timer(1.6, true).timeout
+	var death_shown: bool = ui.is_open("death") and get_tree().paused
+	if death_shown:
+		ui.current._rise()
+	await _ui_frames(3)
+	fails += _report(death_shown and not p.dead and Game.hero.hp > 50.0 and not get_tree().paused and p.controls_on, "death screen appears, rising again wakes the hero and gives control back")
+	# save, change, load: the hero comes back as saved, in a new world
+	Game.hero.gold = 777
+	Game.set_flag("smoke_saved", true)
+	var old_world = world
+	var saved: bool = Game.save_game(5, true)
+	Game.hero.gold = 1
+	Game.clear_flag("smoke_saved")
+	load_slot(5)
+	await _ui_frames(10)
+	p = Game.player
+	fails += _report(saved and Game.hero.gold == 777 and Game.flag("smoke_saved") and is_instance_valid(world) and world != old_world and p != null and not p.dead, "save and load restore the hero in a fresh world (gold %d)" % Game.hero.gold)
+	fails += _report(ui.hud.visible and p.controls_on and not get_tree().paused, "after loading the HUD shows and the hero is in control")
+	Game.delete_save(5)
+	# back to the title and a new game
+	to_title()
+	await _ui_frames(3)
+	var at_title: bool = ui.is_open("title") and not Game.in_game and world == null
+	start_new("Smoke")
+	await _ui_frames(10)
+	var intro: bool = ui.is_open("cutscene") and Game.in_game and world != null and Game.player != null
+	ui.close_all()
+	await _ui_frames(3)
+	p = Game.player
+	fails += _report(at_title and intro and p.controls_on and not get_tree().paused, "title screen, new game and the intro card work")
+	return fails
 
 ## Balance report (headless): for every enemy, a hero build that fits its level fights it with
 ## light strikes only, every blow landing, no armour, no dodging. Prints how long the hero needs to
@@ -559,7 +920,7 @@ func _smoke_marmara(p) -> int:
 	var c = p.combat
 	Game.hero.age = 20.0
 	Game.equip("lathi")
-	# the death panel of the previous check let go of the mouse; the overlay normally takes it back
+	# the death panel of the previous check let go of the mouse; the UI normally takes it back
 	p.capture_mouse()
 	Game.set_flag("marmara_duel_started", true)
 	world.build_region("vira_akhara", "")

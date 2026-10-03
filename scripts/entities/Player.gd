@@ -65,7 +65,7 @@ func _ready() -> void:
 	combat.player = self
 	add_child(combat)
 	Events.player_died.connect(_on_died)
-	Events.panel_requested.connect(func(_p, _d): _release_mouse())
+	Events.panel_requested.connect(func(_p, _d): release_mouse())
 	capture_mouse()
 	rebuild_visual()
 
@@ -138,7 +138,8 @@ func capture_mouse() -> void:
 	controls_on = true
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
-func _release_mouse() -> void:
+## Frees the mouse for a menu (the UI manager calls this; panel_requested does too, for headless runs).
+func release_mouse() -> void:
 	controls_on = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
@@ -157,9 +158,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			arm.spring_length = clampf(arm.spring_length - 0.5, 2.5, 12.0)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			arm.spring_length = clampf(arm.spring_length + 0.5, 2.5, 12.0)
-	elif event.is_action_pressed("pause"):
-		# Temporary until the pause menu exists: Escape frees the mouse.
-		_release_mouse()
 	elif event.is_action_pressed("interact") and _can_act():
 		_interact()
 	elif event.is_action_pressed("roll") and _can_act():

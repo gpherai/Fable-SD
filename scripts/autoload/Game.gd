@@ -4,6 +4,7 @@
 extends Node
 
 const SAVE_DIR := "user://saves"
+const SAVE_SLOTS := 6   # slot 0 = quick save and autosave, 1-5 = chosen by the player
 const KARMA_MIN := -1000
 const KARMA_MAX := 1000
 const FIST_BALA_MULT := 1.5   # Mushti Yuddha: a kill with bare fists gives this much more Bala tapas
@@ -1073,6 +1074,23 @@ func save_path(slot: int) -> String:
 
 func has_save(slot: int) -> bool:
 	return FileAccess.file_exists(save_path(slot))
+
+## The slot saved most recently, or -1 when there is no save at all.
+func latest_save_slot() -> int:
+	var best := -1
+	var best_t := ""
+	for slot in SAVE_SLOTS:
+		if not has_save(slot):
+			continue
+		var at := str(save_meta(slot).get("saved_at", ""))
+		if best < 0 or at > best_t:
+			best = slot
+			best_t = at
+	return best
+
+func delete_save(slot: int) -> void:
+	if has_save(slot):
+		DirAccess.remove_absolute(save_path(slot))
 
 func save_game(slot: int, silent: bool = false) -> bool:
 	if not in_game:

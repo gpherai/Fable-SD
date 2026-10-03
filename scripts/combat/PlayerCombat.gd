@@ -156,6 +156,11 @@ func _end_modifiers(delta: float) -> void:
 func is_idle() -> bool:
 	return state == S.IDLE
 
+## After a menu closes: a mouse button still held from the menu click must not become a strike.
+func ignore_held_buttons() -> void:
+	_ignore_atk = Input.is_action_pressed("attack")
+	_ignore_blk = Input.is_action_pressed("block")
+
 func cancel() -> void:
 	state = S.IDLE
 	st_t = 0.0
